@@ -56,7 +56,7 @@ body {
 }
 
 .answer-link:hover .magic-wand {
-  transform: rotate(20deg);
+    transform: rotate(20deg);
 }
 
 .vote-arrows, .vote-arrows .btn {
@@ -87,9 +87,9 @@ body {
 }
 
 .btn-question {
-  color: #FFFFFF;
-  background-color: #ED7458;
-  border-color: #D45B3F;
+    color: #FFFFFF;
+    background-color: #ED7458;
+    border-color: #D45B3F;
 }
 
 .btn-question:hover,
@@ -97,15 +97,15 @@ body {
 .btn-question:active,
 .btn-question.active,
 .open .dropdown-toggle.btn-question {
-  color: #FFFFFF;
-  background-color: #D45B3F;
-  border-color: #D45B3F;
+    color: #FFFFFF;
+    background-color: #D45B3F;
+    border-color: #D45B3F;
 }
 
 .btn-question:active,
 .btn-question.active,
 .open .dropdown-toggle.btn-question {
-  background-image: none;
+    background-image: none;
 }
 
 .btn-question.disabled,
@@ -123,13 +123,13 @@ fieldset[disabled] .btn-question:active,
 .btn-question.disabled.active,
 .btn-question[disabled].active,
 fieldset[disabled] .btn-question.active {
-  background-color: #ED7458;
-  border-color: #D45B3F;
+    background-color: #ED7458;
+    border-color: #D45B3F;
 }
 
 .btn-question .badge {
-  color: #ED7458;
-  background-color: #FFFFFF;
+    color: #ED7458;
+    background-color: #FFFFFF;
 }
 
 footer {
