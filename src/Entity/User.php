@@ -45,6 +45,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $fullName;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $avatar;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -152,5 +157,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFullName(string $fullName): void
     {
         $this->fullName = $fullName;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): void
+    {
+        $this->avatar = $avatar;
     }
 }

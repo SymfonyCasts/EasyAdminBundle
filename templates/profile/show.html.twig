@@ -6,7 +6,9 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-4">
-                <img src="" alt="">
+                <p>
+                    <img src="{{ app.user.avatar }}" alt="" width="100%">
+                </p>
                 {% for role in app.user.roles %}
                     {% if role != 'ROLE_USER' %}
                         <p>
