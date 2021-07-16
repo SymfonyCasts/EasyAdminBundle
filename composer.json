@@ -21,6 +21,7 @@
         "symfony/framework-bundle": "5.3.*",
         "symfony/monolog-bundle": "^3.0",
         "symfony/runtime": "5.3.*",
+        "symfony/security-bundle": "5.3.*",
         "symfony/stopwatch": "5.3.*",
         "symfony/twig-bundle": "5.3.*",
         "symfony/webpack-encore-bundle": "^1.7",
