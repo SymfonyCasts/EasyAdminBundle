@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Factory\AnswerFactory;
 use App\Factory\QuestionFactory;
 use App\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -21,17 +22,9 @@ class AppFixtures extends Fixture
     {
         $this->loadUsers();
         $this->loadQuestions();
+        $this->loadAnswers();
 
         $manager->flush();
-    }
-
-    private function loadQuestions()
-    {
-        QuestionFactory::new()->createMany(20);
-
-        QuestionFactory::new()
-            ->unpublished()
-            ->createMany(5);
     }
 
     private function loadUsers()
@@ -71,5 +64,19 @@ class AppFixtures extends Fixture
             ])
             ->create();
         $this->setReference('tisha', $tisha);
+    }
+
+    private function loadQuestions()
+    {
+        QuestionFactory::new()->createMany(20);
+
+        QuestionFactory::new()
+            ->unpublished()
+            ->createMany(5);
+    }
+
+    private function loadAnswers()
+    {
+        AnswerFactory::new()->createMany(100);
     }
 }
