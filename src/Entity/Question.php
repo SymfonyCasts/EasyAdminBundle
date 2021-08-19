@@ -60,6 +60,12 @@ class Question
      */
     private $answers;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Topic::class, inversedBy="questions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $topic;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -189,6 +195,18 @@ class Question
                 $answer->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTopic(): ?Topic
+    {
+        return $this->topic;
+    }
+
+    public function setTopic(?Topic $topic): self
+    {
+        $this->topic = $topic;
 
         return $this;
     }

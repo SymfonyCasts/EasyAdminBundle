@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Factory\AnswerFactory;
 use App\Factory\QuestionFactory;
+use App\Factory\TopicFactory;
 use App\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -21,6 +22,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $this->loadUsers();
+        $this->loadTopics();
         $this->loadQuestions();
         $this->loadAnswers();
 
@@ -64,6 +66,11 @@ class AppFixtures extends Fixture
             ])
             ->create();
         $this->setReference('tisha', $tisha);
+    }
+
+    private function loadTopics()
+    {
+        TopicFactory::new()->createMany(5);
     }
 
     private function loadQuestions()
