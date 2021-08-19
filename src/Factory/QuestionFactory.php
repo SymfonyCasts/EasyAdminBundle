@@ -4,7 +4,6 @@ namespace App\Factory;
 
 use App\Entity\Question;
 use App\Repository\QuestionRepository;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
@@ -34,6 +33,7 @@ final class QuestionFactory extends ModelFactory
                 true
             ),
             'askedAt' => self::faker()->dateTimeBetween('-100 days', '-1 minute'),
+            'askedBy' => UserFactory::random(),
             'votes' => rand(-20, 50),
         ];
     }

@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
 use App\Factory\QuestionFactory;
 use App\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -20,8 +19,8 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $this->loadQuestions();
         $this->loadUsers();
+        $this->loadQuestions();
 
         $manager->flush();
     }
@@ -37,28 +36,40 @@ class AppFixtures extends Fixture
 
     private function loadUsers()
     {
-        UserFactory::new()
+        $superAdmin = UserFactory::new()
             ->withAttributes([
                 'email' => 'admin@symfonycasts.com',
                 'password' => 'adminpass',
             ])
             ->promoteRole('ROLE_SUPER_ADMIN')
             ->create();
+        $this->setReference('superadmin', $superAdmin);
 
-        UserFactory::new()
+        $admin = UserFactory::new()
             ->withAttributes([
                 'email' => 'admin@symfony.com',
                 'password' => 'adminpass',
             ])
             ->promoteRole('ROLE_ADMIN')
             ->create();
+        $this->setReference('admin', $admin);
 
-        UserFactory::new()
+        $moderator = UserFactory::new()
             ->withAttributes([
                 'email' => 'admin@example.com',
                 'password' => 'adminpass',
             ])
             ->promoteRole('ROLE_MODERATOR')
             ->create();
+        $this->setReference('moderator', $moderator);
+
+        $tisha = UserFactory::new()
+            ->withAttributes([
+                'email' => 'tisha@symfonycasts.com',
+                'password' => 'tishapass',
+                'fullName' => 'Tisha',
+            ])
+            ->create();
+        $this->setReference('tisha', $tisha);
     }
 }

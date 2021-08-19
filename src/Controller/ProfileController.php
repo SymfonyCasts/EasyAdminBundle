@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("/show", name="profile_show")
+     * @Route("/show", name="app_profile_show")
      */
     public function show(): Response
     {
