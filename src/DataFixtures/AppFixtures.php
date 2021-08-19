@@ -63,7 +63,7 @@ class AppFixtures extends Fixture
                 'email' => 'tisha@symfonycasts.com',
                 'password' => 'tishapass',
                 'fullName' => 'Tisha',
-                'avatar' => 'images/tisha.png',
+                'avatar' => '/images/tisha.png',
             ])
             ->create();
         $this->setReference('tisha', $tisha);

@@ -5,9 +5,9 @@
 {% block body %}
     <div class="container">
         <div class="row mt-5">
-            <div class="col-4">
+            <div class="col-3">
                 <p>
-                    <img src="{{ app.user.avatar }}" alt="" width="100%">
+                    <img src="{{ asset(app.user.avatar) }}" alt="" width="100%">
                 </p>
                 {% for role in app.user.roles %}
                     {% if role != 'ROLE_USER' %}
@@ -18,9 +18,9 @@
                     {% endif %}
                 {% endfor %}
             </div>
-            <div class="col-8">
+            <div class="col-9">
                 <h3>{{ app.user.fullName }}</h3>
-                <p>Enabled: {{ app.user.enabled ? 'yes' : 'no' }}</p>
+                <p>Enabled: <span class="badge badge-secondary">{{ app.user.enabled ? 'yes' : 'no' }}</span></p>
                 <p>Email: {{ app.user.email }}</p>
             </div>
         </div>

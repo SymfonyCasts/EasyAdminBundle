@@ -16,6 +16,7 @@
                 <p class="pl-2 d-inline font-weight-bold" style="color: #444;">Cauldron Overflow</p>
             </a>
             {% if app.user %}
+                <a href="{{ path('app_profile_show') }}" class="btn btn-secondary">Profile</a>
                 <a href="{{ path('app_logout') }}" class="btn btn-dark">Logout</a>
             {% else %}
                 <a href="{{ path('app_login') }}" class="btn btn-dark">Login</a>
