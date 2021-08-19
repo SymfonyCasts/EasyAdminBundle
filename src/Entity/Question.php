@@ -43,6 +43,12 @@ class Question
     private $askedAt;
 
     /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="questions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $askedBy;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $votes = 0;
@@ -96,6 +102,18 @@ class Question
     public function setAskedAt(?\DateTimeInterface $askedAt): self
     {
         $this->askedAt = $askedAt;
+
+        return $this;
+    }
+
+    public function getAskedBy(): ?User
+    {
+        return $this->askedBy;
+    }
+
+    public function setAskedBy(?User $askedBy): self
+    {
+        $this->askedBy = $askedBy;
 
         return $this;
     }
