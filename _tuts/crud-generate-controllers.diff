@@ -1,0 +1,124 @@
+diff --git a/src/Controller/Admin/AnswerCrudController.php b/src/Controller/Admin/AnswerCrudController.php
+new file mode 100644
+index 0000000..e8b1aac
+--- /dev/null
++++ b/src/Controller/Admin/AnswerCrudController.php
+@@ -0,0 +1,25 @@
++<?php
++
++namespace App\Controller\Admin;
++
++use App\Entity\Answer;
++use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
++
++class AnswerCrudController extends AbstractCrudController
++{
++    public static function getEntityFqcn(): string
++    {
++        return Answer::class;
++    }
++
++    /*
++    public function configureFields(string $pageName): iterable
++    {
++        return [
++            IdField::new('id'),
++            TextField::new('title'),
++            TextEditorField::new('description'),
++        ];
++    }
++    */
++}
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+new file mode 100644
+index 0000000..89506a0
+--- /dev/null
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -0,0 +1,25 @@
++<?php
++
++namespace App\Controller\Admin;
++
++use App\Entity\Question;
++use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
++
++class QuestionCrudController extends AbstractCrudController
++{
++    public static function getEntityFqcn(): string
++    {
++        return Question::class;
++    }
++
++    /*
++    public function configureFields(string $pageName): iterable
++    {
++        return [
++            IdField::new('id'),
++            TextField::new('title'),
++            TextEditorField::new('description'),
++        ];
++    }
++    */
++}
+diff --git a/src/Controller/Admin/TopicCrudController.php b/src/Controller/Admin/TopicCrudController.php
+new file mode 100644
+index 0000000..897e28b
+--- /dev/null
++++ b/src/Controller/Admin/TopicCrudController.php
+@@ -0,0 +1,25 @@
++<?php
++
++namespace App\Controller\Admin;
++
++use App\Entity\Topic;
++use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
++
++class TopicCrudController extends AbstractCrudController
++{
++    public static function getEntityFqcn(): string
++    {
++        return Topic::class;
++    }
++
++    /*
++    public function configureFields(string $pageName): iterable
++    {
++        return [
++            IdField::new('id'),
++            TextField::new('title'),
++            TextEditorField::new('description'),
++        ];
++    }
++    */
++}
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+new file mode 100644
+index 0000000..1575931
+--- /dev/null
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -0,0 +1,25 @@
++<?php
++
++namespace App\Controller\Admin;
++
++use App\Entity\User;
++use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
++
++class UserCrudController extends AbstractCrudController
++{
++    public static function getEntityFqcn(): string
++    {
++        return User::class;
++    }
++
++    /*
++    public function configureFields(string $pageName): iterable
++    {
++        return [
++            IdField::new('id'),
++            TextField::new('title'),
++            TextEditorField::new('description'),
++        ];
++    }
++    */
++}

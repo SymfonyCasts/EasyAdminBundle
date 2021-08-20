@@ -1,0 +1,26 @@
+diff --git a/src/Controller/Admin/TopicCrudController.php b/src/Controller/Admin/TopicCrudController.php
+index 897e28b..f0502f2 100644
+--- a/src/Controller/Admin/TopicCrudController.php
++++ b/src/Controller/Admin/TopicCrudController.php
+@@ -3,6 +3,8 @@
+ namespace App\Controller\Admin;
+ 
+ use App\Entity\Topic;
++use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
++use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+ 
+ class TopicCrudController extends AbstractCrudController
+@@ -12,6 +14,12 @@ class TopicCrudController extends AbstractCrudController
+         return Topic::class;
+     }
+ 
++    public function configureActions(Actions $actions): Actions
++    {
++        return parent::configureActions($actions)
++            ->disable(Action::DETAIL);
++    }
++
+     /*
+     public function configureFields(string $pageName): iterable
+     {

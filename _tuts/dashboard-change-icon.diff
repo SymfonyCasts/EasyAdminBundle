@@ -1,0 +1,13 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index a0f6248..8c17cc2 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -28,7 +28,7 @@ class DashboardController extends AbstractDashboardController
+ 
+     public function configureMenuItems(): iterable
+     {
+-        yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
++        yield MenuItem::linktoDashboard('Dashboard', 'fa fa-dashboard');
+         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+     }
+ }

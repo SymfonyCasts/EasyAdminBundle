@@ -1,0 +1,13 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index 1b4596d..a0f6248 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -23,7 +23,7 @@ class DashboardController extends AbstractDashboardController
+     public function configureDashboard(): Dashboard
+     {
+         return Dashboard::new()
+-            ->setTitle('Symfony5 Easyadmin');
++            ->setTitle('Cauldron Overflow Admin');
+     }
+ 
+     public function configureMenuItems(): iterable

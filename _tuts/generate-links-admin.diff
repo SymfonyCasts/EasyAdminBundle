@@ -1,0 +1,26 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index cc2e5db..15b9e58 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -40,6 +40,7 @@ class DashboardController extends AbstractDashboardController
+         yield MenuItem::linkToCrud('Answers', 'fas fa-comments', Answer::class);
+         yield MenuItem::linkToCrud('Topics', 'fas fa-folder', Topic::class);
+         yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
++        yield MenuItem::linkToUrl('Homepage', 'fas fa-home', $this->generateUrl('app_homepage'));
+     }
+ 
+     public function configureActions(): Actions
+diff --git a/templates/base.html.twig b/templates/base.html.twig
+index 323a97b..33554d5 100644
+--- a/templates/base.html.twig
++++ b/templates/base.html.twig
+@@ -16,6 +16,9 @@
+                 <p class="pl-2 d-inline font-weight-bold" style="color: #444;">Cauldron Overflow</p>
+             </a>
+             {% if app.user %}
++                {% if is_granted('ROLE_ADMIN') %}
++                    <a href="{{ path('admin') }}" class="btn btn-secondary">Admin</a>
++                {% endif %}
+                 <a href="{{ path('app_profile_show') }}" class="btn btn-secondary">Profile</a>
+                 <a href="{{ path('app_logout') }}" class="btn btn-dark">Logout</a>
+             {% else %}
