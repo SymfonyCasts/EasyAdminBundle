@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 1575931..2a80a7d 100644
+index 1575931..c5968ab 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -4,6 +4,7 @@ namespace App\Controller\Admin;
@@ -10,18 +10,19 @@ index 1575931..2a80a7d 100644
  
  class UserCrudController extends AbstractCrudController
  {
-@@ -12,14 +13,10 @@ class UserCrudController extends AbstractCrudController
+@@ -12,14 +13,8 @@ class UserCrudController extends AbstractCrudController
          return User::class;
      }
  
 -    /*
      public function configureFields(string $pageName): iterable
      {
-         return [
-             IdField::new('id'),
+-        return [
+-            IdField::new('id'),
 -            TextField::new('title'),
 -            TextEditorField::new('description'),
-         ];
+-        ];
++        yield IdField::new('id');
      }
 -    */
  }
