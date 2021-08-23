@@ -114,7 +114,27 @@
             "id": "dashboard-widgets-create-latest-and-top-voted",
             "name": "Dashboard widgets: Create latest and top voted",
             "description": null
+        },
+        {
+            "id": "fields-render-id-field",
+            "name": "Fields: Render ID field",
+            "description": null
+        },
+        {
+            "id": "fields-render-other-user-fields",
+            "name": "Fields: Render other User fields",
+            "description": null
+        },
+        {
+            "id": "fields-change-email-to-text",
+            "name": "Fields: Change email to text",
+            "description": null
+        },
+        {
+            "id": "fields-render-enabled-as-label",
+            "name": "Fields: Render enabled as label",
+            "description": null
         }
     ],
-    "sha": "d0950b6b80b7290e020b2ad5f282e6ce1e6c2944"
+    "sha": "eeadb8d8908cbe83bad508fc6ae91ed868ce73e2"
 }

@@ -1,0 +1,13 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index 9264280..5bf2bdc 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -23,7 +23,7 @@ class UserCrudController extends AbstractCrudController
+         return [
+             IdField::new('id'),
+             AvatarField::new('avatar'),
+-            EmailField::new('email'),
++            TextField::new('email'),
+             TextField::new('fullName'),
+             BooleanField::new('enabled'),
+             DateField::new('createdAt'),
