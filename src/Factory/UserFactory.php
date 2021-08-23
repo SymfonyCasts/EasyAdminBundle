@@ -59,7 +59,8 @@ final class UserFactory extends ModelFactory
                 'ROLE_USER',
             ],
             'password' => 'userpass',
-            'fullName' => self::faker()->name(),
+            'firstName' => self::faker()->firstName(),
+            'lastName' => self::faker()->lastName(),
             'avatar' => '/images/default.png',
         ];
     }

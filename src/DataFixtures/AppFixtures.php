@@ -62,7 +62,8 @@ class AppFixtures extends Fixture
             ->withAttributes([
                 'email' => 'tisha@symfonycasts.com',
                 'password' => 'tishapass',
-                'fullName' => 'Tisha',
+                'firstName' => 'Tisha',
+                'lastName' => 'The Cat',
                 'avatar' => '/images/tisha.png',
             ])
             ->create();

@@ -45,7 +45,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string")
      */
-    private $fullName;
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $lastName;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -167,14 +172,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->enabled = $enabled;
     }
 
-    public function getFullName(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->fullName;
+        return $this->firstName;
     }
 
-    public function setFullName(string $fullName): void
+    public function setFirstName(string $firstName): void
     {
-        $this->fullName = $fullName;
+        $this->firstName = $firstName;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->firstName.' '.$this->lastName;
     }
 
     public function getAvatar(): ?string
