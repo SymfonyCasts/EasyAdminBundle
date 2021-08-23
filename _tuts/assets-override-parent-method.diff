@@ -1,0 +1,22 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index 226f2bd..a3bcd97 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -8,6 +8,7 @@ use App\Entity\Topic;
+ use App\Entity\User;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
++use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+@@ -62,4 +63,9 @@ class DashboardController extends AbstractDashboardController
+         return parent::configureActions()
+             ->add(Crud::PAGE_INDEX, Action::DETAIL);
+     }
++
++    public function configureAssets(): Assets
++    {
++        return parent::configureAssets();
++    }
+ }

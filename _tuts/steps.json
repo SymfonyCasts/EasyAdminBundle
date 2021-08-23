@@ -69,7 +69,47 @@
             "id": "generate-links-admin",
             "name": "Generate links: Admin",
             "description": null
+        },
+        {
+            "id": "user-menu-override-parent-method",
+            "name": "User menu: Override parent method",
+            "description": null
+        },
+        {
+            "id": "user-menu-set-user-avatar",
+            "name": "User menu: Set user avatar",
+            "description": null
+        },
+        {
+            "id": "user-menu-add-link-to-profile",
+            "name": "User menu: Add link to profile",
+            "description": null
+        },
+        {
+            "id": "assets-override-parent-method",
+            "name": "Assets: Override parent method",
+            "description": null
+        },
+        {
+            "id": "assets-create-admin-scss",
+            "name": "Assets: Create admin.scss",
+            "description": null
+        },
+        {
+            "id": "assets-install-sass",
+            "name": "Assets: Install Sass",
+            "description": null
+        },
+        {
+            "id": "assets-change-sidebar-bg",
+            "name": "Assets: Change sidebar bg",
+            "description": null
+        },
+        {
+            "id": "assets-enable-versioning",
+            "name": "Assets: Enable versioning",
+            "description": null
         }
     ],
-    "sha": "d2f2d9c2d7fd551f968f99f86bd749678cbe7ccd"
+    "sha": "e4a3a71b51155df02059e70e0e1920635ddb87ed"
 }

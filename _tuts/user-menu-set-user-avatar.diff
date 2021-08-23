@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index 08a1916..b8747ad 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -50,7 +50,8 @@ class DashboardController extends AbstractDashboardController
+      */
+     public function configureUserMenu(UserInterface $user): UserMenu
+     {
+-        return parent::configureUserMenu($user);
++        return parent::configureUserMenu($user)
++            ->setAvatarUrl($user->getAvatar());
+     }
+ 
+     public function configureActions(): Actions

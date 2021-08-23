@@ -1,0 +1,16 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index b8747ad..226f2bd 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -51,7 +51,10 @@ class DashboardController extends AbstractDashboardController
+     public function configureUserMenu(UserInterface $user): UserMenu
+     {
+         return parent::configureUserMenu($user)
+-            ->setAvatarUrl($user->getAvatar());
++            ->setAvatarUrl($user->getAvatar())
++            ->addMenuItems([
++                MenuItem::linkToUrl('My Profile', 'fas fa-user', $this->generateUrl('app_profile_show'))
++            ]);
+     }
+ 
+     public function configureActions(): Actions

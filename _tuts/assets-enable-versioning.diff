@@ -1,0 +1,13 @@
+diff --git a/webpack.config.js b/webpack.config.js
+index 283e3a0..c633320 100644
+--- a/webpack.config.js
++++ b/webpack.config.js
+@@ -44,7 +44,7 @@ Encore
+     .enableBuildNotifications()
+     .enableSourceMaps(!Encore.isProduction())
+     // enables hashed filenames (e.g. app.abc123.css)
+-    .enableVersioning(Encore.isProduction())
++    .enableVersioning(true) // Default value is: Encore.isProduction()
+ 
+     .configureBabel((config) => {
+         config.plugins.push('@babel/plugin-proposal-class-properties');
