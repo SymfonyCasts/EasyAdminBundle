@@ -109,7 +109,12 @@
             "id": "assets-enable-versioning",
             "name": "Assets: Enable versioning",
             "description": null
+        },
+        {
+            "id": "dashboard-widgets-create-latest-and-top-voted",
+            "name": "Dashboard widgets: Create latest and top voted",
+            "description": null
         }
     ],
-    "sha": "e4a3a71b51155df02059e70e0e1920635ddb87ed"
+    "sha": "ee611756ef0b0a503a808f9d7285c3ad4a72c20f"
 }
