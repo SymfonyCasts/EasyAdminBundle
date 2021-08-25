@@ -134,7 +134,117 @@
             "id": "fields-render-enabled-as-label",
             "name": "Fields: Render enabled as label",
             "description": null
+        },
+        {
+            "id": "fields-show-id-only-on-index",
+            "name": "Fields: Show id only on index",
+            "description": null
+        },
+        {
+            "id": "fields-show-fullname-only-on-index",
+            "name": "Fields: Show fullName only on index",
+            "description": null
+        },
+        {
+            "id": "fields-hide-fullname-on-form",
+            "name": "Fields: Hide fullName on form",
+            "description": null
+        },
+        {
+            "id": "fields-add-first-and-last-name-fields",
+            "name": "Fields: Add first and last name fields",
+            "description": null
+        },
+        {
+            "id": "fields-show-first-and-last-names-only-on-forms",
+            "name": "Fields: Show first and last names only on forms",
+            "description": null
+        },
+        {
+            "id": "fields-set-fullname",
+            "name": "Fields: Set fullName",
+            "description": null
+        },
+        {
+            "id": "fields-set-help-for-fullname",
+            "name": "Fields: Set help for fullName",
+            "description": null
+        },
+        {
+            "id": "fields-hide-createdat-on-forms",
+            "name": "Fields: Hide createdAt on forms",
+            "description": null
+        },
+        {
+            "id": "fields-add-fields-in-question-crud",
+            "name": "Fields: Add fields in Question CRUD",
+            "description": null
+        },
+        {
+            "id": "fields-set-label-for-votes",
+            "name": "Fields: Set label for votes",
+            "description": null
+        },
+        {
+            "id": "fields-votes-text-align-right",
+            "name": "Fields: Votes text align right",
+            "description": null
+        },
+        {
+            "id": "fields-add-question-field",
+            "name": "Fields: Add question field",
+            "description": null
+        },
+        {
+            "id": "fields-add-topic-field",
+            "name": "Fields: Add topic field",
+            "description": null
+        },
+        {
+            "id": "fields-implement-topic-tostring-method",
+            "name": "Fields: Implement Topic::__toString() method",
+            "description": null
+        },
+        {
+            "id": "fields-add-askedby-field",
+            "name": "Fields: Add askedBy field",
+            "description": null
+        },
+        {
+            "id": "fields-implement-user-tostring-method",
+            "name": "Fields: Implement User::__toString() method",
+            "description": null
+        },
+        {
+            "id": "fields-add-slug-field",
+            "name": "Fields: Add slug field",
+            "description": null
+        },
+        {
+            "id": "fields-slug-readonly",
+            "name": "Fields: Slug readonly",
+            "description": null
+        },
+        {
+            "id": "fields-slug-disabled",
+            "name": "Fields: slug disabled",
+            "description": null
+        },
+        {
+            "id": "dashboard-set-default-sort",
+            "name": "Dashboard: Set default sort",
+            "description": null
+        },
+        {
+            "id": "crud-set-default-sort-via-relation",
+            "name": "CRUD: Set default sort via relation",
+            "description": null
+        },
+        {
+            "id": "crud-disable-name-column-sort",
+            "name": "CRUD: Disable name column sort",
+            "description": null
         }
     ],
-    "sha": "b6504f4124db074ba2f36cb8ac3952637d1aca48"
+    "sha": "f8eb792b93fe731a0064979171f0f283b7c719a4"
 }

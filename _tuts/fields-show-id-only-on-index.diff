@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index 6d8f07f..eae9b99 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -20,7 +20,8 @@ class UserCrudController extends AbstractCrudController
+ 
+     public function configureFields(string $pageName): iterable
+     {
+-        yield IdField::new('id');
++        yield IdField::new('id')
++            ->onlyOnIndex();
+         yield AvatarField::new('avatar');
+         yield TextField::new('email');
+         yield TextField::new('fullName');

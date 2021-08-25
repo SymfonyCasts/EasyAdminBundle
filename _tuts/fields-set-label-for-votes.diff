@@ -1,0 +1,13 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 2877005..675c4a8 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -19,7 +19,7 @@ class QuestionCrudController extends AbstractCrudController
+         yield IdField::new('id')
+             ->onlyOnIndex();
+         yield Field::new('name');
+-        yield Field::new('votes');
++        yield Field::new('votes', 'Total Votes');
+         yield Field::new('askedAt');
+         yield Field::new('createdAt')
+             ->hideOnForm();

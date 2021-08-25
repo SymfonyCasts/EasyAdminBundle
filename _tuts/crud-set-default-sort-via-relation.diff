@@ -1,0 +1,28 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 3611900..7ff92be 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
+ 
+ use App\Entity\Question;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
++use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+@@ -17,6 +18,15 @@ class QuestionCrudController extends AbstractCrudController
+         return Question::class;
+     }
+ 
++    public function configureCrud(Crud $crud): Crud
++    {
++        return parent::configureCrud($crud)
++            ->setDefaultSort([
++                'askedBy.enabled' => 'DESC',
++                'askedAt' => 'DESC',
++            ]);
++    }
++
+     public function configureFields(string $pageName): iterable
+     {
+         yield IdField::new('id')

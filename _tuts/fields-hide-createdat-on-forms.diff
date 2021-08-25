@@ -1,0 +1,13 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index 743f946..ce46a12 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -29,6 +29,7 @@ class UserCrudController extends AbstractCrudController
+             ->setHelp('First, then Last');
+         yield BooleanField::new('enabled')
+             ->renderAsSwitch(false);
+-        yield DateField::new('createdAt');
++        yield DateField::new('createdAt')
++            ->hideOnForm();
+     }
+ }

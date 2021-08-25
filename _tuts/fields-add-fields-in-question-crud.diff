@@ -1,0 +1,35 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 89506a0..2877005 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
+ 
+ use App\Entity\Question;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
++use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
++use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+ 
+ class QuestionCrudController extends AbstractCrudController
+ {
+@@ -12,14 +14,14 @@ class QuestionCrudController extends AbstractCrudController
+         return Question::class;
+     }
+ 
+-    /*
+     public function configureFields(string $pageName): iterable
+     {
+-        return [
+-            IdField::new('id'),
+-            TextField::new('title'),
+-            TextEditorField::new('description'),
+-        ];
++        yield IdField::new('id')
++            ->onlyOnIndex();
++        yield Field::new('name');
++        yield Field::new('votes');
++        yield Field::new('askedAt');
++        yield Field::new('createdAt')
++            ->hideOnForm();
+     }
+-    */
+ }

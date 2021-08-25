@@ -1,0 +1,26 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 30f1a88..99b7314 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -3,6 +3,7 @@
+ namespace App\Controller\Admin;
+ 
+ use App\Entity\Question;
++use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+@@ -22,7 +23,12 @@ class QuestionCrudController extends AbstractCrudController
+             ->onlyOnIndex();
+         yield AssociationField::new('topic');
+         yield Field::new('slug')
+-            ->hideOnIndex();
++            ->hideOnIndex()
++            ->setFormTypeOptions([
++                'attr' => [
++                    'readonly' => $pageName !== Action::NEW,
++                ],
++            ]);
+         yield Field::new('name');
+         yield TextareaField::new('question')
+             ->hideOnIndex();

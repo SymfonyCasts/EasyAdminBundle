@@ -1,0 +1,13 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 99b7314..3611900 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -26,7 +26,7 @@ class QuestionCrudController extends AbstractCrudController
+             ->hideOnIndex()
+             ->setFormTypeOptions([
+                 'attr' => [
+-                    'readonly' => $pageName !== Action::NEW,
++                    'disabled' => $pageName !== Action::NEW,
+                 ],
+             ]);
+         yield Field::new('name');

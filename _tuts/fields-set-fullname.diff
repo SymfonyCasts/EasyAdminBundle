@@ -1,0 +1,36 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index f6e5098..0649ed8 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -25,12 +25,7 @@ class UserCrudController extends AbstractCrudController
+             ->onlyOnIndex();
+         yield AvatarField::new('avatar');
+         yield TextField::new('email');
+-        yield TextField::new('fullName')
+-            ->hideOnForm();
+-        yield Field::new('firstName')
+-            ->onlyOnForms();
+-        yield Field::new('lastName')
+-            ->onlyOnForms();
++        yield TextField::new('fullName');
+         yield BooleanField::new('enabled')
+             ->renderAsSwitch(false);
+         yield DateField::new('createdAt');
+diff --git a/src/Entity/User.php b/src/Entity/User.php
+index 1f0a320..e1deea1 100644
+--- a/src/Entity/User.php
++++ b/src/Entity/User.php
+@@ -200,6 +200,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
+         return $this->firstName.' '.$this->lastName;
+     }
+ 
++    public function setFullName(string $fullName)
++    {
++        $names = explode(' ', $fullName);
++        $this->firstName = array_shift($names);
++        $this->lastName = implode(' ', $names);
++    }
++
+     public function getAvatar(): ?string
+     {
+         return $this->avatar;

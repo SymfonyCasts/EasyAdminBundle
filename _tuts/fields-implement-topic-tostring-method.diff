@@ -1,0 +1,16 @@
+diff --git a/src/Entity/Topic.php b/src/Entity/Topic.php
+index c6a73aa..0306902 100644
+--- a/src/Entity/Topic.php
++++ b/src/Entity/Topic.php
+@@ -41,6 +41,11 @@ class Topic
+         $this->questions = new ArrayCollection();
+     }
+ 
++    public function __toString(): string
++    {
++        return $this->name;
++    }
++
+     public function getId(): ?int
+     {
+         return $this->id;

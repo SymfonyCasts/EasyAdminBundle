@@ -1,0 +1,19 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index 908f1fe..db2281b 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -76,6 +76,14 @@ class DashboardController extends AbstractDashboardController
+             ]);
+     }
+ 
++    public function configureCrud(): Crud
++    {
++        return parent::configureCrud()
++            ->setDefaultSort([
++                'id' => 'DESC',
++            ]);
++    }
++
+     public function configureActions(): Actions
+     {
+         return parent::configureActions()
