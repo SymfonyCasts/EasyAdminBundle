@@ -1,0 +1,30 @@
+diff --git a/assets/controllers/editor_controller.js b/assets/controllers/editor_controller.js
+new file mode 100644
+index 0000000..b5194af
+--- /dev/null
++++ b/assets/controllers/editor_controller.js
+@@ -0,0 +1,24 @@
++import { Controller } from 'stimulus';
++import snarkdown from 'snarkdown';
++import $ from 'jquery';
++
++export default class extends Controller {
++    static targets = [ 'container', 'input', 'output' ]
++
++    initialize() {
++        const $container = $(this.containerTarget);
++
++        $container.append('<div class="markdown-preview" data-editor-target="output">MARKDOWN WILL BE RENDERED HERE</div>');
++    }
++
++    connect() {
++        this.render();
++    }
++
++    render() {
++        const markdownContent = this.inputTarget.value;
++        const htmlContent = snarkdown(markdownContent);
++
++        $(this.outputTarget).html(htmlContent);
++    }
++}

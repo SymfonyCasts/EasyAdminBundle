@@ -1,0 +1,23 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 7282d40..fbc829d 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -44,7 +44,17 @@ class QuestionCrudController extends AbstractCrudController
+         yield Field::new('name')
+             ->setSortable(false);
+         yield TextareaField::new('question')
+-            ->hideOnIndex();
++            ->hideOnIndex()
++            ->setFormTypeOptions([
++                'row_attr' => [
++                    'data-controller' => 'editor',
++                    'data-editor-target' => 'container',
++                ],
++                'attr' => [
++                    'data-editor-target' => 'input',
++                    'data-action' => 'input->editor#render',
++                ],
++            ]);
+         yield Field::new('votes', 'Total Votes')
+             ->setTextAlign('right');
+         yield Field::new('askedAt');

@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 99b7314..3611900 100644
+index d6da96b..04c651b 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -26,7 +26,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -27,7 +27,7 @@ class QuestionCrudController extends AbstractCrudController
              ->hideOnIndex()
              ->setFormTypeOptions([
                  'attr' => [

@@ -1,0 +1,22 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 6d7a1e8..92b5cd5 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -3,6 +3,7 @@
+ namespace App\Controller\Admin;
+ 
+ use App\Entity\Question;
++use Doctrine\ORM\QueryBuilder;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+@@ -39,6 +40,9 @@ class QuestionCrudController extends AbstractCrudController
+                 }
+ 
+                 return sprintf('%s&nbsp;(%s)', $user->getEmail(), $user->getQuestions()->count());
++            })
++            ->setQueryBuilder(function (QueryBuilder $qb) {
++                $qb->andWhere('entity.enabled = 1');
+             });
+         yield Field::new('createdAt')
+             ->hideOnForm();

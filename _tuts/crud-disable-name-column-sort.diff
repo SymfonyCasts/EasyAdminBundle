@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 7ff92be..b37266f 100644
+index 34833dd..e09735d 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -39,7 +39,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -40,7 +40,8 @@ class QuestionCrudController extends AbstractCrudController
                      'disabled' => $pageName !== Action::NEW,
                  ],
              ]);

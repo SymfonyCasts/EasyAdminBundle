@@ -1,0 +1,13 @@
+diff --git a/assets/styles/admin.scss b/assets/styles/admin.scss
+index 6d0c464..1454d71 100644
+--- a/assets/styles/admin.scss
++++ b/assets/styles/admin.scss
+@@ -1 +1,8 @@
+ :root { --sidebar-bg: #deebff; }
++
++// Snarkdown preview container of rendered markdown
++.markdown-preview {
++  margin-top: 10px;
++  border: 2px dashed #da3735;
++  padding: 5px;
++}

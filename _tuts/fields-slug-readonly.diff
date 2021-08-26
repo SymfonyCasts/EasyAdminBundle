@@ -1,16 +1,16 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 30f1a88..99b7314 100644
+index 600ed3f..d6da96b 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -3,6 +3,7 @@
- namespace App\Controller\Admin;
+@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
  
  use App\Entity\Question;
+ use Doctrine\ORM\QueryBuilder;
 +use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
  use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
-@@ -22,7 +23,12 @@ class QuestionCrudController extends AbstractCrudController
+@@ -23,7 +24,12 @@ class QuestionCrudController extends AbstractCrudController
              ->onlyOnIndex();
          yield AssociationField::new('topic');
          yield Field::new('slug')

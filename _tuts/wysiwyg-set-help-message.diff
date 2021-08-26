@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index fbc829d..626f209 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -54,7 +54,8 @@ class QuestionCrudController extends AbstractCrudController
+                     'data-editor-target' => 'input',
+                     'data-action' => 'input->editor#render',
+                 ],
+-            ]);
++            ])
++            ->setHelp('Preview:');
+         yield Field::new('votes', 'Total Votes')
+             ->setTextAlign('right');
+         yield Field::new('askedAt');

@@ -1,0 +1,28 @@
+diff --git a/package.json b/package.json
+index 79d8c0c..aba3fc4 100644
+--- a/package.json
++++ b/package.json
+@@ -8,6 +8,7 @@
+         "regenerator-runtime": "^0.13.2",
+         "sass": "^1.38.0",
+         "sass-loader": "^12.0.0",
++        "snarkdown": "^2.0.0",
+         "stimulus": "^2.0.0",
+         "webpack-notifier": "^1.6.0"
+     },
+diff --git a/yarn.lock b/yarn.lock
+index 0730004..2bc57d7 100644
+--- a/yarn.lock
++++ b/yarn.lock
+@@ -4439,6 +4439,11 @@ slash@^3.0.0:
+   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
+   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
+ 
++snarkdown@^2.0.0:
++  version "2.0.0"
++  resolved "https://registry.yarnpkg.com/snarkdown/-/snarkdown-2.0.0.tgz#b1feb4db91b9f94a8ebbd7a50f3e99aee18b1e03"
++  integrity sha512-MgL/7k/AZdXCTJiNgrO7chgDqaB9FGM/1Tvlcenenb7div6obaDATzs16JhFyHHBGodHT3B7RzRc5qk8pFhg3A==
++
+ sockjs@^0.3.21:
+   version "0.3.21"
+   resolved "https://registry.yarnpkg.com/sockjs/-/sockjs-0.3.21.tgz#b34ffb98e796930b60a0cfa11904d6a339a7d417"

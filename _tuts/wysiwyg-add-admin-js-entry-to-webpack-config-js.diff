@@ -1,0 +1,13 @@
+diff --git a/webpack.config.js b/webpack.config.js
+index c633320..9d6a450 100644
+--- a/webpack.config.js
++++ b/webpack.config.js
+@@ -21,7 +21,7 @@ Encore
+      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
+      */
+     .addEntry('app', './assets/app.js')
+-    .addStyleEntry('admin', './assets/styles/admin.scss')
++    .addEntry('admin', './assets/admin.js')
+ 
+     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
+     .enableStimulusBridge('./assets/controllers.json')

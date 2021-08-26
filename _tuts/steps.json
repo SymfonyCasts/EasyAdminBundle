@@ -216,6 +216,21 @@
             "description": null
         },
         {
+            "id": "fields-autocomplete-users",
+            "name": "Fields: Autocomplete users",
+            "description": null
+        },
+        {
+            "id": "fields-call-formatvalue-on-askedby",
+            "name": "Fields: Call formatValue() on askedBy",
+            "description": null
+        },
+        {
+            "id": "fields-filter-disabled-users-with-setquerybuilder",
+            "name": "Fields: Filter disabled users with setQueryBuilder()",
+            "description": null
+        },
+        {
             "id": "fields-add-slug-field",
             "name": "Fields: Add slug field",
             "description": null
@@ -244,7 +259,57 @@
             "id": "crud-disable-name-column-sort",
             "name": "CRUD: Disable name column sort",
             "description": null
+        },
+        {
+            "id": "wysiwyg-use-texteditorfield",
+            "name": "WYSIWYG: Use TextEditorField",
+            "description": null
+        },
+        {
+            "id": "wysiwyg-revert-textareafield",
+            "name": "WYSIWYG: Revert TextareaField",
+            "description": null
+        },
+        {
+            "id": "wysiwyg-create-admin-js",
+            "name": "WYSIWYG: Create admin.js",
+            "description": null
+        },
+        {
+            "id": "wysiwyg-add-admin-js-entry-to-webpack-config-js",
+            "name": "WYSIWYG: Add admin.js entry to webpack.config.js",
+            "description": null
+        },
+        {
+            "id": "wysiwyg-add-data-attrs-for-stimulus-controller",
+            "name": "WYSIWYG: Add data attrs for Stimulus controller",
+            "description": null
+        },
+        {
+            "id": "wysiwyg-install-snarkdown",
+            "name": "WYSIWYG: Install Snarkdown",
+            "description": null
+        },
+        {
+            "id": "wysiwyg-create-stimulus-controller",
+            "name": "WYSIWYG: Create Stimulus controller",
+            "description": null
+        },
+        {
+            "id": "wysiwyg-add-styles-to-the-preview-container",
+            "name": "WYSIWYG: Add styles to the preview container",
+            "description": null
+        },
+        {
+            "id": "wysiwyg-set-help-message",
+            "name": "WYSIWYG: Set help message",
+            "description": null
+        },
+        {
+            "id": "wysiwyg-enable-lazy-loading-for-stimulus-controller",
+            "name": "WYSIWYG: Enable lazy loading for Stimulus controller",
+            "description": null
         }
     ],
-    "sha": "f8eb792b93fe731a0064979171f0f283b7c719a4"
+    "sha": "f5735d21064c76c4fc851fff5b3e359bac63d61c"
 }

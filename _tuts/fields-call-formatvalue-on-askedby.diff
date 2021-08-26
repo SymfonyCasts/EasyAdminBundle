@@ -1,0 +1,24 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 840cc31..6d7a1e8 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -28,7 +28,18 @@ class QuestionCrudController extends AbstractCrudController
+             ->setTextAlign('right');
+         yield Field::new('askedAt');
+         yield AssociationField::new('askedBy')
+-            ->autocomplete();
++            ->autocomplete()
++            ->formatValue(function ($value, ?Question $question): ?string {
++                if (!$question) {
++                    return null;
++                }
++
++                if (!$user = $question->getAskedBy()) {
++                    return null;
++                }
++
++                return sprintf('%s&nbsp;(%s)', $user->getEmail(), $user->getQuestions()->count());
++            });
+         yield Field::new('createdAt')
+             ->hideOnForm();
+     }
