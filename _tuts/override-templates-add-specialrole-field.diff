@@ -1,0 +1,13 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index 19972c4..2c5cac9 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -32,6 +32,8 @@ class UserCrudController extends AbstractCrudController
+             ->renderAsSwitch(false);
+         yield DateField::new('createdAt')
+             ->hideOnForm();
++        yield TextField::new('specialRole')
++            ->setTemplatePath('admin/crud/field/text_special_role.html.twig');
+         yield ArrayField::new('roles')
+             ->setHelp('Available roles: ROLE_SUPER_ADMIN, ROLE_ADMIN, ROLE_MODERATOR, ROLE_USER');
+     }

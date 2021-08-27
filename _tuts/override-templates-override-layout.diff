@@ -1,0 +1,7 @@
+diff --git a/templates/bundles/EasyAdminBundle/layout.html.twig b/templates/bundles/EasyAdminBundle/layout.html.twig
+new file mode 100644
+index 0000000..2f33593
+--- /dev/null
++++ b/templates/bundles/EasyAdminBundle/layout.html.twig
+@@ -0,0 +1 @@
++{% extends '@!EasyAdmin/layout.html.twig' %}

@@ -1,0 +1,19 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index ce46a12..094517a 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
+ 
+ use App\Entity\User;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
++use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+@@ -31,5 +32,6 @@ class UserCrudController extends AbstractCrudController
+             ->renderAsSwitch(false);
+         yield DateField::new('createdAt')
+             ->hideOnForm();
++        yield ArrayField::new('roles');
+     }
+ }

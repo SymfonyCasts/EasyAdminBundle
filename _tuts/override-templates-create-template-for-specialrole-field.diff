@@ -1,0 +1,33 @@
+diff --git a/src/Entity/User.php b/src/Entity/User.php
+index 04ede10..2646550 100644
+--- a/src/Entity/User.php
++++ b/src/Entity/User.php
+@@ -135,6 +135,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
+         return $this;
+     }
+ 
++    public function hasRole(string $role): bool
++    {
++        return in_array($role, $this->roles, true);
++    }
++
+     /**
+      * @see PasswordAuthenticatedUserInterface
+      */
+diff --git a/templates/admin/crud/field/text_special_role.html.twig b/templates/admin/crud/field/text_special_role.html.twig
+new file mode 100644
+index 0000000..7840749
+--- /dev/null
++++ b/templates/admin/crud/field/text_special_role.html.twig
+@@ -0,0 +1,11 @@
++{% set user = entity.instance %}
++
++{% if user.hasRole('ROLE_SUPER_ADMIN') %}
++    <span class="badge badge-danger">Super Admin</span>
++{% elseif user.hasRole('ROLE_ADMIN') %}
++    <span class="badge badge-warning">Admin</span>
++{% elseif user.hasRole('ROLE_MODERATOR') %}
++    <span class="badge badge-warning">Moderator</span>
++{% else %}
++    <span class="badge badge-secondary">~</span>
++{% endif %}

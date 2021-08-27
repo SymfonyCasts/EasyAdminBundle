@@ -1,0 +1,10 @@
+diff --git a/templates/bundles/EasyAdminBundle/layout.html.twig b/templates/bundles/EasyAdminBundle/layout.html.twig
+index 2f33593..950357d 100644
+--- a/templates/bundles/EasyAdminBundle/layout.html.twig
++++ b/templates/bundles/EasyAdminBundle/layout.html.twig
+@@ -1 +1,5 @@
+ {% extends '@!EasyAdmin/layout.html.twig' %}
++
++{% block content_footer %}
++    Made with 🤍 by the guys and gals at SymfonyCasts
++{% endblock %}
