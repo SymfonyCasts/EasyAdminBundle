@@ -1,0 +1,110 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index 23c88f3..db2281b 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -6,6 +6,7 @@ use App\Entity\Answer;
+ use App\Entity\Question;
+ use App\Entity\Topic;
+ use App\Entity\User;
++use Doctrine\ORM\EntityManagerInterface;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
+@@ -21,13 +22,30 @@ use Symfony\Component\Security\Core\User\UserInterface;
+ 
+ class DashboardController extends AbstractDashboardController
+ {
++    private EntityManagerInterface $entityManager;
++
++    public function __construct(EntityManagerInterface $entityManager)
++    {
++        $this->entityManager = $entityManager;
++    }
++
+     /**
+      * @Route("/admin", name="admin")
+      * @IsGranted("ROLE_ADMIN")
+      */
+     public function index(): Response
+     {
+-        return parent::index();
++        $latestQuestions = $this->entityManager
++            ->getRepository(Question::class)
++            ->findLatest();
++        $topVoted = $this->entityManager
++            ->getRepository(Question::class)
++            ->findTopVoted();
++
++        return $this->render('admin/index.html.twig', [
++            'latestQuestions' => $latestQuestions,
++            'topVoted' => $topVoted,
++        ]);
+     }
+ 
+     public function configureDashboard(): Dashboard
+diff --git a/src/Repository/QuestionRepository.php b/src/Repository/QuestionRepository.php
+index 6adb14a..e732ca5 100644
+--- a/src/Repository/QuestionRepository.php
++++ b/src/Repository/QuestionRepository.php
+@@ -20,6 +20,24 @@ class QuestionRepository extends ServiceEntityRepository
+         parent::__construct($registry, Question::class);
+     }
+ 
++    public function findLatest(): array
++    {
++        return $this->createQueryBuilder('question')
++            ->orderBy('question.createdAt', 'DESC')
++            ->setMaxResults(3)
++            ->getQuery()
++            ->getResult();
++    }
++
++    public function findTopVoted(): array
++    {
++        return $this->createQueryBuilder('question')
++            ->orderBy('question.votes', 'DESC')
++            ->setMaxResults(5)
++            ->getQuery()
++            ->getResult();
++    }
++
+      /**
+       * @return Question[] Returns an array of Question objects
+       */
+diff --git a/templates/admin/index.html.twig b/templates/admin/index.html.twig
+new file mode 100644
+index 0000000..be1baef
+--- /dev/null
++++ b/templates/admin/index.html.twig
+@@ -0,0 +1,31 @@
++{% extends '@EasyAdmin/page/content.html.twig' %}
++
++{% block page_title %}
++    Cauldron Overflow Dashboard
++{% endblock %}
++
++{% block main %}
++    <div class="row">
++        <div class="col-6">
++            <h3>Latest Questions</h3>
++            <ol>
++                {% for question in latestQuestions %}
++                    <li>
++                        <a href="{{ path('app_question_show', {'slug': question.slug}) }}">{{ question.name }}</a>
++                        <br>- {{ question.createdAt|date }}
++                    </li>
++                {% endfor %}
++            </ol>
++        </div>
++        <div class="col-6">
++            <h3>Top Voted</h3>
++            <ol>
++                {% for question in topVoted %}
++                    <li>
++                        <a href="{{ path('app_question_show', {'slug': question.slug}) }}">{{ question.name }}</a> ({{ question.votes }})
++                    </li>
++                {% endfor %}
++            </ol>
++        </div>
++    </div>
++{% endblock %}

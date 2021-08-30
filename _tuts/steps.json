@@ -321,6 +321,11 @@
             "description": null
         },
         {
+            "id": "dashboard-widgets-create-latest-and-top-voted",
+            "name": "Dashboard widgets: Create latest and top voted",
+            "description": null
+        },
+        {
             "id": "override-templates-override-layout",
             "name": "Override templates: Override layout",
             "description": null
@@ -356,5 +361,5 @@
             "description": null
         }
     ],
-    "sha": "c74f6f766ec847dd09410517c6cbe08e56bfbd56"
+    "sha": "5d3f3595c091fd447f2dd86200dd85e8de77f235"
 }
