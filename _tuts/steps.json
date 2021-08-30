@@ -111,8 +111,8 @@
             "description": null
         },
         {
-            "id": "dashboard-widgets-create-latest-and-top-voted",
-            "name": "Dashboard widgets: Create latest and top voted",
+            "id": "delete-me-2",
+            "name": "DELETE ME 2",
             "description": null
         },
         {
@@ -356,5 +356,5 @@
             "description": null
         }
     ],
-    "sha": "a0b626102f7bcf401bf98c8eaefbdcb26a64408d"
+    "sha": "c74f6f766ec847dd09410517c6cbe08e56bfbd56"
 }
