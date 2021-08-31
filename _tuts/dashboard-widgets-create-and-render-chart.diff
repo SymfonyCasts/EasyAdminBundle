@@ -1,0 +1,76 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index db2281b..48453b3 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -19,14 +19,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+ use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\Routing\Annotation\Route;
+ use Symfony\Component\Security\Core\User\UserInterface;
++use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
++use Symfony\UX\Chartjs\Model\Chart;
+ 
+ class DashboardController extends AbstractDashboardController
+ {
+     private EntityManagerInterface $entityManager;
++    private ChartBuilderInterface $chartBuilder;
+ 
+-    public function __construct(EntityManagerInterface $entityManager)
++    public function __construct(EntityManagerInterface $entityManager, ChartBuilderInterface $chartBuilder)
+     {
+         $this->entityManager = $entityManager;
++        $this->chartBuilder = $chartBuilder;
+     }
+ 
+     /**
+@@ -45,6 +49,7 @@ class DashboardController extends AbstractDashboardController
+         return $this->render('admin/index.html.twig', [
+             'latestQuestions' => $latestQuestions,
+             'topVoted' => $topVoted,
++            'chart' => $this->createChart(),
+         ]);
+     }
+ 
+@@ -95,4 +100,30 @@ class DashboardController extends AbstractDashboardController
+         return parent::configureAssets()
+             ->addWebpackEncoreEntry('admin');
+     }
++
++    private function createChart()
++    {
++        $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
++        $chart->setData([
++            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
++            'datasets' => [
++                [
++                    'label' => 'My First dataset',
++                    'backgroundColor' => 'rgb(255, 99, 132)',
++                    'borderColor' => 'rgb(255, 99, 132)',
++                    'data' => [0, 10, 5, 2, 20, 30, 45],
++                ],
++            ],
++        ]);
++
++        $chart->setOptions([
++            'scales' => [
++                'yAxes' => [
++                    ['ticks' => ['min' => 0, 'max' => 100]],
++                ],
++            ],
++        ]);
++
++        return $chart;
++    }
+ }
+diff --git a/templates/admin/index.html.twig b/templates/admin/index.html.twig
+index be1baef..f1e87a1 100644
+--- a/templates/admin/index.html.twig
++++ b/templates/admin/index.html.twig
+@@ -27,5 +27,8 @@
+                 {% endfor %}
+             </ol>
+         </div>
++        <div class="col-12">
++            {{ render_chart(chart) }}
++        </div>
+     </div>
+ {% endblock %}

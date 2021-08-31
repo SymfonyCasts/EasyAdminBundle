@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index db2281b..04fa29c 100644
+index 48453b3..5125e89 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -81,7 +81,8 @@ class DashboardController extends AbstractDashboardController
+@@ -86,7 +86,8 @@ class DashboardController extends AbstractDashboardController
          return parent::configureCrud()
              ->setDefaultSort([
                  'id' => 'DESC',

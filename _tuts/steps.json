@@ -326,6 +326,16 @@
             "description": null
         },
         {
+            "id": "dashboard-widgets-install-symfony-ux-chart-deps",
+            "name": "Dashboard widgets: Install Symfony UX Chart deps",
+            "description": null
+        },
+        {
+            "id": "dashboard-widgets-create-and-render-chart",
+            "name": "Dashboard widgets: Create and render chart",
+            "description": null
+        },
+        {
             "id": "override-templates-override-layout",
             "name": "Override templates: Override layout",
             "description": null
@@ -359,7 +369,12 @@
             "id": "override-templates-show-role-fields-on-specific-pages",
             "name": "Override templates: Show role fields on specific pages",
             "description": null
+        },
+        {
+            "id": "link-permissions-tbd",
+            "name": "Link Permissions: TBD",
+            "description": null
         }
     ],
-    "sha": "5d3f3595c091fd447f2dd86200dd85e8de77f235"
+    "sha": "6f14883a7557ef34f773fc270576199895c80f58"
 }
