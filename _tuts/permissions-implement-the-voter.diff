@@ -1,0 +1,46 @@
+diff --git a/src/Security/Voter/AdminUserVoter.php b/src/Security/Voter/AdminUserVoter.php
+index 88ed4bf..f8bd1e1 100644
+--- a/src/Security/Voter/AdminUserVoter.php
++++ b/src/Security/Voter/AdminUserVoter.php
+@@ -2,6 +2,7 @@
+ 
+ namespace App\Security\Voter;
+ 
++use App\Entity\User;
+ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+ use Symfony\Component\Security\Core\User\UserInterface;
+@@ -12,8 +13,8 @@ class AdminUserVoter extends Voter
+     {
+         // replace with your own logic
+         // https://symfony.com/doc/current/security/voters.html
+-        return in_array($attribute, ['POST_EDIT', 'POST_VIEW'])
+-            && $subject instanceof \App\Entity\AdminUser;
++        return in_array($attribute, ['ADMIN_USER_EDIT'])
++            && $subject instanceof User;
+     }
+ 
+     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
+@@ -23,17 +24,14 @@ class AdminUserVoter extends Voter
+         if (!$user instanceof UserInterface) {
+             return false;
+         }
++        if (!$subject instanceof User) {
++            throw new \LogicException('Subject is not an instance of User?s');
++        }
+ 
+         // ... (check conditions and return true to grant permission) ...
+         switch ($attribute) {
+-            case 'POST_EDIT':
+-                // logic to determine if the user can EDIT
+-                // return true or false
+-                break;
+-            case 'POST_VIEW':
+-                // logic to determine if the user can VIEW
+-                // return true or false
+-                break;
++            case 'ADMIN_USER_EDIT':
++                return $user === $subject;
+         }
+ 
+         return false;

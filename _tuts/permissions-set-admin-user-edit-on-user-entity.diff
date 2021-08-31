@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index b804eaa..e02518b 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -23,7 +23,8 @@ class UserCrudController extends AbstractCrudController
+ 
+     public function configureCrud(Crud $crud): Crud
+     {
+-        return parent::configureCrud($crud);
++        return parent::configureCrud($crud)
++            ->setEntityPermission('ADMIN_USER_EDIT');
+     }
+ 
+     public function configureFields(string $pageName): iterable

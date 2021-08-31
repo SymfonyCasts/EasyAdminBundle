@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index a9e3ffb..c48bb22 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -68,7 +68,8 @@ class QuestionCrudController extends AbstractCrudController
+             ])
+             ->setHelp('Preview:');
+         yield Field::new('votes', 'Total Votes')
+-            ->setTextAlign('right');
++            ->setTextAlign('right')
++            ->setPermission('ROLE_SUPER_ADMIN');
+         yield Field::new('askedAt');
+         yield AssociationField::new('askedBy')
+             ->autocomplete()

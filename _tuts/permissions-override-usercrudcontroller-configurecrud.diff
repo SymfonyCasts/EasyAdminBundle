@@ -1,0 +1,24 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index 781d893..b804eaa 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -3,6 +3,7 @@
+ namespace App\Controller\Admin;
+ 
+ use App\Entity\User;
++use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
+@@ -20,6 +21,11 @@ class UserCrudController extends AbstractCrudController
+         return User::class;
+     }
+ 
++    public function configureCrud(Crud $crud): Crud
++    {
++        return parent::configureCrud($crud);
++    }
++
+     public function configureFields(string $pageName): iterable
+     {
+         yield IdField::new('id')

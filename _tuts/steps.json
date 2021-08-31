@@ -371,10 +371,60 @@
             "description": null
         },
         {
-            "id": "link-permissions-tbd",
-            "name": "Link Permissions: TBD",
+            "id": "permissions-set-to-role-moderator-for-questions-link",
+            "name": "Permissions: Set to ROLE_MODERATOR for questions link",
+            "description": null
+        },
+        {
+            "id": "permissions-override-questioncrudcontroller-configureactions",
+            "name": "Permissions: Override QuestionCRUDController::configureActions()",
+            "description": null
+        },
+        {
+            "id": "permissions-set-role-moderator-for-questions-index-page",
+            "name": "Permissions: Set ROLE_MODERATOR for questions index page",
+            "description": null
+        },
+        {
+            "id": "permissions-set-role-moderator-for-questions-edit-and-detail-pages",
+            "name": "Permissions: Set ROLE_MODERATOR for questions edit and detail pages",
+            "description": null
+        },
+        {
+            "id": "permissions-set-role-super-admin-for-questions-new-and-delete-pages",
+            "name": "Permissions: Set ROLE_SUPER_ADMIN for questions new and delete pages",
+            "description": null
+        },
+        {
+            "id": "permissions-set-role-super-admin-for-votes-field",
+            "name": "Permissions: Set ROLE_SUPER_ADMIN for votes field",
+            "description": null
+        },
+        {
+            "id": "permissions-override-usercrudcontroller-configurecrud",
+            "name": "Permissions: Override UserCRUDController::configureCrud()",
+            "description": null
+        },
+        {
+            "id": "permissions-set-admin-user-edit-on-user-entity",
+            "name": "Permissions: Set ADMIN_USER_EDIT on user entity",
+            "description": null
+        },
+        {
+            "id": "permissions-create-adminuservoter",
+            "name": "Permissions: Create AdminUserVoter",
+            "description": null
+        },
+        {
+            "id": "permissions-implement-the-voter",
+            "name": "Permissions: Implement the voter",
+            "description": null
+        },
+        {
+            "id": "permissions-or-role-super-admin-is-granted",
+            "name": "Permissions: Or ROLE_SUPER_ADMIN is granted",
             "description": null
         }
     ],
-    "sha": "6f14883a7557ef34f773fc270576199895c80f58"
+    "sha": "bb6f657162c23bbcedfff34a5677ffac0281f02b"
 }

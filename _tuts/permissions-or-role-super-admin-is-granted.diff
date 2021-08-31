@@ -1,0 +1,32 @@
+diff --git a/src/Security/Voter/AdminUserVoter.php b/src/Security/Voter/AdminUserVoter.php
+index f8bd1e1..6f4923f 100644
+--- a/src/Security/Voter/AdminUserVoter.php
++++ b/src/Security/Voter/AdminUserVoter.php
+@@ -5,10 +5,18 @@ namespace App\Security\Voter;
+ use App\Entity\User;
+ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
++use Symfony\Component\Security\Core\Security;
+ use Symfony\Component\Security\Core\User\UserInterface;
+ 
+ class AdminUserVoter extends Voter
+ {
++    private Security $security;
++
++    public function __construct(Security $security)
++    {
++        $this->security = $security;
++    }
++
+     protected function supports(string $attribute, $subject): bool
+     {
+         // replace with your own logic
+@@ -31,7 +39,7 @@ class AdminUserVoter extends Voter
+         // ... (check conditions and return true to grant permission) ...
+         switch ($attribute) {
+             case 'ADMIN_USER_EDIT':
+-                return $user === $subject;
++                return $user === $subject || $this->security->isGranted('ROLE_SUPER_ADMIN');;
+         }
+ 
+         return false;
