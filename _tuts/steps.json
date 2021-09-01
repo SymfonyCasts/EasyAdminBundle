@@ -509,7 +509,47 @@
             "id": "multiple-crud-set-help-message-on-index-page",
             "name": "Multiple CRUD: Set help message on index page",
             "description": null
+        },
+        {
+            "id": "events-add-question-updatedat-field",
+            "name": "Events: Add Question::updatedAt field",
+            "description": null
+        },
+        {
+            "id": "events-generate-subscriber",
+            "name": "Events: Generate subscriber",
+            "description": null
+        },
+        {
+            "id": "events-inject-security-service",
+            "name": "Events: Inject Security service",
+            "description": null
+        },
+        {
+            "id": "events-implement-onbeforeentityupdatedevent",
+            "name": "Events: Implement onBeforeEntityUpdatedEvent()",
+            "description": null
+        },
+        {
+            "id": "events-override-updateentity",
+            "name": "Events: Override updateEntity()",
+            "description": null
+        },
+        {
+            "id": "events-inject-security-service-in-crud",
+            "name": "Events: Inject Security service in CRUD",
+            "description": null
+        },
+        {
+            "id": "events-implement-updateentity",
+            "name": "Events: Implement updateEntity()",
+            "description": null
+        },
+        {
+            "id": "events-comment-out-the-subscriber",
+            "name": "Events: Comment out the subscriber",
+            "description": null
         }
     ],
-    "sha": "23ca6c04f94db2ba65d7a8a6dd1091797bb0a238"
+    "sha": "67fd66d6133643ba6c1ec4c941e05bddeccec176"
 }

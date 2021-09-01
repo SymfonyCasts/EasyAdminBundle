@@ -1,0 +1,22 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index b4a0114..a97d0b9 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -15,9 +15,17 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
++use Symfony\Component\Security\Core\Security;
+ 
+ class QuestionCrudController extends AbstractCrudController
+ {
++    private Security $security;
++
++    public function __construct(Security $security)
++    {
++        $this->security = $security;
++    }
++
+     public static function getEntityFqcn(): string
+     {
+         return Question::class;

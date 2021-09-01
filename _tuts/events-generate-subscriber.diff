@@ -1,0 +1,27 @@
+diff --git a/src/EventSubscriber/BlameableSubscriber.php b/src/EventSubscriber/BlameableSubscriber.php
+new file mode 100644
+index 0000000..f87e3f4
+--- /dev/null
++++ b/src/EventSubscriber/BlameableSubscriber.php
+@@ -0,0 +1,21 @@
++<?php
++
++namespace App\EventSubscriber;
++
++use Symfony\Component\EventDispatcher\EventSubscriberInterface;
++use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
++
++class BlameableSubscriber implements EventSubscriberInterface
++{
++    public function onBeforeEntityUpdatedEvent(BeforeEntityUpdatedEvent $event)
++    {
++        // ...
++    }
++
++    public static function getSubscribedEvents()
++    {
++        return [
++            BeforeEntityUpdatedEvent::class => 'onBeforeEntityUpdatedEvent',
++        ];
++    }
++}

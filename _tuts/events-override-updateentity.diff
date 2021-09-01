@@ -1,0 +1,25 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 124ad45..b4a0114 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -3,6 +3,7 @@
+ namespace App\Controller\Admin;
+ 
+ use App\Entity\Question;
++use Doctrine\ORM\EntityManagerInterface;
+ use Doctrine\ORM\QueryBuilder;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+@@ -102,4 +103,12 @@ class QuestionCrudController extends AbstractCrudController
+             ->add('votes')
+             ->add('name');
+     }
++
++    /**
++     * @param Question $entityInstance
++     */
++    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
++    {
++        parent::updateEntity($entityManager, $entityInstance);
++    }
+ }

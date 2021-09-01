@@ -1,0 +1,25 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index a97d0b9..bc45c4c 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -3,6 +3,7 @@
+ namespace App\Controller\Admin;
+ 
+ use App\Entity\Question;
++use App\Entity\User;
+ use Doctrine\ORM\EntityManagerInterface;
+ use Doctrine\ORM\QueryBuilder;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+@@ -117,6 +118,12 @@ class QuestionCrudController extends AbstractCrudController
+      */
+     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+     {
++        $user = $this->security->getUser();
++        if (!$user instanceof User) {
++            throw new \LogicException('Currently logged in user is not an instance of User?!');
++        }
++        $entityInstance->setUpdatedBy($user);
++
+         parent::updateEntity($entityManager, $entityInstance);
+     }
+ }

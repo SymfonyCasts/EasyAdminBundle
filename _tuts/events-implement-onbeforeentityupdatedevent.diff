@@ -1,0 +1,33 @@
+diff --git a/src/EventSubscriber/BlameableSubscriber.php b/src/EventSubscriber/BlameableSubscriber.php
+index bae17c2..12c93d5 100644
+--- a/src/EventSubscriber/BlameableSubscriber.php
++++ b/src/EventSubscriber/BlameableSubscriber.php
+@@ -2,6 +2,8 @@
+ 
+ namespace App\EventSubscriber;
+ 
++use App\Entity\Question;
++use App\Entity\User;
+ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+ use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
+ use Symfony\Component\Security\Core\Security;
+@@ -17,7 +19,18 @@ class BlameableSubscriber implements EventSubscriberInterface
+ 
+     public function onBeforeEntityUpdatedEvent(BeforeEntityUpdatedEvent $event)
+     {
+-        // ...
++        $question = $event->getEntityInstance();
++        if (!$question instanceof Question) {
++            return;
++        }
++
++        $user = $this->security->getUser();
++        // We always should have a User object in EA
++        if (!$user instanceof User) {
++            throw new \LogicException('Currently logged in user is not an instance of User?!');
++        }
++
++        $question->setUpdatedBy($user);
+     }
+ 
+     public static function getSubscribedEvents()

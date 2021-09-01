@@ -1,0 +1,22 @@
+diff --git a/src/EventSubscriber/BlameableSubscriber.php b/src/EventSubscriber/BlameableSubscriber.php
+index f87e3f4..bae17c2 100644
+--- a/src/EventSubscriber/BlameableSubscriber.php
++++ b/src/EventSubscriber/BlameableSubscriber.php
+@@ -4,9 +4,17 @@ namespace App\EventSubscriber;
+ 
+ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+ use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
++use Symfony\Component\Security\Core\Security;
+ 
+ class BlameableSubscriber implements EventSubscriberInterface
+ {
++    private Security $security;
++
++    public function __construct(Security $security)
++    {
++        $this->security = $security;
++    }
++
+     public function onBeforeEntityUpdatedEvent(BeforeEntityUpdatedEvent $event)
+     {
+         // ...

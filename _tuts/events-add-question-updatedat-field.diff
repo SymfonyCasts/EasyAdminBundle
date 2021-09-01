@@ -1,0 +1,45 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 7a7dd77..124ad45 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -90,6 +90,8 @@ class QuestionCrudController extends AbstractCrudController
+             });
+         yield Field::new('createdAt')
+             ->hideOnForm();
++        yield AssociationField::new('updatedBy')
++            ->onlyOnDetail();
+     }
+ 
+     public function configureFilters(Filters $filters): Filters
+diff --git a/src/Entity/Question.php b/src/Entity/Question.php
+index 09be834..d4670e8 100644
+--- a/src/Entity/Question.php
++++ b/src/Entity/Question.php
+@@ -71,6 +71,12 @@ class Question
+      */
+     private $isApproved = false;
+ 
++    /**
++     * @ORM\ManyToOne(targetEntity=User::class)
++     * @ORM\JoinColumn(nullable=true)
++     */
++    private $updatedBy;
++
+     public function __construct()
+     {
+         $this->answers = new ArrayCollection();
+@@ -225,4 +231,14 @@ class Question
+     {
+         $this->isApproved = $isApproved;
+     }
++
++    public function getUpdatedBy(): ?User
++    {
++        return $this->updatedBy;
++    }
++
++    public function setUpdatedBy(User $updatedBy): void
++    {
++        $this->updatedBy = $updatedBy;
++    }
+ }
