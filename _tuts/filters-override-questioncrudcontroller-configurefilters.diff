@@ -1,0 +1,22 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index c48bb22..04cd225 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -7,6 +7,7 @@ use Doctrine\ORM\QueryBuilder;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
++use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+@@ -90,4 +91,9 @@ class QuestionCrudController extends AbstractCrudController
+         yield Field::new('createdAt')
+             ->hideOnForm();
+     }
++
++    public function configureFilters(Filters $filters): Filters
++    {
++        return parent::configureFilters($filters);
++    }
+ }

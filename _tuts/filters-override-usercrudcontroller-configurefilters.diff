@@ -1,0 +1,22 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index e02518b..2959865 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
+ 
+ use App\Entity\User;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
++use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
+@@ -46,4 +47,9 @@ class UserCrudController extends AbstractCrudController
+             ->setHelp('Available roles: ROLE_SUPER_ADMIN, ROLE_ADMIN, ROLE_MODERATOR, ROLE_USER')
+             ->hideOnIndex();
+     }
++
++    public function configureFilters(Filters $filters): Filters
++    {
++        return parent::configureFilters($filters);
++    }
+ }

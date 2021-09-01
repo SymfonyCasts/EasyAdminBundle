@@ -424,7 +424,52 @@
             "id": "permissions-or-role-super-admin-is-granted",
             "name": "Permissions: Or ROLE_SUPER_ADMIN is granted",
             "description": null
+        },
+        {
+            "id": "filters-override-usercrudcontroller-configurefilters",
+            "name": "Filters: Override UserCRUDController::configureFilters()",
+            "description": null
+        },
+        {
+            "id": "filters-add-enabled",
+            "name": "Filters: Add enabled",
+            "description": null
+        },
+        {
+            "id": "filters-add-roles",
+            "name": "Filters: Add roles",
+            "description": null
+        },
+        {
+            "id": "filters-set-available-choices-on-roles",
+            "name": "Filters: Set available choices on roles",
+            "description": null
+        },
+        {
+            "id": "filters-override-questioncrudcontroller-configurefilters",
+            "name": "Filters: Override QuestionCRUDController::configureFilters()",
+            "description": null
+        },
+        {
+            "id": "filters-add-topic",
+            "name": "Filters: Add topic",
+            "description": null
+        },
+        {
+            "id": "filters-add-askedat",
+            "name": "Filters: Add askedAt",
+            "description": null
+        },
+        {
+            "id": "filters-add-votes",
+            "name": "Filters: Add votes",
+            "description": null
+        },
+        {
+            "id": "filters-add-name",
+            "name": "Filters: Add name",
+            "description": null
         }
     ],
-    "sha": "bb6f657162c23bbcedfff34a5677ffac0281f02b"
+    "sha": "3775494c26cd07bf0ee8b118401dd8f4a516558d"
 }

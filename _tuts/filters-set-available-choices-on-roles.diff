@@ -1,0 +1,18 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index 082c263..dd85ae9 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -53,6 +53,12 @@ class UserCrudController extends AbstractCrudController
+     {
+         return parent::configureFilters($filters)
+             ->add('enabled')
+-            ->add(ArrayFilter::new('roles'));
++            ->add(ArrayFilter::new('roles')
++                ->setChoices([
++                    'Super Admin' => 'ROLE_SUPER_ADMIN',
++                    'Admin' => 'ROLE_ADMIN',
++                    'Moderator' => 'ROLE_MODERATOR',
++                ])
++            );
+     }
+ }

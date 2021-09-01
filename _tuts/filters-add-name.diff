@@ -1,0 +1,13 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index cbc3665..7a7dd77 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -97,6 +97,7 @@ class QuestionCrudController extends AbstractCrudController
+         return parent::configureFilters($filters)
+             ->add('topic')
+             ->add('askedAt')
+-            ->add('votes');
++            ->add('votes')
++            ->add('name');
+     }
+ }
