@@ -469,7 +469,47 @@
             "id": "filters-add-name",
             "name": "Filters: Add name",
             "description": null
+        },
+        {
+            "id": "multiple-crud-create-questionpendingapprovalcrudcontroller",
+            "name": "Multiple CRUD: Create QuestionPendingApprovalCrudController",
+            "description": null
+        },
+        {
+            "id": "multiple-crud-override-createindexquerybuilder",
+            "name": "Multiple CRUD: Override createIndexQueryBuilder()",
+            "description": null
+        },
+        {
+            "id": "multiple-crud-add-invalid-andwhere",
+            "name": "Multiple CRUD: Add invalid andWhere()",
+            "description": null
+        },
+        {
+            "id": "multiple-crud-fix-invalid-andwhere",
+            "name": "Multiple CRUD: Fix invalid andWhere()",
+            "description": null
+        },
+        {
+            "id": "multiple-crud-set-controller-on-old-link",
+            "name": "Multiple CRUD: Set controller on old link",
+            "description": null
+        },
+        {
+            "id": "multiple-crud-override-configurecrud",
+            "name": "Multiple CRUD: Override configureCrud()",
+            "description": null
+        },
+        {
+            "id": "multiple-crud-set-page-title",
+            "name": "Multiple CRUD: Set page title",
+            "description": null
+        },
+        {
+            "id": "multiple-crud-set-help-message-on-index-page",
+            "name": "Multiple CRUD: Set help message on index page",
+            "description": null
         }
     ],
-    "sha": "3775494c26cd07bf0ee8b118401dd8f4a516558d"
+    "sha": "23ca6c04f94db2ba65d7a8a6dd1091797bb0a238"
 }

@@ -1,0 +1,44 @@
+diff --git a/src/Controller/Admin/QuestionPendingApprovalCrudController.php b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
+index 44a81e8..0964181 100644
+--- a/src/Controller/Admin/QuestionPendingApprovalCrudController.php
++++ b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
+@@ -12,6 +12,7 @@ class QuestionPendingApprovalCrudController extends QuestionCrudController
+ {
+     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
+     {
+-        return parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
++        return parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters)
++            ->andWhere('isApproved = 0');
+     }
+ }
+diff --git a/src/Entity/Question.php b/src/Entity/Question.php
+index e65a50e..09be834 100644
+--- a/src/Entity/Question.php
++++ b/src/Entity/Question.php
+@@ -66,6 +66,11 @@ class Question
+      */
+     private $topic;
+ 
++    /**
++     * @ORM\Column(type="boolean")
++     */
++    private $isApproved = false;
++
+     public function __construct()
+     {
+         $this->answers = new ArrayCollection();
+@@ -210,4 +215,14 @@ class Question
+ 
+         return $this;
+     }
++
++    public function getIsApproved(): bool
++    {
++        return $this->isApproved;
++    }
++
++    public function setIsApproved(bool $isApproved): void
++    {
++        $this->isApproved = $isApproved;
++    }
+ }

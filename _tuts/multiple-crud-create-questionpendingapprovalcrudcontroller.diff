@@ -1,0 +1,26 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index e981db4..147469f 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -64,6 +64,8 @@ class DashboardController extends AbstractDashboardController
+         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-dashboard');
+         yield MenuItem::linkToCrud('Questions', 'far fa-question-circle', Question::class)
+             ->setPermission('ROLE_MODERATOR');
++        yield MenuItem::linkToCrud('Pending Approval', 'fa fa-question', Question::class)
++            ->setController(QuestionPendingApprovalCrudController::class);
+         yield MenuItem::linkToCrud('Answers', 'fas fa-comments', Answer::class);
+         yield MenuItem::linkToCrud('Topics', 'fas fa-folder', Topic::class);
+         yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
+diff --git a/src/Controller/Admin/QuestionPendingApprovalCrudController.php b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
+new file mode 100644
+index 0000000..3ed44d1
+--- /dev/null
++++ b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
+@@ -0,0 +1,7 @@
++<?php
++
++namespace App\Controller\Admin;
++
++class QuestionPendingApprovalCrudController extends QuestionCrudController
++{
++}

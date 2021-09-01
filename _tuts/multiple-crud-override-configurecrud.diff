@@ -1,0 +1,22 @@
+diff --git a/src/Controller/Admin/QuestionPendingApprovalCrudController.php b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
+index 7b91538..e2a1695 100644
+--- a/src/Controller/Admin/QuestionPendingApprovalCrudController.php
++++ b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
+@@ -5,11 +5,17 @@ namespace App\Controller\Admin;
+ use Doctrine\ORM\QueryBuilder;
+ use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
+ use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
++use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+ use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+ use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
+ 
+ class QuestionPendingApprovalCrudController extends QuestionCrudController
+ {
++    public function configureCrud(Crud $crud): Crud
++    {
++        return parent::configureCrud($crud);
++    }
++
+     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
+     {
+         return parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters)

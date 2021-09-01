@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/QuestionPendingApprovalCrudController.php b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
+index e2a1695..cdd5408 100644
+--- a/src/Controller/Admin/QuestionPendingApprovalCrudController.php
++++ b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
+@@ -13,7 +13,8 @@ class QuestionPendingApprovalCrudController extends QuestionCrudController
+ {
+     public function configureCrud(Crud $crud): Crud
+     {
+-        return parent::configureCrud($crud);
++        return parent::configureCrud($crud)
++            ->setPageTitle(Crud::PAGE_INDEX, 'Questions pending approval');
+     }
+ 
+     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
