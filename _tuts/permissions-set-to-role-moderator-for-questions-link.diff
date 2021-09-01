@@ -15,15 +15,15 @@ index 305cf5f..3eb7fe8 100644
      # https://symfony.com/doc/current/security/experimental_authenticators.html
      enable_authenticator_manager: true
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 5125e89..e981db4 100644
+index 69eabc2..7928d43 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -62,7 +62,8 @@ class DashboardController extends AbstractDashboardController
      public function configureMenuItems(): iterable
      {
          yield MenuItem::linktoDashboard('Dashboard', 'fa fa-dashboard');
--        yield MenuItem::linkToCrud('Questions', 'far fa-question-circle', Question::class);
-+        yield MenuItem::linkToCrud('Questions', 'far fa-question-circle', Question::class)
+-        yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class);
++        yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class)
 +            ->setPermission('ROLE_MODERATOR');
          yield MenuItem::linkToCrud('Answers', 'fas fa-comments', Answer::class);
          yield MenuItem::linkToCrud('Topics', 'fas fa-folder', Topic::class);

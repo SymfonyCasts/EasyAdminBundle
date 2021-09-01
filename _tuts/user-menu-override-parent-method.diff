@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 15b9e58..08a1916 100644
+index 69ffe1b..f533c31 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -11,10 +11,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;

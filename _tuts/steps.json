@@ -549,7 +549,32 @@
             "id": "events-comment-out-the-subscriber",
             "name": "Events: Comment out the subscriber",
             "description": null
+        },
+        {
+            "id": "main-menu-create-questions-submenu",
+            "name": "Main menu: Create Questions submenu",
+            "description": null
+        },
+        {
+            "id": "main-menu-rename-questions-to-approved",
+            "name": "Main menu: Rename Questions to Approved",
+            "description": null
+        },
+        {
+            "id": "main-menu-add-sections",
+            "name": "Main menu: Add sections",
+            "description": null
+        },
+        {
+            "id": "main-menu-link-to-stackoverflow-url",
+            "name": "Main menu: Link to StackOverflow URL",
+            "description": null
+        },
+        {
+            "id": "main-menu-set-link-target-to-blank",
+            "name": "Main menu: Set link target to _blank",
+            "description": null
         }
     ],
-    "sha": "67fd66d6133643ba6c1ec4c941e05bddeccec176"
+    "sha": "b2ece2a194e045db06afb59b5d31f04371bfefa3"
 }

@@ -1,0 +1,20 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index 9ac3c6a..7ebed82 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -62,6 +62,7 @@ class DashboardController extends AbstractDashboardController
+     public function configureMenuItems(): iterable
+     {
+         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-dashboard');
++        yield MenuItem::section('Content');
+         yield MenuItem::subMenu('Questions', 'fa fa-question-circle')
+             ->setSubItems([
+                 MenuItem::linkToCrud('Approved', 'fa fa-question-circle', Question::class)
+@@ -73,6 +74,7 @@ class DashboardController extends AbstractDashboardController
+         yield MenuItem::linkToCrud('Answers', 'fas fa-comments', Answer::class);
+         yield MenuItem::linkToCrud('Topics', 'fas fa-folder', Topic::class);
+         yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
++        yield MenuItem::section();
+         yield MenuItem::linkToUrl('Homepage', 'fas fa-home', $this->generateUrl('app_homepage'));
+     }
+ 

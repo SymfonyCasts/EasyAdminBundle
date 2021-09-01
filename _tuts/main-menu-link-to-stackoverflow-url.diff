@@ -1,0 +1,12 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index 7ebed82..f1037c8 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -76,6 +76,7 @@ class DashboardController extends AbstractDashboardController
+         yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
+         yield MenuItem::section();
+         yield MenuItem::linkToUrl('Homepage', 'fas fa-home', $this->generateUrl('app_homepage'));
++        yield MenuItem::linkToUrl('StackOverflow', 'fab fa-stack-overflow', 'https://stackoverflow.com');
+     }
+ 
+     /**
