@@ -1,0 +1,45 @@
+diff --git a/src/EventSubscriber/HideActionSubscriber.php b/src/EventSubscriber/HideActionSubscriber.php
+index d16ea09..68ab4e3 100644
+--- a/src/EventSubscriber/HideActionSubscriber.php
++++ b/src/EventSubscriber/HideActionSubscriber.php
+@@ -3,6 +3,8 @@
+ namespace App\EventSubscriber;
+ 
+ use App\Entity\Question;
++use EasyCorp\Bundle\EasyAdminBundle\Collection\EntityCollection;
++use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+ use EasyCorp\Bundle\EasyAdminBundle\Event\AfterCrudActionEvent;
+ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+ 
+@@ -19,6 +21,31 @@ class HideActionSubscriber implements EventSubscriberInterface
+         if ($crudDto->getEntityFqcn() !== Question::class) {
+             return;
+         }
++        if ($crudDto->getCurrentPage() === 'index') {
++            /** @var EntityCollection $entities */
++            $entities = $event->getResponseParameters()->get('entities');
++            foreach ($entities as $entityDto) {
++                $this->hideDeleteActionIfApprovedQuestion($entityDto);
++            }
++        }
++    }
++
++    private function hideDeleteActionIfApprovedQuestion(EntityDto $entityDto)
++    {
++        /** @var Question $question */
++        $question = $entityDto->getInstance();
++        // Hide delete action only for approved questions
++        if (!$question->getIsApproved()) {
++            return;
++        }
++        $actions = $entityDto->getActions();
++        foreach ($actions as $index => $action) {
++            if ($action->getName() === 'delete') {
++                $actions->offsetUnset($index);
++            }
++        }
++
++        $entityDto->setActions($actions);
+     }
+ 
+     public static function getSubscribedEvents()

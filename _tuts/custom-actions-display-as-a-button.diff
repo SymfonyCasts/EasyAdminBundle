@@ -1,0 +1,16 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index d938163..d9fba16 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -53,7 +53,10 @@ class QuestionCrudController extends AbstractCrudController
+             ->addCssClass('btn btn-success')
+             ->setIcon('fa fa-eye')
+             ->setLabel('View');
+-        $approveAction = Action::new('approve');
++        $approveAction = Action::new('approve')
++            ->addCssClass('btn btn-success')
++            ->setIcon('fa fa-check-circle')
++            ->displayAsButton();
+ 
+         return parent::configureActions($actions)
+             ->setPermission(Action::INDEX, 'ROLE_MODERATOR')

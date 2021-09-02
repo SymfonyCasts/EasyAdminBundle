@@ -1,0 +1,16 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index c125031..8ff728b 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -60,7 +60,10 @@ class QuestionCrudController extends AbstractCrudController
+             ->linkToCrudAction('approve')
+             ->addCssClass('btn btn-success')
+             ->setIcon('fa fa-check-circle')
+-            ->displayAsButton();
++            ->displayAsButton()
++            ->displayIf(static function (Question $question): bool {
++                return !$question->getIsApproved();
++            });
+ 
+         return parent::configureActions($actions)
+             ->setPermission(Action::INDEX, 'ROLE_MODERATOR')

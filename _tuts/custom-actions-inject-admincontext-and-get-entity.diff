@@ -1,0 +1,24 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index d5784ec..11dcedb 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
++use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+@@ -158,7 +159,10 @@ class QuestionCrudController extends AbstractCrudController
+         parent::deleteEntity($entityManager, $entityInstance);
+     }
+ 
+-    public function approve()
++    public function approve(AdminContext $adminContext)
+     {
++        /** @var Question $question */
++        $question = $adminContext->getEntity()->getInstance();
++        $question->setIsApproved(true);
+     }
+ }

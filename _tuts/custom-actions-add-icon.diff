@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 21db743..a5fb230 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -50,7 +50,8 @@ class QuestionCrudController extends AbstractCrudController
+                     'slug' => $question->getSlug(),
+                 ];
+             })
+-            ->addCssClass('btn btn-success');
++            ->addCssClass('btn btn-success')
++            ->setIcon('fa fa-eye');
+ 
+         return parent::configureActions($actions)
+             ->setPermission(Action::INDEX, 'ROLE_MODERATOR')

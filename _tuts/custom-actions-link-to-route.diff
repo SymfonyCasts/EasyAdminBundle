@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index e630b05..da15f41 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -44,7 +44,8 @@ class QuestionCrudController extends AbstractCrudController
+ 
+     public function configureActions(Actions $actions): Actions
+     {
+-        $viewAction = Action::new('view');
++        $viewAction = Action::new('view')
++            ->linkToRoute('app_question_show');
+ 
+         return parent::configureActions($actions)
+             ->setPermission(Action::INDEX, 'ROLE_MODERATOR')

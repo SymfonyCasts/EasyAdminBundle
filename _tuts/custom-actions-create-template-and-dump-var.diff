@@ -1,0 +1,19 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 4e1e837..5655596 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -36,6 +36,7 @@ class QuestionCrudController extends AbstractCrudController
+     public function configureCrud(Crud $crud): Crud
+     {
+         return parent::configureCrud($crud)
++            ->overrideTemplate('crud/action', 'admin/crud/action.html.twig')
+             ->setDefaultSort([
+                 'askedBy.enabled' => 'DESC',
+                 'askedAt' => 'DESC',
+diff --git a/templates/admin/crud/action.html.twig b/templates/admin/crud/action.html.twig
+new file mode 100644
+index 0000000..d73054d
+--- /dev/null
++++ b/templates/admin/crud/action.html.twig
+@@ -0,0 +1 @@
++{{ dump(action) }}

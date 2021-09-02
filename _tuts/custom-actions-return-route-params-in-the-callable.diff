@@ -1,0 +1,17 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index def63bf..ff9b154 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -45,8 +45,10 @@ class QuestionCrudController extends AbstractCrudController
+     public function configureActions(Actions $actions): Actions
+     {
+         $viewAction = Action::new('view')
+-            ->linkToRoute('app_question_show', static function ($param) {
+-                dd($param);
++            ->linkToRoute('app_question_show', static function (Question $question) {
++                return [
++                    'slug' => $question->getSlug(),
++                ];
+             });
+ 
+         return parent::configureActions($actions)

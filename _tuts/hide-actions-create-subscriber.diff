@@ -1,0 +1,26 @@
+diff --git a/src/EventSubscriber/HideActionSubscriber.php b/src/EventSubscriber/HideActionSubscriber.php
+new file mode 100644
+index 0000000..d89658d
+--- /dev/null
++++ b/src/EventSubscriber/HideActionSubscriber.php
+@@ -0,0 +1,20 @@
++<?php
++
++namespace App\EventSubscriber;
++
++use EasyCorp\Bundle\EasyAdminBundle\Event\AfterCrudActionEvent;
++use Symfony\Component\EventDispatcher\EventSubscriberInterface;
++
++class HideActionSubscriber implements EventSubscriberInterface
++{
++    public function onAfterCrudActionEvent(AfterCrudActionEvent $event)
++    {
++    }
++
++    public static function getSubscribedEvents()
++    {
++        return [
++            AfterCrudActionEvent::class => 'onAfterCrudActionEvent',
++        ];
++    }
++}

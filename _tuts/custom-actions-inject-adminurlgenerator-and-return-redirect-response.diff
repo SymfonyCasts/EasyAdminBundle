@@ -1,0 +1,34 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 7d6052b..c125031 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -17,6 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
++use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+ use Symfony\Component\Security\Core\Security;
+ use function Sodium\add;
+ 
+@@ -159,12 +160,20 @@ class QuestionCrudController extends AbstractCrudController
+         parent::deleteEntity($entityManager, $entityInstance);
+     }
+ 
+-    public function approve(AdminContext $adminContext, EntityManagerInterface $entityManager)
++    public function approve(AdminContext $adminContext, EntityManagerInterface $entityManager, AdminUrlGenerator $adminUrlGenerator)
+     {
+         /** @var Question $question */
+         $question = $adminContext->getEntity()->getInstance();
+         $question->setIsApproved(true);
+ 
+         $entityManager->flush();
++
++        $targetUrl = $adminUrlGenerator
++            ->setController(self::class)
++            ->setAction(Crud::PAGE_DETAIL)
++            ->setEntityId($question->getId())
++            ->generateUrl();
++
++        return $this->redirect($targetUrl);
+     }
+ }

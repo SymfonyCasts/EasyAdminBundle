@@ -574,7 +574,132 @@
             "id": "main-menu-set-link-target-to-blank",
             "name": "Main menu: Set link target to _blank",
             "description": null
+        },
+        {
+            "id": "hide-actions-create-subscriber",
+            "name": "Hide actions: Create subscriber",
+            "description": null
+        },
+        {
+            "id": "hide-actions-listen-only-to-events-for-question-entity",
+            "name": "Hide actions: Listen only to events for Question entity",
+            "description": null
+        },
+        {
+            "id": "hide-actions-hide-on-index-page",
+            "name": "Hide actions: Hide on index page",
+            "description": null
+        },
+        {
+            "id": "hide-actions-hide-on-other-pages",
+            "name": "Hide actions: Hide on other pages",
+            "description": null
+        },
+        {
+            "id": "hide-actions-override-deleteentity",
+            "name": "Hide actions: Override deleteEntity()",
+            "description": null
+        },
+        {
+            "id": "hide-actions-throw-if-approved",
+            "name": "Hide actions: Throw if approved",
+            "description": null
+        },
+        {
+            "id": "custom-actions-add-view-action",
+            "name": "Custom actions: Add view action",
+            "description": null
+        },
+        {
+            "id": "custom-actions-create-view-action",
+            "name": "Custom actions: Create view action",
+            "description": null
+        },
+        {
+            "id": "custom-actions-link-to-route",
+            "name": "Custom actions: Link to route",
+            "description": null
+        },
+        {
+            "id": "custom-actions-add-callable-and-dump-param",
+            "name": "Custom actions: Add callable and dump param",
+            "description": null
+        },
+        {
+            "id": "custom-actions-return-route-params-in-the-callable",
+            "name": "Custom actions: Return route params in the callable",
+            "description": null
+        },
+        {
+            "id": "custom-actions-add-styles",
+            "name": "Custom actions: Add styles",
+            "description": null
+        },
+        {
+            "id": "custom-actions-add-icon",
+            "name": "Custom actions: Add icon",
+            "description": null
+        },
+        {
+            "id": "custom-actions-set-label",
+            "name": "Custom actions: Set label",
+            "description": null
+        },
+        {
+            "id": "custom-actions-create-approve-action",
+            "name": "Custom actions: Create approve action",
+            "description": null
+        },
+        {
+            "id": "custom-actions-display-as-a-button",
+            "name": "Custom actions: Display as a button",
+            "description": null
+        },
+        {
+            "id": "custom-actions-link-to-a-crud-action",
+            "name": "Custom actions: Link to a CRUD action",
+            "description": null
+        },
+        {
+            "id": "custom-actions-create-template-and-dump-var",
+            "name": "Custom actions: Create template and dump var",
+            "description": null
+        },
+        {
+            "id": "custom-actions-implement-template",
+            "name": "Custom actions: Implement template",
+            "description": null
+        },
+        {
+            "id": "custom-actions-fix-button-margin",
+            "name": "Custom actions: Fix button margin",
+            "description": null
+        },
+        {
+            "id": "custom-actions-create-approve-method",
+            "name": "Custom actions: Create approve() method",
+            "description": null
+        },
+        {
+            "id": "custom-actions-inject-admincontext-and-get-entity",
+            "name": "Custom actions: Inject AdminContext and get entity",
+            "description": null
+        },
+        {
+            "id": "custom-actions-inject-em-and-flush",
+            "name": "Custom actions: Inject EM and flush",
+            "description": null
+        },
+        {
+            "id": "custom-actions-inject-adminurlgenerator-and-return-redirect-response",
+            "name": "Custom actions: Inject AdminUrlGenerator and return redirect response",
+            "description": null
+        },
+        {
+            "id": "custom-actions-hide-button-for-approved-questions",
+            "name": "Custom actions: Hide button for approved questions",
+            "description": null
         }
     ],
-    "sha": "b2ece2a194e045db06afb59b5d31f04371bfefa3"
+    "sha": "ff6848454260239769b234157b9f448e2ad891ab"
 }

@@ -1,0 +1,13 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 5655596..d5784ec 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -157,4 +157,8 @@ class QuestionCrudController extends AbstractCrudController
+ 
+         parent::deleteEntity($entityManager, $entityInstance);
+     }
++
++    public function approve()
++    {
++    }
+ }

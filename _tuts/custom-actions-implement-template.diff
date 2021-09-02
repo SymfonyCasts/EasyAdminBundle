@@ -1,0 +1,13 @@
+diff --git a/templates/admin/crud/action.html.twig b/templates/admin/crud/action.html.twig
+index d73054d..a19559b 100644
+--- a/templates/admin/crud/action.html.twig
++++ b/templates/admin/crud/action.html.twig
+@@ -1 +1,7 @@
+-{{ dump(action) }}
++{% if action.name == 'approve' and ea.entity.fqcn == 'App\\Entity\\Question' %}
++    <form action="{{ action.linkUrl }}" method="post">
++        {{ include('@EasyAdmin/crud/action.html.twig') }}
++    </form>
++{% else %}
++    {{ include('@EasyAdmin/crud/action.html.twig') }}
++{% endif %}
