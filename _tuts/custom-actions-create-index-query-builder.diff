@@ -1,0 +1,28 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index e37ab38..0140355 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -6,12 +6,14 @@ use App\Entity\Question;
+ use App\Entity\User;
+ use Doctrine\ORM\EntityManagerInterface;
+ use Doctrine\ORM\QueryBuilder;
++use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+ use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
++use EasyCorp\Bundle\EasyAdminBundle\Factory\FilterFactory;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+@@ -188,5 +190,8 @@ class QuestionCrudController extends AbstractCrudController
+ 
+     public function export(AdminContext $context)
+     {
++        $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));
++        $filters = $this->get(FilterFactory::class)->create($context->getCrud()->getFiltersConfig(), $fields, $context->getEntity());
++        $queryBuilder = $this->createIndexQueryBuilder($context->getSearch(), $context->getEntity(), $fields, $filters);
+     }
+ }

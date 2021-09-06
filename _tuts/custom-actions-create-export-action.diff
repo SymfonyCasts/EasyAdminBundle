@@ -1,0 +1,25 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 8ff728b..9f9d5c0 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -64,6 +64,10 @@ class QuestionCrudController extends AbstractCrudController
+             ->displayIf(static function (Question $question): bool {
+                 return !$question->getIsApproved();
+             });
++        $exportAction = Action::new('export')
++            ->linkToCrudAction('export')
++            ->addCssClass('btn btn-success')
++            ->setIcon('fa fa-download');
+ 
+         return parent::configureActions($actions)
+             ->setPermission(Action::INDEX, 'ROLE_MODERATOR')
+@@ -72,7 +76,8 @@ class QuestionCrudController extends AbstractCrudController
+             ->setPermission(Action::NEW, 'ROLE_SUPER_ADMIN')
+             ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN')
+             ->add(Crud::PAGE_DETAIL, $viewAction)
+-            ->add(Crud::PAGE_DETAIL, $approveAction);
++            ->add(Crud::PAGE_DETAIL, $approveAction)
++            ->add(Crud::PAGE_INDEX, $exportAction);
+     }
+ 
+     public function configureFields(string $pageName): iterable

@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 9f9d5c0..3ca9130 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -67,7 +67,8 @@ class QuestionCrudController extends AbstractCrudController
+         $exportAction = Action::new('export')
+             ->linkToCrudAction('export')
+             ->addCssClass('btn btn-success')
+-            ->setIcon('fa fa-download');
++            ->setIcon('fa fa-download')
++            ->createAsGlobalAction();
+ 
+         return parent::configureActions($actions)
+             ->setPermission(Action::INDEX, 'ROLE_MODERATOR')

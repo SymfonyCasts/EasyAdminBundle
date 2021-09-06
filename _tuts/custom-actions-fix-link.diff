@@ -1,0 +1,19 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 5fb0e61..2fb0803 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -73,7 +73,13 @@ class QuestionCrudController extends AbstractCrudController
+                 return !$question->getIsApproved();
+             });
+         $exportAction = Action::new('export')
+-            ->linkToCrudAction('export')
++            ->linkToUrl(function () {
++                $request = $this->requestStack->getCurrentRequest();
++
++                return $this->adminUrlGenerator->setAll($request->query->all())
++                    ->setAction('export')
++                    ->generateUrl();
++            })
+             ->addCssClass('btn btn-success')
+             ->setIcon('fa fa-download')
+             ->createAsGlobalAction();

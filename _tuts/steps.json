@@ -699,7 +699,62 @@
             "id": "custom-actions-hide-button-for-approved-questions",
             "name": "Custom actions: Hide button for approved questions",
             "description": null
+        },
+        {
+            "id": "custom-actions-create-export-action",
+            "name": "Custom actions: Create export action",
+            "description": null
+        },
+        {
+            "id": "custom-actions-as-global",
+            "name": "Custom actions: As global",
+            "description": null
+        },
+        {
+            "id": "custom-actions-install-goodby-csv",
+            "name": "Custom actions: Install goodby\/csv",
+            "description": null
+        },
+        {
+            "id": "custom-actions-create-csvexporter-service",
+            "name": "Custom actions: Create CsvExporter service",
+            "description": null
+        },
+        {
+            "id": "custom-actions-create-export-method",
+            "name": "Custom actions: Create export() method",
+            "description": null
+        },
+        {
+            "id": "custom-actions-inject-admincontext",
+            "name": "Custom actions: Inject AdminContext",
+            "description": null
+        },
+        {
+            "id": "custom-actions-create-index-query-builder",
+            "name": "Custom actions: Create index query builder",
+            "description": null
+        },
+        {
+            "id": "custom-actions-inject-csvexporter-service",
+            "name": "Custom actions: Inject CsvExporter service",
+            "description": null
+        },
+        {
+            "id": "custom-actions-create-streamed-response",
+            "name": "Custom actions: Create streamed response",
+            "description": null
+        },
+        {
+            "id": "custom-actions-inject-more-services",
+            "name": "Custom actions: Inject more services",
+            "description": null
+        },
+        {
+            "id": "custom-actions-fix-link",
+            "name": "Custom actions: Fix link",
+            "description": null
         }
     ],
-    "sha": "ff6848454260239769b234157b9f448e2ad891ab"
+    "sha": "9550c2d6589b243df6d8c1bf60b01e41a3d9f3fb"
 }
