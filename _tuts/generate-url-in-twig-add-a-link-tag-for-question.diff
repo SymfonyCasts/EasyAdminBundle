@@ -1,0 +1,18 @@
+diff --git a/templates/question/show.html.twig b/templates/question/show.html.twig
+index cfc0c68..abb9ca3 100644
+--- a/templates/question/show.html.twig
++++ b/templates/question/show.html.twig
+@@ -10,7 +10,12 @@
+                 Topic:
+                 <a href="#link-to-topic">{{ question.topic.name }}</a>
+             </h2>
+-            <h2 class="my-4">Question:</h2>
++            <h2 class="my-4">
++                Question:
++                <a class="fa-pull-right" href="">
++                    <i class="fa fa-edit"></i>
++                </a>
++            </h2>
+             <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
+                 <div class="q-container-show p-4">
+                     <div class="row">

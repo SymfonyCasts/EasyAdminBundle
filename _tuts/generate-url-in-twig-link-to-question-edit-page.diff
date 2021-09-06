@@ -1,0 +1,17 @@
+diff --git a/templates/question/show.html.twig b/templates/question/show.html.twig
+index abb9ca3..877a753 100644
+--- a/templates/question/show.html.twig
++++ b/templates/question/show.html.twig
+@@ -12,7 +12,11 @@
+             </h2>
+             <h2 class="my-4">
+                 Question:
+-                <a class="fa-pull-right" href="">
++                <a class="fa-pull-right" href="{{ ea_url()
++                    .setController('App\\Controller\\Admin\\QuestionCrudController')
++                    .setAction('edit')
++                    .setEntityId(question.id)
++                }}">
+                     <i class="fa fa-edit"></i>
+                 </a>
+             </h2>

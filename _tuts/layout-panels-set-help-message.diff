@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index acb43eb..0632230 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -128,7 +128,8 @@ class QuestionCrudController extends AbstractCrudController
+             ->setPermission('ROLE_SUPER_ADMIN');
+         yield FormField::addPanel('Details')
+             ->collapsible()
+-            ->setIcon('fa fa-info');
++            ->setIcon('fa fa-info')
++            ->setHelp('Additional Details');
+         yield Field::new('askedAt');
+         yield AssociationField::new('askedBy')
+             ->autocomplete()

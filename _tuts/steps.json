@@ -754,7 +754,37 @@
             "id": "custom-actions-fix-link",
             "name": "Custom actions: Fix link",
             "description": null
+        },
+        {
+            "id": "generate-url-in-twig-add-a-link-tag-for-question",
+            "name": "Generate URL in Twig: Add a link tag for question",
+            "description": null
+        },
+        {
+            "id": "generate-url-in-twig-link-to-question-edit-page",
+            "name": "Generate URL in Twig: Link to question edit page",
+            "description": null
+        },
+        {
+            "id": "layout-panels-add-details-panel",
+            "name": "Layout Panels: Add details panel",
+            "description": null
+        },
+        {
+            "id": "layout-panels-make-it-collapsible",
+            "name": "Layout Panels: Make it collapsible",
+            "description": null
+        },
+        {
+            "id": "layout-panels-set-icon",
+            "name": "Layout Panels: Set icon",
+            "description": null
+        },
+        {
+            "id": "layout-panels-set-help-message",
+            "name": "Layout Panels: Set help message",
+            "description": null
         }
     ],
-    "sha": "9550c2d6589b243df6d8c1bf60b01e41a3d9f3fb"
+    "sha": "08fc08426d8ddd058781c8e2a9837fb17c73fb35"
 }
