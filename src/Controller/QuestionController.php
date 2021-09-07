@@ -29,7 +29,7 @@ class QuestionController extends AbstractController
      */
     public function homepage(QuestionRepository $repository)
     {
-        $questions = $repository->findAllAskedOrderedByNewest();
+        $questions = $repository->findAllApprovedAskedOrderedByNewest();
 
         return $this->render('question/homepage.html.twig', [
             'questions' => $questions,
@@ -49,6 +49,10 @@ class QuestionController extends AbstractController
      */
     public function show(Question $question)
     {
+        if (!$question->getIsApproved()) {
+            throw $this->createNotFoundException(sprintf('Question %s has not been approved yet', $question->getId()));
+        }
+
         if ($this->isDebug) {
             $this->logger->info('We are in debug mode!');
         }

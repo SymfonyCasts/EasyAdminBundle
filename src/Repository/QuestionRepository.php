@@ -23,9 +23,10 @@ class QuestionRepository extends ServiceEntityRepository
      /**
       * @return Question[] Returns an array of Question objects
       */
-    public function findAllAskedOrderedByNewest()
+    public function findAllApprovedAskedOrderedByNewest()
     {
         return $this->addIsAskedQueryBuilder()
+            ->andWhere('q.isApproved = 1')
             ->orderBy('q.askedAt', 'DESC')
             ->getQuery()
             ->getResult()

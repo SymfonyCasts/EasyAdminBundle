@@ -66,6 +66,11 @@ class Question
      */
     private $topic;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isApproved = false;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -209,5 +214,15 @@ class Question
         $this->topic = $topic;
 
         return $this;
+    }
+
+    public function getIsApproved(): bool
+    {
+        return $this->isApproved;
+    }
+
+    public function setIsApproved(bool $isApproved): void
+    {
+        $this->isApproved = $isApproved;
     }
 }
