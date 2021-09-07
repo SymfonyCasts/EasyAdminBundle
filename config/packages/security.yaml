@@ -1,8 +1,8 @@
 security:
     role_hierarchy:
-        ROLE_MODERATOR: [ ROLE_USER ]
-        ROLE_ADMIN: [ ROLE_USER, ROLE_MODERATOR ]
-        ROLE_SUPER_ADMIN: [ ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
+        ROLE_ADMIN: [ ROLE_USER ]
+        ROLE_MODERATOR: [ ROLE_USER, ROLE_ADMIN ]
+        ROLE_SUPER_ADMIN: [ ROLE_USER, ROLE_ADMIN, ROLE_MODERATOR, ROLE_ALLOWED_TO_SWITCH ]
 
     # https://symfony.com/doc/current/security/experimental_authenticators.html
     enable_authenticator_manager: true
