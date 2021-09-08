@@ -40,11 +40,6 @@ class Question
     private $question;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $askedAt;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="questions")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -113,18 +108,6 @@ class Question
     public function setQuestion(string $question): self
     {
         $this->question = $question;
-
-        return $this;
-    }
-
-    public function getAskedAt(): ?\DateTimeInterface
-    {
-        return $this->askedAt;
-    }
-
-    public function setAskedAt(?\DateTimeInterface $askedAt): self
-    {
-        $this->askedAt = $askedAt;
 
         return $this;
     }

@@ -21,7 +21,7 @@ final class QuestionFactory extends ModelFactory
 {
     public function unpublished(): self
     {
-        return $this->addState(['askedAt' => null]);
+        return $this->addState(['isApproved' => false]);
     }
 
     protected function getDefaults(): array
@@ -32,7 +32,7 @@ final class QuestionFactory extends ModelFactory
                 self::faker()->numberBetween(1, 4),
                 true
             ),
-            'askedAt' => self::faker()->dateTimeBetween('-100 days', '-1 minute'),
+            'createdAt' => self::faker()->dateTimeBetween('-100 days', '-1 minute'),
             'askedBy' => UserFactory::random(),
             'votes' => rand(-20, 50),
             'topic' => TopicFactory::random(),

@@ -29,7 +29,7 @@ class QuestionController extends AbstractController
      */
     public function homepage(QuestionRepository $repository)
     {
-        $questions = $repository->findAllApprovedAskedOrderedByNewest();
+        $questions = $repository->findAllApprovedOrderedByNewest();
 
         return $this->render('question/homepage.html.twig', [
             'questions' => $questions,

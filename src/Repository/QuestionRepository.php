@@ -23,20 +23,19 @@ class QuestionRepository extends ServiceEntityRepository
      /**
       * @return Question[] Returns an array of Question objects
       */
-    public function findAllApprovedAskedOrderedByNewest()
+    public function findAllApprovedOrderedByNewest()
     {
-        return $this->addIsAskedQueryBuilder()
-            ->andWhere('q.isApproved = 1')
-            ->orderBy('q.askedAt', 'DESC')
+        return $this->addIsApprovedQueryBuilder()
+            ->orderBy('q.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
 
-    private function addIsAskedQueryBuilder(QueryBuilder $qb = null): QueryBuilder
+    private function addIsApprovedQueryBuilder(QueryBuilder $qb = null): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder($qb)
-            ->andWhere('q.askedAt IS NOT NULL');
+            ->andWhere('q.isApproved = 1');
     }
 
     private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
