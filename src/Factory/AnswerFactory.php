@@ -31,7 +31,7 @@ final class AnswerFactory extends ModelFactory
         return [
             'answer' => self::faker()->sentence(),
             'question' => QuestionFactory::random(),
-            'answeredAt' => self::faker()->dateTimeBetween('-100 days', '-1 minute'),
+            'createdAt' => self::faker()->dateTimeBetween('-100 days', '-1 minute'),
             'answeredBy' => UserFactory::random(),
         ];
     }
