@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 89506a0..2877005 100644
+index 89506a0..48a2913 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -4,6 +4,8 @@ namespace App\Controller\Admin;
@@ -11,7 +11,7 @@ index 89506a0..2877005 100644
  
  class QuestionCrudController extends AbstractCrudController
  {
-@@ -12,14 +14,14 @@ class QuestionCrudController extends AbstractCrudController
+@@ -12,14 +14,13 @@ class QuestionCrudController extends AbstractCrudController
          return Question::class;
      }
  
@@ -27,7 +27,6 @@ index 89506a0..2877005 100644
 +            ->onlyOnIndex();
 +        yield Field::new('name');
 +        yield Field::new('votes');
-+        yield Field::new('askedAt');
 +        yield Field::new('createdAt')
 +            ->hideOnForm();
      }

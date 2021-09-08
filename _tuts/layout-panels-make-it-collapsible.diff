@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 880dcba..27b051d 100644
+index 5311ea1..cf3ff1f 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -126,7 +126,8 @@ class QuestionCrudController extends AbstractCrudController
@@ -9,6 +9,6 @@ index 880dcba..27b051d 100644
 -        yield FormField::addPanel('Details');
 +        yield FormField::addPanel('Details')
 +            ->collapsible();
-         yield Field::new('askedAt');
          yield AssociationField::new('askedBy')
              ->autocomplete()
+             ->formatValue(function ($value, ?Question $question): ?string {

@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 204e520..b8fff77 100644
+index 7f2e5c1..1e8247f 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -6,6 +6,7 @@ use App\Entity\Question;
@@ -18,4 +18,4 @@ index 204e520..b8fff77 100644
 +            ->hideOnIndex();
          yield Field::new('votes', 'Total Votes')
              ->setTextAlign('right');
-         yield Field::new('askedAt');
+         yield Field::new('createdAt')

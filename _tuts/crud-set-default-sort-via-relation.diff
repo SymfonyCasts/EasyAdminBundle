@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 04c651b..34833dd 100644
+index db90544..445c009 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -5,6 +5,7 @@ namespace App\Controller\Admin;
@@ -19,7 +19,7 @@ index 04c651b..34833dd 100644
 +        return parent::configureCrud($crud)
 +            ->setDefaultSort([
 +                'askedBy.enabled' => 'DESC',
-+                'askedAt' => 'DESC',
++                'createdAt' => 'DESC',
 +            ]);
 +    }
 +

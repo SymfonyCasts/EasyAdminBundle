@@ -1,11 +1,11 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 673a1f5..728588c 100644
+index a720663..b5c61fa 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -27,6 +27,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -26,6 +26,7 @@ class QuestionCrudController extends AbstractCrudController
+             ->hideOnIndex();
          yield Field::new('votes', 'Total Votes')
              ->setTextAlign('right');
-         yield Field::new('askedAt');
 +        yield AssociationField::new('askedBy');
          yield Field::new('createdAt')
              ->hideOnForm();
