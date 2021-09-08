@@ -1,0 +1,17 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index c21e0f5..728d9ae 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -64,10 +64,10 @@ class DashboardController extends AbstractDashboardController
+         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-dashboard');
+         yield MenuItem::subMenu('Questions', 'fa fa-question-circle')
+             ->setSubItems([
+-                MenuItem::linkToCrud('All', 'fa fa-question-circle', Question::class)
++                MenuItem::linkToCrud('All', 'fa fa-list', Question::class)
+                     ->setController(QuestionCrudController::class)
+                     ->setPermission('ROLE_MODERATOR'),
+-                MenuItem::linkToCrud('Pending Approval', 'far fa-question-circle', Question::class)
++                MenuItem::linkToCrud('Pending Approval', 'fa fa-warning', Question::class)
+                     ->setController(QuestionPendingApprovalCrudController::class),
+             ]);
+         yield MenuItem::linkToCrud('Answers', 'fas fa-comments', Answer::class);

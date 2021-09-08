@@ -556,8 +556,13 @@
             "description": null
         },
         {
-            "id": "main-menu-rename-questions-to-approved",
-            "name": "Main menu: Rename Questions to Approved",
+            "id": "main-menu-rename-questions-to-all",
+            "name": "Main menu: Rename Questions to All",
+            "description": null
+        },
+        {
+            "id": "main-menu-change-icons",
+            "name": "Main menu: Change icons",
             "description": null
         },
         {
@@ -786,5 +791,5 @@
             "description": null
         }
     ],
-    "sha": "bf81a09220f790dfcfb8cfd9b3a1f7edef8c9840"
+    "sha": "ffde3c63f747169dbc145b56bf2214de52fc5f39"
 }
