@@ -6,7 +6,6 @@ use App\Repository\TopicRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=TopicRepository::class)
@@ -24,12 +23,6 @@ class Topic
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-
-    /**
-     * @ORM\Column(type="string", length=100, unique=true)
-     * @Gedmo\Slug(fields={"name"})
-     */
-    private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity=Question::class, mappedBy="topic")
@@ -54,18 +47,6 @@ class Topic
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug($slug): self
-    {
-        $this->slug = $slug;
 
         return $this;
     }
