@@ -356,6 +356,16 @@
             "description": null
         },
         {
+            "id": "dashboard-widgets-override-getsubscribedservices",
+            "name": "Dashboard widgets: Override getSubscribedServices()",
+            "description": null
+        },
+        {
+            "id": "dashboard-widgets-add-required-services",
+            "name": "Dashboard widgets: Add required services",
+            "description": null
+        },
+        {
             "id": "override-templates-override-layout",
             "name": "Override templates: Override layout",
             "description": null
@@ -781,6 +791,16 @@
             "description": null
         },
         {
+            "id": "custom-actions-reorder-actions",
+            "name": "Custom actions: Reorder actions",
+            "description": null
+        },
+        {
+            "id": "custom-actions-add-icons-for-action-buttons",
+            "name": "Custom actions: Add icons for action buttons",
+            "description": null
+        },
+        {
             "id": "generate-url-in-twig-add-a-link-tag-for-question",
             "name": "Generate URL in Twig: Add a link tag for question",
             "description": null
@@ -811,5 +831,5 @@
             "description": null
         }
     ],
-    "sha": "53d2a0832b17d86ce6238f30abd42495fb7f9036"
+    "sha": "e476fa497c91267fef498710689873f4b48a7224"
 }

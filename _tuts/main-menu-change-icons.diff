@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index c21e0f5..728d9ae 100644
+index 6a199c7..3b501b7 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -64,10 +64,10 @@ class DashboardController extends AbstractDashboardController
+@@ -57,10 +57,10 @@ class DashboardController extends AbstractDashboardController
          yield MenuItem::linktoDashboard('Dashboard', 'fa fa-dashboard');
          yield MenuItem::subMenu('Questions', 'fa fa-question-circle')
              ->setSubItems([

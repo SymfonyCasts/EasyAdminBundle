@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index ea83748..3c6b0da 100644
+index 85c62ce..76812e3 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -51,7 +51,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -50,7 +50,8 @@ class QuestionCrudController extends AbstractCrudController
                  ];
              })
              ->addCssClass('btn btn-success')

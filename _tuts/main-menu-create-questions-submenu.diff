@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index de95a2a..2485876 100644
+index c3b979c..9b42825 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -62,11 +62,14 @@ class DashboardController extends AbstractDashboardController
+@@ -55,11 +55,14 @@ class DashboardController extends AbstractDashboardController
      public function configureMenuItems(): iterable
      {
          yield MenuItem::linktoDashboard('Dashboard', 'fa fa-dashboard');

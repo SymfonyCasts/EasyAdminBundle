@@ -1,0 +1,55 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index 223c0c8..3d96e7f 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -24,25 +24,18 @@ use Symfony\UX\Chartjs\Model\Chart;
+ 
+ class DashboardController extends AbstractDashboardController
+ {
+-    private EntityManagerInterface $entityManager;
+-    private ChartBuilderInterface $chartBuilder;
+-
+-    public function __construct(EntityManagerInterface $entityManager, ChartBuilderInterface $chartBuilder)
+-    {
+-        $this->entityManager = $entityManager;
+-        $this->chartBuilder = $chartBuilder;
+-    }
+-
+     /**
+      * @Route("/admin", name="admin")
+      * @IsGranted("ROLE_ADMIN")
+      */
+     public function index(): Response
+     {
+-        $latestQuestions = $this->entityManager
++        $entityManager = $this->get(EntityManagerInterface::class);
++
++        $latestQuestions = $entityManager
+             ->getRepository(Question::class)
+             ->findLatest();
+-        $topVoted = $this->entityManager
++        $topVoted = $entityManager
+             ->getRepository(Question::class)
+             ->findTopVoted();
+ 
+@@ -103,7 +96,8 @@ class DashboardController extends AbstractDashboardController
+ 
+     private function createChart()
+     {
+-        $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
++        $chartBuilder = $this->get(ChartBuilderInterface::class);
++        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
+         $chart->setData([
+             'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+             'datasets' => [
+@@ -129,6 +123,9 @@ class DashboardController extends AbstractDashboardController
+ 
+     public static function getSubscribedServices()
+     {
+-        return parent::getSubscribedServices();
++        return array_merge(parent::getSubscribedServices(), [
++            EntityManagerInterface::class,
++            ChartBuilderInterface::class,
++        ]);
+     }
+ }

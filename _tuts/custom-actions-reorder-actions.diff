@@ -1,0 +1,20 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index c5c78fd..a58bef2 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -91,7 +91,14 @@ class QuestionCrudController extends AbstractCrudController
+             ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN')
+             ->add(Crud::PAGE_DETAIL, $viewAction)
+             ->add(Crud::PAGE_DETAIL, $approveAction)
+-            ->add(Crud::PAGE_INDEX, $exportAction);
++            ->add(Crud::PAGE_INDEX, $exportAction)
++            ->reorder(Crud::PAGE_DETAIL, [
++                'approve',
++                'view',
++                Action::EDIT,
++                Action::INDEX,
++                Action::DELETE,
++            ]);
+     }
+ 
+     public function configureFields(string $pageName): iterable

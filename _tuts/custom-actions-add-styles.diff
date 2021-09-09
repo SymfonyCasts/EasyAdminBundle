@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index c492fbc..19dbe75 100644
+index 7ba64e3..3cff711 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -49,7 +49,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -48,7 +48,8 @@ class QuestionCrudController extends AbstractCrudController
                  return [
                      'slug' => $question->getSlug(),
                  ];

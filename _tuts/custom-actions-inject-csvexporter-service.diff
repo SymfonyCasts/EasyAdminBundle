@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 1d643a3..805cf26 100644
+index be32ba6..93e6bb0 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -4,6 +4,7 @@ namespace App\Controller\Admin;
@@ -10,7 +10,7 @@ index 1d643a3..805cf26 100644
  use Doctrine\ORM\EntityManagerInterface;
  use Doctrine\ORM\QueryBuilder;
  use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
-@@ -187,7 +188,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -186,7 +187,7 @@ class QuestionCrudController extends AbstractCrudController
          return $this->redirect($targetUrl);
      }
  

@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index d83d1fe..223c0c8 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -126,4 +126,9 @@ class DashboardController extends AbstractDashboardController
+ 
+         return $chart;
+     }
++
++    public static function getSubscribedServices()
++    {
++        return parent::getSubscribedServices();
++    }
+ }

@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 688b636..de95a2a 100644
+index cdb70b0..c3b979c 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -63,6 +63,7 @@ class DashboardController extends AbstractDashboardController
+@@ -56,6 +56,7 @@ class DashboardController extends AbstractDashboardController
      {
          yield MenuItem::linktoDashboard('Dashboard', 'fa fa-dashboard');
          yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class)
