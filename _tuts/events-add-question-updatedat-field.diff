@@ -12,7 +12,7 @@ index 655e9a9..81d9525 100644
  
      public function configureFilters(Filters $filters): Filters
 diff --git a/src/Entity/Question.php b/src/Entity/Question.php
-index 02f18ae..2a2643f 100644
+index 314e739..e5c8c9c 100644
 --- a/src/Entity/Question.php
 +++ b/src/Entity/Question.php
 @@ -66,6 +66,12 @@ class Question
@@ -28,7 +28,7 @@ index 02f18ae..2a2643f 100644
      public function __construct()
      {
          $this->answers = new ArrayCollection();
-@@ -208,4 +214,14 @@ class Question
+@@ -213,4 +219,14 @@ class Question
      {
          $this->isApproved = $isApproved;
      }

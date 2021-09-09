@@ -1,0 +1,16 @@
+diff --git a/src/Entity/Question.php b/src/Entity/Question.php
+index 02f18ae..314e739 100644
+--- a/src/Entity/Question.php
++++ b/src/Entity/Question.php
+@@ -71,6 +71,11 @@ class Question
+         $this->answers = new ArrayCollection();
+     }
+ 
++    public function __toString()
++    {
++        return $this->name;
++    }
++
+     public function getId(): ?int
+     {
+         return $this->id;

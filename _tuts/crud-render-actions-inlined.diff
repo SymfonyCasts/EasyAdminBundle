@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/TopicCrudController.php b/src/Controller/Admin/TopicCrudController.php
+index 195894d..f2fb512 100644
+--- a/src/Controller/Admin/TopicCrudController.php
++++ b/src/Controller/Admin/TopicCrudController.php
+@@ -17,7 +17,8 @@ class TopicCrudController extends AbstractCrudController
+ 
+     public function configureCrud(Crud $crud): Crud
+     {
+-        return parent::configureCrud($crud);
++        return parent::configureCrud($crud)
++            ->showEntityActionsInlined();
+     }
+ 
+     public function configureActions(Actions $actions): Actions
