@@ -1,7 +1,7 @@
-# Tutorials, Friendship & Symfony5
+# Admin Panels, Rainbows & EasyAdminBundle
 
 Well hi there! This repository holds the code and script
-for the [Symfony5 Tutorials](https://symfonycasts.com/tracks/symfony) on SymfonyCasts.
+for the EasyAdminBundle tutorial on SymfonyCasts.
 
 ## Setup
 
