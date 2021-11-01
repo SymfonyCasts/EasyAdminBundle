@@ -58,7 +58,7 @@ final class UserFactory extends ModelFactory
             'roles' => [
                 'ROLE_USER',
             ],
-            'password' => 'userpass',
+            'plainPassword' => 'userpass',
             'firstName' => self::faker()->firstName(),
             'lastName' => self::faker()->lastName(),
             'avatar' => '/images/default.png',
@@ -70,9 +70,8 @@ final class UserFactory extends ModelFactory
         // see https://github.com/zenstruck/foundry#initialization
         return $this
              ->afterInstantiate(function(User $user) {
-                 $plainPassword = $user->getPassword();
                  $hashedPassword = $this->passwordHasher
-                     ->hashPassword($user, $plainPassword);
+                     ->hashPassword($user, $user->getPlainPassword());
 
                  $user->setPassword($hashedPassword);
              });
