@@ -11,6 +11,9 @@ import './styles/app.css';
 // start the Stimulus application
 import './bootstrap';
 
+// activates collapse functionality
+import { Collapse } from 'bootstrap';
+
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 import $ from 'jquery';
 
