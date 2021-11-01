@@ -13,16 +13,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $this->loadUsers();
-        $this->loadTopics();
-        $this->loadQuestions();
-        $this->loadAnswers();
-
-        $manager->flush();
-    }
-
-    private function loadUsers()
-    {
+        // Load Users
         UserFactory::new()
             ->withAttributes([
                 'email' => 'admin@symfonycasts.com',
@@ -56,24 +47,20 @@ class AppFixtures extends Fixture
                 'avatar' => '/images/tisha.png',
             ])
             ->create();
-    }
 
-    private function loadTopics()
-    {
+        // Load Topics
         TopicFactory::new()->createMany(5);
-    }
 
-    private function loadQuestions()
-    {
+        // Load Questions
         QuestionFactory::new()->createMany(20);
 
         QuestionFactory::new()
             ->unpublished()
             ->createMany(5);
-    }
 
-    private function loadAnswers()
-    {
+        // Load Answers
         AnswerFactory::new()->createMany(100);
+
+        $manager->flush();
     }
 }
