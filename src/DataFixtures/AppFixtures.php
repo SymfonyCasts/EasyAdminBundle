@@ -31,34 +31,31 @@ class AppFixtures extends Fixture
 
     private function loadUsers()
     {
-        $superAdmin = UserFactory::new()
+        UserFactory::new()
             ->withAttributes([
                 'email' => 'admin@symfonycasts.com',
                 'password' => 'adminpass',
             ])
             ->promoteRole('ROLE_SUPER_ADMIN')
             ->create();
-        $this->setReference('superadmin', $superAdmin);
 
-        $admin = UserFactory::new()
+        UserFactory::new()
             ->withAttributes([
                 'email' => 'admin@symfony.com',
                 'password' => 'adminpass',
             ])
             ->promoteRole('ROLE_ADMIN')
             ->create();
-        $this->setReference('admin', $admin);
 
-        $moderator = UserFactory::new()
+        UserFactory::new()
             ->withAttributes([
                 'email' => 'admin@example.com',
                 'password' => 'adminpass',
             ])
             ->promoteRole('ROLE_MODERATOR')
             ->create();
-        $this->setReference('moderator', $moderator);
 
-        $tisha = UserFactory::new()
+        UserFactory::new()
             ->withAttributes([
                 'email' => 'tisha@symfonycasts.com',
                 'password' => 'tishapass',
@@ -67,7 +64,6 @@ class AppFixtures extends Fixture
                 'avatar' => '/images/tisha.png',
             ])
             ->create();
-        $this->setReference('tisha', $tisha);
     }
 
     private function loadTopics()
