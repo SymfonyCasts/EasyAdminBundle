@@ -10,17 +10,60 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-light bg-light" style="height: 100px;">
-            <a class="navbar-brand" href="{{ path('app_homepage') }}">
-                <i style="color: #444; font-size: 2rem;" class="pb-1 fad fa-cauldron"></i>
-                <p class="pl-2 d-inline font-weight-bold" style="color: #444;">Cauldron Overflow</p>
-            </a>
-            {% if app.user %}
-                <a href="{{ path('app_profile_show') }}" class="btn btn-secondary">Profile</a>
-                <a href="{{ path('app_logout') }}" class="btn btn-dark">Logout</a>
-            {% else %}
-                <a href="{{ path('app_login') }}" class="btn btn-dark">Login</a>
-            {% endif %}
+        <nav
+                class="navbar navbar-expand-lg navbar-light bg-light px-1"
+                {{ is_granted('ROLE_PREVIOUS_ADMIN') ? 'style="background-color: red !important"' }}
+        >
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ path('app_homepage') }}">
+                    <p class="pl-2 d-inline font-weight-bold" style="color: #444;">
+                        Cauldron Overflow
+                    </p>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapsable" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbar-collapsable">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    </ul>
+
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <div class="dropdown">
+                            <button
+                                    class="dropdown-toggle btn"
+                                    type="button"
+                                    id="user-dropdown"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                            >
+                                <img
+                                        src="{{ app.user.avatar }}"
+                                        alt="{{ app.user.fullName }} Avatar"
+                                        width="26px">
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-dropdown">
+                                {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('app_homepage', {
+                                            '_switch_user': '_exit'
+                                        }) }}">Exit Impersonation</a>
+                                    </li>
+                                {% endif %}
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_profile_show') }}">Profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_logout') }}">Log Out</a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <a class="nav-link text-black-50" href="{{ path('app_login') }}">Log In</a>
+                    {% endif %}
+                </div>
+            </div>
         </nav>
 
         {% block body %}{% endblock %}
