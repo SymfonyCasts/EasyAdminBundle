@@ -17,10 +17,10 @@ index f6e5098..0649ed8 100644
              ->renderAsSwitch(false);
          yield DateField::new('createdAt');
 diff --git a/src/Entity/User.php b/src/Entity/User.php
-index 1f0a320..e1deea1 100644
+index 1e3cadc..20e0e72 100644
 --- a/src/Entity/User.php
 +++ b/src/Entity/User.php
-@@ -200,6 +200,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
+@@ -215,6 +215,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
          return $this->firstName.' '.$this->lastName;
      }
  

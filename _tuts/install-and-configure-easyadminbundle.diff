@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 7b492e1..dfba649 100644
+index 2f8a2e5..913950c 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -9,6 +9,7 @@
@@ -11,42 +11,39 @@ index 7b492e1..dfba649 100644
          "knplabs/knp-time-bundle": "^1.11",
          "sensio/framework-extra-bundle": "^6.0",
 diff --git a/composer.lock b/composer.lock
-index 8d742f8..aaa14ec 100644
+index 1355160..9239fbc 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "dea84f6dacfc83e444b6efa6519db2ff",
-+    "content-hash": "d8d82b555ee257c661f9acfe65d29e16",
+-    "content-hash": "90c53261d5e90c7246ea6c405c97e3ac",
++    "content-hash": "3b7f7ea8fc0e5aa8a3684e250ee2cd3b",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1553,6 +1553,101 @@
+@@ -1487,6 +1487,98 @@
              },
              "time": "2020-07-30T16:57:33+00:00"
          },
 +        {
 +            "name": "easycorp/easyadmin-bundle",
-+            "version": "v3.5.7",
++            "version": "v3.5.10",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
-+                "reference": "3499d3e954f95f3e12bebafbdafb71289f1a1435"
++                "reference": "7f12b81e6a0080e6a37478fea349143b11423aa6"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/3499d3e954f95f3e12bebafbdafb71289f1a1435",
-+                "reference": "3499d3e954f95f3e12bebafbdafb71289f1a1435",
++                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/7f12b81e6a0080e6a37478fea349143b11423aa6",
++                "reference": "7f12b81e6a0080e6a37478fea349143b11423aa6",
 +                "shasum": ""
 +            },
 +            "require": {
-+                "doctrine/common": "^2.13 || ^3.0",
-+                "doctrine/dbal": "^2.10",
 +                "doctrine/doctrine-bundle": "^1.12|^2.0",
 +                "doctrine/orm": "^2.6,>=2.6.3",
-+                "doctrine/persistence": "^1.3.3 || ^2.0",
 +                "ext-json": "*",
 +                "nikic/php-parser": "^4.3",
 +                "php": ">=7.2.5",
@@ -112,7 +109,7 @@ index 8d742f8..aaa14ec 100644
 +            ],
 +            "support": {
 +                "issues": "https://github.com/EasyCorp/EasyAdminBundle/issues",
-+                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v3.5.7"
++                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v3.5.10"
 +            },
 +            "funding": [
 +                {
@@ -120,12 +117,12 @@ index 8d742f8..aaa14ec 100644
 +                    "type": "github"
 +                }
 +            ],
-+            "time": "2021-08-17T10:36:05+00:00"
++            "time": "2021-10-01T18:09:49+00:00"
 +        },
          {
              "name": "friendsofphp/proxy-manager-lts",
              "version": "v1.0.5",
-@@ -2343,6 +2438,62 @@
+@@ -2025,6 +2117,62 @@
              ],
              "time": "2021-07-23T07:42:52+00:00"
          },
@@ -186,9 +183,9 @@ index 8d742f8..aaa14ec 100644
 +            "time": "2021-07-21T10:44:31+00:00"
 +        },
          {
-             "name": "php-http/client-common",
-             "version": "2.4.0",
-@@ -4749,6 +4900,108 @@
+             "name": "psr/cache",
+             "version": "1.0.1",
+@@ -3564,6 +3712,108 @@
              ],
              "time": "2021-08-03T08:14:48+00:00"
          },
@@ -297,7 +294,7 @@ index 8d742f8..aaa14ec 100644
          {
              "name": "symfony/framework-bundle",
              "version": "v5.3.4",
-@@ -5250,6 +5503,94 @@
+@@ -3978,6 +4228,94 @@
              ],
              "time": "2021-07-29T07:06:27+00:00"
          },
@@ -392,50 +389,35 @@ index 8d742f8..aaa14ec 100644
          {
              "name": "symfony/monolog-bridge",
              "version": "v5.3.4",
-@@ -5638,6 +5979,93 @@
+@@ -4143,6 +4481,75 @@
              ],
-             "time": "2021-05-27T12:26:48+00:00"
+             "time": "2021-03-31T07:20:47+00:00"
          },
 +        {
-+            "name": "symfony/polyfill-intl-icu",
-+            "version": "v1.23.0",
++            "name": "symfony/options-resolver",
++            "version": "v5.3.7",
 +            "source": {
 +                "type": "git",
-+                "url": "https://github.com/symfony/polyfill-intl-icu.git",
-+                "reference": "4a80a521d6176870b6445cfb469c130f9cae1dda"
++                "url": "https://github.com/symfony/options-resolver.git",
++                "reference": "4b78e55b179003a42523a362cc0e8327f7a69b5e"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/polyfill-intl-icu/zipball/4a80a521d6176870b6445cfb469c130f9cae1dda",
-+                "reference": "4a80a521d6176870b6445cfb469c130f9cae1dda",
++                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/4b78e55b179003a42523a362cc0e8327f7a69b5e",
++                "reference": "4b78e55b179003a42523a362cc0e8327f7a69b5e",
 +                "shasum": ""
 +            },
 +            "require": {
-+                "php": ">=7.1"
-+            },
-+            "suggest": {
-+                "ext-intl": "For best performance and support of other locales than \"en\""
++                "php": ">=7.2.5",
++                "symfony/deprecation-contracts": "^2.1",
++                "symfony/polyfill-php73": "~1.0",
++                "symfony/polyfill-php80": "^1.16"
 +            },
 +            "type": "library",
-+            "extra": {
-+                "branch-alias": {
-+                    "dev-main": "1.23-dev"
-+                },
-+                "thanks": {
-+                    "name": "symfony/polyfill",
-+                    "url": "https://github.com/symfony/polyfill"
-+                }
-+            },
 +            "autoload": {
-+                "files": [
-+                    "bootstrap.php"
-+                ],
 +                "psr-4": {
-+                    "Symfony\\Polyfill\\Intl\\Icu\\": ""
++                    "Symfony\\Component\\OptionsResolver\\": ""
 +                },
-+                "classmap": [
-+                    "Resources/stubs"
-+                ],
 +                "exclude-from-classmap": [
 +                    "/Tests/"
 +                ]
@@ -446,26 +428,23 @@ index 8d742f8..aaa14ec 100644
 +            ],
 +            "authors": [
 +                {
-+                    "name": "Nicolas Grekas",
-+                    "email": "p@tchwork.com"
++                    "name": "Fabien Potencier",
++                    "email": "fabien@symfony.com"
 +                },
 +                {
 +                    "name": "Symfony Community",
 +                    "homepage": "https://symfony.com/contributors"
 +                }
 +            ],
-+            "description": "Symfony polyfill for intl's ICU-related data and classes",
++            "description": "Provides an improved replacement for the array_replace PHP function",
 +            "homepage": "https://symfony.com",
 +            "keywords": [
-+                "compatibility",
-+                "icu",
-+                "intl",
-+                "polyfill",
-+                "portable",
-+                "shim"
++                "config",
++                "configuration",
++                "options"
 +            ],
 +            "support": {
-+                "source": "https://github.com/symfony/polyfill-intl-icu/tree/v1.23.0"
++                "source": "https://github.com/symfony/options-resolver/tree/v5.3.7"
 +            },
 +            "funding": [
 +                {
@@ -481,12 +460,338 @@ index 8d742f8..aaa14ec 100644
 +                    "type": "tidelift"
 +                }
 +            ],
-+            "time": "2021-05-24T10:04:56+00:00"
++            "time": "2021-08-04T21:20:46+00:00"
 +        },
          {
+             "name": "symfony/password-hasher",
+             "version": "v5.3.4",
+@@ -4153,28 +4560,105 @@
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/symfony/password-hasher/zipball/61dd1e90fa0ebf6f4982787b1e033a9606357d7e",
+-                "reference": "61dd1e90fa0ebf6f4982787b1e033a9606357d7e",
++                "url": "https://api.github.com/repos/symfony/password-hasher/zipball/61dd1e90fa0ebf6f4982787b1e033a9606357d7e",
++                "reference": "61dd1e90fa0ebf6f4982787b1e033a9606357d7e",
++                "shasum": ""
++            },
++            "require": {
++                "php": ">=7.2.5",
++                "symfony/polyfill-php80": "^1.15"
++            },
++            "conflict": {
++                "symfony/security-core": "<5.3"
++            },
++            "require-dev": {
++                "symfony/console": "^5",
++                "symfony/security-core": "^5.3"
++            },
++            "type": "library",
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Component\\PasswordHasher\\": ""
++                },
++                "exclude-from-classmap": [
++                    "/Tests/"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Robin Chalas",
++                    "email": "robin.chalas@gmail.com"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Provides password hashing utilities",
++            "homepage": "https://symfony.com",
++            "keywords": [
++                "hashing",
++                "password"
++            ],
++            "support": {
++                "source": "https://github.com/symfony/password-hasher/tree/v5.3.4"
++            },
++            "funding": [
++                {
++                    "url": "https://symfony.com/sponsor",
++                    "type": "custom"
++                },
++                {
++                    "url": "https://github.com/fabpot",
++                    "type": "github"
++                },
++                {
++                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
++                    "type": "tidelift"
++                }
++            ],
++            "time": "2021-06-30T13:49:12+00:00"
++        },
++        {
++            "name": "symfony/polyfill-intl-grapheme",
++            "version": "v1.23.1",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
++                "reference": "16880ba9c5ebe3642d1995ab866db29270b36535"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/16880ba9c5ebe3642d1995ab866db29270b36535",
++                "reference": "16880ba9c5ebe3642d1995ab866db29270b36535",
+                 "shasum": ""
+             },
+             "require": {
+-                "php": ">=7.2.5",
+-                "symfony/polyfill-php80": "^1.15"
+-            },
+-            "conflict": {
+-                "symfony/security-core": "<5.3"
++                "php": ">=7.1"
+             },
+-            "require-dev": {
+-                "symfony/console": "^5",
+-                "symfony/security-core": "^5.3"
++            "suggest": {
++                "ext-intl": "For best performance"
+             },
+             "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-main": "1.23-dev"
++                },
++                "thanks": {
++                    "name": "symfony/polyfill",
++                    "url": "https://github.com/symfony/polyfill"
++                }
++            },
+             "autoload": {
+                 "psr-4": {
+-                    "Symfony\\Component\\PasswordHasher\\": ""
++                    "Symfony\\Polyfill\\Intl\\Grapheme\\": ""
+                 },
+-                "exclude-from-classmap": [
+-                    "/Tests/"
++                "files": [
++                    "bootstrap.php"
+                 ]
+             },
+             "notification-url": "https://packagist.org/downloads/",
+@@ -4183,22 +4667,26 @@
+             ],
+             "authors": [
+                 {
+-                    "name": "Robin Chalas",
+-                    "email": "robin.chalas@gmail.com"
++                    "name": "Nicolas Grekas",
++                    "email": "p@tchwork.com"
+                 },
+                 {
+                     "name": "Symfony Community",
+                     "homepage": "https://symfony.com/contributors"
+                 }
+             ],
+-            "description": "Provides password hashing utilities",
++            "description": "Symfony polyfill for intl's grapheme_* functions",
+             "homepage": "https://symfony.com",
+             "keywords": [
+-                "hashing",
+-                "password"
++                "compatibility",
++                "grapheme",
++                "intl",
++                "polyfill",
++                "portable",
++                "shim"
+             ],
+             "support": {
+-                "source": "https://github.com/symfony/password-hasher/tree/v5.3.4"
++                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.23.1"
+             },
+             "funding": [
+                 {
+@@ -4214,27 +4702,27 @@
+                     "type": "tidelift"
+                 }
+             ],
+-            "time": "2021-06-30T13:49:12+00:00"
++            "time": "2021-05-27T12:26:48+00:00"
+         },
+         {
+-            "name": "symfony/polyfill-intl-grapheme",
+-            "version": "v1.23.1",
++            "name": "symfony/polyfill-intl-icu",
++            "version": "v1.23.0",
+             "source": {
+                 "type": "git",
+-                "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
+-                "reference": "16880ba9c5ebe3642d1995ab866db29270b36535"
++                "url": "https://github.com/symfony/polyfill-intl-icu.git",
++                "reference": "4a80a521d6176870b6445cfb469c130f9cae1dda"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/16880ba9c5ebe3642d1995ab866db29270b36535",
+-                "reference": "16880ba9c5ebe3642d1995ab866db29270b36535",
++                "url": "https://api.github.com/repos/symfony/polyfill-intl-icu/zipball/4a80a521d6176870b6445cfb469c130f9cae1dda",
++                "reference": "4a80a521d6176870b6445cfb469c130f9cae1dda",
+                 "shasum": ""
+             },
+             "require": {
+                 "php": ">=7.1"
+             },
+             "suggest": {
+-                "ext-intl": "For best performance"
++                "ext-intl": "For best performance and support of other locales than \"en\""
+             },
+             "type": "library",
+             "extra": {
+@@ -4247,11 +4735,17 @@
+                 }
+             },
+             "autoload": {
+-                "psr-4": {
+-                    "Symfony\\Polyfill\\Intl\\Grapheme\\": ""
+-                },
+                 "files": [
+                     "bootstrap.php"
++                ],
++                "psr-4": {
++                    "Symfony\\Polyfill\\Intl\\Icu\\": ""
++                },
++                "classmap": [
++                    "Resources/stubs"
++                ],
++                "exclude-from-classmap": [
++                    "/Tests/"
+                 ]
+             },
+             "notification-url": "https://packagist.org/downloads/",
+@@ -4268,18 +4762,18 @@
+                     "homepage": "https://symfony.com/contributors"
+                 }
+             ],
+-            "description": "Symfony polyfill for intl's grapheme_* functions",
++            "description": "Symfony polyfill for intl's ICU-related data and classes",
+             "homepage": "https://symfony.com",
+             "keywords": [
+                 "compatibility",
+-                "grapheme",
++                "icu",
+                 "intl",
+                 "polyfill",
+                 "portable",
+                 "shim"
+             ],
+             "support": {
+-                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.23.1"
++                "source": "https://github.com/symfony/polyfill-intl-icu/tree/v1.23.0"
+             },
+             "funding": [
+                 {
+@@ -4295,7 +4789,7 @@
+                     "type": "tidelift"
+                 }
+             ],
+-            "time": "2021-05-27T12:26:48+00:00"
++            "time": "2021-05-24T10:04:56+00:00"
+         },
+         {
              "name": "symfony/polyfill-intl-normalizer",
-             "version": "v1.23.0",
-@@ -7573,6 +8001,79 @@
+@@ -4702,6 +5196,85 @@
+             ],
+             "time": "2021-05-21T13:25:03+00:00"
+         },
++        {
++            "name": "symfony/polyfill-uuid",
++            "version": "v1.23.0",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/polyfill-uuid.git",
++                "reference": "9165effa2eb8a31bb3fa608df9d529920d21ddd9"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/polyfill-uuid/zipball/9165effa2eb8a31bb3fa608df9d529920d21ddd9",
++                "reference": "9165effa2eb8a31bb3fa608df9d529920d21ddd9",
++                "shasum": ""
++            },
++            "require": {
++                "php": ">=7.1"
++            },
++            "suggest": {
++                "ext-uuid": "For best performance"
++            },
++            "type": "library",
++            "extra": {
++                "branch-alias": {
++                    "dev-main": "1.23-dev"
++                },
++                "thanks": {
++                    "name": "symfony/polyfill",
++                    "url": "https://github.com/symfony/polyfill"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\Polyfill\\Uuid\\": ""
++                },
++                "files": [
++                    "bootstrap.php"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Grégoire Pineau",
++                    "email": "lyrixx@lyrixx.info"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Symfony polyfill for uuid functions",
++            "homepage": "https://symfony.com",
++            "keywords": [
++                "compatibility",
++                "polyfill",
++                "portable",
++                "uuid"
++            ],
++            "support": {
++                "source": "https://github.com/symfony/polyfill-uuid/tree/v1.23.0"
++            },
++            "funding": [
++                {
++                    "url": "https://symfony.com/sponsor",
++                    "type": "custom"
++                },
++                {
++                    "url": "https://github.com/fabpot",
++                    "type": "github"
++                },
++                {
++                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
++                    "type": "tidelift"
++                }
++            ],
++            "time": "2021-02-19T12:13:01+00:00"
++        },
+         {
+             "name": "symfony/property-access",
+             "version": "v5.3.4",
+@@ -6065,6 +6638,79 @@
              ],
              "time": "2021-07-21T12:40:44+00:00"
          },
@@ -566,7 +871,7 @@ index 8d742f8..aaa14ec 100644
          {
              "name": "symfony/var-dumper",
              "version": "v5.3.6",
-@@ -8259,62 +8760,6 @@
+@@ -6751,62 +7397,6 @@
              },
              "time": "2021-07-06T20:39:40+00:00"
          },
@@ -630,20 +935,20 @@ index 8d742f8..aaa14ec 100644
              "name": "symfony/debug-bundle",
              "version": "v5.3.4",
 diff --git a/config/bundles.php b/config/bundles.php
-index 190c2b6..be2de50 100644
+index 137cdd0..17fba26 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
-@@ -19,4 +19,5 @@ return [
+@@ -18,4 +18,5 @@ return [
      Zenstruck\Foundry\ZenstruckFoundryBundle::class => ['dev' => true, 'test' => true],
      Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
      Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
 +    EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
  ];
 diff --git a/symfony.lock b/symfony.lock
-index 0127c0d..457f71b 100644
+index beb8e39..66d4763 100644
 --- a/symfony.lock
 +++ b/symfony.lock
-@@ -103,6 +103,15 @@
+@@ -100,6 +100,15 @@
      "doctrine/sql-formatter": {
          "version": "1.1.0"
      },
@@ -659,7 +964,7 @@ index 0127c0d..457f71b 100644
      "fakerphp/faker": {
          "version": "v1.13.0"
      },
-@@ -316,6 +325,9 @@
+@@ -253,6 +262,9 @@
              ".env"
          ]
      },
@@ -669,7 +974,7 @@ index 0127c0d..457f71b 100644
      "symfony/framework-bundle": {
          "version": "5.3",
          "recipe": {
-@@ -350,6 +362,9 @@
+@@ -284,6 +296,9 @@
      "symfony/inflector": {
          "version": "v5.1.2"
      },
@@ -679,7 +984,17 @@ index 0127c0d..457f71b 100644
      "symfony/maker-bundle": {
          "version": "1.0",
          "recipe": {
-@@ -389,6 +404,9 @@
+@@ -311,6 +326,9 @@
+             "config/packages/test/monolog.yaml"
+         ]
+     },
++    "symfony/options-resolver": {
++        "version": "v5.3.7"
++    },
+     "symfony/orm-pack": {
+         "version": "v2.0.0"
+     },
+@@ -320,6 +338,9 @@
      "symfony/polyfill-intl-grapheme": {
          "version": "v1.17.1"
      },
@@ -689,7 +1004,17 @@ index 0127c0d..457f71b 100644
      "symfony/polyfill-intl-normalizer": {
          "version": "v1.17.1"
      },
-@@ -506,6 +524,9 @@
+@@ -335,6 +356,9 @@
+     "symfony/polyfill-php81": {
+         "version": "v1.23.0"
+     },
++    "symfony/polyfill-uuid": {
++        "version": "v1.23.0"
++    },
+     "symfony/property-access": {
+         "version": "v5.1.2"
+     },
+@@ -422,6 +446,9 @@
              "templates/base.html.twig"
          ]
      },

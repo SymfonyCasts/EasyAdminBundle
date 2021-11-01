@@ -1,8 +1,8 @@
 diff --git a/src/Entity/User.php b/src/Entity/User.php
-index e1deea1..04ede10 100644
+index 20e0e72..d48fabe 100644
 --- a/src/Entity/User.php
 +++ b/src/Entity/User.php
-@@ -76,6 +76,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
+@@ -81,6 +81,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
          $this->answers = new ArrayCollection();
      }
  
