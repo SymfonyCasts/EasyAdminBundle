@@ -1,16 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 137ce07..a44947a 100644
+index 7044dc9..a44947a 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
- use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
- use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
- use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
-+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
- use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
- use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
- 
-@@ -26,6 +27,8 @@ class UserCrudController extends AbstractCrudController
+@@ -27,6 +27,8 @@ class UserCrudController extends AbstractCrudController
          yield TextField::new('email');
          yield TextField::new('fullName')
              ->hideOnForm();

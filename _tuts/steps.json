@@ -121,6 +121,11 @@
             "description": null
         },
         {
+            "id": "fields-change-to-idfield",
+            "name": "Fields: Change to IdField",
+            "description": null
+        },
+        {
             "id": "fields-render-other-user-fields",
             "name": "Fields: Render other User fields",
             "description": null
@@ -831,5 +836,5 @@
             "description": null
         }
     ],
-    "sha": "0cfa19988b41fc52ad603c56e40851cd003866ea"
+    "sha": "5a30aa0ec811951d90e0e1b2698c3135f69d7fe3"
 }
