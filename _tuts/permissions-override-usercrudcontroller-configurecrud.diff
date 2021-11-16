@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 9618196..c590c87 100644
+index e896f7f..d546652 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -3,6 +3,7 @@

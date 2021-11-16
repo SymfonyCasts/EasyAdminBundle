@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index a1c6a39..4bb12b0 100644
+index 48d3a80..8fb7a4b 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -4,6 +4,7 @@ namespace App\Controller\Admin;

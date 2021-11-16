@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 9c61334..5eda410 100644
+index 9c61334..a5ae37c 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -4,8 +4,13 @@ namespace App\Controller\Admin;
@@ -21,7 +21,7 @@ index 9c61334..5eda410 100644
      {
          yield IdField::new('id');
 +        yield AvatarField::new('avatar');
-+        yield EmailField::new('email');
++        yield TextField::new('email');
 +        yield TextField::new('fullName');
 +        yield BooleanField::new('enabled');
 +        yield DateField::new('createdAt');

@@ -1,11 +1,11 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 0649ed8..b600e38 100644
+index 8fe3de5..e3c84f9 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -25,7 +25,8 @@ class UserCrudController extends AbstractCrudController
              ->onlyOnIndex();
          yield AvatarField::new('avatar');
-         yield TextField::new('email');
+         yield EmailField::new('email');
 -        yield TextField::new('fullName');
 +        yield TextField::new('fullName')
 +            ->onlyOnIndex();

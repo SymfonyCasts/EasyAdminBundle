@@ -1,10 +1,10 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index a5ae37c..f0a8977 100644
+index 5eda410..5582618 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -25,7 +25,8 @@ class UserCrudController extends AbstractCrudController
          yield AvatarField::new('avatar');
-         yield TextField::new('email');
+         yield EmailField::new('email');
          yield TextField::new('fullName');
 -        yield BooleanField::new('enabled');
 +        yield BooleanField::new('enabled')
