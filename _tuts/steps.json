@@ -121,53 +121,53 @@
             "description": null
         },
         {
-            "id": "fields-render-id-field",
-            "name": "Fields: Render ID field",
+            "id": "user-fields-render-id",
+            "name": "User fields: Render ID",
             "description": null
         },
         {
-            "id": "fields-change-to-idfield",
-            "name": "Fields: Change to IdField",
+            "id": "user-fields-change-to-idfield",
+            "name": "User fields: Change to IdField",
             "description": null
         },
         {
-            "id": "fields-render-other-user-fields",
-            "name": "Fields: Render other User fields",
+            "id": "user-fields-render-other-fields",
+            "name": "User fields: Render other fields",
             "description": null
         },
         {
-            "id": "fields-change-email-to-text",
-            "name": "Fields: Change email to text",
+            "id": "user-fields-change-email-to-text",
+            "name": "User fields: Change email to text",
             "description": null
         },
         {
-            "id": "fields-render-enabled-as-label",
-            "name": "Fields: Render enabled as label",
+            "id": "user-fields-render-enabled-as-label",
+            "name": "User fields: Render enabled as label",
             "description": null
         },
         {
-            "id": "fields-show-id-only-on-index",
-            "name": "Fields: Show id only on index",
+            "id": "fields-display-show-id-only-on-index",
+            "name": "Fields display: Show id only on index",
             "description": null
         },
         {
-            "id": "fields-show-fullname-only-on-index",
-            "name": "Fields: Show fullName only on index",
+            "id": "fields-display-show-fullname-only-on-index",
+            "name": "Fields display: Show fullName only on index",
             "description": null
         },
         {
-            "id": "fields-hide-fullname-on-form",
-            "name": "Fields: Hide fullName on form",
+            "id": "fields-display-hide-fullname-on-form",
+            "name": "Fields display: Hide fullName on form",
             "description": null
         },
         {
-            "id": "fields-add-first-and-last-name-fields",
-            "name": "Fields: Add first and last name fields",
+            "id": "fields-display-add-first-and-last-name-fields",
+            "name": "Fields display: Add first and last name fields",
             "description": null
         },
         {
-            "id": "fields-show-first-and-last-names-only-on-forms",
-            "name": "Fields: Show first and last names only on forms",
+            "id": "fields-display-show-first-and-last-names-only-on-forms",
+            "name": "Fields display: Show first and last names only on forms",
             "description": null
         },
         {
@@ -181,98 +181,98 @@
             "description": null
         },
         {
-            "id": "fields-hide-createdat-on-forms",
-            "name": "Fields: Hide createdAt on forms",
+            "id": "fields-display-hide-createdat-on-forms",
+            "name": "Fields display: Hide createdAt on forms",
             "description": null
         },
         {
-            "id": "fields-add-roles-field",
-            "name": "Fields: Add roles field",
+            "id": "fields-display-add-roles-field",
+            "name": "Fields display: Add roles field",
             "description": null
         },
         {
-            "id": "fields-add-a-help-message-for-roles-field",
-            "name": "Fields: Add a help message for roles field",
+            "id": "fields-display-add-a-help-message-for-roles-field",
+            "name": "Fields display: Add a help message for roles field",
             "description": null
         },
         {
-            "id": "fields-add-fields-in-question-crud",
-            "name": "Fields: Add fields in Question CRUD",
+            "id": "question-fields-add-fields",
+            "name": "Question fields: Add fields",
             "description": null
         },
         {
-            "id": "fields-set-label-for-votes",
-            "name": "Fields: Set label for votes",
+            "id": "question-fields-set-label-for-votes",
+            "name": "Question fields: Set label for votes",
             "description": null
         },
         {
-            "id": "fields-votes-text-align-right",
-            "name": "Fields: Votes text align right",
+            "id": "question-fields-votes-text-align-right",
+            "name": "Question fields: Votes text align right",
             "description": null
         },
         {
-            "id": "fields-add-question-field",
-            "name": "Fields: Add question field",
+            "id": "question-fields-add-question-field",
+            "name": "Question fields: Add question field",
             "description": null
         },
         {
-            "id": "fields-add-topic-field",
-            "name": "Fields: Add topic field",
+            "id": "association-fields-add-topic-field",
+            "name": "Association fields: Add topic field",
             "description": null
         },
         {
-            "id": "fields-implement-topic-tostring-method",
-            "name": "Fields: Implement Topic::__toString() method",
+            "id": "association-fields-implement-topic-tostring-method",
+            "name": "Association fields: Implement Topic::__toString() method",
             "description": null
         },
         {
-            "id": "fields-add-askedby-field",
-            "name": "Fields: Add askedBy field",
+            "id": "association-fields-add-askedby-field",
+            "name": "Association fields: Add askedBy field",
             "description": null
         },
         {
-            "id": "fields-implement-user-tostring-method",
-            "name": "Fields: Implement User::__toString() method",
+            "id": "association-fields-implement-user-tostring-method",
+            "name": "Association fields: Implement User::__toString() method",
             "description": null
         },
         {
-            "id": "fields-autocomplete-users",
-            "name": "Fields: Autocomplete users",
+            "id": "association-fields-autocomplete-users",
+            "name": "Association fields: Autocomplete users",
             "description": null
         },
         {
-            "id": "fields-call-formatvalue-on-askedby",
-            "name": "Fields: Call formatValue() on askedBy",
+            "id": "association-fields-call-formatvalue-on-askedby",
+            "name": "Association fields: Call formatValue() on askedBy",
             "description": null
         },
         {
-            "id": "fields-filter-disabled-users-with-setquerybuilder",
-            "name": "Fields: Filter disabled users with setQueryBuilder()",
+            "id": "association-fields-filter-disabled-users-with-setquerybuilder",
+            "name": "Association fields: Filter disabled users with setQueryBuilder()",
             "description": null
         },
         {
-            "id": "fields-add-slug-field",
-            "name": "Fields: Add slug field",
+            "id": "more-fields-add-slug-field",
+            "name": "More fields: Add slug field",
             "description": null
         },
         {
-            "id": "fields-slug-readonly",
-            "name": "Fields: Slug readonly",
+            "id": "more-fields-slug-readonly",
+            "name": "More fields: Slug readonly",
             "description": null
         },
         {
-            "id": "fields-slug-disabled",
-            "name": "Fields: slug disabled",
+            "id": "more-fields-slug-disabled",
+            "name": "More fields: Slug disabled",
             "description": null
         },
         {
-            "id": "fields-add-fields-for-answer",
-            "name": "Fields: Add fields for Answer",
+            "id": "more-fields-add-fields-for-answer",
+            "name": "More fields: Add fields for Answer",
             "description": null
         },
         {
-            "id": "fields-implement-question-tostring",
-            "name": "Fields: Implement Question::__toString()",
+            "id": "more-fields-implement-question-tostring",
+            "name": "More fields: Implement Question::__toString()",
             "description": null
         },
         {
@@ -651,163 +651,163 @@
             "description": null
         },
         {
-            "id": "custom-actions-add-view-action",
-            "name": "Custom actions: Add view action",
+            "id": "get-custom-action-add-view-action",
+            "name": "GET custom action: Add view action",
             "description": null
         },
         {
-            "id": "custom-actions-create-view-action",
-            "name": "Custom actions: Create view action",
+            "id": "get-custom-action-create-view-action",
+            "name": "GET custom action: Create view action",
             "description": null
         },
         {
-            "id": "custom-actions-link-to-route",
-            "name": "Custom actions: Link to route",
+            "id": "get-custom-action-link-to-route",
+            "name": "GET custom action: Link to route",
             "description": null
         },
         {
-            "id": "custom-actions-add-callable-and-dump-param",
-            "name": "Custom actions: Add callable and dump param",
+            "id": "get-custom-action-add-callable-and-dump-param",
+            "name": "GET custom action: Add callable and dump param",
             "description": null
         },
         {
-            "id": "custom-actions-return-route-params-in-the-callable",
-            "name": "Custom actions: Return route params in the callable",
+            "id": "get-custom-action-return-route-params-in-the-callable",
+            "name": "GET custom action: Return route params in the callable",
             "description": null
         },
         {
-            "id": "custom-actions-add-styles",
-            "name": "Custom actions: Add styles",
+            "id": "get-custom-action-add-styles",
+            "name": "GET custom action: Add styles",
             "description": null
         },
         {
-            "id": "custom-actions-add-icon",
-            "name": "Custom actions: Add icon",
+            "id": "get-custom-action-add-icon",
+            "name": "GET custom action: Add icon",
             "description": null
         },
         {
-            "id": "custom-actions-set-label",
-            "name": "Custom actions: Set label",
+            "id": "get-custom-action-set-label",
+            "name": "GET custom action: Set label",
             "description": null
         },
         {
-            "id": "custom-actions-create-approve-action",
-            "name": "Custom actions: Create approve action",
+            "id": "post-custom-action-create-approve-action",
+            "name": "POST custom action: Create approve action",
             "description": null
         },
         {
-            "id": "custom-actions-display-as-a-button",
-            "name": "Custom actions: Display as a button",
+            "id": "post-custom-action-display-as-a-button",
+            "name": "POST custom action: Display as a button",
             "description": null
         },
         {
-            "id": "custom-actions-link-to-a-crud-action",
-            "name": "Custom actions: Link to a CRUD action",
+            "id": "post-custom-action-link-to-a-crud-action",
+            "name": "POST custom action: Link to a CRUD action",
             "description": null
         },
         {
-            "id": "custom-actions-create-template-and-dump-var",
-            "name": "Custom actions: Create template and dump var",
+            "id": "post-custom-action-create-template-and-dump-var",
+            "name": "POST custom action: Create template and dump var",
             "description": null
         },
         {
-            "id": "custom-actions-implement-template",
-            "name": "Custom actions: Implement template",
+            "id": "post-custom-action-implement-template",
+            "name": "POST custom action: Implement template",
             "description": null
         },
         {
-            "id": "custom-actions-fix-button-margin",
-            "name": "Custom actions: Fix button margin",
+            "id": "post-custom-action-fix-button-margin",
+            "name": "POST custom action: Fix button margin",
             "description": null
         },
         {
-            "id": "custom-actions-create-approve-method",
-            "name": "Custom actions: Create approve() method",
+            "id": "post-custom-action-create-approve-method",
+            "name": "POST custom action: Create approve() method",
             "description": null
         },
         {
-            "id": "custom-actions-inject-admincontext-and-get-entity",
-            "name": "Custom actions: Inject AdminContext and get entity",
+            "id": "post-custom-action-inject-admincontext-and-get-entity",
+            "name": "POST custom action: Inject AdminContext and get entity",
             "description": null
         },
         {
-            "id": "custom-actions-inject-em-and-flush",
-            "name": "Custom actions: Inject EM and flush",
+            "id": "post-custom-action-inject-em-and-flush",
+            "name": "POST custom action: Inject EM and flush",
             "description": null
         },
         {
-            "id": "custom-actions-inject-adminurlgenerator-and-return-redirect-response",
-            "name": "Custom actions: Inject AdminUrlGenerator and return redirect response",
+            "id": "post-custom-action-inject-adminurlgenerator-and-return-redirect-response",
+            "name": "POST custom action: Inject AdminUrlGenerator and return redirect response",
             "description": null
         },
         {
-            "id": "custom-actions-hide-button-for-approved-questions",
-            "name": "Custom actions: Hide button for approved questions",
+            "id": "post-custom-action-hide-button-for-approved-questions",
+            "name": "POST custom action: Hide button for approved questions",
             "description": null
         },
         {
-            "id": "custom-actions-create-export-action",
-            "name": "Custom actions: Create export action",
+            "id": "global-custom-action-create-export-action",
+            "name": "Global custom action: Create export action",
             "description": null
         },
         {
-            "id": "custom-actions-as-global",
-            "name": "Custom actions: As global",
+            "id": "global-custom-action-as-global",
+            "name": "Global custom action: As global",
             "description": null
         },
         {
-            "id": "custom-actions-install-goodby-csv",
-            "name": "Custom actions: Install goodby\/csv",
+            "id": "global-custom-action-install-goodby-csv",
+            "name": "Global custom action: Install goodby\/csv",
             "description": null
         },
         {
-            "id": "custom-actions-create-csvexporter-service",
-            "name": "Custom actions: Create CsvExporter service",
+            "id": "global-custom-action-create-csvexporter-service",
+            "name": "Global custom action: Create CsvExporter service",
             "description": null
         },
         {
-            "id": "custom-actions-create-export-method",
-            "name": "Custom actions: Create export() method",
+            "id": "global-custom-action-create-export-method",
+            "name": "Global custom action: Create export() method",
             "description": null
         },
         {
-            "id": "custom-actions-inject-admincontext",
-            "name": "Custom actions: Inject AdminContext",
+            "id": "global-custom-action-inject-admincontext",
+            "name": "Global custom action: Inject AdminContext",
             "description": null
         },
         {
-            "id": "custom-actions-create-index-query-builder",
-            "name": "Custom actions: Create index query builder",
+            "id": "global-custom-action-create-index-query-builder",
+            "name": "Global custom action: Create index query builder",
             "description": null
         },
         {
-            "id": "custom-actions-inject-csvexporter-service",
-            "name": "Custom actions: Inject CsvExporter service",
+            "id": "global-custom-action-inject-csvexporter-service",
+            "name": "Global custom action: Inject CsvExporter service",
             "description": null
         },
         {
-            "id": "custom-actions-create-streamed-response",
-            "name": "Custom actions: Create streamed response",
+            "id": "global-custom-action-create-streamed-response",
+            "name": "Global custom action: Create streamed response",
             "description": null
         },
         {
-            "id": "custom-actions-inject-more-services",
-            "name": "Custom actions: Inject more services",
+            "id": "global-custom-action-inject-more-services",
+            "name": "Global custom action: Inject more services",
             "description": null
         },
         {
-            "id": "custom-actions-fix-link",
-            "name": "Custom actions: Fix link",
+            "id": "global-custom-action-fix-link",
+            "name": "Global custom action: Fix link",
             "description": null
         },
         {
-            "id": "custom-actions-reorder-actions",
-            "name": "Custom actions: Reorder actions",
+            "id": "global-action-config-reorder-actions",
+            "name": "Global action config: Reorder actions",
             "description": null
         },
         {
-            "id": "custom-actions-add-icons-for-action-buttons",
-            "name": "Custom actions: Add icons for action buttons",
+            "id": "global-action-config-add-icons-for-action-buttons",
+            "name": "Global action config: Add icons for action buttons",
             "description": null
         },
         {
@@ -841,5 +841,5 @@
             "description": null
         }
     ],
-    "sha": "ec2fb462555f689b508f202a84d7e15fc8da8fbd"
+    "sha": "ffc2185d7a8f6a1952afdc00a20538ec6f154a0f"
 }
