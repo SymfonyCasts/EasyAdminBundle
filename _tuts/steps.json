@@ -66,6 +66,11 @@
             "description": null
         },
         {
+            "id": "generate-links-change-to-linktourl",
+            "name": "Generate links: Change to linkToUrl()",
+            "description": null
+        },
+        {
             "id": "generate-links-admin",
             "name": "Generate links: Admin",
             "description": null
@@ -836,5 +841,5 @@
             "description": null
         }
     ],
-    "sha": "0b5ef71424170b1c516fa43aabb1e43dc019b1d3"
+    "sha": "f502d938d1c8dded2990e559b46825117029bfa5"
 }

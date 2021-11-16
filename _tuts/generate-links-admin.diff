@@ -1,15 +1,3 @@
-diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 080499c..69ffe1b 100644
---- a/src/Controller/Admin/DashboardController.php
-+++ b/src/Controller/Admin/DashboardController.php
-@@ -40,6 +40,7 @@ class DashboardController extends AbstractDashboardController
-         yield MenuItem::linkToCrud('Answers', 'fas fa-comments', Answer::class);
-         yield MenuItem::linkToCrud('Topics', 'fas fa-folder', Topic::class);
-         yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
-+        yield MenuItem::linkToUrl('Homepage', 'fas fa-home', $this->generateUrl('app_homepage'));
-     }
- 
-     public function configureActions(): Actions
 diff --git a/templates/base.html.twig b/templates/base.html.twig
 index 48ed343..1c0f9d6 100644
 --- a/templates/base.html.twig
