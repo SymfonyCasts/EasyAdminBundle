@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index ce46a12..094517a 100644
+index a1c6a39..4bb12b0 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -4,6 +4,7 @@ namespace App\Controller\Admin;
@@ -10,7 +10,7 @@ index ce46a12..094517a 100644
  use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
-@@ -31,5 +32,6 @@ class UserCrudController extends AbstractCrudController
+@@ -35,5 +36,6 @@ class UserCrudController extends AbstractCrudController
              ->renderAsSwitch(false);
          yield DateField::new('createdAt')
              ->hideOnForm();
