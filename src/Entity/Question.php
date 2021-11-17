@@ -66,6 +66,12 @@ class Question
      */
     private $isApproved = false;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $updatedBy;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -207,5 +213,15 @@ class Question
     public function setIsApproved(bool $isApproved): void
     {
         $this->isApproved = $isApproved;
+    }
+
+    public function getUpdatedBy(): ?User
+    {
+        return $this->updatedBy;
+    }
+
+    public function setUpdatedBy(User $updatedBy): void
+    {
+        $this->updatedBy = $updatedBy;
     }
 }
