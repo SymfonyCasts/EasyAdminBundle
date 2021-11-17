@@ -576,8 +576,8 @@
             "description": null
         },
         {
-            "id": "events-inject-security-service-in-crud",
-            "name": "Events: Inject Security service in CRUD",
+            "id": "delete-me-6",
+            "name": "DELETE ME 6",
             "description": null
         },
         {
@@ -841,5 +841,5 @@
             "description": null
         }
     ],
-    "sha": "36fef2627796f0e2eecddf2dcd81f252032318d6"
+    "sha": "2c788515a0fec3db72ab7a2c99e91430c66008dc"
 }

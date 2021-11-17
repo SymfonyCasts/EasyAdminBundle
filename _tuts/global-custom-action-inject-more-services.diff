@@ -1,26 +1,33 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 25220e0..bfc71f1 100644
+index 27f36d5..cf11526 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -21,15 +21,20 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+@@ -21,9 +21,19 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
  use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 +use Symfony\Component\HttpFoundation\RequestStack;
- use Symfony\Component\Security\Core\Security;
  
  class QuestionCrudController extends AbstractCrudController
  {
-     private Security $security;
 +    private AdminUrlGenerator $adminUrlGenerator;
 +    private RequestStack $requestStack;
- 
--    public function __construct(Security $security)
-+    public function __construct(Security $security, AdminUrlGenerator $adminUrlGenerator, RequestStack $requestStack)
-     {
-         $this->security = $security;
++
++    public function __construct(AdminUrlGenerator $adminUrlGenerator, RequestStack $requestStack)
++    {
 +        $this->adminUrlGenerator = $adminUrlGenerator;
 +        $this->requestStack = $requestStack;
-     }
- 
++    }
++
      public static function getEntityFqcn(): string
+     {
+         return Question::class;
+@@ -141,7 +151,7 @@ class QuestionCrudController extends AbstractCrudController
+      */
+     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+     {
+-        $user = $this->security->getUser();
++        $user = $this->getUser();
+         if (!$user instanceof User) {
+             throw new \LogicException('Currently logged in user is not an instance of User?!');
+         }

@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index ddb1327..40470d9 100644
+index b99faa1..c6af207 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -59,7 +59,10 @@ class QuestionCrudController extends AbstractCrudController
+@@ -51,7 +51,10 @@ class QuestionCrudController extends AbstractCrudController
              ->linkToCrudAction('approve')
              ->addCssClass('btn btn-success')
              ->setIcon('fa fa-check-circle')

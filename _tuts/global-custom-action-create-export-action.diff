@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 40470d9..5b97d96 100644
+index c6af207..c1cbf6c 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -63,6 +63,10 @@ class QuestionCrudController extends AbstractCrudController
+@@ -55,6 +55,10 @@ class QuestionCrudController extends AbstractCrudController
              ->displayIf(static function (Question $question): bool {
                  return !$question->getIsApproved();
              });
@@ -13,7 +13,7 @@ index 40470d9..5b97d96 100644
  
          return parent::configureActions($actions)
              ->setPermission(Action::INDEX, 'ROLE_MODERATOR')
-@@ -71,7 +75,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -63,7 +67,8 @@ class QuestionCrudController extends AbstractCrudController
              ->setPermission(Action::NEW, 'ROLE_SUPER_ADMIN')
              ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN')
              ->add(Crud::PAGE_DETAIL, $viewAction)

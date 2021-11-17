@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index bb5a300..9e29989 100644
+index 5e84026..19672b2 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -53,6 +53,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -45,6 +45,7 @@ class QuestionCrudController extends AbstractCrudController
              ->setIcon('fa fa-eye')
              ->setLabel('View');
          $approveAction = Action::new('approve')

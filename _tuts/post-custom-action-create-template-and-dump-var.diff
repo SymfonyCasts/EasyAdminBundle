@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 9e29989..276fca2 100644
+index 19672b2..0619a83 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -35,6 +35,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -27,6 +27,7 @@ class QuestionCrudController extends AbstractCrudController
      public function configureCrud(Crud $crud): Crud
      {
          return parent::configureCrud($crud)
