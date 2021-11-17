@@ -11,7 +11,7 @@ index 2f8a2e5..913950c 100644
          "knplabs/knp-time-bundle": "^1.11",
          "sensio/framework-extra-bundle": "^6.0",
 diff --git a/composer.lock b/composer.lock
-index 1355160..9239fbc 100644
+index 1355160..9f3da70 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -29,16 +29,16 @@ index 1355160..9239fbc 100644
          },
 +        {
 +            "name": "easycorp/easyadmin-bundle",
-+            "version": "v3.5.10",
++            "version": "v3.5.14",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
-+                "reference": "7f12b81e6a0080e6a37478fea349143b11423aa6"
++                "reference": "ff6321a3410707f3f8d0b8f01517f2e3a59aa0b4"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/7f12b81e6a0080e6a37478fea349143b11423aa6",
-+                "reference": "7f12b81e6a0080e6a37478fea349143b11423aa6",
++                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/ff6321a3410707f3f8d0b8f01517f2e3a59aa0b4",
++                "reference": "ff6321a3410707f3f8d0b8f01517f2e3a59aa0b4",
 +                "shasum": ""
 +            },
 +            "require": {
@@ -109,7 +109,7 @@ index 1355160..9239fbc 100644
 +            ],
 +            "support": {
 +                "issues": "https://github.com/EasyCorp/EasyAdminBundle/issues",
-+                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v3.5.10"
++                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v3.5.14"
 +            },
 +            "funding": [
 +                {
@@ -117,7 +117,7 @@ index 1355160..9239fbc 100644
 +                    "type": "github"
 +                }
 +            ],
-+            "time": "2021-10-01T18:09:49+00:00"
++            "time": "2021-11-16T07:04:09+00:00"
 +        },
          {
              "name": "friendsofphp/proxy-manager-lts",
