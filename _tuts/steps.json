@@ -661,18 +661,18 @@
             "description": null
         },
         {
-            "id": "get-custom-action-link-to-route",
-            "name": "GET custom action: Link to route",
+            "id": "get-custom-action-link-to-url",
+            "name": "GET custom action: Link to url",
             "description": null
         },
         {
-            "id": "get-custom-action-add-callable-and-dump-param",
-            "name": "GET custom action: Add callable and dump param",
+            "id": "delete-me-7",
+            "name": "DELETE ME 7",
             "description": null
         },
         {
-            "id": "get-custom-action-return-route-params-in-the-callable",
-            "name": "GET custom action: Return route params in the callable",
+            "id": "get-custom-action-return-generated-url",
+            "name": "GET custom action: Return generated URL",
             "description": null
         },
         {
@@ -841,5 +841,5 @@
             "description": null
         }
     ],
-    "sha": "0e01a7e9315460eae3a17b8bf281de56fd34e91d"
+    "sha": "a45670570a0f8f9a6e0e9e973a8b3a66bde09080"
 }

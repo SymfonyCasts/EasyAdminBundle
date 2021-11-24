@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 90ff72d..03fbdca 100644
+index 192069d..6bdadbb 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -58,7 +58,8 @@ class QuestionCrudController extends AbstractCrudController

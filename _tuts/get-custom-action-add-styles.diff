@@ -1,11 +1,11 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index e8a721f..a7e9bf9 100644
+index 5928d2f..dbcb64a 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -40,7 +40,8 @@ class QuestionCrudController extends AbstractCrudController
-                 return [
+                 return $this->generateUrl('app_question_show', [
                      'slug' => $question->getSlug(),
-                 ];
+                 ]);
 -            });
 +            })
 +            ->addCssClass('btn btn-success');

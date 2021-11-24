@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 223eb49..d089f75 100644
+index d35743a..ae3bc3f 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -17,6 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
