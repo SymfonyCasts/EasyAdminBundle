@@ -631,13 +631,13 @@
             "description": null
         },
         {
-            "id": "hide-actions-hide-on-index-page",
-            "name": "Hide actions: Hide on index page",
+            "id": "hide-actions-hide-if-not-approved",
+            "name": "Hide actions: Hide if not approved",
             "description": null
         },
         {
-            "id": "hide-actions-hide-on-other-pages",
-            "name": "Hide actions: Hide on other pages",
+            "id": "delete-me-8",
+            "name": "DELETE ME 8",
             "description": null
         },
         {
@@ -841,5 +841,5 @@
             "description": null
         }
     ],
-    "sha": "a45670570a0f8f9a6e0e9e973a8b3a66bde09080"
+    "sha": "71d56e6e2a9d21b7f1b5cb9ae5f0b64b13684a37"
 }

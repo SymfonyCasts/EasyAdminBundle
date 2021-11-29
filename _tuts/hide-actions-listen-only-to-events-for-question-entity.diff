@@ -1,5 +1,5 @@
 diff --git a/src/EventSubscriber/HideActionSubscriber.php b/src/EventSubscriber/HideActionSubscriber.php
-index d89658d..d16ea09 100644
+index bab63f8..a83145c 100644
 --- a/src/EventSubscriber/HideActionSubscriber.php
 +++ b/src/EventSubscriber/HideActionSubscriber.php
 @@ -2,6 +2,7 @@
@@ -7,12 +7,12 @@ index d89658d..d16ea09 100644
  namespace App\EventSubscriber;
  
 +use App\Entity\Question;
- use EasyCorp\Bundle\EasyAdminBundle\Event\AfterCrudActionEvent;
+ use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeCrudActionEvent;
  use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  
 @@ -9,6 +10,15 @@ class HideActionSubscriber implements EventSubscriberInterface
  {
-     public function onAfterCrudActionEvent(AfterCrudActionEvent $event)
+     public function onBeforeCrudActionEvent(BeforeCrudActionEvent $event)
      {
 +        if (!$adminContext = $event->getAdminContext()) {
 +            return;
