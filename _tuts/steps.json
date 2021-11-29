@@ -844,7 +844,12 @@
             "id": "layout-panels-set-help-message",
             "name": "Layout Panels: Set help message",
             "description": null
+        },
+        {
+            "id": "layout-panels-form-rows",
+            "name": "Layout Panels: Form rows",
+            "description": null
         }
     ],
-    "sha": "4e624ea40e8725b59003c3cb09b7725f5512fe49"
+    "sha": "fcd4a60cc81d66ea7dc3350a9b78b6060bcc1399"
 }

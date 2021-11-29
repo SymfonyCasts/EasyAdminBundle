@@ -1,0 +1,18 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index 317dc3d..4a572b0 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -38,9 +38,11 @@ class UserCrudController extends AbstractCrudController
+         yield TextField::new('fullName')
+             ->hideOnForm();
+         yield Field::new('firstName')
+-            ->onlyOnForms();
++            ->onlyOnForms()
++            ->setColumns(3);
+         yield Field::new('lastName')
+-            ->onlyOnForms();
++            ->onlyOnForms()
++            ->setColumns(3);
+         yield BooleanField::new('enabled')
+             ->renderAsSwitch(false);
+         yield DateField::new('createdAt')
