@@ -1,13 +1,13 @@
 diff --git a/src/Controller/Admin/QuestionPendingApprovalCrudController.php b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
-index cdd5408..0044352 100644
+index 8e4a56e..1050c81 100644
 --- a/src/Controller/Admin/QuestionPendingApprovalCrudController.php
 +++ b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
-@@ -14,7 +14,8 @@ class QuestionPendingApprovalCrudController extends QuestionCrudController
-     public function configureCrud(Crud $crud): Crud
-     {
-         return parent::configureCrud($crud)
--            ->setPageTitle(Crud::PAGE_INDEX, 'Questions pending approval');
-+            ->setPageTitle(Crud::PAGE_INDEX, 'Questions pending approval')
+@@ -18,7 +18,8 @@ class QuestionPendingApprovalCrudController extends QuestionCrudController
+             ->setPageTitle(Crud::PAGE_INDEX, 'Questions pending approval')
+             ->setPageTitle(Crud::PAGE_DETAIL, static function (Question $question) {
+                 return sprintf('#%s %s', $question->getId(), $question->getName());
+-            });
++            })
 +            ->setHelp(Crud::PAGE_INDEX, 'Questions that are not published to users until approved by moderators');
      }
  

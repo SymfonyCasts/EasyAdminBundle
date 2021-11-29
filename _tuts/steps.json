@@ -541,8 +541,13 @@
             "description": null
         },
         {
-            "id": "multiple-crud-set-page-title",
-            "name": "Multiple CRUD: Set page title",
+            "id": "multiple-crud-set-index-page-title",
+            "name": "Multiple CRUD: Set index page title",
+            "description": null
+        },
+        {
+            "id": "multiple-crud-set-detail-page-title",
+            "name": "Multiple CRUD: Set detail page title",
             "description": null
         },
         {
@@ -841,5 +846,5 @@
             "description": null
         }
     ],
-    "sha": "71d56e6e2a9d21b7f1b5cb9ae5f0b64b13684a37"
+    "sha": "4e624ea40e8725b59003c3cb09b7725f5512fe49"
 }

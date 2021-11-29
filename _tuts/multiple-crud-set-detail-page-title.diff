@@ -1,0 +1,24 @@
+diff --git a/src/Controller/Admin/QuestionPendingApprovalCrudController.php b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
+index cdd5408..8e4a56e 100644
+--- a/src/Controller/Admin/QuestionPendingApprovalCrudController.php
++++ b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
+@@ -2,6 +2,7 @@
+ 
+ namespace App\Controller\Admin;
+ 
++use App\Entity\Question;
+ use Doctrine\ORM\QueryBuilder;
+ use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
+ use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
+@@ -14,7 +15,10 @@ class QuestionPendingApprovalCrudController extends QuestionCrudController
+     public function configureCrud(Crud $crud): Crud
+     {
+         return parent::configureCrud($crud)
+-            ->setPageTitle(Crud::PAGE_INDEX, 'Questions pending approval');
++            ->setPageTitle(Crud::PAGE_INDEX, 'Questions pending approval')
++            ->setPageTitle(Crud::PAGE_DETAIL, static function (Question $question) {
++                return sprintf('#%s %s', $question->getId(), $question->getName());
++            });
+     }
+ 
+     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
