@@ -1,0 +1,12 @@
+diff --git a/config/services.yaml b/config/services.yaml
+index 70a9ac8..7555c5d 100644
+--- a/config/services.yaml
++++ b/config/services.yaml
+@@ -27,3 +27,7 @@ services:
+     # please note that last definitions always *replace* previous ones
+ 
+     Psr\Log\LoggerInterface $mdLogger: '@monolog.logger.markdown'
++
++    App\FieldConfigurator\TruncateLongTextConfigurator:
++        tags:
++            - { name: 'ea.field_configurator', priority: -1 }

@@ -1,0 +1,23 @@
+diff --git a/src/FieldConfigurator/TruncateLongTextConfigurator.php b/src/FieldConfigurator/TruncateLongTextConfigurator.php
+index a2e3313..f00836e 100644
+--- a/src/FieldConfigurator/TruncateLongTextConfigurator.php
++++ b/src/FieldConfigurator/TruncateLongTextConfigurator.php
+@@ -2,6 +2,7 @@
+ 
+ namespace App\FieldConfigurator;
+ 
++use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+ use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
+ use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldConfiguratorInterface;
+ use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+@@ -20,6 +21,10 @@ class TruncateLongTextConfigurator implements FieldConfiguratorInterface
+ 
+     public function configure(FieldDto $field, EntityDto $entityDto, AdminContext $context): void
+     {
++        $crud = $context->getCrud();
++        if ($crud && $crud->getCurrentAction() === Crud::PAGE_DETAIL) {
++            return;
++        }
+         if (strlen($field->getFormattedValue()) <= self::MAX_LENGTH) {
+             return;
+         }

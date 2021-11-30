@@ -276,6 +276,21 @@
             "description": null
         },
         {
+            "id": "field-configurator-create-configurator",
+            "name": "Field Configurator: Create configurator",
+            "description": null
+        },
+        {
+            "id": "field-configurator-change-priority",
+            "name": "Field Configurator: Change priority",
+            "description": null
+        },
+        {
+            "id": "field-configurator-skip-on-detail-page",
+            "name": "Field Configurator: Skip on detail page",
+            "description": null
+        },
+        {
             "id": "dashboard-set-default-sort",
             "name": "Dashboard: Set default sort",
             "description": null
@@ -851,5 +866,5 @@
             "description": null
         }
     ],
-    "sha": "fcd4a60cc81d66ea7dc3350a9b78b6060bcc1399"
+    "sha": "5a17a19e06279352ef903856b9c4d70d6a5e11d3"
 }
