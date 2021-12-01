@@ -1,16 +1,26 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 81d9525..7a83733 100644
+index c565495..d1f0c5d 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -3,6 +3,7 @@
- namespace App\Controller\Admin;
+@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
  
  use App\Entity\Question;
+ use App\Field\VotesField;
 +use Doctrine\ORM\EntityManagerInterface;
  use Doctrine\ORM\QueryBuilder;
  use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
  use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
-@@ -101,4 +102,12 @@ class QuestionCrudController extends AbstractCrudController
+@@ -13,8 +14,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
++use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+ 
+ class QuestionCrudController extends AbstractCrudController
+ {
+@@ -102,4 +103,12 @@ class QuestionCrudController extends AbstractCrudController
              ->add('votes')
              ->add('name');
      }

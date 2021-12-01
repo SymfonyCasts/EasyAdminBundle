@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 2b5e0d8..6c08720 100644
+index 92e51bf..7bb12a9 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
  use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
  use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
  use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
@@ -10,7 +10,7 @@ index 2b5e0d8..6c08720 100644
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
  use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
-@@ -148,7 +149,10 @@ class QuestionCrudController extends AbstractCrudController
+@@ -149,7 +150,10 @@ class QuestionCrudController extends AbstractCrudController
          parent::deleteEntity($entityManager, $entityInstance);
      }
  

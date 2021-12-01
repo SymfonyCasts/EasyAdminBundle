@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 90c4ea6..a14229f 100644
+index 28f2ef7..33c815d 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -44,7 +44,17 @@ class QuestionCrudController extends AbstractCrudController
+@@ -45,7 +45,17 @@ class QuestionCrudController extends AbstractCrudController
          yield Field::new('name')
              ->setSortable(false);
          yield TextareaField::new('question')
@@ -18,6 +18,6 @@ index 90c4ea6..a14229f 100644
 +                    'data-action' => 'input->editor#render',
 +                ],
 +            ]);
-         yield Field::new('votes', 'Total Votes')
+         yield VotesField::new('votes', 'Total Votes')
              ->setTextAlign('right');
          yield AssociationField::new('askedBy')

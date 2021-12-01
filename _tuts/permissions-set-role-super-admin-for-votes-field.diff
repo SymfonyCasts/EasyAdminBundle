@@ -1,11 +1,11 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index eade251..d533279 100644
+index be0a492..cf74b3c 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -68,7 +68,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -69,7 +69,8 @@ class QuestionCrudController extends AbstractCrudController
              ])
              ->setHelp('Preview:');
-         yield Field::new('votes', 'Total Votes')
+         yield VotesField::new('votes', 'Total Votes')
 -            ->setTextAlign('right');
 +            ->setTextAlign('right')
 +            ->setPermission('ROLE_SUPER_ADMIN');

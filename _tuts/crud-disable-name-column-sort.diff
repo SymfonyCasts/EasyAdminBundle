@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 445c009..7f9d88a 100644
+index ccee8fe..6840bb7 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -40,7 +40,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -41,7 +41,8 @@ class QuestionCrudController extends AbstractCrudController
                      'disabled' => $pageName !== Action::NEW,
                  ],
              ]);
@@ -11,4 +11,4 @@ index 445c009..7f9d88a 100644
 +            ->setSortable(false);
          yield TextareaField::new('question')
              ->hideOnIndex();
-         yield Field::new('votes', 'Total Votes')
+         yield VotesField::new('votes', 'Total Votes')

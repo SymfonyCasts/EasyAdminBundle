@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 655e9a9..81d9525 100644
+index 95c0f7b..c565495 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -89,6 +89,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -90,6 +90,8 @@ class QuestionCrudController extends AbstractCrudController
              });
          yield Field::new('createdAt')
              ->hideOnForm();

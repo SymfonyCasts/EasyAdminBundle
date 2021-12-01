@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 7f9d88a..b6e9a7f 100644
+index 6840bb7..d4cc6e6 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
  use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
@@ -10,12 +10,12 @@ index 7f9d88a..b6e9a7f 100644
  
  class QuestionCrudController extends AbstractCrudController
  {
-@@ -42,7 +43,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -43,7 +44,7 @@ class QuestionCrudController extends AbstractCrudController
              ]);
          yield Field::new('name')
              ->setSortable(false);
 -        yield TextareaField::new('question')
 +        yield TextEditorField::new('question')
              ->hideOnIndex();
-         yield Field::new('votes', 'Total Votes')
+         yield VotesField::new('votes', 'Total Votes')
              ->setTextAlign('right');

@@ -1,0 +1,21 @@
+diff --git a/src/Field/VotesField.php b/src/Field/VotesField.php
+index 7753c6d..62ad465 100644
+--- a/src/Field/VotesField.php
++++ b/src/Field/VotesField.php
+@@ -2,6 +2,15 @@
+ 
+ namespace App\Field;
+ 
+-class VotesField
++use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
++use EasyCorp\Bundle\EasyAdminBundle\Field\FieldTrait;
++
++class VotesField implements FieldInterface
+ {
++    use FieldTrait;
++
++    public static function new(string $propertyName, ?string $label = null)
++    {
++        // TODO: Implement new() method.
++    }
+ }

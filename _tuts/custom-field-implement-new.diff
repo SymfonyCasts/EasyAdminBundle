@@ -1,0 +1,39 @@
+diff --git a/src/Field/VotesField.php b/src/Field/VotesField.php
+index 62ad465..48462b9 100644
+--- a/src/Field/VotesField.php
++++ b/src/Field/VotesField.php
+@@ -4,6 +4,7 @@ namespace App\Field;
+ 
+ use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\FieldTrait;
++use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+ 
+ class VotesField implements FieldInterface
+ {
+@@ -11,6 +12,15 @@ class VotesField implements FieldInterface
+ 
+     public static function new(string $propertyName, ?string $label = null)
+     {
+-        // TODO: Implement new() method.
++        return (new self())
++            ->setProperty($propertyName)
++            ->setLabel($label)
++
++            // this template is used in 'index' and 'detail' pages
++            ->setTemplatePath('admin/field/votes.html.twig')
++
++            // this is used in 'edit' and 'new' pages to edit the field contents
++            // you can use your own form types too
++            ->setFormType(IntegerType::class);
+     }
+ }
+diff --git a/templates/admin/field/votes.html.twig b/templates/admin/field/votes.html.twig
+new file mode 100644
+index 0000000..6d6ef03
+--- /dev/null
++++ b/templates/admin/field/votes.html.twig
+@@ -0,0 +1,4 @@
++{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
++{# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
++{# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
++{{ field.formattedValue }}

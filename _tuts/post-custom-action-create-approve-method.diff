@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index b64d35f..2b5e0d8 100644
+index f4ac729..92e51bf 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -147,4 +147,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -148,4 +148,8 @@ class QuestionCrudController extends AbstractCrudController
  
          parent::deleteEntity($entityManager, $entityInstance);
      }

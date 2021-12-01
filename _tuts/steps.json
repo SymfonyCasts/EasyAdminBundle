@@ -291,6 +291,31 @@
             "description": null
         },
         {
+            "id": "custom-field-create-class",
+            "name": "Custom Field: Create class",
+            "description": null
+        },
+        {
+            "id": "custom-field-use-trait-and-implement-interface",
+            "name": "Custom Field: Use trait and implement interface",
+            "description": null
+        },
+        {
+            "id": "custom-field-implement-new",
+            "name": "Custom Field: Implement new()",
+            "description": null
+        },
+        {
+            "id": "custom-field-add-thumbs-icons",
+            "name": "Custom Field: Add thumbs icons",
+            "description": null
+        },
+        {
+            "id": "custom-field-use-the-field",
+            "name": "Custom Field: Use the field",
+            "description": null
+        },
+        {
             "id": "dashboard-set-default-sort",
             "name": "Dashboard: Set default sort",
             "description": null
@@ -866,5 +891,5 @@
             "description": null
         }
     ],
-    "sha": "5a17a19e06279352ef903856b9c4d70d6a5e11d3"
+    "sha": "fef9331f9f511476d221e42935e71e9bdbd7d50d"
 }

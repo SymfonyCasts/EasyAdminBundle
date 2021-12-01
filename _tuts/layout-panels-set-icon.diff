@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 2ca3a4c..d796d1f 100644
+index 552a92e..5489a85 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -130,7 +130,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -131,7 +131,8 @@ class QuestionCrudController extends AbstractCrudController
              ->setTextAlign('right')
              ->setPermission('ROLE_SUPER_ADMIN');
          yield FormField::addPanel('Details')

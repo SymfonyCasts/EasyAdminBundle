@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 7a83733..c3ba76a 100644
+index d1f0c5d..7184218 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -3,6 +3,7 @@
@@ -7,10 +7,10 @@ index 7a83733..c3ba76a 100644
  
  use App\Entity\Question;
 +use App\Entity\User;
+ use App\Field\VotesField;
  use Doctrine\ORM\EntityManagerInterface;
  use Doctrine\ORM\QueryBuilder;
- use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-@@ -108,6 +109,12 @@ class QuestionCrudController extends AbstractCrudController
+@@ -109,6 +110,12 @@ class QuestionCrudController extends AbstractCrudController
       */
      public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
      {

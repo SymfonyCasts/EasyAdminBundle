@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index c050542..10e9348 100644
+index d233f2b..01401cb 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -69,7 +69,13 @@ class QuestionCrudController extends AbstractCrudController
+@@ -70,7 +70,13 @@ class QuestionCrudController extends AbstractCrudController
                  return !$question->getIsApproved();
              });
          $exportAction = Action::new('export')

@@ -1,9 +1,9 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index f7f5f2a..2ca3a4c 100644
+index 453e762..552a92e 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -129,7 +129,8 @@ class QuestionCrudController extends AbstractCrudController
-         yield Field::new('votes', 'Total Votes')
+@@ -130,7 +130,8 @@ class QuestionCrudController extends AbstractCrudController
+         yield VotesField::new('votes', 'Total Votes')
              ->setTextAlign('right')
              ->setPermission('ROLE_SUPER_ADMIN');
 -        yield FormField::addPanel('Details');
