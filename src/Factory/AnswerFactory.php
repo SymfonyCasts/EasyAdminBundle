@@ -33,6 +33,7 @@ final class AnswerFactory extends ModelFactory
             'question' => QuestionFactory::random(),
             'createdAt' => self::faker()->dateTimeBetween('-100 days', '-1 minute'),
             'answeredBy' => UserFactory::random(),
+            'votes' => random_int(-5, 10),
         ];
     }
 

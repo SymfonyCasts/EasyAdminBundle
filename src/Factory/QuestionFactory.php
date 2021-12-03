@@ -34,7 +34,7 @@ final class QuestionFactory extends ModelFactory
             ),
             'createdAt' => self::faker()->dateTimeBetween('-100 days', '-1 minute'),
             'askedBy' => UserFactory::random(),
-            'votes' => rand(-20, 50),
+            'votes' => random_int(-20, 50),
             'topic' => TopicFactory::random(),
             'isApproved' => self::faker()->boolean(80),
         ];
