@@ -1,6 +1,6 @@
 diff --git a/src/Field/VotesField.php b/src/Field/VotesField.php
 new file mode 100644
-index 0000000..7753c6d
+index 00000000..7753c6da
 --- /dev/null
 +++ b/src/Field/VotesField.php
 @@ -0,0 +1,7 @@

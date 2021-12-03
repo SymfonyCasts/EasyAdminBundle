@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 3d96e7f..f0a25a7 100644
+index 3d96e7f6..f0a25a7f 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -79,7 +79,8 @@ class DashboardController extends AbstractDashboardController
@@ -14,7 +14,7 @@ index 3d96e7f..f0a25a7 100644
      public function configureActions(): Actions
 diff --git a/templates/admin/crud/field/id_with_icon.html.twig b/templates/admin/crud/field/id_with_icon.html.twig
 new file mode 100644
-index 0000000..c624098
+index 00000000..c6240984
 --- /dev/null
 +++ b/templates/admin/crud/field/id_with_icon.html.twig
 @@ -0,0 +1 @@

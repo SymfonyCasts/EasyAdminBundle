@@ -1,5 +1,5 @@
 diff --git a/src/Security/Voter/AdminUserVoter.php b/src/Security/Voter/AdminUserVoter.php
-index 88ed4bf..f8bd1e1 100644
+index 88ed4bf1..f8bd1e13 100644
 --- a/src/Security/Voter/AdminUserVoter.php
 +++ b/src/Security/Voter/AdminUserVoter.php
 @@ -2,6 +2,7 @@

@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index cf74b3c..83ce4ac 100644
+index cf74b3cb..83ce4ac9 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -8,6 +8,7 @@ use Doctrine\ORM\QueryBuilder;

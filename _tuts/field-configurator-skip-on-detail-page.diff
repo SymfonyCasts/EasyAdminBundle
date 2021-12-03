@@ -1,5 +1,5 @@
 diff --git a/src/FieldConfigurator/TruncateLongTextConfigurator.php b/src/FieldConfigurator/TruncateLongTextConfigurator.php
-index a2e3313..f00836e 100644
+index a2e33136..f00836e0 100644
 --- a/src/FieldConfigurator/TruncateLongTextConfigurator.php
 +++ b/src/FieldConfigurator/TruncateLongTextConfigurator.php
 @@ -2,6 +2,7 @@

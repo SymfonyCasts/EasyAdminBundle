@@ -1,5 +1,5 @@
 diff --git a/src/Field/VotesField.php b/src/Field/VotesField.php
-index 62ad465..48462b9 100644
+index 62ad465b..48462b9a 100644
 --- a/src/Field/VotesField.php
 +++ b/src/Field/VotesField.php
 @@ -4,6 +4,7 @@ namespace App\Field;
@@ -29,7 +29,7 @@ index 62ad465..48462b9 100644
  }
 diff --git a/templates/admin/field/votes.html.twig b/templates/admin/field/votes.html.twig
 new file mode 100644
-index 0000000..6d6ef03
+index 00000000..6d6ef03d
 --- /dev/null
 +++ b/templates/admin/field/votes.html.twig
 @@ -0,0 +1,4 @@

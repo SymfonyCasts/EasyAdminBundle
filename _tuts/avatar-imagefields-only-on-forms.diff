@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index 29c56217..88f6e99d 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -33,7 +33,8 @@ class UserCrudController extends AbstractCrudController
+         yield ImageField::new('avatar')
+             ->setUploadDir('public/uploads')
+             ->setBasePath('uploads')
+-            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');
++            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
++            ->onlyOnForms();
+         yield EmailField::new('email');
+         yield TextField::new('fullName')
+             ->hideOnForm();

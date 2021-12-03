@@ -1,16 +1,16 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index e896f7f..d546652 100644
+index 07cd27d5..b753259b 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -3,6 +3,7 @@
- namespace App\Controller\Admin;
+@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
  
+ use App\Entity\Question;
  use App\Entity\User;
 +use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
  use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
-@@ -20,6 +21,11 @@ class UserCrudController extends AbstractCrudController
+@@ -22,6 +23,11 @@ class UserCrudController extends AbstractCrudController
          return User::class;
      }
  

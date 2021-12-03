@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index c9f7f34..a9cbc2b 100644
+index c9f7f345..a9cbc2ba 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -6,6 +6,7 @@ use App\Entity\Answer;
@@ -43,7 +43,7 @@ index c9f7f34..a9cbc2b 100644
  
      public function configureDashboard(): Dashboard
 diff --git a/src/Repository/QuestionRepository.php b/src/Repository/QuestionRepository.php
-index 07a6455..15eb039 100644
+index 07a6455b..15eb0397 100644
 --- a/src/Repository/QuestionRepository.php
 +++ b/src/Repository/QuestionRepository.php
 @@ -20,6 +20,24 @@ class QuestionRepository extends ServiceEntityRepository
@@ -73,7 +73,7 @@ index 07a6455..15eb039 100644
        */
 diff --git a/templates/admin/index.html.twig b/templates/admin/index.html.twig
 new file mode 100644
-index 0000000..be1baef
+index 00000000..be1baef2
 --- /dev/null
 +++ b/templates/admin/index.html.twig
 @@ -0,0 +1,31 @@

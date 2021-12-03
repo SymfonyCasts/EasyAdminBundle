@@ -1,5 +1,5 @@
 diff --git a/package.json b/package.json
-index a54eecd..3ffd38b 100644
+index a54eecdc..3ffd38b1 100644
 --- a/package.json
 +++ b/package.json
 @@ -8,6 +8,8 @@
@@ -12,7 +12,7 @@ index a54eecd..3ffd38b 100644
          "webpack-notifier": "^1.6.0"
      },
 diff --git a/webpack.config.js b/webpack.config.js
-index 49e0929..283e3a0 100644
+index 49e09291..283e3a01 100644
 --- a/webpack.config.js
 +++ b/webpack.config.js
 @@ -57,7 +57,7 @@ Encore
@@ -25,7 +25,7 @@ index 49e0929..283e3a0 100644
      // uncomment if you use TypeScript
      //.enableTypeScriptLoader()
 diff --git a/yarn.lock b/yarn.lock
-index 38bc4ea..58998d8 100644
+index 38bc4eaa..58998d88 100644
 --- a/yarn.lock
 +++ b/yarn.lock
 @@ -1575,7 +1575,7 @@ chalk@^4.0.0:

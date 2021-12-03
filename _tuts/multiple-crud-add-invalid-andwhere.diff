@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionPendingApprovalCrudController.php b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
-index 44a81e8..0964181 100644
+index 44a81e86..0964181d 100644
 --- a/src/Controller/Admin/QuestionPendingApprovalCrudController.php
 +++ b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
 @@ -12,6 +12,7 @@ class QuestionPendingApprovalCrudController extends QuestionCrudController

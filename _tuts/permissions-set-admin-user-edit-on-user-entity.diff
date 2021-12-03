@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index d546652..e0dfaa7 100644
+index b753259b..61a2132e 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -23,7 +23,8 @@ class UserCrudController extends AbstractCrudController
+@@ -25,7 +25,8 @@ class UserCrudController extends AbstractCrudController
  
      public function configureCrud(Crud $crud): Crud
      {

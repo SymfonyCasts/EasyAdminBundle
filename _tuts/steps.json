@@ -136,8 +136,8 @@
             "description": null
         },
         {
-            "id": "user-fields-change-email-to-text",
-            "name": "User fields: Change email to text",
+            "id": "user-fields-change-textfield-to-emailfield",
+            "name": "User fields: Change TextField to EmailField",
             "description": null
         },
         {
@@ -193,6 +193,46 @@
         {
             "id": "fields-display-add-a-help-message-for-roles-field",
             "name": "Fields display: Add a help message for roles field",
+            "description": null
+        },
+        {
+            "id": "avatar-add-imagefield",
+            "name": "Avatar: Add ImageField",
+            "description": null
+        },
+        {
+            "id": "avatar-set-upload-dir",
+            "name": "Avatar: Set upload dir",
+            "description": null
+        },
+        {
+            "id": "avatar-install-mime-package",
+            "name": "Avatar: Install Mime package",
+            "description": null
+        },
+        {
+            "id": "avatar-set-base-path",
+            "name": "Avatar: Set base path",
+            "description": null
+        },
+        {
+            "id": "avatar-set-uploaded-filename-pattern",
+            "name": "Avatar: Set uploaded filename pattern",
+            "description": null
+        },
+        {
+            "id": "avatar-add-avatarfield",
+            "name": "Avatar: Add AvatarField",
+            "description": null
+        },
+        {
+            "id": "avatar-format-value",
+            "name": "Avatar: Format value",
+            "description": null
+        },
+        {
+            "id": "avatar-imagefields-only-on-forms",
+            "name": "Avatar: ImageFields only on forms",
             "description": null
         },
         {
@@ -916,5 +956,5 @@
             "description": null
         }
     ],
-    "sha": "4e90838ef3e0e8ec4e886f087b598c20a7e0a932"
+    "sha": "57ad828d0ff4c9dd793a76cb5076b7c725677577"
 }

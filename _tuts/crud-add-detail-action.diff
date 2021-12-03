@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 88a9bcf..080499c 100644
+index 88a9bcfd..080499c7 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -6,6 +6,9 @@ use App\Entity\Answer;

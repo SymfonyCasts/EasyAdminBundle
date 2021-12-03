@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index 9309e75c..7fb3cf11 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -25,7 +25,8 @@ class UserCrudController extends AbstractCrudController
+     {
+         yield IdField::new('id')
+             ->onlyOnIndex();
+-        yield ImageField::new('avatar');
++        yield ImageField::new('avatar')
++            ->setUploadDir('public/uploads');
+         yield EmailField::new('email');
+         yield TextField::new('fullName')
+             ->hideOnForm();

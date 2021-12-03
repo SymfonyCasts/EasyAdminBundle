@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index b5d6b3c..77c3d2f 100644
+index 42d84b00..3439fb65 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -27,8 +27,10 @@ class UserCrudController extends AbstractCrudController
+@@ -26,8 +26,10 @@ class UserCrudController extends AbstractCrudController
          yield EmailField::new('email');
          yield TextField::new('fullName')
              ->hideOnForm();

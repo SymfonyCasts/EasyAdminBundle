@@ -1,0 +1,24 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index aa6951ea..29c56217 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -2,6 +2,7 @@
+ 
+ namespace App\Controller\Admin;
+ 
++use App\Entity\Question;
+ use App\Entity\User;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+@@ -25,7 +26,10 @@ class UserCrudController extends AbstractCrudController
+     {
+         yield IdField::new('id')
+             ->onlyOnIndex();
+-        yield AvatarField::new('avatar');
++        yield AvatarField::new('avatar')
++            ->formatValue(static function ($value) {
++                return '/uploads/'.$value;
++            });
+         yield ImageField::new('avatar')
+             ->setUploadDir('public/uploads')
+             ->setBasePath('uploads')

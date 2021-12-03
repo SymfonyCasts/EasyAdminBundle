@@ -1,11 +1,11 @@
 diff --git a/assets/styles/admin.scss b/assets/styles/admin.scss
-index e69de29..6d0c464 100644
+index e69de29b..6d0c4646 100644
 --- a/assets/styles/admin.scss
 +++ b/assets/styles/admin.scss
 @@ -0,0 +1 @@
 +:root { --sidebar-bg: #deebff; }
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 52ca90e..1db0d31 100644
+index 52ca90e2..1db0d312 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -66,6 +66,7 @@ class DashboardController extends AbstractDashboardController

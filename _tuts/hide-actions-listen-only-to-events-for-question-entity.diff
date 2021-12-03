@@ -1,5 +1,5 @@
 diff --git a/src/EventSubscriber/HideActionSubscriber.php b/src/EventSubscriber/HideActionSubscriber.php
-index bab63f8..a83145c 100644
+index bab63f85..a83145c0 100644
 --- a/src/EventSubscriber/HideActionSubscriber.php
 +++ b/src/EventSubscriber/HideActionSubscriber.php
 @@ -2,6 +2,7 @@

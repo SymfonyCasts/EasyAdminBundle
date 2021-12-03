@@ -1,16 +1,16 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index e0dfaa7..15c0f78 100644
+index 61a2132e..1d002405 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
- 
+@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
+ use App\Entity\Question;
  use App\Entity\User;
  use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 +use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
  use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
-@@ -50,4 +51,9 @@ class UserCrudController extends AbstractCrudController
+@@ -60,4 +61,9 @@ class UserCrudController extends AbstractCrudController
              ->setHelp('Available roles: ROLE_SUPER_ADMIN, ROLE_ADMIN, ROLE_MODERATOR, ROLE_USER')
              ->hideOnIndex();
      }
