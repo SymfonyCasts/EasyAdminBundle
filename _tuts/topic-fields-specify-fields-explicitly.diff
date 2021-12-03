@@ -1,0 +1,31 @@
+diff --git a/src/Controller/Admin/TopicCrudController.php b/src/Controller/Admin/TopicCrudController.php
+index f2fb512..27c408e 100644
+--- a/src/Controller/Admin/TopicCrudController.php
++++ b/src/Controller/Admin/TopicCrudController.php
+@@ -7,6 +7,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
++use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
++use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+ 
+ class TopicCrudController extends AbstractCrudController
+ {
+@@ -27,14 +29,10 @@ class TopicCrudController extends AbstractCrudController
+             ->disable(Action::DETAIL);
+     }
+ 
+-    /*
+     public function configureFields(string $pageName): iterable
+     {
+-        return [
+-            IdField::new('id'),
+-            TextField::new('title'),
+-            TextEditorField::new('description'),
+-        ];
++        yield IdField::new('id')
++            ->hideOnForm();
++        yield Field::new('name');
+     }
+-    */
+ }

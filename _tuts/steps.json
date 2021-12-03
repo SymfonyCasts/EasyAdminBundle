@@ -596,6 +596,31 @@
             "description": null
         },
         {
+            "id": "topic-fields-specify-fields-explicitly",
+            "name": "Topic fields: Specify fields explicitly",
+            "description": null
+        },
+        {
+            "id": "topic-fields-add-questions-field",
+            "name": "Topic fields: Add questions field",
+            "description": null
+        },
+        {
+            "id": "topic-fields-call-autocomplete",
+            "name": "Topic fields: Call autocomplete()",
+            "description": null
+        },
+        {
+            "id": "topic-fields-set-crud-controller",
+            "name": "Topic fields: Set CRUD controller",
+            "description": null
+        },
+        {
+            "id": "topic-fields-set-by-reference-to-false",
+            "name": "Topic fields: Set by_reference to false",
+            "description": null
+        },
+        {
             "id": "events-add-question-updatedat-field",
             "name": "Events: Add Question::updatedAt field",
             "description": null
@@ -891,5 +916,5 @@
             "description": null
         }
     ],
-    "sha": "0809a4636c23713ef0941f81b4e33c0333970d12"
+    "sha": "4e90838ef3e0e8ec4e886f087b598c20a7e0a932"
 }

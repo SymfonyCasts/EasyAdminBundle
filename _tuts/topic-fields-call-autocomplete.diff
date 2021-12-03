@@ -1,0 +1,13 @@
+diff --git a/src/Controller/Admin/TopicCrudController.php b/src/Controller/Admin/TopicCrudController.php
+index eb96725..c163e19 100644
+--- a/src/Controller/Admin/TopicCrudController.php
++++ b/src/Controller/Admin/TopicCrudController.php
+@@ -35,6 +35,7 @@ class TopicCrudController extends AbstractCrudController
+         yield IdField::new('id')
+             ->hideOnForm();
+         yield Field::new('name');
+-        yield AssociationField::new('questions');
++        yield AssociationField::new('questions')
++            ->autocomplete();
+     }
+ }
