@@ -36,7 +36,7 @@ final class QuestionFactory extends ModelFactory
             'askedBy' => UserFactory::random(),
             'votes' => random_int(-20, 50),
             'topic' => TopicFactory::random(),
-            'isApproved' => self::faker()->boolean(80),
+            'isApproved' => true,
         ];
     }
 
