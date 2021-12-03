@@ -88,6 +88,13 @@ class Answer
         return $this->votes;
     }
 
+    public function getVotesString(): string
+    {
+        $prefix = $this->getVotes() >= 0 ? '+' : '-';
+
+        return sprintf('%s %d', $prefix, abs($this->getVotes()));
+    }
+
     public function setVotes(int $votes): self
     {
         $this->votes = $votes;
