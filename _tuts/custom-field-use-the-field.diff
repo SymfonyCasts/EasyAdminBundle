@@ -1,3 +1,24 @@
+diff --git a/src/Controller/Admin/AnswerCrudController.php b/src/Controller/Admin/AnswerCrudController.php
+index 5bbddbb..92d4be9 100644
+--- a/src/Controller/Admin/AnswerCrudController.php
++++ b/src/Controller/Admin/AnswerCrudController.php
+@@ -3,6 +3,7 @@
+ namespace App\Controller\Admin;
+ 
+ use App\Entity\Answer;
++use App\Field\VotesField;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+@@ -22,6 +23,8 @@ class AnswerCrudController extends AbstractCrudController
+         yield Field::new('answer');
+         yield AssociationField::new('question')
+             ->hideOnIndex();
++        yield VotesField::new('votes', 'Total Votes')
++            ->setTextAlign('right');
+         yield AssociationField::new('answeredBy');
+         yield Field::new('createdAt')
+             ->hideOnForm();
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
 index db90544..506146c 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
