@@ -5,7 +5,7 @@ index e69de29b..6d0c4646 100644
 @@ -0,0 +1 @@
 +:root { --sidebar-bg: #deebff; }
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 52ca90e2..1db0d312 100644
+index b4217ffe..76fff788 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -66,6 +66,7 @@ class DashboardController extends AbstractDashboardController

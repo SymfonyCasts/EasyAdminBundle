@@ -226,8 +226,8 @@
             "description": null
         },
         {
-            "id": "avatar-format-value",
-            "name": "Avatar: Format value",
+            "id": "avatar-fix-url-via-formatvalue",
+            "name": "Avatar: Fix URL via formatValue()",
             "description": null
         },
         {
@@ -956,5 +956,5 @@
             "description": null
         }
     ],
-    "sha": "57ad828d0ff4c9dd793a76cb5076b7c725677577"
+    "sha": "45823c891d4d8afa2b787480d5a0e9be972f6d48"
 }

@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 223c0c83..3d96e7f6 100644
+index f6e58937..8d49df93 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -24,25 +24,18 @@ use Symfony\UX\Chartjs\Model\Chart;

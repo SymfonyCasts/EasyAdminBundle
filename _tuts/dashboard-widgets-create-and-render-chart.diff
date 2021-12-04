@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index a9cbc2ba..d83d1fe6 100644
+index ef063046..65693991 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -19,14 +19,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;

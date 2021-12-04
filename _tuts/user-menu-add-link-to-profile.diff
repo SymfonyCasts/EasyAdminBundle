@@ -1,13 +1,13 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index f77d0225..bd1a8322 100644
+index a0b28714..6573aeb5 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -51,7 +51,10 @@ class DashboardController extends AbstractDashboardController
      public function configureUserMenu(UserInterface $user): UserMenu
      {
          return parent::configureUserMenu($user)
--            ->setAvatarUrl($user->getAvatar());
-+            ->setAvatarUrl($user->getAvatar())
+-            ->setAvatarUrl($user->getAvatarUrl());
++            ->setAvatarUrl($user->getAvatarUrl())
 +            ->addMenuItems([
 +                MenuItem::linkToUrl('My Profile', 'fas fa-user', $this->generateUrl('app_profile_show'))
 +            ]);
