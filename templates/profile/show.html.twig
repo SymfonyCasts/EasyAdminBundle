@@ -7,7 +7,7 @@
         <div class="row mt-5">
             <div class="col-3">
                 <p>
-                    <img src="{{ asset(app.user.avatar) }}" alt="" width="100%">
+                    <img src="{{ asset(app.user.avatarUrl) }}" alt="" width="100%">
                 </p>
                 {% for role in app.user.roles %}
                     {% if role != 'ROLE_USER' %}
