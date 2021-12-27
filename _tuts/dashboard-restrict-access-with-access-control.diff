@@ -1,11 +1,13 @@
 diff --git a/config/packages/security.yaml b/config/packages/security.yaml
-index 45b50164..568a8ef3 100644
+index 7436fe50..47500167 100644
 --- a/config/packages/security.yaml
 +++ b/config/packages/security.yaml
-@@ -37,5 +37,5 @@ security:
+@@ -37,7 +37,7 @@ security:
      # Easy way to control access for large sections of your site
      # Note: Only the *first* access control that matches will be used
      access_control:
 -        # - { path: ^/admin, roles: ROLE_ADMIN }
 +        - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/profile, roles: ROLE_USER }
+ 
+ when@test:

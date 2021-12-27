@@ -1,8 +1,8 @@
 diff --git a/templates/base.html.twig b/templates/base.html.twig
-index 4ab41002..396ad4e4 100644
+index 862c795b..b71821d4 100644
 --- a/templates/base.html.twig
 +++ b/templates/base.html.twig
-@@ -27,6 +27,11 @@
+@@ -30,6 +30,11 @@
  
                  <div class="collapse navbar-collapse" id="navbar-collapsable">
                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">

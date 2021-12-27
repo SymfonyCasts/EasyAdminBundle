@@ -1,16 +1,16 @@
 diff --git a/package.json b/package.json
-index a54eecdc..3ffd38b1 100644
+index 0bb3a4e2..ec7576a6 100644
 --- a/package.json
 +++ b/package.json
-@@ -8,6 +8,8 @@
+@@ -9,6 +9,8 @@
          "core-js": "^3.0.0",
          "jquery": "^3.6.0",
          "regenerator-runtime": "^0.13.2",
 +        "sass": "^1.38.0",
 +        "sass-loader": "^12.0.0",
-         "stimulus": "^2.0.0",
          "webpack-notifier": "^1.6.0"
      },
+     "license": "UNLICENSED",
 diff --git a/webpack.config.js b/webpack.config.js
 index 49e09291..283e3a01 100644
 --- a/webpack.config.js
@@ -25,10 +25,10 @@ index 49e09291..283e3a01 100644
      // uncomment if you use TypeScript
      //.enableTypeScriptLoader()
 diff --git a/yarn.lock b/yarn.lock
-index 38bc4eaa..58998d88 100644
+index 0784ecf8..269fe06a 100644
 --- a/yarn.lock
 +++ b/yarn.lock
-@@ -1575,7 +1575,7 @@ chalk@^4.0.0:
+@@ -1562,7 +1562,7 @@ chalk@^4.0.0:
      ansi-styles "^4.1.0"
      supports-color "^7.1.0"
  
@@ -37,7 +37,7 @@ index 38bc4eaa..58998d88 100644
    version "3.5.2"
    resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"
    integrity sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==
-@@ -2920,6 +2920,11 @@ kind-of@^6.0.2:
+@@ -2907,6 +2907,11 @@ kind-of@^6.0.2:
    resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
    integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
  
@@ -49,7 +49,7 @@ index 38bc4eaa..58998d88 100644
  lilconfig@^2.0.3:
    version "2.0.3"
    resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.0.3.tgz#68f3005e921dafbd2a2afb48379986aa6d2579fd"
-@@ -3998,6 +4003,21 @@ safe-buffer@>=5.1.0, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@~5.2.0:
+@@ -3985,6 +3990,21 @@ safe-buffer@>=5.1.0, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@~5.2.0:
    resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
    integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
  
