@@ -473,6 +473,9 @@
     "twig/twig": {
         "version": "v3.0.1"
     },
+    "zenstruck/assert": {
+        "version": "v1.0.0"
+    },
     "zenstruck/callback": {
         "version": "v1.2.0"
     },
