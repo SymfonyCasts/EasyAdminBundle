@@ -91,19 +91,6 @@ index dc7f3230..ee3b1f27 100644
          {
              "name": "knplabs/knp-markdown-bundle",
              "version": "dev-symfony6",
-diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 74bf06d3..9e9d75f6 100644
---- a/src/Controller/Admin/DashboardController.php
-+++ b/src/Controller/Admin/DashboardController.php
-@@ -133,7 +133,7 @@ class DashboardController extends AbstractDashboardController
-         return $chart;
-     }
- 
--    public static function getSubscribedServices()
-+    public static function getSubscribedServices(): array
-     {
-         return array_merge(parent::getSubscribedServices(), [
-             EntityManagerInterface::class,
 diff --git a/symfony.lock b/symfony.lock
 index 63776aa4..90370847 100644
 --- a/symfony.lock
