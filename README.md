@@ -40,10 +40,12 @@ Next, build the database, execute the migrations and load the fixtures with:
 ```
 # "symfony console" is equivalent to "bin/console"
 # but its aware of your database container
-symfony console doctrine:database:create
-symfony console doctrine:migrations:migrate
+symfony console doctrine:database:create --if-not-exists
+symfony console doctrine:schema:update --force
 symfony console doctrine:fixtures:load
 ```
+
+The `symfony` binary can be downloaded from https://symfony.com/download.
 
 (If you get an error about "MySQL server has gone away", just wait
 a few seconds and try again - the container is probably still booting).
