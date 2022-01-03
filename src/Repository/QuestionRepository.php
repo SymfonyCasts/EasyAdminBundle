@@ -35,7 +35,8 @@ class QuestionRepository extends ServiceEntityRepository
     private function addIsApprovedQueryBuilder(QueryBuilder $qb = null): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder($qb)
-            ->andWhere('q.isApproved = 1');
+            ->andWhere('q.isApproved = :approved')
+            ->setParameter('approved', true);
     }
 
     private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
