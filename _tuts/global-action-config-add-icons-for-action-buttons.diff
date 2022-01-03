@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 74bf06d3..6f6008ca 100644
+index 0403c3c1..112a9a91 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -97,7 +97,13 @@ class DashboardController extends AbstractDashboardController
+@@ -105,7 +105,13 @@ class DashboardController extends AbstractDashboardController
      public function configureActions(): Actions
      {
          return parent::configureActions()

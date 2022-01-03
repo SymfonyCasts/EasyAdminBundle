@@ -15,69 +15,78 @@ index a1c6e90c..fb0dbf01 100644
 +    },
      "entrypoints": []
  }
+diff --git a/assets/controllers/editor_controller.js b/assets/controllers/editor_controller.js
+index d9d2cc10..f7f25fb5 100644
+--- a/assets/controllers/editor_controller.js
++++ b/assets/controllers/editor_controller.js
+@@ -1,4 +1,4 @@
+-import { Controller } from 'stimulus';
++import { Controller } from '@hotwired/stimulus';
+ import snarkdown from 'snarkdown';
+ const document = window.document;
+ 
 diff --git a/composer.json b/composer.json
-index b39da1f3..822fc2cc 100644
+index b6e15eb3..218dcbc6 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -25,6 +25,7 @@
-         "symfony/security-bundle": "5.3.*",
-         "symfony/stopwatch": "5.3.*",
-         "symfony/twig-bundle": "5.3.*",
-+        "symfony/ux-chartjs": "^1.3",
+         "symfony/security-bundle": "6.0.*",
+         "symfony/stopwatch": "6.0.*",
+         "symfony/twig-bundle": "6.0.*",
++        "symfony/ux-chartjs": "^2.0",
          "symfony/webpack-encore-bundle": "^1.7",
-         "symfony/yaml": "5.3.*",
+         "symfony/yaml": "6.0.*",
          "twig/extra-bundle": "^2.12|^3.0",
 diff --git a/composer.lock b/composer.lock
-index a54d2b41..793b5ff3 100644
+index d74ec89c..dc7f3230 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "af0ba62733ec3d7f199a57343a41e8d6",
-+    "content-hash": "f98f7f54c95ca954d0a0c50687d2bee9",
+-    "content-hash": "0121a8e250c3813d59b23f75a6f0f4fb",
++    "content-hash": "6ff3bcba279f6bbf8700078f5b731468",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -6881,6 +6881,91 @@
+@@ -6624,6 +6624,90 @@
              ],
-             "time": "2021-06-24T08:13:00+00:00"
+             "time": "2021-12-08T15:13:44+00:00"
          },
 +        {
 +            "name": "symfony/ux-chartjs",
-+            "version": "v1.3.0",
++            "version": "v2.0.1",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/ux-chartjs.git",
-+                "reference": "e75ae488a6cfaf5e264f1fc4190785d914be8785"
++                "reference": "1bcbef6069ce9e8aee089d769fb00d72aa8e23d4"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/ux-chartjs/zipball/e75ae488a6cfaf5e264f1fc4190785d914be8785",
-+                "reference": "e75ae488a6cfaf5e264f1fc4190785d914be8785",
++                "url": "https://api.github.com/repos/symfony/ux-chartjs/zipball/1bcbef6069ce9e8aee089d769fb00d72aa8e23d4",
++                "reference": "1bcbef6069ce9e8aee089d769fb00d72aa8e23d4",
 +                "shasum": ""
 +            },
 +            "require": {
 +                "php": ">=7.2.5",
-+                "symfony/config": "^4.4.17|^5.0",
-+                "symfony/dependency-injection": "^4.4.17|^5.0",
-+                "symfony/http-kernel": "^4.4.17|^5.0"
++                "symfony/config": "^4.4.17|^5.0|^6.0",
++                "symfony/dependency-injection": "^4.4.17|^5.0|^6.0",
++                "symfony/http-kernel": "^4.4.17|^5.0|^6.0"
 +            },
 +            "conflict": {
-+                "symfony/flex": "<1.13"
++                "symfony/flex": "<1.13",
++                "symfony/webpack-encore-bundle": "<1.11"
 +            },
 +            "require-dev": {
-+                "symfony/framework-bundle": "^4.4.17|^5.0",
-+                "symfony/phpunit-bridge": "^5.2",
-+                "symfony/twig-bundle": "^4.4.17|^5.0",
-+                "symfony/var-dumper": "^4.4.17|^5.0"
++                "symfony/framework-bundle": "^4.4.17|^5.0|^6.0",
++                "symfony/phpunit-bridge": "^5.2|^6.0",
++                "symfony/twig-bundle": "^4.4.17|^5.0|^6.0",
++                "symfony/var-dumper": "^4.4.17|^5.0|^6.0",
++                "symfony/webpack-encore-bundle": "^1.11"
 +            },
 +            "type": "symfony-bundle",
 +            "extra": {
-+                "branch-alias": {
-+                    "dev-main": "1.3-dev"
-+                },
 +                "thanks": {
 +                    "name": "symfony/ux",
 +                    "url": "https://github.com/symfony/ux"
@@ -111,7 +120,7 @@ index a54d2b41..793b5ff3 100644
 +                "symfony-ux"
 +            ],
 +            "support": {
-+                "source": "https://github.com/symfony/ux-chartjs/tree/v1.3.0"
++                "source": "https://github.com/symfony/ux-chartjs/tree/v2.0.1"
 +            },
 +            "funding": [
 +                {
@@ -127,11 +136,11 @@ index a54d2b41..793b5ff3 100644
 +                    "type": "tidelift"
 +                }
 +            ],
-+            "time": "2021-05-20T17:58:12+00:00"
++            "time": "2021-12-09T16:09:32+00:00"
 +        },
          {
              "name": "symfony/var-dumper",
-             "version": "v5.3.6",
+             "version": "v6.0.1",
 diff --git a/config/bundles.php b/config/bundles.php
 index 17fba260..d5084e93 100644
 --- a/config/bundles.php
@@ -143,23 +152,23 @@ index 17fba260..d5084e93 100644
 +    Symfony\UX\Chartjs\ChartjsBundle::class => ['all' => true],
  ];
 diff --git a/package.json b/package.json
-index 1085e5e5..ac6062d2 100644
+index d46c1223..6ca0b290 100644
 --- a/package.json
 +++ b/package.json
-@@ -2,9 +2,11 @@
-     "devDependencies": {
+@@ -3,9 +3,11 @@
+         "@hotwired/stimulus": "^3.0.0",
          "@popperjs/core": "^2.10.2",
-         "@symfony/stimulus-bridge": "^2.0.0",
+         "@symfony/stimulus-bridge": "^3.0.0",
 +        "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets",
-         "@symfony/webpack-encore": "^1.0.0",
+         "@symfony/webpack-encore": "^1.7.0",
          "axios": "^0.22.0",
          "bootstrap": "^5.0.0",
-+        "chart.js": "^2.9.4",
++        "chart.js": "^3.4.1",
          "core-js": "^3.0.0",
          "jquery": "^3.6.0",
          "regenerator-runtime": "^0.13.2",
 diff --git a/symfony.lock b/symfony.lock
-index 38d264ea..25eaba78 100644
+index 37ff9e34..63776aa4 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -455,6 +455,9 @@
@@ -170,79 +179,31 @@ index 38d264ea..25eaba78 100644
 +        "version": "v1.3.0"
 +    },
      "symfony/var-dumper": {
-         "version": "v5.0.4"
+         "version": "v6.0.1"
      },
 diff --git a/yarn.lock b/yarn.lock
-index 4c987f1a..cca608b7 100644
+index 501ba332..9539b5b8 100644
 --- a/yarn.lock
 +++ b/yarn.lock
-@@ -942,6 +942,9 @@
+@@ -929,6 +929,9 @@
      loader-utils "^2.0.0"
      schema-utils "^3.0.0"
  
 +"@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/Resources/assets":
 +  version "1.1.0"
 +
- "@symfony/webpack-encore@^1.0.0":
-   version "1.6.1"
-   resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-1.6.1.tgz#bcf1cdeffb05486eea4c7531c4941e2b4af543bc"
-@@ -1575,6 +1578,29 @@ chalk@^4.0.0:
+ "@symfony/webpack-encore@^1.7.0":
+   version "1.7.0"
+   resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-1.7.0.tgz#f5ef49ab3e1b2470a621d3ad312afdeaa7038838"
+@@ -1562,6 +1565,11 @@ chalk@^4.0.0:
      ansi-styles "^4.1.0"
      supports-color "^7.1.0"
  
-+chart.js@^2.9.4:
-+  version "2.9.4"
-+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.9.4.tgz#0827f9563faffb2dc5c06562f8eb10337d5b9684"
-+  integrity sha512-B07aAzxcrikjAPyV+01j7BmOpxtQETxTSlQ26BEYJ+3iUkbNKaOJ/nDbT6JjyqYxseM0ON12COHYdU2cTIjC7A==
-+  dependencies:
-+    chartjs-color "^2.1.0"
-+    moment "^2.10.2"
-+
-+chartjs-color-string@^0.6.0:
-+  version "0.6.0"
-+  resolved "https://registry.yarnpkg.com/chartjs-color-string/-/chartjs-color-string-0.6.0.tgz#1df096621c0e70720a64f4135ea171d051402f71"
-+  integrity sha512-TIB5OKn1hPJvO7JcteW4WY/63v6KwEdt6udfnDE9iCAZgy+V4SrbSxoIbTw/xkUIapjEI4ExGtD0+6D3KyFd7A==
-+  dependencies:
-+    color-name "^1.0.0"
-+
-+chartjs-color@^2.1.0:
-+  version "2.4.1"
-+  resolved "https://registry.yarnpkg.com/chartjs-color/-/chartjs-color-2.4.1.tgz#6118bba202fe1ea79dd7f7c0f9da93467296c3b0"
-+  integrity sha512-haqOg1+Yebys/Ts/9bLo/BqUcONQOdr/hoEr2LLTRl6C5LXctUdHxsCYfvQVg5JIxITrfCNUDr4ntqmQk9+/0w==
-+  dependencies:
-+    chartjs-color-string "^0.6.0"
-+    color-convert "^1.9.3"
++chart.js@^3.4.1:
++  version "3.7.0"
++  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-3.7.0.tgz#7a19c93035341df801d613993c2170a1fcf1d882"
++  integrity sha512-31gVuqqKp3lDIFmzpKIrBeum4OpZsQjSIAqlOpgjosHDJZlULtvwLEZKtEhIAZc7JMPaHlYMys40Qy9Mf+1AAg==
 +
  "chokidar@>=3.0.0 <4.0.0", chokidar@^3.5.1:
    version "3.5.2"
    resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"
-@@ -1617,7 +1643,7 @@ clone-deep@^4.0.1:
-     kind-of "^6.0.2"
-     shallow-clone "^3.0.0"
- 
--color-convert@^1.9.0:
-+color-convert@^1.9.0, color-convert@^1.9.3:
-   version "1.9.3"
-   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
-   integrity sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==
-@@ -1636,7 +1662,7 @@ color-name@1.1.3:
-   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
-   integrity sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
- 
--color-name@~1.1.4:
-+color-name@^1.0.0, color-name@~1.1.4:
-   version "1.1.4"
-   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
-   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
-@@ -3111,6 +3137,11 @@ mkdirp@^0.5.5:
-   dependencies:
-     minimist "^1.2.5"
- 
-+moment@^2.10.2:
-+  version "2.29.1"
-+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-+  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
-+
- ms@2.0.0:
-   version "2.0.0"
-   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"

@@ -1,28 +1,38 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index f6e58937..8d49df93 100644
+index b4e04981..ea471266 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -24,25 +24,18 @@ use Symfony\UX\Chartjs\Model\Chart;
+@@ -15,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
++use Psr\Container\ContainerInterface;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+ use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\Routing\Annotation\Route;
+@@ -24,13 +25,11 @@ use Symfony\UX\Chartjs\Model\Chart;
  
  class DashboardController extends AbstractDashboardController
  {
 -    private EntityManagerInterface $entityManager;
 -    private ChartBuilderInterface $chartBuilder;
--
++    private $locator;
+ 
 -    public function __construct(EntityManagerInterface $entityManager, ChartBuilderInterface $chartBuilder)
--    {
++    public function __construct(ContainerInterface $locator)
+     {
 -        $this->entityManager = $entityManager;
 -        $this->chartBuilder = $chartBuilder;
--    }
--
++        $this->locator = $locator;
+     }
+ 
      /**
-      * @Route("/admin", name="admin")
-      * @IsGranted("ROLE_ADMIN")
+@@ -39,10 +38,12 @@ class DashboardController extends AbstractDashboardController
       */
      public function index(): Response
      {
 -        $latestQuestions = $this->entityManager
-+        $entityManager = $this->get(EntityManagerInterface::class);
++        $entityManager = $this->locator->get(EntityManagerInterface::class);
 +
 +        $latestQuestions = $entityManager
              ->getRepository(Question::class)
@@ -32,19 +42,19 @@ index f6e58937..8d49df93 100644
              ->getRepository(Question::class)
              ->findTopVoted();
  
-@@ -103,7 +96,8 @@ class DashboardController extends AbstractDashboardController
+@@ -103,7 +104,8 @@ class DashboardController extends AbstractDashboardController
  
      private function createChart()
      {
 -        $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
-+        $chartBuilder = $this->get(ChartBuilderInterface::class);
++        $chartBuilder = $this->locator->get(ChartBuilderInterface::class);
 +        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
          $chart->setData([
              'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
              'datasets' => [
-@@ -129,6 +123,9 @@ class DashboardController extends AbstractDashboardController
+@@ -129,6 +131,9 @@ class DashboardController extends AbstractDashboardController
  
-     public static function getSubscribedServices()
+     public static function getSubscribedServices(): array
      {
 -        return parent::getSubscribedServices();
 +        return array_merge(parent::getSubscribedServices(), [

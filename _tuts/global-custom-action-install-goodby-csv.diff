@@ -1,31 +1,31 @@
 diff --git a/composer.json b/composer.json
-index 822fc2cc..fa4a7b29 100644
+index 218dcbc6..023c1823 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -10,6 +10,7 @@
          "doctrine/doctrine-migrations-bundle": "^3.0",
          "doctrine/orm": "^2.7",
-         "easycorp/easyadmin-bundle": "^3.5",
+         "easycorp/easyadmin-bundle": "^4.0",
 +        "goodby/csv": "^1.3",
-         "knplabs/knp-markdown-bundle": "^1.8",
+         "knplabs/knp-markdown-bundle": "dev-symfony6",
          "knplabs/knp-time-bundle": "^1.11",
          "sensio/framework-extra-bundle": "^6.0",
 diff --git a/composer.lock b/composer.lock
-index 793b5ff3..3e80c498 100644
+index dc7f3230..ee3b1f27 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "f98f7f54c95ca954d0a0c50687d2bee9",
-+    "content-hash": "34bc57d088f5d2ff4754bf30708e19ee",
+-    "content-hash": "6ff3bcba279f6bbf8700078f5b731468",
++    "content-hash": "287ccc16030ca90bb1f7bc0e9e05e765",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1761,6 +1761,67 @@
+@@ -1762,6 +1762,67 @@
              },
-             "time": "2021-06-22T11:23:22+00:00"
+             "time": "2021-12-05T19:39:32+00:00"
          },
 +        {
 +            "name": "goodby/csv",
@@ -90,14 +90,14 @@ index 793b5ff3..3e80c498 100644
 +        },
          {
              "name": "knplabs/knp-markdown-bundle",
-             "version": "1.9.0",
+             "version": "dev-symfony6",
 diff --git a/symfony.lock b/symfony.lock
-index 25eaba78..0ea2597d 100644
+index 63776aa4..90370847 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -118,6 +118,21 @@
      "gedmo/doctrine-extensions": {
-         "version": "v2.4.41"
+         "version": "v3.4.0"
      },
 +    "goodby/csv": {
 +        "version": "1.3.0"
@@ -115,5 +115,5 @@ index 25eaba78..0ea2597d 100644
 +        "version": "1.2"
 +    },
      "knplabs/knp-markdown-bundle": {
-         "version": "1.8.1"
+         "version": "1.5.x-dev"
      },
