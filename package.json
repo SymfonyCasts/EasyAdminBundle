@@ -4,7 +4,7 @@
         "@popperjs/core": "^2.10.2",
         "@symfony/stimulus-bridge": "^3.0.0",
         "@symfony/webpack-encore": "^1.7.0",
-        "axios": "^0.22.0",
+        "axios": "^0.24.0",
         "bootstrap": "^5.0.0",
         "core-js": "^3.0.0",
         "jquery": "^3.6.0",
