@@ -82,6 +82,7 @@ final class UserFactory extends ModelFactory
                      __DIR__.'/../../assets/images/'.$user->getAvatar(),
                      __DIR__.'/../../public/uploads/avatars/'.$newAvatarFilename
                  );
+                 $user->setAvatar($newAvatarFilename);
              });
     }
 
