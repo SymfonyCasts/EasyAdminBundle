@@ -44,7 +44,7 @@ class AppFixtures extends Fixture
                 'plainPassword' => 'tishapass',
                 'firstName' => 'Tisha',
                 'lastName' => 'The Cat',
-                'avatar' => '/images/tisha.png',
+                'avatar' => 'tisha.png',
             ])
             ->create();
 

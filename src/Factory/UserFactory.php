@@ -61,7 +61,7 @@ final class UserFactory extends ModelFactory
             'plainPassword' => 'userpass',
             'firstName' => self::faker()->firstName(),
             'lastName' => self::faker()->lastName(),
-            'avatar' => '/images/default.png',
+            'avatar' => 'default.png',
         ];
     }
 
