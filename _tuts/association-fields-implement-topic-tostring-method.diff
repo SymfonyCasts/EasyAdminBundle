@@ -1,5 +1,5 @@
 diff --git a/src/Entity/Topic.php b/src/Entity/Topic.php
-index 8e63a860..87efdfa3 100644
+index 8e63a86..87efdfa 100644
 --- a/src/Entity/Topic.php
 +++ b/src/Entity/Topic.php
 @@ -34,6 +34,11 @@ class Topic

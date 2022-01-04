@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index c3c6ec34..7cadbda8 100644
+index 592722e..d288f9b 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -9,6 +9,7 @@
@@ -11,15 +11,15 @@ index c3c6ec34..7cadbda8 100644
          "knplabs/knp-time-bundle": "^1.11",
          "sensio/framework-extra-bundle": "^6.0",
 diff --git a/composer.lock b/composer.lock
-index a47f70ef..e9874da3 100644
+index f1635a0..a324105 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "3c120b5ee5828f3c606e25a74b668fc4",
-+    "content-hash": "ba75c33bf6117c32807d9fc994e063ad",
+-    "content-hash": "4c041246143c1b32f2d4ec7774cda956",
++    "content-hash": "f71718fba5d7e0404763ea6a8776a888",
      "packages": [
          {
              "name": "behat/transliterator",
@@ -181,9 +181,9 @@ index a47f70ef..e9874da3 100644
          {
              "name": "psr/cache",
              "version": "3.0.0",
-@@ -3564,6 +3708,108 @@
+@@ -3563,6 +3707,108 @@
              ],
-             "time": "2021-11-29T15:39:37+00:00"
+             "time": "2021-11-29T15:40:20+00:00"
          },
 +        {
 +            "name": "symfony/form",
@@ -289,9 +289,9 @@ index a47f70ef..e9874da3 100644
 +        },
          {
              "name": "symfony/framework-bundle",
-             "version": "v6.0.1",
-@@ -3896,48 +4142,29 @@
-             "time": "2021-12-09T13:42:47+00:00"
+             "version": "v6.0.2",
+@@ -3895,48 +4141,29 @@
+             "time": "2021-12-29T14:07:16+00:00"
          },
          {
 -            "name": "symfony/monolog-bridge",
@@ -348,7 +348,7 @@ index a47f70ef..e9874da3 100644
                  },
                  "exclude-from-classmap": [
                      "/Tests/"
-@@ -3949,18 +4176,34 @@
+@@ -3948,18 +4175,34 @@
              ],
              "authors": [
                  {
@@ -387,7 +387,7 @@ index a47f70ef..e9874da3 100644
              },
              "funding": [
                  {
-@@ -3976,21 +4219,104 @@
+@@ -3975,21 +4218,104 @@
                      "type": "tidelift"
                  }
              ],
@@ -500,7 +500,7 @@ index a47f70ef..e9874da3 100644
              },
              "require": {
                  "monolog/monolog": "~1.22 || ~2.0",
-@@ -4059,6 +4385,73 @@
+@@ -4058,6 +4384,73 @@
              ],
              "time": "2021-11-05T10:34:29+00:00"
          },
@@ -573,8 +573,8 @@ index a47f70ef..e9874da3 100644
 +        },
          {
              "name": "symfony/password-hasher",
-             "version": "v6.0.1",
-@@ -4212,6 +4605,93 @@
+             "version": "v6.0.2",
+@@ -4211,6 +4604,93 @@
              ],
              "time": "2021-05-27T12:26:48+00:00"
          },
@@ -668,7 +668,7 @@ index a47f70ef..e9874da3 100644
          {
              "name": "symfony/polyfill-intl-normalizer",
              "version": "v1.23.0",
-@@ -4538,6 +5018,85 @@
+@@ -4537,6 +5017,85 @@
              ],
              "time": "2021-05-21T13:25:03+00:00"
          },
@@ -753,8 +753,8 @@ index a47f70ef..e9874da3 100644
 +        },
          {
              "name": "symfony/property-access",
-             "version": "v6.0.0",
-@@ -5824,6 +6383,79 @@
+             "version": "v6.0.2",
+@@ -5823,6 +6382,79 @@
              ],
              "time": "2021-12-08T15:13:44+00:00"
          },
@@ -833,7 +833,7 @@ index a47f70ef..e9874da3 100644
 +        },
          {
              "name": "symfony/var-dumper",
-             "version": "v6.0.1",
+             "version": "v6.0.2",
 @@ -6510,62 +7142,6 @@
              },
              "time": "2021-12-05T17:14:47+00:00"
@@ -896,9 +896,9 @@ index a47f70ef..e9874da3 100644
 -        },
          {
              "name": "symfony/debug-bundle",
-             "version": "v6.0.0",
+             "version": "v6.0.2",
 diff --git a/config/bundles.php b/config/bundles.php
-index 137cdd08..17fba260 100644
+index 137cdd0..17fba26 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -18,4 +18,5 @@ return [
@@ -908,7 +908,7 @@ index 137cdd08..17fba260 100644
 +    EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
  ];
 diff --git a/symfony.lock b/symfony.lock
-index e5ea1d7e..5d4df71a 100644
+index e5ea1d7..5d4df71 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -100,6 +100,15 @@

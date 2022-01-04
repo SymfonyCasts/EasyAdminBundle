@@ -1,5 +1,5 @@
 diff --git a/assets/controllers.json b/assets/controllers.json
-index a1c6e90c..fb0dbf01 100644
+index a1c6e90..fb0dbf0 100644
 --- a/assets/controllers.json
 +++ b/assets/controllers.json
 @@ -1,4 +1,11 @@
@@ -16,7 +16,7 @@ index a1c6e90c..fb0dbf01 100644
      "entrypoints": []
  }
 diff --git a/assets/controllers/editor_controller.js b/assets/controllers/editor_controller.js
-index d9d2cc10..f7f25fb5 100644
+index d9d2cc1..f7f25fb 100644
 --- a/assets/controllers/editor_controller.js
 +++ b/assets/controllers/editor_controller.js
 @@ -1,4 +1,4 @@
@@ -26,7 +26,7 @@ index d9d2cc10..f7f25fb5 100644
  const document = window.document;
  
 diff --git a/composer.json b/composer.json
-index b6e15eb3..218dcbc6 100644
+index ca70882..5fd4997 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -25,6 +25,7 @@
@@ -38,19 +38,19 @@ index b6e15eb3..218dcbc6 100644
          "symfony/yaml": "6.0.*",
          "twig/extra-bundle": "^2.12|^3.0",
 diff --git a/composer.lock b/composer.lock
-index d74ec89c..dc7f3230 100644
+index 7d599fd..058beeb 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "0121a8e250c3813d59b23f75a6f0f4fb",
-+    "content-hash": "6ff3bcba279f6bbf8700078f5b731468",
+-    "content-hash": "e056ff484861ac708dbf06c7e8a7529a",
++    "content-hash": "ad430ac6c10e7c8e2da94a3c5fe8e473",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -6624,6 +6624,90 @@
+@@ -6623,6 +6623,90 @@
              ],
              "time": "2021-12-08T15:13:44+00:00"
          },
@@ -140,9 +140,9 @@ index d74ec89c..dc7f3230 100644
 +        },
          {
              "name": "symfony/var-dumper",
-             "version": "v6.0.1",
+             "version": "v6.0.2",
 diff --git a/config/bundles.php b/config/bundles.php
-index 17fba260..d5084e93 100644
+index 17fba26..d5084e9 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -19,4 +19,5 @@ return [
@@ -152,7 +152,7 @@ index 17fba260..d5084e93 100644
 +    Symfony\UX\Chartjs\ChartjsBundle::class => ['all' => true],
  ];
 diff --git a/package.json b/package.json
-index d46c1223..6ca0b290 100644
+index 13533b0..909a392 100644
 --- a/package.json
 +++ b/package.json
 @@ -3,9 +3,11 @@
@@ -161,14 +161,14 @@ index d46c1223..6ca0b290 100644
          "@symfony/stimulus-bridge": "^3.0.0",
 +        "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets",
          "@symfony/webpack-encore": "^1.7.0",
-         "axios": "^0.22.0",
+         "axios": "^0.24.0",
          "bootstrap": "^5.0.0",
 +        "chart.js": "^3.4.1",
          "core-js": "^3.0.0",
          "jquery": "^3.6.0",
          "regenerator-runtime": "^0.13.2",
 diff --git a/symfony.lock b/symfony.lock
-index 37ff9e34..63776aa4 100644
+index 37ff9e3..63776aa 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -455,6 +455,9 @@
@@ -182,10 +182,10 @@ index 37ff9e34..63776aa4 100644
          "version": "v6.0.1"
      },
 diff --git a/yarn.lock b/yarn.lock
-index 501ba332..9539b5b8 100644
+index ac1de3e..d312030 100644
 --- a/yarn.lock
 +++ b/yarn.lock
-@@ -929,6 +929,9 @@
+@@ -949,6 +949,9 @@
      loader-utils "^2.0.0"
      schema-utils "^3.0.0"
  
@@ -195,7 +195,7 @@ index 501ba332..9539b5b8 100644
  "@symfony/webpack-encore@^1.7.0":
    version "1.7.0"
    resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-1.7.0.tgz#f5ef49ab3e1b2470a621d3ad312afdeaa7038838"
-@@ -1562,6 +1565,11 @@ chalk@^4.0.0:
+@@ -1694,6 +1697,11 @@ chalk@^4.0.0:
      ansi-styles "^4.1.0"
      supports-color "^7.1.0"
  
@@ -204,6 +204,6 @@ index 501ba332..9539b5b8 100644
 +  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-3.7.0.tgz#7a19c93035341df801d613993c2170a1fcf1d882"
 +  integrity sha512-31gVuqqKp3lDIFmzpKIrBeum4OpZsQjSIAqlOpgjosHDJZlULtvwLEZKtEhIAZc7JMPaHlYMys40Qy9Mf+1AAg==
 +
- "chokidar@>=3.0.0 <4.0.0", chokidar@^3.5.1:
+ "chokidar@>=3.0.0 <4.0.0", chokidar@^3.5.2:
    version "3.5.2"
    resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"

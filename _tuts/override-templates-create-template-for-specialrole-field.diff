@@ -1,8 +1,8 @@
 diff --git a/src/Entity/User.php b/src/Entity/User.php
-index 05b12e44..4dc83135 100644
+index 719e0f0..9bffc96 100644
 --- a/src/Entity/User.php
 +++ b/src/Entity/User.php
-@@ -140,6 +140,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
+@@ -141,6 +141,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
          return $this;
      }
  
@@ -16,7 +16,7 @@ index 05b12e44..4dc83135 100644
       */
 diff --git a/templates/admin/crud/field/text_special_role.html.twig b/templates/admin/crud/field/text_special_role.html.twig
 new file mode 100644
-index 00000000..7840749e
+index 0000000..7840749
 --- /dev/null
 +++ b/templates/admin/crud/field/text_special_role.html.twig
 @@ -0,0 +1,11 @@

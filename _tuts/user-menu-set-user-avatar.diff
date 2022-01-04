@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index f533c310..a0b28714 100644
+index 10b877b..f12c58f 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -50,7 +50,8 @@ class DashboardController extends AbstractDashboardController
+@@ -48,7 +48,8 @@ class DashboardController extends AbstractDashboardController
       */
      public function configureUserMenu(UserInterface $user): UserMenu
      {

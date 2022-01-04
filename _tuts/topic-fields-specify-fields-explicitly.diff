@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/TopicCrudController.php b/src/Controller/Admin/TopicCrudController.php
-index f2fb512e..27c408e6 100644
+index f2fb512..27c408e 100644
 --- a/src/Controller/Admin/TopicCrudController.php
 +++ b/src/Controller/Admin/TopicCrudController.php
 @@ -7,6 +7,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;

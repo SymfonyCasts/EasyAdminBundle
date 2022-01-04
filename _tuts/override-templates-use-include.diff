@@ -1,5 +1,5 @@
 diff --git a/templates/admin/crud/field/id_with_icon.html.twig b/templates/admin/crud/field/id_with_icon.html.twig
-index c6240984..0e970bd3 100644
+index c624098..0e970bd 100644
 --- a/templates/admin/crud/field/id_with_icon.html.twig
 +++ b/templates/admin/crud/field/id_with_icon.html.twig
 @@ -1 +1,2 @@

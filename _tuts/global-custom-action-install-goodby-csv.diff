@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 218dcbc6..023c1823 100644
+index 5fd4997..77520d1 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -10,6 +10,7 @@
@@ -11,15 +11,15 @@ index 218dcbc6..023c1823 100644
          "knplabs/knp-time-bundle": "^1.11",
          "sensio/framework-extra-bundle": "^6.0",
 diff --git a/composer.lock b/composer.lock
-index dc7f3230..ee3b1f27 100644
+index 058beeb..93cbb23 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "6ff3bcba279f6bbf8700078f5b731468",
-+    "content-hash": "287ccc16030ca90bb1f7bc0e9e05e765",
+-    "content-hash": "ad430ac6c10e7c8e2da94a3c5fe8e473",
++    "content-hash": "7d700675a0410d276109f55a42e8a0c3",
      "packages": [
          {
              "name": "behat/transliterator",
@@ -92,7 +92,7 @@ index dc7f3230..ee3b1f27 100644
              "name": "knplabs/knp-markdown-bundle",
              "version": "dev-symfony6",
 diff --git a/symfony.lock b/symfony.lock
-index 63776aa4..90370847 100644
+index 63776aa..9037084 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -118,6 +118,21 @@

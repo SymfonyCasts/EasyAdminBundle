@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index ef063046..65693991 100644
+index b80b074..9f800a5 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -19,14 +19,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -21,8 +21,8 @@ index ef063046..65693991 100644
 +        $this->chartBuilder = $chartBuilder;
      }
  
-     /**
-@@ -45,6 +49,7 @@ class DashboardController extends AbstractDashboardController
+     #[IsGranted('ROLE_ADMIN')]
+@@ -43,6 +47,7 @@ class DashboardController extends AbstractDashboardController
          return $this->render('admin/index.html.twig', [
              'latestQuestions' => $latestQuestions,
              'topVoted' => $topVoted,
@@ -30,7 +30,7 @@ index ef063046..65693991 100644
          ]);
      }
  
-@@ -95,4 +100,30 @@ class DashboardController extends AbstractDashboardController
+@@ -93,4 +98,30 @@ class DashboardController extends AbstractDashboardController
          return parent::configureAssets()
              ->addWebpackEncoreEntry('admin');
      }
@@ -62,7 +62,7 @@ index ef063046..65693991 100644
 +    }
  }
 diff --git a/templates/admin/index.html.twig b/templates/admin/index.html.twig
-index be1baef2..f1e87a17 100644
+index be1baef..f1e87a1 100644
 --- a/templates/admin/index.html.twig
 +++ b/templates/admin/index.html.twig
 @@ -27,5 +27,8 @@

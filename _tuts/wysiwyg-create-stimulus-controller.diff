@@ -1,6 +1,6 @@
 diff --git a/assets/controllers/editor_controller.js b/assets/controllers/editor_controller.js
 new file mode 100644
-index 00000000..9a722427
+index 0000000..9a72242
 --- /dev/null
 +++ b/assets/controllers/editor_controller.js
 @@ -0,0 +1,25 @@

@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index c072f4a6..1b4596d7 100644
+index fc70b1e..4ab2811 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
+@@ -5,11 +5,13 @@ namespace App\Controller\Admin;
  use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
  use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -10,11 +10,9 @@ index c072f4a6..1b4596d7 100644
  use Symfony\Component\HttpFoundation\Response;
  use Symfony\Component\Routing\Annotation\Route;
  
-@@ -12,6 +13,7 @@ class DashboardController extends AbstractDashboardController
+ class DashboardController extends AbstractDashboardController
  {
-     /**
-      * @Route("/admin", name="admin")
-+     * @IsGranted("ROLE_ADMIN")
-      */
++    #[IsGranted('ROLE_ADMIN')]
+     #[Route('/admin', name: 'admin')]
      public function index(): Response
      {

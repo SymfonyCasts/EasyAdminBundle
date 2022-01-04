@@ -51,6 +51,11 @@
             "description": null
         },
         {
+            "id": "crud-add-all-cruds",
+            "name": "CRUD: add all CRUDs",
+            "description": null
+        },
+        {
             "id": "crud-add-detail-action",
             "name": "CRUD: Add detail action",
             "description": null
@@ -956,5 +961,5 @@
             "description": null
         }
     ],
-    "sha": "857d345254e181fd0d424a5f8b487983e2955bfc"
+    "sha": "7adc26cbd8cd53ebbdde4e545e383013efbf824a"
 }

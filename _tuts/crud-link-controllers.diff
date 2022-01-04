@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 8c17cc23..88a9bcfd 100644
+index c062587..7b53c18 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -2,6 +2,10 @@
@@ -13,14 +13,11 @@ index 8c17cc23..88a9bcfd 100644
  use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
  use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
-@@ -29,6 +33,9 @@ class DashboardController extends AbstractDashboardController
+@@ -27,6 +31,6 @@ class DashboardController extends AbstractDashboardController
      public function configureMenuItems(): iterable
      {
-         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-dashboard');
+         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-dashboard');
 -        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
 +        yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class);
-+        yield MenuItem::linkToCrud('Answers', 'fas fa-comments', Answer::class);
-+        yield MenuItem::linkToCrud('Topics', 'fas fa-folder', Topic::class);
-+        yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
      }
  }

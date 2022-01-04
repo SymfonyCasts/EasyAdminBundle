@@ -1,6 +1,6 @@
 diff --git a/src/FieldConfigurator/TruncateLongTextConfigurator.php b/src/FieldConfigurator/TruncateLongTextConfigurator.php
 new file mode 100644
-index 00000000..a2e33136
+index 0000000..a2e3313
 --- /dev/null
 +++ b/src/FieldConfigurator/TruncateLongTextConfigurator.php
 @@ -0,0 +1,30 @@

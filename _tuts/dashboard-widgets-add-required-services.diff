@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index b4e04981..ea471266 100644
+index 95da11d..4f3ea45 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -15,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -10,7 +10,7 @@ index b4e04981..ea471266 100644
  use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  use Symfony\Component\HttpFoundation\Response;
  use Symfony\Component\Routing\Annotation\Route;
-@@ -24,13 +25,11 @@ use Symfony\UX\Chartjs\Model\Chart;
+@@ -24,23 +25,23 @@ use Symfony\UX\Chartjs\Model\Chart;
  
  class DashboardController extends AbstractDashboardController
  {
@@ -26,9 +26,8 @@ index b4e04981..ea471266 100644
 +        $this->locator = $locator;
      }
  
-     /**
-@@ -39,10 +38,12 @@ class DashboardController extends AbstractDashboardController
-      */
+     #[IsGranted('ROLE_ADMIN')]
+     #[Route('/admin', name: 'admin')]
      public function index(): Response
      {
 -        $latestQuestions = $this->entityManager
@@ -42,7 +41,7 @@ index b4e04981..ea471266 100644
              ->getRepository(Question::class)
              ->findTopVoted();
  
-@@ -103,7 +104,8 @@ class DashboardController extends AbstractDashboardController
+@@ -101,7 +102,8 @@ class DashboardController extends AbstractDashboardController
  
      private function createChart()
      {
@@ -52,7 +51,7 @@ index b4e04981..ea471266 100644
          $chart->setData([
              'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
              'datasets' => [
-@@ -129,6 +131,9 @@ class DashboardController extends AbstractDashboardController
+@@ -127,6 +129,9 @@ class DashboardController extends AbstractDashboardController
  
      public static function getSubscribedServices(): array
      {

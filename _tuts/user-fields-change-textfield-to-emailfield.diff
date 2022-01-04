@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 3069d3c2..f0694f05 100644
+index 3069d3c..f0694f0 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -22,7 +22,7 @@ class UserCrudController extends AbstractCrudController

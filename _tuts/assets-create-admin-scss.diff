@@ -1,8 +1,8 @@
 diff --git a/assets/styles/admin.scss b/assets/styles/admin.scss
 new file mode 100644
-index 00000000..e69de29b
+index 0000000..e69de29
 diff --git a/webpack.config.js b/webpack.config.js
-index 056b04aa..49e09291 100644
+index 056b04a..49e0929 100644
 --- a/webpack.config.js
 +++ b/webpack.config.js
 @@ -21,6 +21,7 @@ Encore

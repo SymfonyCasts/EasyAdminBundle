@@ -1,9 +1,9 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
 new file mode 100644
-index 00000000..c072f4a6
+index 0000000..fc70b1e
 --- /dev/null
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -0,0 +1,32 @@
+@@ -0,0 +1,30 @@
 +<?php
 +
 +namespace App\Controller\Admin;
@@ -16,9 +16,7 @@ index 00000000..c072f4a6
 +
 +class DashboardController extends AbstractDashboardController
 +{
-+    /**
-+     * @Route("/admin", name="admin")
-+     */
++    #[Route('/admin', name: 'admin')]
 +    public function index(): Response
 +    {
 +        return parent::index();
@@ -27,12 +25,12 @@ index 00000000..c072f4a6
 +    public function configureDashboard(): Dashboard
 +    {
 +        return Dashboard::new()
-+            ->setTitle('Symfony5 Easyadmin');
++            ->setTitle('EasyAdminBundle');
 +    }
 +
 +    public function configureMenuItems(): iterable
 +    {
-+        yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
++        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 +        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
 +    }
 +}

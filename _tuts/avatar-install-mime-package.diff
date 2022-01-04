@@ -1,29 +1,29 @@
 diff --git a/composer.json b/composer.json
-index 7cadbda8..b6e15eb3 100644
+index d288f9b..ca70882 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -19,6 +19,7 @@
          "symfony/dotenv": "6.0.*",
-         "symfony/flex": "^1.3.1",
+         "symfony/flex": "^2.0.0",
          "symfony/framework-bundle": "6.0.*",
 +        "symfony/mime": "6.0.*",
          "symfony/monolog-bundle": "^3.0",
          "symfony/runtime": "6.0.*",
          "symfony/security-bundle": "6.0.*",
 diff --git a/composer.lock b/composer.lock
-index e9874da3..d74ec89c 100644
+index a324105..7d599fd 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "ba75c33bf6117c32807d9fc994e063ad",
-+    "content-hash": "0121a8e250c3813d59b23f75a6f0f4fb",
+-    "content-hash": "f71718fba5d7e0404763ea6a8776a888",
++    "content-hash": "e056ff484861ac708dbf06c7e8a7529a",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -4221,6 +4221,87 @@
+@@ -4220,6 +4220,87 @@
              ],
              "time": "2021-12-08T15:13:44+00:00"
          },
@@ -111,7 +111,7 @@ index e9874da3..d74ec89c 100644
          {
              "name": "symfony/monolog-bridge",
              "version": "v6.0.1",
-@@ -4692,6 +4773,93 @@
+@@ -4691,6 +4772,93 @@
              ],
              "time": "2021-05-24T10:04:56+00:00"
          },
@@ -206,7 +206,7 @@ index e9874da3..d74ec89c 100644
              "name": "symfony/polyfill-intl-normalizer",
              "version": "v1.23.0",
 diff --git a/symfony.lock b/symfony.lock
-index 5d4df71a..37ff9e34 100644
+index 5d4df71..37ff9e3 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -308,6 +308,9 @@

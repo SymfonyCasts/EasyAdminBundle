@@ -1,5 +1,5 @@
 diff --git a/templates/admin/crud/approve_action.html.twig b/templates/admin/crud/approve_action.html.twig
-index a19559b2..ef5104b8 100644
+index a19559b..ef5104b 100644
 --- a/templates/admin/crud/approve_action.html.twig
 +++ b/templates/admin/crud/approve_action.html.twig
 @@ -1,5 +1,5 @@

@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index ea471266..f4607679 100644
+index 4f3ea45..715b319 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -87,7 +87,8 @@ class DashboardController extends AbstractDashboardController
+@@ -85,7 +85,8 @@ class DashboardController extends AbstractDashboardController
          return parent::configureCrud()
              ->setDefaultSort([
                  'id' => 'DESC',
@@ -14,7 +14,7 @@ index ea471266..f4607679 100644
      public function configureActions(): Actions
 diff --git a/templates/admin/crud/field/id_with_icon.html.twig b/templates/admin/crud/field/id_with_icon.html.twig
 new file mode 100644
-index 00000000..c6240984
+index 0000000..c624098
 --- /dev/null
 +++ b/templates/admin/crud/field/id_with_icon.html.twig
 @@ -0,0 +1 @@

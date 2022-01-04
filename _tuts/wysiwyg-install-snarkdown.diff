@@ -1,5 +1,5 @@
 diff --git a/package.json b/package.json
-index ec7576a6..d46c1223 100644
+index 9e379e9..13533b0 100644
 --- a/package.json
 +++ b/package.json
 @@ -11,6 +11,7 @@
@@ -11,10 +11,10 @@ index ec7576a6..d46c1223 100644
      },
      "license": "UNLICENSED",
 diff --git a/yarn.lock b/yarn.lock
-index 269fe06a..501ba332 100644
+index 54a62ed..ac1de3e 100644
 --- a/yarn.lock
 +++ b/yarn.lock
-@@ -4152,6 +4152,11 @@ slash@^3.0.0:
+@@ -4211,6 +4211,11 @@ slash@^3.0.0:
    resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
    integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
  
@@ -24,5 +24,5 @@ index 269fe06a..501ba332 100644
 +  integrity sha512-MgL/7k/AZdXCTJiNgrO7chgDqaB9FGM/1Tvlcenenb7div6obaDATzs16JhFyHHBGodHT3B7RzRc5qk8pFhg3A==
 +
  sockjs@^0.3.21:
-   version "0.3.21"
-   resolved "https://registry.yarnpkg.com/sockjs/-/sockjs-0.3.21.tgz#b34ffb98e796930b60a0cfa11904d6a339a7d417"
+   version "0.3.24"
+   resolved "https://registry.yarnpkg.com/sockjs/-/sockjs-0.3.24.tgz#c9bc8995f33a111bea0395ec30aa3206bdb5ccce"
