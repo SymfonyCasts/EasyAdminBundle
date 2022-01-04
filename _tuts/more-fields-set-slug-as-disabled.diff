@@ -1,26 +1,25 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 63d7971..b090b6c 100644
+index 63d7971..bc27695 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -4,6 +4,7 @@ namespace App\Controller\Admin;
  
  use App\Entity\Question;
  use Doctrine\ORM\QueryBuilder;
-+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
++use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
  use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
-@@ -23,7 +24,12 @@ class QuestionCrudController extends AbstractCrudController
+@@ -23,7 +24,11 @@ class QuestionCrudController extends AbstractCrudController
              ->onlyOnIndex();
          yield AssociationField::new('topic');
          yield Field::new('slug')
 -            ->hideOnIndex();
 +            ->hideOnIndex()
-+            ->setFormTypeOptions([
-+                'attr' => [
-+                    'readonly' => $pageName !== Action::NEW,
-+                ],
-+            ]);
++            ->setFormTypeOption(
++                'disabled',
++                $pageName !== Crud::PAGE_NEW
++            );
          yield Field::new('name');
          yield TextareaField::new('question')
              ->hideOnIndex();

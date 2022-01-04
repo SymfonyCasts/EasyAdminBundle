@@ -311,6 +311,11 @@
             "description": null
         },
         {
+            "id": "association-fields-add-bottom-margin",
+            "name": "Association fields: add bottom margin",
+            "description": null
+        },
+        {
             "id": "association-fields-autocomplete-users",
             "name": "Association fields: Autocomplete users",
             "description": null
@@ -351,13 +356,13 @@
             "description": null
         },
         {
-            "id": "more-fields-slug-readonly",
-            "name": "More fields: Slug readonly",
+            "id": "more-fields-set-slug-as-disabled",
+            "name": "More fields: Set slug as disabled",
             "description": null
         },
         {
-            "id": "more-fields-slug-disabled",
-            "name": "More fields: Slug disabled",
+            "id": "delete-me-11",
+            "name": "delete me 11",
             "description": null
         },
         {
@@ -1011,5 +1016,5 @@
             "description": null
         }
     ],
-    "sha": "e985133cc0e46f6f569fe7cad75ab0be1cb7d6f8"
+    "sha": "d44babd83ec9a78014f55703f34375138e6d49c8"
 }

@@ -1,8 +1,8 @@
 diff --git a/src/Entity/Question.php b/src/Entity/Question.php
-index c8a01bf..9cc1657 100644
+index ece3790..ad09962 100644
 --- a/src/Entity/Question.php
 +++ b/src/Entity/Question.php
-@@ -77,6 +77,11 @@ class Question
+@@ -57,6 +57,11 @@ class Question
          $this->answers = new ArrayCollection();
      }
  

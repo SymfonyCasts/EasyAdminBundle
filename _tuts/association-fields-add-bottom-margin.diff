@@ -1,0 +1,9 @@
+diff --git a/assets/styles/admin.css b/assets/styles/admin.css
+index 6d0c464..5c57a69 100644
+--- a/assets/styles/admin.css
++++ b/assets/styles/admin.css
+@@ -1 +1,4 @@
+ :root { --sidebar-bg: #deebff; }
++.main-content {
++    margin-bottom: 100px;
++}

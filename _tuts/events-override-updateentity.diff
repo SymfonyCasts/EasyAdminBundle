@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index f246b8a..146a974 100644
+index c405c06..54aefee 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -4,6 +4,7 @@ namespace App\Controller\Admin;
@@ -20,7 +20,7 @@ index f246b8a..146a974 100644
  
  class QuestionCrudController extends AbstractCrudController
  {
-@@ -102,4 +103,12 @@ class QuestionCrudController extends AbstractCrudController
+@@ -101,4 +102,12 @@ class QuestionCrudController extends AbstractCrudController
              ->add('votes')
              ->add('name');
      }

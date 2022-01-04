@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 9b14d17..10f0941 100644
+index b9a43cb..5ab0c49 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -130,7 +130,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -129,7 +129,8 @@ class QuestionCrudController extends AbstractCrudController
          yield VotesField::new('votes', 'Total Votes')
              ->setTextAlign('right')
              ->setPermission('ROLE_SUPER_ADMIN');

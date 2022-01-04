@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index d7271e6..3fae244 100644
+index 5b6670d..ac32cac 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -69,7 +69,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -68,7 +68,8 @@ class QuestionCrudController extends AbstractCrudController
              ])
              ->setHelp('Preview:');
          yield VotesField::new('votes', 'Total Votes')

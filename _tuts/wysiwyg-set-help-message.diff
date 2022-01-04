@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 20059f7..c9abc78 100644
+index 8f873aa..327d615 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -55,7 +55,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -53,7 +53,8 @@ class QuestionCrudController extends AbstractCrudController
                      'data-editor-target' => 'input',
                      'data-action' => 'input->editor#render',
                  ],

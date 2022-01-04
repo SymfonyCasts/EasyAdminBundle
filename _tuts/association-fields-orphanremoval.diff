@@ -1,13 +1,13 @@
 diff --git a/src/Entity/Question.php b/src/Entity/Question.php
-index bc14808..c8a01bf 100644
+index a65f616..ece3790 100644
 --- a/src/Entity/Question.php
 +++ b/src/Entity/Question.php
-@@ -51,7 +51,7 @@ class Question
-     private $votes = 0;
+@@ -39,7 +39,7 @@ class Question
+     #[ORM\Column]
+     private int $votes = 0;
  
-     /**
--     * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question")
-+     * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question", orphanRemoval=true)
-      */
-     private $answers;
+-    #[ORM\OneToMany('question', Answer::class)]
++    #[ORM\OneToMany('question', Answer::class, orphanRemoval: true)]
+     private Collection $answers;
  
+     #[ORM\ManyToOne(inversedBy: 'questions')]

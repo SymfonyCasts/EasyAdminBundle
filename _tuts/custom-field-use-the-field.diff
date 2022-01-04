@@ -20,7 +20,7 @@ index 5bbddbb..92d4be9 100644
          yield Field::new('createdAt')
              ->hideOnForm();
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 2fb8620..785ac5d 100644
+index bc27695..21cbe08 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -3,6 +3,7 @@
@@ -29,9 +29,9 @@ index 2fb8620..785ac5d 100644
  use App\Entity\Question;
 +use App\Field\VotesField;
  use Doctrine\ORM\QueryBuilder;
- use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-@@ -33,7 +34,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -32,7 +33,7 @@ class QuestionCrudController extends AbstractCrudController
          yield Field::new('name');
          yield TextareaField::new('question')
              ->hideOnIndex();

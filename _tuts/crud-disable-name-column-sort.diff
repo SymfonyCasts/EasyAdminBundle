@@ -1,11 +1,11 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index cbec594..771a51f 100644
+index 4796141..5eea58d 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -41,7 +41,8 @@ class QuestionCrudController extends AbstractCrudController
-                     'disabled' => $pageName !== Action::NEW,
-                 ],
-             ]);
+@@ -39,7 +39,8 @@ class QuestionCrudController extends AbstractCrudController
+                 'disabled',
+                 $pageName !== Crud::PAGE_NEW
+             );
 -        yield Field::new('name');
 +        yield Field::new('name')
 +            ->setSortable(false);

@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index e849018..20059f7 100644
+index a13750a..8f873aa 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -45,7 +45,17 @@ class QuestionCrudController extends AbstractCrudController
+@@ -43,7 +43,17 @@ class QuestionCrudController extends AbstractCrudController
          yield Field::new('name')
              ->setSortable(false);
          yield TextareaField::new('question')

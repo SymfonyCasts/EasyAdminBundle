@@ -1,9 +1,13 @@
 diff --git a/assets/styles/admin.css b/assets/styles/admin.css
-index 6d0c464..1454d71 100644
+index 5c57a69..b3ca21f 100644
 --- a/assets/styles/admin.css
 +++ b/assets/styles/admin.css
-@@ -1 +1,8 @@
+@@ -1,4 +1,12 @@
  :root { --sidebar-bg: #deebff; }
++
+ .main-content {
+     margin-bottom: 100px;
+ }
 +
 +// Snarkdown preview container of rendered markdown
 +.markdown-preview {
