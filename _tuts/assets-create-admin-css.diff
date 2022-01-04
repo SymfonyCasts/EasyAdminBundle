@@ -1,15 +1,21 @@
-diff --git a/assets/styles/admin.scss b/assets/styles/admin.scss
+diff --git a/assets/styles/admin.css b/assets/styles/admin.css
 new file mode 100644
-index 0000000..e69de29
+index 0000000..4f8289f
+--- /dev/null
++++ b/assets/styles/admin.css
+@@ -0,0 +1,3 @@
++body {
++    background: lightcyan;
++}
 diff --git a/webpack.config.js b/webpack.config.js
-index 056b04a..49e0929 100644
+index 056b04a..19f27c3 100644
 --- a/webpack.config.js
 +++ b/webpack.config.js
 @@ -21,6 +21,7 @@ Encore
       * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
       */
      .addEntry('app', './assets/app.js')
-+    .addStyleEntry('admin', './assets/styles/admin.scss')
++    .addStyleEntry('admin', './assets/styles/admin.css')
  
      // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
      .enableStimulusBridge('./assets/controllers.json')

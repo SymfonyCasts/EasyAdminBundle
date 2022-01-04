@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 4a6a32d..df0332d 100644
+index 6658ccc..8ad221e 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -3,6 +3,7 @@
@@ -10,13 +10,14 @@ index 4a6a32d..df0332d 100644
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
  use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
-@@ -38,6 +39,9 @@ class QuestionCrudController extends AbstractCrudController
+@@ -34,6 +35,10 @@ class QuestionCrudController extends AbstractCrudController
                  }
  
                  return sprintf('%s&nbsp;(%s)', $user->getEmail(), $user->getQuestions()->count());
 +            })
 +            ->setQueryBuilder(function (QueryBuilder $qb) {
-+                $qb->andWhere('entity.enabled = 1');
++                $qb->andWhere('entity.enabled = :enabled')
++                    ->setParameter('enabled', true);
              });
          yield Field::new('createdAt')
              ->hideOnForm();

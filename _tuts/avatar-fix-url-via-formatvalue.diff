@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index aa6951e..836df16 100644
+index f9792fd..b0e3a4f 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -2,6 +2,7 @@
@@ -9,8 +9,8 @@ index aa6951e..836df16 100644
 +use App\Entity\Question;
  use App\Entity\User;
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
- use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
-@@ -25,7 +26,10 @@ class UserCrudController extends AbstractCrudController
+ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+@@ -23,7 +24,10 @@ class UserCrudController extends AbstractCrudController
      {
          yield IdField::new('id')
              ->onlyOnIndex();
@@ -20,5 +20,5 @@ index aa6951e..836df16 100644
 +                return $user->getAvatarUrl();
 +            });
          yield ImageField::new('avatar')
-             ->setUploadDir('public/uploads')
-             ->setBasePath('uploads')
+             ->setBasePath('uploads/avatars')
+             ->setUploadDir('public/avatars/uploads')

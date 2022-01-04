@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 3439fb6..383ba5e 100644
+index 9c232a9..9620d3b 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -32,6 +32,7 @@ class UserCrudController extends AbstractCrudController
+@@ -31,6 +31,7 @@ class UserCrudController extends AbstractCrudController
              ->onlyOnForms();
          yield BooleanField::new('enabled')
              ->renderAsSwitch(false);

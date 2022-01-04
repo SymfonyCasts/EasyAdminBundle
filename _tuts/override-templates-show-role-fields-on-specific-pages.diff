@@ -1,17 +1,21 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 2ca1ef7..08732a3 100644
+index 7619b02..219e2f8 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -47,8 +47,10 @@ class UserCrudController extends AbstractCrudController
+@@ -46,13 +46,14 @@ class UserCrudController extends AbstractCrudController
          yield DateField::new('createdAt')
              ->hideOnForm();
          yield TextField::new('specialRole')
 -            ->setTemplatePath('admin/crud/field/text_special_role.html.twig');
 +            ->setTemplatePath('admin/crud/field/text_special_role.html.twig')
 +            ->hideOnForm();
-         yield ArrayField::new('roles')
--            ->setHelp('Available roles: ROLE_SUPER_ADMIN, ROLE_ADMIN, ROLE_MODERATOR, ROLE_USER');
-+            ->setHelp('Available roles: ROLE_SUPER_ADMIN, ROLE_ADMIN, ROLE_MODERATOR, ROLE_USER')
+ 
+         $roles = ['ROLE_SUPER_ADMIN', 'ROLE_ADMIN', 'ROLE_MODERATOR', 'ROLE_USER'];
+         yield ChoiceField::new('roles')
+             ->setChoices(array_combine($roles, $roles))
+             ->allowMultipleChoices()
+             ->renderExpanded()
+-            ->renderAsBadges();
 +            ->hideOnIndex();
      }
  }

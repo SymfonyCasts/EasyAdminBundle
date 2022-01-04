@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 28484ee..453e762 100644
+index 7bffa4a..9b14d17 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -18,6 +18,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -17,4 +17,4 @@ index 28484ee..453e762 100644
 +        yield FormField::addPanel('Details');
          yield AssociationField::new('askedBy')
              ->autocomplete()
-             ->formatValue(function ($value, ?Question $question): ?string {
+             ->formatValue(static function ($value, Question $question): ?string {

@@ -1,7 +1,7 @@
-diff --git a/assets/styles/admin.scss b/assets/styles/admin.scss
+diff --git a/assets/styles/admin.css b/assets/styles/admin.css
 index 6d0c464..1454d71 100644
---- a/assets/styles/admin.scss
-+++ b/assets/styles/admin.scss
+--- a/assets/styles/admin.css
++++ b/assets/styles/admin.css
 @@ -1 +1,8 @@
  :root { --sidebar-bg: #deebff; }
 +

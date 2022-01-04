@@ -1,9 +1,9 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 95c0f7b..c565495 100644
+index 530a5ff..f246b8a 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -90,6 +90,8 @@ class QuestionCrudController extends AbstractCrudController
-             });
+             ->setFormTypeOption('by_reference', false);
          yield Field::new('createdAt')
              ->hideOnForm();
 +        yield AssociationField::new('updatedBy')

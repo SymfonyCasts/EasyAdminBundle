@@ -1,18 +1,14 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 01fd362..4a6a32d 100644
+index 01fd362..6658ccc 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -27,7 +27,18 @@ class QuestionCrudController extends AbstractCrudController
+@@ -27,7 +27,14 @@ class QuestionCrudController extends AbstractCrudController
          yield Field::new('votes', 'Total Votes')
              ->setTextAlign('right');
          yield AssociationField::new('askedBy')
 -            ->autocomplete();
 +            ->autocomplete()
-+            ->formatValue(function ($value, ?Question $question): ?string {
-+                if (!$question) {
-+                    return null;
-+                }
-+
++            ->formatValue(static function ($value, Question $question): ?string {
 +                if (!$user = $question->getAskedBy()) {
 +                    return null;
 +                }

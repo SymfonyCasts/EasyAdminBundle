@@ -1,12 +1,14 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index aaf909e..f9792fd 100644
+index 983cfdf..39e0136 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -23,6 +23,7 @@ class UserCrudController extends AbstractCrudController
-     {
-         yield IdField::new('id')
-             ->onlyOnIndex();
-+        yield AvatarField::new('avatar');
+@@ -27,7 +27,8 @@ class UserCrudController extends AbstractCrudController
+         yield AvatarField::new('avatar')
+             ->formatValue(static function ($value, User $user) {
+                 return $user->getAvatarUrl();
+-            });
++            })
++            ->hideOnForm()
          yield ImageField::new('avatar')
              ->setBasePath('uploads/avatars')
              ->setUploadDir('public/avatars/uploads')

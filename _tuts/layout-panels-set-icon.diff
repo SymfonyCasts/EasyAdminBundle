@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 552a92e..5489a85 100644
+index 10f0941..63d7f3a 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -131,7 +131,8 @@ class QuestionCrudController extends AbstractCrudController
@@ -11,4 +11,4 @@ index 552a92e..5489a85 100644
 +            ->setIcon('fa fa-info');
          yield AssociationField::new('askedBy')
              ->autocomplete()
-             ->formatValue(function ($value, ?Question $question): ?string {
+             ->formatValue(static function ($value, Question $question): ?string {

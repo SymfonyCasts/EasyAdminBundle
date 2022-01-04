@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 293f16b..0795827 100644
+index b5b51fb..94e6270 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -67,6 +67,12 @@ class UserCrudController extends AbstractCrudController
+@@ -70,6 +70,12 @@ class UserCrudController extends AbstractCrudController
      {
          return parent::configureFilters($filters)
              ->add('enabled')

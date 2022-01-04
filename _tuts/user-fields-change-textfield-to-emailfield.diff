@@ -1,8 +1,16 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 3069d3c..f0694f0 100644
+index 1fe0bb3..8777fcb 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -22,7 +22,7 @@ class UserCrudController extends AbstractCrudController
+@@ -6,6 +6,7 @@ use App\Entity\User;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
++use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+@@ -20,7 +21,7 @@ class UserCrudController extends AbstractCrudController
      public function configureFields(string $pageName): iterable
      {
          yield IdField::new('id');

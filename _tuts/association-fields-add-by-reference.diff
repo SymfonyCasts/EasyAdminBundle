@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index ce16df4..980d4c0 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -41,7 +41,8 @@ class QuestionCrudController extends AbstractCrudController
+                     ->setParameter('enabled', true);
+             });
+         yield AssociationField::new('answers')
+-            ->setFormTypeOption('choice_label', 'id');
++            ->setFormTypeOption('choice_label', 'id')
++            ->setFormTypeOption('by_reference', false);
+         yield Field::new('createdAt')
+             ->hideOnForm();
+     }

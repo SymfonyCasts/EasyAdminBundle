@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 453e762..552a92e 100644
+index 9b14d17..10f0941 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -130,7 +130,8 @@ class QuestionCrudController extends AbstractCrudController
@@ -11,4 +11,4 @@ index 453e762..552a92e 100644
 +            ->collapsible();
          yield AssociationField::new('askedBy')
              ->autocomplete()
-             ->formatValue(function ($value, ?Question $question): ?string {
+             ->formatValue(static function ($value, Question $question): ?string {

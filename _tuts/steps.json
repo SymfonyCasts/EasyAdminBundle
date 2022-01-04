@@ -101,13 +101,13 @@
             "description": null
         },
         {
-            "id": "assets-create-admin-scss",
-            "name": "Assets: Create admin.scss",
+            "id": "assets-create-admin-css",
+            "name": "Assets: Create admin.css",
             "description": null
         },
         {
-            "id": "assets-install-sass",
-            "name": "Assets: Install Sass",
+            "id": "delete-me-9",
+            "name": "delete me 9",
             "description": null
         },
         {
@@ -136,8 +136,13 @@
             "description": null
         },
         {
-            "id": "user-fields-render-other-fields",
-            "name": "User fields: Render other fields",
+            "id": "user-fields-add-the-normal-ones",
+            "name": "User fields: add the normal ones",
+            "description": null
+        },
+        {
+            "id": "user-fields-combine-into-fullname",
+            "name": "User fields: combine into fullName",
             "description": null
         },
         {
@@ -201,8 +206,28 @@
             "description": null
         },
         {
+            "id": "fields-display-try-to-override-form-type",
+            "name": "Fields display: Try to override form type",
+            "description": null
+        },
+        {
+            "id": "fields-display-change-to-choicefield",
+            "name": "Fields display: change to ChoiceField",
+            "description": null
+        },
+        {
+            "id": "fields-display-renderasbadges",
+            "name": "Fields display: renderAsBadges()",
+            "description": null
+        },
+        {
             "id": "avatar-add-imagefield",
             "name": "Avatar: Add ImageField",
+            "description": null
+        },
+        {
+            "id": "avatar-configure-base-path",
+            "name": "Avatar: configure base path",
             "description": null
         },
         {
@@ -216,8 +241,8 @@
             "description": null
         },
         {
-            "id": "avatar-set-base-path",
-            "name": "Avatar: Set base path",
+            "id": "delete-me-10",
+            "name": "delete me 10",
             "description": null
         },
         {
@@ -238,6 +263,11 @@
         {
             "id": "avatar-imagefields-only-on-forms",
             "name": "Avatar: ImageFields only on forms",
+            "description": null
+        },
+        {
+            "id": "avatar-avatarfield-hideonform",
+            "name": "Avatar: AvatarField hideOnForm()",
             "description": null
         },
         {
@@ -293,6 +323,26 @@
         {
             "id": "association-fields-filter-disabled-users-with-setquerybuilder",
             "name": "Association fields: Filter disabled users with setQueryBuilder()",
+            "description": null
+        },
+        {
+            "id": "association-fields-add-answers-to-question",
+            "name": "Association fields: Add answers to Question",
+            "description": null
+        },
+        {
+            "id": "association-fields-set-choice-label-option",
+            "name": "Association fields: set choice_label option",
+            "description": null
+        },
+        {
+            "id": "association-fields-add-by-reference",
+            "name": "Association fields: add by_reference",
+            "description": null
+        },
+        {
+            "id": "association-fields-orphanremoval",
+            "name": "Association fields: orphanRemoval",
             "description": null
         },
         {
@@ -961,5 +1011,5 @@
             "description": null
         }
     ],
-    "sha": "7adc26cbd8cd53ebbdde4e545e383013efbf824a"
+    "sha": "e985133cc0e46f6f569fe7cad75ab0be1cb7d6f8"
 }

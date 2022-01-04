@@ -1,8 +1,8 @@
 diff --git a/assets/admin.js b/assets/admin.js
 new file mode 100644
-index 0000000..01e9570
+index 0000000..d66d4ee
 --- /dev/null
 +++ b/assets/admin.js
 @@ -0,0 +1,2 @@
-+import './styles/admin.scss';
++import './styles/admin.css';
 +import './bootstrap';

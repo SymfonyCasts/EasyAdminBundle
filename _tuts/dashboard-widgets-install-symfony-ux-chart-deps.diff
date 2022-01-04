@@ -152,7 +152,7 @@ index 17fba26..d5084e9 100644
 +    Symfony\UX\Chartjs\ChartjsBundle::class => ['all' => true],
  ];
 diff --git a/package.json b/package.json
-index 13533b0..909a392 100644
+index 19278d4..40b271b 100644
 --- a/package.json
 +++ b/package.json
 @@ -3,9 +3,11 @@
@@ -182,7 +182,7 @@ index 37ff9e3..63776aa 100644
          "version": "v6.0.1"
      },
 diff --git a/yarn.lock b/yarn.lock
-index ac1de3e..d312030 100644
+index 2bf9150..2a152f7 100644
 --- a/yarn.lock
 +++ b/yarn.lock
 @@ -949,6 +949,9 @@
@@ -204,6 +204,6 @@ index ac1de3e..d312030 100644
 +  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-3.7.0.tgz#7a19c93035341df801d613993c2170a1fcf1d882"
 +  integrity sha512-31gVuqqKp3lDIFmzpKIrBeum4OpZsQjSIAqlOpgjosHDJZlULtvwLEZKtEhIAZc7JMPaHlYMys40Qy9Mf+1AAg==
 +
- "chokidar@>=3.0.0 <4.0.0", chokidar@^3.5.2:
+ chokidar@^3.5.2:
    version "3.5.2"
    resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"

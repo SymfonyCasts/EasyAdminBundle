@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 1fcecc2..293f16b 100644
+index 02ffdd1..b5b51fb 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
  use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -10,7 +10,7 @@ index 1fcecc2..293f16b 100644
  
  class UserCrudController extends AbstractCrudController
  {
-@@ -65,6 +66,7 @@ class UserCrudController extends AbstractCrudController
+@@ -68,6 +69,7 @@ class UserCrudController extends AbstractCrudController
      public function configureFilters(Filters $filters): Filters
      {
          return parent::configureFilters($filters)

@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 475110c..9309e75 100644
+index 9b9f085..87dac44 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
  use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -10,7 +10,7 @@ index 475110c..9309e75 100644
  use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
  
  class UserCrudController extends AbstractCrudController
-@@ -24,6 +25,7 @@ class UserCrudController extends AbstractCrudController
+@@ -22,6 +23,7 @@ class UserCrudController extends AbstractCrudController
      {
          yield IdField::new('id')
              ->onlyOnIndex();

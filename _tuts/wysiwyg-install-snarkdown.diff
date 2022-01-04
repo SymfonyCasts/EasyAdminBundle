@@ -1,20 +1,20 @@
 diff --git a/package.json b/package.json
-index 9e379e9..13533b0 100644
+index 75f7b0e..19278d4 100644
 --- a/package.json
 +++ b/package.json
-@@ -11,6 +11,7 @@
+@@ -9,6 +9,7 @@
+         "core-js": "^3.0.0",
+         "jquery": "^3.6.0",
          "regenerator-runtime": "^0.13.2",
-         "sass": "^1.38.0",
-         "sass-loader": "^12.0.0",
 +        "snarkdown": "^2.0.0",
          "webpack-notifier": "^1.6.0"
      },
      "license": "UNLICENSED",
 diff --git a/yarn.lock b/yarn.lock
-index 54a62ed..ac1de3e 100644
+index de1eed6..2bf9150 100644
 --- a/yarn.lock
 +++ b/yarn.lock
-@@ -4211,6 +4211,11 @@ slash@^3.0.0:
+@@ -4191,6 +4191,11 @@ slash@^3.0.0:
    resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
    integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
  

@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index eebc566..51c484e 100644
+index 9371eda..68c55a7 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -21,7 +21,8 @@ class UserCrudController extends AbstractCrudController
+@@ -20,7 +20,8 @@ class UserCrudController extends AbstractCrudController
  
      public function configureFields(string $pageName): iterable
      {

@@ -1,0 +1,12 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 8ad221e..8a286dd 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -40,6 +40,7 @@ class QuestionCrudController extends AbstractCrudController
+                 $qb->andWhere('entity.enabled = :enabled')
+                     ->setParameter('enabled', true);
+             });
++        yield AssociationField::new('answers');
+         yield Field::new('createdAt')
+             ->hideOnForm();
+     }
