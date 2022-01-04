@@ -4,6 +4,7 @@ namespace App\Factory;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
@@ -74,6 +75,13 @@ final class UserFactory extends ModelFactory
                      ->hashPassword($user, $user->getPlainPassword());
 
                  $user->setPassword($hashedPassword);
+
+                 $fs = new Filesystem();
+                 $newAvatarFilename = self::faker()->slug(2).'.png';
+                 $fs->copy(
+                     __DIR__.'/../../assets/images/'.$user->getAvatar(),
+                     __DIR__.'/../../public/uploads/avatars/'.$newAvatarFilename
+                 );
              });
     }
 
