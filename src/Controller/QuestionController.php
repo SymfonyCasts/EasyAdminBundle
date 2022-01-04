@@ -23,10 +23,7 @@ class QuestionController extends AbstractController
         $this->isDebug = $isDebug;
     }
 
-
-    /**
-     * @Route("/", name="app_homepage")
-     */
+    #[Route('/', name: 'app_homepage')]
     public function homepage(QuestionRepository $repository)
     {
         $questions = $repository->findAllApprovedOrderedByNewest();
@@ -36,17 +33,13 @@ class QuestionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/questions/new")
-     */
+    #[Route('/questions/new')]
     public function new()
     {
         return new Response('Sounds like a GREAT feature for V2!');
     }
 
-    /**
-     * @Route("/questions/{slug}", name="app_question_show")
-     */
+    #[Route('/questions/{slug}', name: 'app_question_show')]
     public function show(Question $question)
     {
         if (!$question->getIsApproved()) {
@@ -62,9 +55,7 @@ class QuestionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/questions/{slug}/vote", name="app_question_vote", methods="POST")
-     */
+    #[Route('/questions/{slug}/vote', name: 'app_question_vote', methods: 'POST')]
     public function questionVote(Question $question, Request $request, EntityManagerInterface $entityManager)
     {
         $direction = $request->request->get('direction');
