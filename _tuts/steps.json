@@ -16,11 +16,6 @@
             "description": null
         },
         {
-            "id": "delete-me",
-            "name": "DELETE ME",
-            "description": null
-        },
-        {
             "id": "dashboard-restrict-access-with-annotation",
             "name": "Dashboard: Restrict access with annotation",
             "description": null
@@ -106,23 +101,8 @@
             "description": null
         },
         {
-            "id": "delete-me-9",
-            "name": "delete me 9",
-            "description": null
-        },
-        {
             "id": "assets-change-sidebar-bg",
             "name": "Assets: Change sidebar bg",
-            "description": null
-        },
-        {
-            "id": "delete-me-5",
-            "name": "DELETE ME 5",
-            "description": null
-        },
-        {
-            "id": "delete-me-2",
-            "name": "DELETE ME 2",
             "description": null
         },
         {
@@ -181,16 +161,6 @@
             "description": null
         },
         {
-            "id": "delete-me-3",
-            "name": "DELETE ME 3",
-            "description": null
-        },
-        {
-            "id": "delete-me-4",
-            "name": "DELETE ME 4",
-            "description": null
-        },
-        {
             "id": "fields-display-hide-createdat-on-forms",
             "name": "Fields display: Hide createdAt on forms",
             "description": null
@@ -238,11 +208,6 @@
         {
             "id": "avatar-install-mime-package",
             "name": "Avatar: Install Mime package",
-            "description": null
-        },
-        {
-            "id": "delete-me-10",
-            "name": "delete me 10",
             "description": null
         },
         {
@@ -358,11 +323,6 @@
         {
             "id": "more-fields-set-slug-as-disabled",
             "name": "More fields: Set slug as disabled",
-            "description": null
-        },
-        {
-            "id": "delete-me-11",
-            "name": "delete me 11",
             "description": null
         },
         {
@@ -746,11 +706,6 @@
             "description": null
         },
         {
-            "id": "delete-me-6",
-            "name": "DELETE ME 6",
-            "description": null
-        },
-        {
             "id": "events-implement-updateentity",
             "name": "Events: Implement updateEntity()",
             "description": null
@@ -806,11 +761,6 @@
             "description": null
         },
         {
-            "id": "delete-me-8",
-            "name": "DELETE ME 8",
-            "description": null
-        },
-        {
             "id": "hide-actions-override-deleteentity",
             "name": "Hide actions: Override deleteEntity()",
             "description": null
@@ -833,11 +783,6 @@
         {
             "id": "get-custom-action-link-to-url",
             "name": "GET custom action: Link to url",
-            "description": null
-        },
-        {
-            "id": "delete-me-7",
-            "name": "DELETE ME 7",
             "description": null
         },
         {
