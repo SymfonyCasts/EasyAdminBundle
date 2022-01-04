@@ -5,76 +5,57 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\Table(name="`user`")
- */
+#[ORM\Entity(UserRepository::class)]
+#[ORM\Table('`user`')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampableEntity;
 
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id;
+
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $email;
+
+    #[ORM\Column(type: Types::JSON)]
+    private array $roles = [];
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * The hashed password
      */
-    private $email;
+    #[ORM\Column]
+    private ?string $password;
 
     /**
-     * @ORM\Column(type="json")
+     * The plain non-persisted password
      */
-    private $roles = [];
+    private ?string $plainPassword;
 
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
-    private $password;
+    #[ORM\Column]
+    private bool $enabled = true;
 
-    /**
-     * @var string The plain non-persisted password
-     */
-    private $plainPassword;
+    #[ORM\Column]
+    private ?string $firstName;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $enabled = true;
+    #[ORM\Column]
+    private ?string $lastName;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $firstName;
+    #[ORM\Column(nullable: true)]
+    private ?string $avatar;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $lastName;
+    #[ORM\OneToMany('askedBy', Question::class)]
+    private Collection $questions;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $avatar;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Question::class, mappedBy="askedBy")
-     */
-    private $questions;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="answeredBy")
-     */
-    private $answers;
+    #[ORM\OneToMany('answeredBy', Answer::class)]
+    private Collection $answers;
 
     public function __construct()
     {

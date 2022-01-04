@@ -5,72 +5,52 @@ namespace App\Entity;
 use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
-/**
- * @ORM\Entity(repositoryClass=QuestionRepository::class)
- */
+#[ORM\Entity(QuestionRepository::class)]
 class Question
 {
     use TimestampableEntity;
 
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id;
+
+    #[ORM\Column]
+    private ?string $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="string", length=100, unique=true)
      * @Gedmo\Slug(fields={"name"})
      */
-    private $slug;
+    #[ORM\Column(length: 100, unique: true)]
+    private ?string $slug;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $question;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $question;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="questions")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $askedBy;
+    #[ORM\ManyToOne(inversedBy: 'questions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private User $askedBy;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $votes = 0;
+    #[ORM\Column]
+    private int $votes = 0;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question")
-     */
-    private $answers;
+    #[ORM\OneToMany('question', Answer::class)]
+    private Collection $answers;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Topic::class, inversedBy="questions")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $topic;
+    #[ORM\ManyToOne(inversedBy: 'questions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private Topic $topic;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isApproved = false;
+    #[ORM\Column]
+    private bool $isApproved = false;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class)
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $updatedBy;
+    #[ORM\ManyToOne]
+    private User $updatedBy;
 
     public function __construct()
     {

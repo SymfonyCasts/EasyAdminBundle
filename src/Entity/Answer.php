@@ -3,44 +3,33 @@
 namespace App\Entity;
 
 use App\Repository\AnswerRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
-/**
- * @ORM\Entity(repositoryClass=AnswerRepository::class)
- */
+#[ORM\Entity(AnswerRepository::class)]
 class Answer
 {
     use TimestampableEntity;
 
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $answer;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $answer;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="answers")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $question;
+    #[ORM\ManyToOne(inversedBy: 'answers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Question $question;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="answers")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $answeredBy;
+    #[ORM\ManyToOne(inversedBy: 'answers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $answeredBy;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $votes = 0;
+    #[ORM\Column]
+    private int $votes = 0;
 
     public function getId(): ?int
     {
