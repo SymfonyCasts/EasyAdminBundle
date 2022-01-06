@@ -20,6 +20,24 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    public function findLatest(): array
+    {
+        return $this->createQueryBuilder('question')
+            ->orderBy('question.createdAt', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findTopVoted(): array
+    {
+        return $this->createQueryBuilder('question')
+            ->orderBy('question.votes', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult();
+    }
+
      /**
       * @return Question[] Returns an array of Question objects
       */
