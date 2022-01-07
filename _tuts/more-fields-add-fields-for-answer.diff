@@ -1,18 +1,19 @@
 diff --git a/src/Controller/Admin/AnswerCrudController.php b/src/Controller/Admin/AnswerCrudController.php
-index e8b1aac..5bbddbb 100644
+index e8b1aac..0f645d8 100644
 --- a/src/Controller/Admin/AnswerCrudController.php
 +++ b/src/Controller/Admin/AnswerCrudController.php
-@@ -4,6 +4,9 @@ namespace App\Controller\Admin;
+@@ -4,6 +4,10 @@ namespace App\Controller\Admin;
  
  use App\Entity\Answer;
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 +use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 +use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 +use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
++use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
  
  class AnswerCrudController extends AbstractCrudController
  {
-@@ -12,14 +15,17 @@ class AnswerCrudController extends AbstractCrudController
+@@ -12,14 +16,18 @@ class AnswerCrudController extends AbstractCrudController
          return Answer::class;
      }
  
@@ -27,6 +28,7 @@ index e8b1aac..5bbddbb 100644
 +        yield IdField::new('id')
 +            ->onlyOnIndex();
 +        yield Field::new('answer');
++        yield IntegerField::new('votes');
 +        yield AssociationField::new('question')
 +            ->hideOnIndex();
 +        yield AssociationField::new('answeredBy');

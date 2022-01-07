@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index f9d9e63..5aa1425 100644
+index 7b7c8a2..2de442e 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -45,6 +45,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -44,6 +44,7 @@ class QuestionCrudController extends AbstractCrudController
              ->addCssClass('btn btn-success')
              ->setIcon('fa fa-eye')
              ->setLabel('View');
@@ -10,7 +10,7 @@ index f9d9e63..5aa1425 100644
  
          return parent::configureActions($actions)
              ->setPermission(Action::INDEX, 'ROLE_MODERATOR')
-@@ -52,7 +53,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -51,7 +52,8 @@ class QuestionCrudController extends AbstractCrudController
              ->setPermission(Action::EDIT, 'ROLE_MODERATOR')
              ->setPermission(Action::NEW, 'ROLE_SUPER_ADMIN')
              ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN')

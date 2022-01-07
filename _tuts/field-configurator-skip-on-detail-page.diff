@@ -1,10 +1,10 @@
-diff --git a/src/FieldConfigurator/TruncateLongTextConfigurator.php b/src/FieldConfigurator/TruncateLongTextConfigurator.php
-index a2e3313..f00836e 100644
---- a/src/FieldConfigurator/TruncateLongTextConfigurator.php
-+++ b/src/FieldConfigurator/TruncateLongTextConfigurator.php
+diff --git a/src/EasyAdmin/TruncateLongTextConfigurator.php b/src/EasyAdmin/TruncateLongTextConfigurator.php
+index 2a4b836..8cfcc4d 100644
+--- a/src/EasyAdmin/TruncateLongTextConfigurator.php
++++ b/src/EasyAdmin/TruncateLongTextConfigurator.php
 @@ -2,6 +2,7 @@
  
- namespace App\FieldConfigurator;
+ namespace App\EasyAdmin;
  
 +use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
  use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
@@ -15,7 +15,7 @@ index a2e3313..f00836e 100644
      public function configure(FieldDto $field, EntityDto $entityDto, AdminContext $context): void
      {
 +        $crud = $context->getCrud();
-+        if ($crud && $crud->getCurrentAction() === Crud::PAGE_DETAIL) {
++        if ($context->getCrud()?->getCurrentPage() === Crud::PAGE_DETAIL) {
 +            return;
 +        }
          if (strlen($field->getFormattedValue()) <= self::MAX_LENGTH) {

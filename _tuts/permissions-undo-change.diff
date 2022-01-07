@@ -1,0 +1,28 @@
+diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
+index 7d5bed3..0561613 100644
+--- a/src/Controller/Admin/DashboardController.php
++++ b/src/Controller/Admin/DashboardController.php
+@@ -58,8 +58,8 @@ class DashboardController extends AbstractDashboardController
+     public function configureMenuItems(): iterable
+     {
+         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-dashboard');
+-        yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class);
+-            //->setPermission('ROLE_MODERATOR');
++        yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class)
++            ->setPermission('ROLE_MODERATOR');
+         yield MenuItem::linkToCrud('Answers', 'fas fa-comments', Answer::class);
+         yield MenuItem::linkToCrud('Topics', 'fas fa-folder', Topic::class);
+         yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 254bc0f..1c19a59 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -33,7 +33,7 @@ class QuestionCrudController extends AbstractCrudController
+     public function configureActions(Actions $actions): Actions
+     {
+         return parent::configureActions($actions)
+-            ->setPermission(Action::INDEX, 'ROLE_SUPER_ADMIN')
++            ->setPermission(Action::INDEX, 'ROLE_MODERATOR')
+             ->setPermission(Action::DETAIL, 'ROLE_MODERATOR')
+             ->setPermission(Action::EDIT, 'ROLE_MODERATOR')
+             ->setPermission(Action::NEW, 'ROLE_SUPER_ADMIN')

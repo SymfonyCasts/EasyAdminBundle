@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 87dac44..9f77de7 100644
+index f0bc454..9bd7d20 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -23,7 +23,8 @@ class UserCrudController extends AbstractCrudController
+@@ -24,7 +24,8 @@ class UserCrudController extends AbstractCrudController
      {
          yield IdField::new('id')
              ->onlyOnIndex();

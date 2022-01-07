@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index c2466f1..25bce7f 100644
+index 973b86b..013d61d 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -95,6 +95,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -93,6 +93,7 @@ class QuestionCrudController extends AbstractCrudController
      {
          return parent::configureFilters($filters)
              ->add('topic')

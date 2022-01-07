@@ -1,8 +1,11 @@
 diff --git a/templates/admin/crud/field/id_with_icon.html.twig b/templates/admin/crud/field/id_with_icon.html.twig
-index c624098..0e970bd 100644
+index 90f9f8d..81b1acb 100644
 --- a/templates/admin/crud/field/id_with_icon.html.twig
 +++ b/templates/admin/crud/field/id_with_icon.html.twig
-@@ -1 +1,2 @@
--<i class="fa fa-key"></i> {{ field.formattedValue }}
-+<i class="fa fa-key"></i>
+@@ -2,4 +2,5 @@
+ {# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
+ {# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+ {# this template is used to display Doctrine entity primary keys #}
+-<span class="fa fa-key"></span> {{ field.formattedValue }}
++<span class="fa fa-key"></span>
 +{{ include('@EasyAdmin/crud/field/id.html.twig') }}

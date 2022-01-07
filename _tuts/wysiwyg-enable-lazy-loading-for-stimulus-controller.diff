@@ -1,12 +1,12 @@
-diff --git a/assets/controllers/editor_controller.js b/assets/controllers/editor_controller.js
-index 9a72242..d9d2cc1 100644
---- a/assets/controllers/editor_controller.js
-+++ b/assets/controllers/editor_controller.js
-@@ -2,6 +2,7 @@ import { Controller } from 'stimulus';
+diff --git a/assets/controllers/snarkdown_controller.js b/assets/controllers/snarkdown_controller.js
+index f4741a0..d375f69 100644
+--- a/assets/controllers/snarkdown_controller.js
++++ b/assets/controllers/snarkdown_controller.js
+@@ -2,6 +2,7 @@ import { Controller } from '@hotwired/stimulus';
  import snarkdown from 'snarkdown';
  const document = window.document;
  
 +/* stimulusFetch: 'lazy' */
  export default class extends Controller {
-     static targets = [ 'container', 'input', 'output' ]
+     static targets = ['input'];
  

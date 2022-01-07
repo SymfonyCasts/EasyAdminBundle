@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index b9a43cb..5ab0c49 100644
+index fcc5cae..65dec3a 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -129,7 +129,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -127,7 +127,8 @@ class QuestionCrudController extends AbstractCrudController
          yield VotesField::new('votes', 'Total Votes')
              ->setTextAlign('right')
              ->setPermission('ROLE_SUPER_ADMIN');
@@ -11,4 +11,4 @@ index b9a43cb..5ab0c49 100644
 +            ->collapsible();
          yield AssociationField::new('askedBy')
              ->autocomplete()
-             ->formatValue(static function ($value, Question $question): ?string {
+             ->formatValue(static function ($value, ?Question $question): ?string {

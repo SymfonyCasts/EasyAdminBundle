@@ -1,17 +1,16 @@
 diff --git a/assets/styles/admin.css b/assets/styles/admin.css
-index 5c57a69..b3ca21f 100644
+index 5c57a69..195e733 100644
 --- a/assets/styles/admin.css
 +++ b/assets/styles/admin.css
-@@ -1,4 +1,12 @@
+@@ -1,4 +1,11 @@
  :root { --sidebar-bg: #deebff; }
 +
  .main-content {
      margin-bottom: 100px;
  }
 +
-+// Snarkdown preview container of rendered markdown
 +.markdown-preview {
-+  margin-top: 10px;
-+  border: 2px dashed #da3735;
-+  padding: 5px;
++    margin-top: 10px;
++    border: 2px dashed #da3735;
++    padding: 5px;
 +}

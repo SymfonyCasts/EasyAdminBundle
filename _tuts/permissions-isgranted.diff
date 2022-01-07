@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 1c19a59..d98d25f 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -13,7 +13,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
++use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+ 
++#[IsGranted('ROLE_SUPER_ADMIN')]
+ class QuestionCrudController extends AbstractCrudController
+ {
+     public static function getEntityFqcn(): string

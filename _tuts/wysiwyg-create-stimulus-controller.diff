@@ -1,23 +1,24 @@
-diff --git a/assets/controllers/editor_controller.js b/assets/controllers/editor_controller.js
+diff --git a/assets/controllers/snarkdown_controller.js b/assets/controllers/snarkdown_controller.js
 new file mode 100644
-index 0000000..9a72242
+index 0000000..f4741a0
 --- /dev/null
-+++ b/assets/controllers/editor_controller.js
-@@ -0,0 +1,25 @@
-+import { Controller } from 'stimulus';
++++ b/assets/controllers/snarkdown_controller.js
+@@ -0,0 +1,26 @@
++import { Controller } from '@hotwired/stimulus';
 +import snarkdown from 'snarkdown';
 +const document = window.document;
 +
 +export default class extends Controller {
-+    static targets = [ 'container', 'input', 'output' ]
++    static targets = ['input'];
++
++    outputElement = null;
 +
 +    initialize() {
-+        const div = document.createElement('div');
-+        div.className = 'markdown-preview';
-+        div.dataset.editorTarget = 'output';
-+        div.textContent = 'MARKDOWN WILL BE RENDERED HERE';
++        this.outputElement = document.createElement('div');
++        this.outputElement.className = 'markdown-preview';
++        this.outputElement.textContent = 'MARKDOWN WILL BE RENDERED HERE';
 +
-+        this.containerTarget.append(div);
++        this.element.append(this.outputElement);
 +    }
 +
 +    connect() {
@@ -26,6 +27,6 @@ index 0000000..9a72242
 +
 +    render() {
 +        const markdownContent = this.inputTarget.value;
-+        this.outputTarget.innerHTML = snarkdown(markdownContent);
++        this.outputElement.innerHTML = snarkdown(markdownContent);
 +    }
 +}

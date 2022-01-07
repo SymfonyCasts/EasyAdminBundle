@@ -1,0 +1,27 @@
+diff --git a/src/EasyAdmin/TruncateLongTextConfigurator.php b/src/EasyAdmin/TruncateLongTextConfigurator.php
+index bd89337..2a4b836 100644
+--- a/src/EasyAdmin/TruncateLongTextConfigurator.php
++++ b/src/EasyAdmin/TruncateLongTextConfigurator.php
+@@ -11,6 +11,8 @@ use function Symfony\Component\String\u;
+ 
+ class TruncateLongTextConfigurator implements FieldConfiguratorInterface
+ {
++    private const MAX_LENGTH = 25;
++
+     public function supports(FieldDto $field, EntityDto $entityDto): bool
+     {
+         return $field->getFieldFqcn() === TextareaField::class;
+@@ -18,6 +20,12 @@ class TruncateLongTextConfigurator implements FieldConfiguratorInterface
+ 
+     public function configure(FieldDto $field, EntityDto $entityDto, AdminContext $context): void
+     {
+-        dd($field);
++        if (strlen($field->getFormattedValue()) <= self::MAX_LENGTH) {
++            return;
++        }
++
++        $truncatedValue = u($field->getFormattedValue())
++            ->truncate(self::MAX_LENGTH, '...', false);
++        $field->setFormattedValue($truncatedValue);
+     }
+ }

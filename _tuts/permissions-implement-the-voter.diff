@@ -1,5 +1,5 @@
 diff --git a/src/Security/Voter/AdminUserVoter.php b/src/Security/Voter/AdminUserVoter.php
-index 88ed4bf..f8bd1e1 100644
+index 88ed4bf..63796da 100644
 --- a/src/Security/Voter/AdminUserVoter.php
 +++ b/src/Security/Voter/AdminUserVoter.php
 @@ -2,6 +2,7 @@
@@ -26,7 +26,7 @@ index 88ed4bf..f8bd1e1 100644
              return false;
          }
 +        if (!$subject instanceof User) {
-+            throw new \LogicException('Subject is not an instance of User?s');
++            throw new \LogicException('Subject is not an instance of User?');
 +        }
  
          // ... (check conditions and return true to grant permission) ...

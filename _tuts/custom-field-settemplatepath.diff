@@ -1,0 +1,21 @@
+diff --git a/src/Controller/Admin/AnswerCrudController.php b/src/Controller/Admin/AnswerCrudController.php
+index 0f645d8..370a858 100644
+--- a/src/Controller/Admin/AnswerCrudController.php
++++ b/src/Controller/Admin/AnswerCrudController.php
+@@ -21,7 +21,8 @@ class AnswerCrudController extends AbstractCrudController
+         yield IdField::new('id')
+             ->onlyOnIndex();
+         yield Field::new('answer');
+-        yield IntegerField::new('votes');
++        yield IntegerField::new('votes')
++            ->setTemplatePath('admin/field/votes.html.twig');
+         yield AssociationField::new('question')
+             ->hideOnIndex();
+         yield AssociationField::new('answeredBy');
+diff --git a/templates/admin/field/votes.html.twig b/templates/admin/field/votes.html.twig
+new file mode 100644
+index 0000000..727c07a
+--- /dev/null
++++ b/templates/admin/field/votes.html.twig
+@@ -0,0 +1 @@
++💯 votes!

@@ -1,5 +1,5 @@
 diff --git a/src/Security/Voter/AdminUserVoter.php b/src/Security/Voter/AdminUserVoter.php
-index f8bd1e1..6f4923f 100644
+index 63796da..0ab76ae 100644
 --- a/src/Security/Voter/AdminUserVoter.php
 +++ b/src/Security/Voter/AdminUserVoter.php
 @@ -5,10 +5,18 @@ namespace App\Security\Voter;

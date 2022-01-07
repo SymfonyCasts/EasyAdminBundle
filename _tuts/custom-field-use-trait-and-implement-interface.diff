@@ -1,10 +1,10 @@
-diff --git a/src/Field/VotesField.php b/src/Field/VotesField.php
-index 7753c6d..62ad465 100644
---- a/src/Field/VotesField.php
-+++ b/src/Field/VotesField.php
+diff --git a/src/EasyAdmin/VotesField.php b/src/EasyAdmin/VotesField.php
+index a480451..8f9a6f0 100644
+--- a/src/EasyAdmin/VotesField.php
++++ b/src/EasyAdmin/VotesField.php
 @@ -2,6 +2,15 @@
  
- namespace App\Field;
+ namespace App\EasyAdmin;
  
 -class VotesField
 +use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;

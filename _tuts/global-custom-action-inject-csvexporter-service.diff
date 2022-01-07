@@ -1,16 +1,16 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 9f88368..ba18b5b 100644
+index ab24f47..1f0c1e2 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -5,6 +5,7 @@ namespace App\Controller\Admin;
+ use App\EasyAdmin\VotesField;
  use App\Entity\Question;
  use App\Entity\User;
- use App\Field\VotesField;
 +use App\Service\CsvExporter;
  use Doctrine\ORM\EntityManagerInterface;
  use Doctrine\ORM\QueryBuilder;
  use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
-@@ -178,7 +179,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -176,7 +177,7 @@ class QuestionCrudController extends AbstractCrudController
          return $this->redirect($targetUrl);
      }
  

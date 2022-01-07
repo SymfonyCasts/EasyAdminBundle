@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 8529f5a..9b9f085 100644
+index 5f0d37a..49354cb 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -38,6 +38,7 @@ class UserCrudController extends AbstractCrudController
+@@ -39,6 +39,7 @@ class UserCrudController extends AbstractCrudController
          yield ChoiceField::new('roles')
              ->setChoices(array_combine($roles, $roles))
              ->allowMultipleChoices()

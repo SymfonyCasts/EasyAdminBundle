@@ -1,0 +1,18 @@
+diff --git a/templates/admin/crud/field/text_special_role.html.twig b/templates/admin/crud/field/text_special_role.html.twig
+index 0e48be9..1141c85 100644
+--- a/templates/admin/crud/field/text_special_role.html.twig
++++ b/templates/admin/crud/field/text_special_role.html.twig
+@@ -3,3 +3,13 @@
+ {# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+ {# @var user \App\Entity\User #}
+ {% set user = entity.instance %}
++
++{% if user.hasRole('ROLE_SUPER_ADMIN') %}
++    <span class="badge badge-danger">Super Admin</span>
++{% elseif user.hasRole('ROLE_ADMIN') %}
++    <span class="badge badge-warning">Admin</span>
++{% elseif user.hasRole('ROLE_MODERATOR') %}
++    <span class="badge badge-warning">Moderator</span>
++{% else %}
++    <span class="badge badge-secondary">~</span>
++{% endif %}

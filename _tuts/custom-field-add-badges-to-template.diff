@@ -1,14 +1,15 @@
 diff --git a/templates/admin/field/votes.html.twig b/templates/admin/field/votes.html.twig
-index 6d6ef03..0e7591f 100644
+index 7431c5c..0e7591f 100644
 --- a/templates/admin/field/votes.html.twig
 +++ b/templates/admin/field/votes.html.twig
 @@ -1,4 +1,9 @@
  {# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
  {# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
  {# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+-{{ field.formattedValue }} votes
 +{% if field.value >= 0 %}
 +    <i class="fas fa-thumbs-up text-success"></i>
 +{% else %}
 +    <i class="fas fa-thumbs-down text-danger"></i>
 +{% endif %}
- {{ field.formattedValue }}
++{{ field.formattedValue }}

@@ -1,12 +1,12 @@
-diff --git a/src/Field/VotesField.php b/src/Field/VotesField.php
+diff --git a/src/EasyAdmin/VotesField.php b/src/EasyAdmin/VotesField.php
 new file mode 100644
-index 0000000..7753c6d
+index 0000000..a480451
 --- /dev/null
-+++ b/src/Field/VotesField.php
++++ b/src/EasyAdmin/VotesField.php
 @@ -0,0 +1,7 @@
 +<?php
 +
-+namespace App\Field;
++namespace App\EasyAdmin;
 +
 +class VotesField
 +{

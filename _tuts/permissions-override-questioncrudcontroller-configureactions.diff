@@ -1,16 +1,16 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 327d615..c84b93d 100644
+index 16423cd..2731d38 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -5,6 +5,7 @@ namespace App\Controller\Admin;
+ use App\EasyAdmin\VotesField;
  use App\Entity\Question;
- use App\Field\VotesField;
  use Doctrine\ORM\QueryBuilder;
 +use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
  use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
  use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-@@ -29,6 +30,11 @@ class QuestionCrudController extends AbstractCrudController
+@@ -28,6 +29,11 @@ class QuestionCrudController extends AbstractCrudController
              ]);
      }
  

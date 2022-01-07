@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index b80b074..9f800a5 100644
+index e87b8cd..4f0e91e 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -19,14 +19,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -11,18 +11,18 @@ index b80b074..9f800a5 100644
  
  class DashboardController extends AbstractDashboardController
  {
-     private EntityManagerInterface $entityManager;
+     private QuestionRepository $questionRepository;
 +    private ChartBuilderInterface $chartBuilder;
  
--    public function __construct(EntityManagerInterface $entityManager)
-+    public function __construct(EntityManagerInterface $entityManager, ChartBuilderInterface $chartBuilder)
+-    public function __construct(QuestionRepository $questionRepository)
++    public function __construct(QuestionRepository $questionRepository, ChartBuilderInterface $chartBuilder)
      {
-         $this->entityManager = $entityManager;
+         $this->questionRepository = $questionRepository;
 +        $this->chartBuilder = $chartBuilder;
      }
  
      #[IsGranted('ROLE_ADMIN')]
-@@ -43,6 +47,7 @@ class DashboardController extends AbstractDashboardController
+@@ -41,6 +45,7 @@ class DashboardController extends AbstractDashboardController
          return $this->render('admin/index.html.twig', [
              'latestQuestions' => $latestQuestions,
              'topVoted' => $topVoted,
@@ -30,12 +30,12 @@ index b80b074..9f800a5 100644
          ]);
      }
  
-@@ -93,4 +98,30 @@ class DashboardController extends AbstractDashboardController
+@@ -91,4 +96,31 @@ class DashboardController extends AbstractDashboardController
          return parent::configureAssets()
              ->addWebpackEncoreEntry('admin');
      }
 +
-+    private function createChart()
++    private function createChart(): Chart
 +    {
 +        $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
 +        $chart->setData([
@@ -52,8 +52,9 @@ index b80b074..9f800a5 100644
 +
 +        $chart->setOptions([
 +            'scales' => [
-+                'yAxes' => [
-+                    ['ticks' => ['min' => 0, 'max' => 100]],
++                'y' => [
++                   'suggestedMin' => 0,
++                   'suggestedMax' => 100,
 +                ],
 +            ],
 +        ]);

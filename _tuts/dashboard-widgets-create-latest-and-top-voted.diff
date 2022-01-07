@@ -1,24 +1,24 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 661245d..b80b074 100644
+index 661245d..e87b8cd 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -6,6 +6,7 @@ use App\Entity\Answer;
  use App\Entity\Question;
  use App\Entity\Topic;
  use App\Entity\User;
-+use Doctrine\ORM\EntityManagerInterface;
++use App\Repository\QuestionRepository;
  use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
  use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
  use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
-@@ -21,11 +22,28 @@ use Symfony\Component\Security\Core\User\UserInterface;
+@@ -21,11 +22,26 @@ use Symfony\Component\Security\Core\User\UserInterface;
  
  class DashboardController extends AbstractDashboardController
  {
-+    private EntityManagerInterface $entityManager;
++    private QuestionRepository $questionRepository;
 +
-+    public function __construct(EntityManagerInterface $entityManager)
++    public function __construct(QuestionRepository $questionRepository)
 +    {
-+        $this->entityManager = $entityManager;
++        $this->questionRepository = $questionRepository;
 +    }
 +
      #[IsGranted('ROLE_ADMIN')]
@@ -26,11 +26,9 @@ index 661245d..b80b074 100644
      public function index(): Response
      {
 -        return parent::index();
-+        $latestQuestions = $this->entityManager
-+            ->getRepository(Question::class)
++        $latestQuestions = $this->questionRepository
 +            ->findLatest();
-+        $topVoted = $this->entityManager
-+            ->getRepository(Question::class)
++        $topVoted = $this->questionRepository
 +            ->findTopVoted();
 +
 +        return $this->render('admin/index.html.twig', [
@@ -40,35 +38,6 @@ index 661245d..b80b074 100644
      }
  
      public function configureDashboard(): Dashboard
-diff --git a/src/Repository/QuestionRepository.php b/src/Repository/QuestionRepository.php
-index fd5f001..5b92864 100644
---- a/src/Repository/QuestionRepository.php
-+++ b/src/Repository/QuestionRepository.php
-@@ -20,6 +20,24 @@ class QuestionRepository extends ServiceEntityRepository
-         parent::__construct($registry, Question::class);
-     }
- 
-+    public function findLatest(): array
-+    {
-+        return $this->createQueryBuilder('question')
-+            ->orderBy('question.createdAt', 'DESC')
-+            ->setMaxResults(3)
-+            ->getQuery()
-+            ->getResult();
-+    }
-+
-+    public function findTopVoted(): array
-+    {
-+        return $this->createQueryBuilder('question')
-+            ->orderBy('question.votes', 'DESC')
-+            ->setMaxResults(5)
-+            ->getQuery()
-+            ->getResult();
-+    }
-+
-      /**
-       * @return Question[] Returns an array of Question objects
-       */
 diff --git a/templates/admin/index.html.twig b/templates/admin/index.html.twig
 new file mode 100644
 index 0000000..be1baef

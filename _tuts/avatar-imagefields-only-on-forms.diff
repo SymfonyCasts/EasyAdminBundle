@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index b0e3a4f..983cfdf 100644
+index bb3b3f2..49755f2 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -31,7 +31,8 @@ class UserCrudController extends AbstractCrudController
+@@ -32,7 +32,8 @@ class UserCrudController extends AbstractCrudController
          yield ImageField::new('avatar')
              ->setBasePath('uploads/avatars')
              ->setUploadDir('public/avatars/uploads')

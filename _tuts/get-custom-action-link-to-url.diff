@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 97b31d8..57acbd8 100644
+index 87afa2e..55cca6d 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -36,7 +36,10 @@ class QuestionCrudController extends AbstractCrudController
+@@ -35,7 +35,10 @@ class QuestionCrudController extends AbstractCrudController
  
      public function configureActions(Actions $actions): Actions
      {

@@ -1,8 +1,16 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index aaf909e..f9792fd 100644
+index 7a3d788..03a2510 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -23,6 +23,7 @@ class UserCrudController extends AbstractCrudController
+@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
+ 
+ use App\Entity\User;
+ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
++use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+@@ -24,6 +25,7 @@ class UserCrudController extends AbstractCrudController
      {
          yield IdField::new('id')
              ->onlyOnIndex();

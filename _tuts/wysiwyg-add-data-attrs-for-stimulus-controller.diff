@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index a13750a..8f873aa 100644
+index 7444bf2..197b3ad 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -43,7 +43,17 @@ class QuestionCrudController extends AbstractCrudController
+@@ -42,7 +42,16 @@ class QuestionCrudController extends AbstractCrudController
          yield Field::new('name')
              ->setSortable(false);
          yield TextareaField::new('question')
@@ -10,12 +10,11 @@ index a13750a..8f873aa 100644
 +            ->hideOnIndex()
 +            ->setFormTypeOptions([
 +                'row_attr' => [
-+                    'data-controller' => 'editor',
-+                    'data-editor-target' => 'container',
++                    'data-controller' => 'snarkdown',
 +                ],
 +                'attr' => [
-+                    'data-editor-target' => 'input',
-+                    'data-action' => 'input->editor#render',
++                    'data-snarkdown-target' => 'input',
++                    'data-action' => 'snarkdown#render',
 +                ],
 +            ]);
          yield VotesField::new('votes', 'Total Votes')

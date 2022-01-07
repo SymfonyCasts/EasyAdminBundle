@@ -15,16 +15,6 @@ index a1c6e90..fb0dbf0 100644
 +    },
      "entrypoints": []
  }
-diff --git a/assets/controllers/editor_controller.js b/assets/controllers/editor_controller.js
-index d9d2cc1..f7f25fb 100644
---- a/assets/controllers/editor_controller.js
-+++ b/assets/controllers/editor_controller.js
-@@ -1,4 +1,4 @@
--import { Controller } from 'stimulus';
-+import { Controller } from '@hotwired/stimulus';
- import snarkdown from 'snarkdown';
- const document = window.document;
- 
 diff --git a/composer.json b/composer.json
 index ca70882..5fd4997 100644
 --- a/composer.json

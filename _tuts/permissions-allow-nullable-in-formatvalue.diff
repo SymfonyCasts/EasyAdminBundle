@@ -1,0 +1,30 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 92515bd..6400449 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -70,8 +70,8 @@ class QuestionCrudController extends AbstractCrudController
+             ->setPermission('ROLE_SUPER_ADMIN');
+         yield AssociationField::new('askedBy')
+             ->autocomplete()
+-            ->formatValue(static function ($value, Question $question): ?string {
+-                if (!$user = $question->getAskedBy()) {
++            ->formatValue(static function ($value, ?Question $question): ?string {
++                if (!$user = $question?->getAskedBy()) {
+                     return null;
+                 }
+ 
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index 614179e..1d6e016 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -33,8 +33,8 @@ class UserCrudController extends AbstractCrudController
+         yield IdField::new('id')
+             ->onlyOnIndex();
+         yield AvatarField::new('avatar')
+-            ->formatValue(static function ($value, User $user) {
+-                return $user->getAvatarUrl();
++            ->formatValue(static function ($value, ?User $user) {
++                return $user?->getAvatarUrl();
+             })
+             ->hideOnForm();
+         yield ImageField::new('avatar')

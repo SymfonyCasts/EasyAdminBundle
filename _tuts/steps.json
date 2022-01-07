@@ -16,6 +16,11 @@
             "description": null
         },
         {
+            "id": "delete-me",
+            "name": "DELETE ME",
+            "description": null
+        },
+        {
             "id": "dashboard-restrict-access-with-annotation",
             "name": "Dashboard: Restrict access with annotation",
             "description": null
@@ -101,8 +106,23 @@
             "description": null
         },
         {
+            "id": "delete-me-9",
+            "name": "delete me 9",
+            "description": null
+        },
+        {
             "id": "assets-change-sidebar-bg",
             "name": "Assets: Change sidebar bg",
+            "description": null
+        },
+        {
+            "id": "delete-me-5",
+            "name": "DELETE ME 5",
+            "description": null
+        },
+        {
+            "id": "delete-me-2",
+            "name": "DELETE ME 2",
             "description": null
         },
         {
@@ -161,6 +181,16 @@
             "description": null
         },
         {
+            "id": "delete-me-3",
+            "name": "DELETE ME 3",
+            "description": null
+        },
+        {
+            "id": "delete-me-4",
+            "name": "DELETE ME 4",
+            "description": null
+        },
+        {
             "id": "fields-display-hide-createdat-on-forms",
             "name": "Fields display: Hide createdAt on forms",
             "description": null
@@ -208,6 +238,11 @@
         {
             "id": "avatar-install-mime-package",
             "name": "Avatar: Install Mime package",
+            "description": null
+        },
+        {
+            "id": "delete-me-10",
+            "name": "delete me 10",
             "description": null
         },
         {
@@ -326,6 +361,11 @@
             "description": null
         },
         {
+            "id": "delete-me-11",
+            "name": "delete me 11",
+            "description": null
+        },
+        {
             "id": "more-fields-add-fields-for-answer",
             "name": "More fields: Add fields for Answer",
             "description": null
@@ -341,6 +381,11 @@
             "description": null
         },
         {
+            "id": "field-configurator-fill-in-logic",
+            "name": "Field Configurator: Fill in logic",
+            "description": null
+        },
+        {
             "id": "field-configurator-change-priority",
             "name": "Field Configurator: Change priority",
             "description": null
@@ -348,6 +393,21 @@
         {
             "id": "field-configurator-skip-on-detail-page",
             "name": "Field Configurator: Skip on detail page",
+            "description": null
+        },
+        {
+            "id": "custom-field-settemplatepath",
+            "name": "Custom Field: setTemplatePath()",
+            "description": null
+        },
+        {
+            "id": "custom-field-copy-in-real-content",
+            "name": "Custom Field: copy in real content",
+            "description": null
+        },
+        {
+            "id": "custom-field-add-badges-to-template",
+            "name": "Custom Field: add badges to template",
             "description": null
         },
         {
@@ -361,13 +421,18 @@
             "description": null
         },
         {
+            "id": "custom-field-copy-in-guts-from-integerfield",
+            "name": "Custom Field: copy in guts from IntegerField",
+            "description": null
+        },
+        {
             "id": "custom-field-implement-new",
             "name": "Custom Field: Implement new()",
             "description": null
         },
         {
-            "id": "custom-field-add-thumbs-icons",
-            "name": "Custom Field: Add thumbs icons",
+            "id": "delete-me-1",
+            "name": "delete me 1",
             "description": null
         },
         {
@@ -466,8 +531,8 @@
             "description": null
         },
         {
-            "id": "dashboard-widgets-override-getsubscribedservices",
-            "name": "Dashboard widgets: Override getSubscribedServices()",
+            "id": "delete-me-12",
+            "name": "delete me 12",
             "description": null
         },
         {
@@ -506,6 +571,11 @@
             "description": null
         },
         {
+            "id": "override-templates-finish-template",
+            "name": "Override templates: finish template",
+            "description": null
+        },
+        {
             "id": "override-templates-show-role-fields-on-specific-pages",
             "name": "Override templates: Show role fields on specific pages",
             "description": null
@@ -536,6 +606,26 @@
             "description": null
         },
         {
+            "id": "permissions-isgranted",
+            "name": "Permissions: IsGranted()",
+            "description": null
+        },
+        {
+            "id": "permissions-remove-isgranted",
+            "name": "Permissions: remove IsGranted",
+            "description": null
+        },
+        {
+            "id": "permissions-temp-remove-link-permissions",
+            "name": "Permissions: Temp remove link permissions",
+            "description": null
+        },
+        {
+            "id": "permissions-undo-change",
+            "name": "Permissions: undo change",
+            "description": null
+        },
+        {
             "id": "permissions-set-role-super-admin-for-votes-field",
             "name": "Permissions: Set ROLE_SUPER_ADMIN for votes field",
             "description": null
@@ -551,6 +641,11 @@
             "description": null
         },
         {
+            "id": "permissions-allow-nullable-in-formatvalue",
+            "name": "Permissions: allow nullable in formatValue()",
+            "description": null
+        },
+        {
             "id": "permissions-create-adminuservoter",
             "name": "Permissions: Create AdminUserVoter",
             "description": null
@@ -563,6 +658,11 @@
         {
             "id": "permissions-or-role-super-admin-is-granted",
             "name": "Permissions: Or ROLE_SUPER_ADMIN is granted",
+            "description": null
+        },
+        {
+            "id": "permissions-override-createindexquerybuilder",
+            "name": "Permissions: override createIndexQueryBuilder()",
             "description": null
         },
         {
@@ -706,6 +806,11 @@
             "description": null
         },
         {
+            "id": "delete-me-6",
+            "name": "DELETE ME 6",
+            "description": null
+        },
+        {
             "id": "events-implement-updateentity",
             "name": "Events: Implement updateEntity()",
             "description": null
@@ -761,6 +866,11 @@
             "description": null
         },
         {
+            "id": "delete-me-8",
+            "name": "DELETE ME 8",
+            "description": null
+        },
+        {
             "id": "hide-actions-override-deleteentity",
             "name": "Hide actions: Override deleteEntity()",
             "description": null
@@ -783,6 +893,11 @@
         {
             "id": "get-custom-action-link-to-url",
             "name": "GET custom action: Link to url",
+            "description": null
+        },
+        {
+            "id": "delete-me-7",
+            "name": "DELETE ME 7",
             "description": null
         },
         {
@@ -961,5 +1076,5 @@
             "description": null
         }
     ],
-    "sha": "d44babd83ec9a78014f55703f34375138e6d49c8"
+    "sha": "bff95b6b992dc6f6982f23d80e4e90994462399d"
 }

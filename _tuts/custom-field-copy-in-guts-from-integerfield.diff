@@ -1,0 +1,26 @@
+diff --git a/src/EasyAdmin/VotesField.php b/src/EasyAdmin/VotesField.php
+index 8f9a6f0..e83c7fd 100644
+--- a/src/EasyAdmin/VotesField.php
++++ b/src/EasyAdmin/VotesField.php
+@@ -4,6 +4,7 @@ namespace App\EasyAdmin;
+ 
+ use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\FieldTrait;
++use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+ 
+ class VotesField implements FieldInterface
+ {
+@@ -11,6 +12,12 @@ class VotesField implements FieldInterface
+ 
+     public static function new(string $propertyName, ?string $label = null)
+     {
+-        // TODO: Implement new() method.
++        return (new self())
++            ->setProperty($propertyName)
++            ->setLabel($label)
++            ->setTemplateName('crud/field/integer')
++            ->setFormType(IntegerType::class)
++            ->addCssClass('field-integer')
++            ->setDefaultColumns('col-md-4 col-xxl-3');
+     }
+ }

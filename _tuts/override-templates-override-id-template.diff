@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 4f3ea45..715b319 100644
+index 0cee25b..2c618f4 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -85,7 +85,8 @@ class DashboardController extends AbstractDashboardController
+@@ -82,7 +82,8 @@ class DashboardController extends AbstractDashboardController
          return parent::configureCrud()
              ->setDefaultSort([
                  'id' => 'DESC',
@@ -14,8 +14,12 @@ index 4f3ea45..715b319 100644
      public function configureActions(): Actions
 diff --git a/templates/admin/crud/field/id_with_icon.html.twig b/templates/admin/crud/field/id_with_icon.html.twig
 new file mode 100644
-index 0000000..c624098
+index 0000000..90f9f8d
 --- /dev/null
 +++ b/templates/admin/crud/field/id_with_icon.html.twig
-@@ -0,0 +1 @@
-+<i class="fa fa-key"></i> {{ field.formattedValue }}
+@@ -0,0 +1,5 @@
++{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
++{# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
++{# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
++{# this template is used to display Doctrine entity primary keys #}
++<span class="fa fa-key"></span> {{ field.formattedValue }}

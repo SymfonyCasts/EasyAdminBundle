@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 9f219cf..0d393c2 100644
+index 0561613..b072049 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -63,6 +63,8 @@ class DashboardController extends AbstractDashboardController
+@@ -60,6 +60,8 @@ class DashboardController extends AbstractDashboardController
          yield MenuItem::linkToDashboard('Dashboard', 'fa fa-dashboard');
          yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class)
              ->setPermission('ROLE_MODERATOR');

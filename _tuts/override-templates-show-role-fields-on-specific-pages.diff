@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 7619b02..219e2f8 100644
+index 0ccb11a..2cb3de0 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -46,13 +46,14 @@ class UserCrudController extends AbstractCrudController
+@@ -47,13 +47,14 @@ class UserCrudController extends AbstractCrudController
          yield DateField::new('createdAt')
              ->hideOnForm();
          yield TextField::new('specialRole')

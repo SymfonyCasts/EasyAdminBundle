@@ -1,16 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index f9792fd..b0e3a4f 100644
+index 03a2510..bb3b3f2 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -2,6 +2,7 @@
- 
- namespace App\Controller\Admin;
- 
-+use App\Entity\Question;
- use App\Entity\User;
- use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
- use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-@@ -23,7 +24,10 @@ class UserCrudController extends AbstractCrudController
+@@ -25,7 +25,10 @@ class UserCrudController extends AbstractCrudController
      {
          yield IdField::new('id')
              ->onlyOnIndex();

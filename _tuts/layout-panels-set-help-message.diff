@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index a514ab4..d3a9e1e 100644
+index f8cb380..ef3b222 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -131,7 +131,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -129,7 +129,8 @@ class QuestionCrudController extends AbstractCrudController
              ->setPermission('ROLE_SUPER_ADMIN');
          yield FormField::addPanel('Details')
              ->collapsible()
@@ -11,4 +11,4 @@ index a514ab4..d3a9e1e 100644
 +            ->setHelp('Additional Details');
          yield AssociationField::new('askedBy')
              ->autocomplete()
-             ->formatValue(static function ($value, Question $question): ?string {
+             ->formatValue(static function ($value, ?Question $question): ?string {
