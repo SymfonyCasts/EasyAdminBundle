@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionPendingApprovalCrudController.php b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
-index 8e4a56e..1050c81 100644
+index c558a37..0d3637c 100644
 --- a/src/Controller/Admin/QuestionPendingApprovalCrudController.php
 +++ b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
 @@ -18,7 +18,8 @@ class QuestionPendingApprovalCrudController extends QuestionCrudController
@@ -8,7 +8,7 @@ index 8e4a56e..1050c81 100644
                  return sprintf('#%s %s', $question->getId(), $question->getName());
 -            });
 +            })
-+            ->setHelp(Crud::PAGE_INDEX, 'Questions that are not published to users until approved by moderators');
++            ->setHelp(Crud::PAGE_INDEX, 'Questions are not published to users until approved by a moderator');
      }
  
      public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder

@@ -11,7 +11,7 @@ index d288f9b..ca70882 100644
          "symfony/runtime": "6.0.*",
          "symfony/security-bundle": "6.0.*",
 diff --git a/composer.lock b/composer.lock
-index a324105..7d599fd 100644
+index e2fdedd..7c6eb97 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -23,22 +23,22 @@ index a324105..7d599fd 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -4220,6 +4220,87 @@
+@@ -4164,6 +4164,87 @@
              ],
              "time": "2021-12-08T15:13:44+00:00"
          },
 +        {
 +            "name": "symfony/mime",
-+            "version": "v6.0.1",
++            "version": "v6.0.2",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/mime.git",
-+                "reference": "3506356e2368c5623f52cf5ff643e0dee8d5eef7"
++                "reference": "5586487ae45a89355d5515059de48869207112e1"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/mime/zipball/3506356e2368c5623f52cf5ff643e0dee8d5eef7",
-+                "reference": "3506356e2368c5623f52cf5ff643e0dee8d5eef7",
++                "url": "https://api.github.com/repos/symfony/mime/zipball/5586487ae45a89355d5515059de48869207112e1",
++                "reference": "5586487ae45a89355d5515059de48869207112e1",
 +                "shasum": ""
 +            },
 +            "require": {
@@ -90,7 +90,7 @@ index a324105..7d599fd 100644
 +                "mime-type"
 +            ],
 +            "support": {
-+                "source": "https://github.com/symfony/mime/tree/v6.0.1"
++                "source": "https://github.com/symfony/mime/tree/v6.0.2"
 +            },
 +            "funding": [
 +                {
@@ -106,27 +106,27 @@ index a324105..7d599fd 100644
 +                    "type": "tidelift"
 +                }
 +            ],
-+            "time": "2021-12-08T15:13:44+00:00"
++            "time": "2021-12-28T17:22:37+00:00"
 +        },
          {
              "name": "symfony/monolog-bridge",
              "version": "v6.0.1",
-@@ -4691,6 +4772,93 @@
+@@ -4635,6 +4716,93 @@
              ],
-             "time": "2021-05-24T10:04:56+00:00"
+             "time": "2021-10-26T17:16:04+00:00"
          },
 +        {
 +            "name": "symfony/polyfill-intl-idn",
-+            "version": "v1.23.0",
++            "version": "v1.24.0",
 +            "source": {
 +                "type": "git",
 +                "url": "https://github.com/symfony/polyfill-intl-idn.git",
-+                "reference": "65bd267525e82759e7d8c4e8ceea44f398838e65"
++                "reference": "749045c69efb97c70d25d7463abba812e91f3a44"
 +            },
 +            "dist": {
 +                "type": "zip",
-+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/65bd267525e82759e7d8c4e8ceea44f398838e65",
-+                "reference": "65bd267525e82759e7d8c4e8ceea44f398838e65",
++                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/749045c69efb97c70d25d7463abba812e91f3a44",
++                "reference": "749045c69efb97c70d25d7463abba812e91f3a44",
 +                "shasum": ""
 +            },
 +            "require": {
@@ -184,7 +184,7 @@ index a324105..7d599fd 100644
 +                "shim"
 +            ],
 +            "support": {
-+                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.23.0"
++                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.24.0"
 +            },
 +            "funding": [
 +                {
@@ -200,11 +200,11 @@ index a324105..7d599fd 100644
 +                    "type": "tidelift"
 +                }
 +            ],
-+            "time": "2021-05-27T09:27:20+00:00"
++            "time": "2021-09-14T14:02:44+00:00"
 +        },
          {
              "name": "symfony/polyfill-intl-normalizer",
-             "version": "v1.23.0",
+             "version": "v1.24.0",
 diff --git a/symfony.lock b/symfony.lock
 index 5d4df71..37ff9e3 100644
 --- a/symfony.lock

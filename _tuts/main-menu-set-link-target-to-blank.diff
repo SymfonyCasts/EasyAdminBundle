@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index cced915..235e701 100644
+index f266b83..c0dae3d 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
-@@ -72,7 +72,8 @@ class DashboardController extends AbstractDashboardController
+@@ -73,7 +73,8 @@ class DashboardController extends AbstractDashboardController
          yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
          yield MenuItem::section();
          yield MenuItem::linkToUrl('Homepage', 'fas fa-home', $this->generateUrl('app_homepage'));

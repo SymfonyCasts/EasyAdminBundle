@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 2fc4563..f06cdaf 100644
+index 3a6d017..25f571d 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -55,6 +55,10 @@ class QuestionCrudController extends AbstractCrudController
@@ -12,8 +12,8 @@ index 2fc4563..f06cdaf 100644
 +            ->setIcon('fa fa-download');
  
          return parent::configureActions($actions)
-             ->setPermission(Action::INDEX, 'ROLE_MODERATOR')
-@@ -63,7 +67,8 @@ class QuestionCrudController extends AbstractCrudController
+             ->update(Crud::PAGE_INDEX, Action::DELETE, static function(Action $action) {
+@@ -70,7 +74,8 @@ class QuestionCrudController extends AbstractCrudController
              ->setPermission(Action::NEW, 'ROLE_SUPER_ADMIN')
              ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN')
              ->add(Crud::PAGE_DETAIL, $viewAction)

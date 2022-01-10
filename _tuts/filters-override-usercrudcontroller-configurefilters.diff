@@ -1,16 +1,16 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 1d6e016..3b91e19 100644
+index 7adc7d8..197bb5c 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
- 
- use App\Entity\User;
+@@ -7,6 +7,7 @@ use Doctrine\ORM\QueryBuilder;
+ use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
+ use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
  use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 +use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
- use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
- use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-@@ -64,4 +65,9 @@ class UserCrudController extends AbstractCrudController
+ use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+ use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
+@@ -84,4 +85,9 @@ class UserCrudController extends AbstractCrudController
              ->renderExpanded()
              ->hideOnIndex();
      }

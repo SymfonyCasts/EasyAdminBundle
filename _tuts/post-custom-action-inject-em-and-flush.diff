@@ -1,16 +1,18 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 08c2881..5d2b065 100644
+index c68c9a3..d88a787 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -147,10 +147,12 @@ class QuestionCrudController extends AbstractCrudController
+@@ -154,12 +154,14 @@ class QuestionCrudController extends AbstractCrudController
          parent::deleteEntity($entityManager, $entityInstance);
      }
  
 -    public function approve(AdminContext $adminContext)
 +    public function approve(AdminContext $adminContext, EntityManagerInterface $entityManager)
      {
-         /** @var Question $question */
          $question = $adminContext->getEntity()->getInstance();
+         if (!$question instanceof Question) {
+             throw new \LogicException('Entity is missing or not a Question');
+         }
          $question->setIsApproved(true);
 +
 +        $entityManager->flush();

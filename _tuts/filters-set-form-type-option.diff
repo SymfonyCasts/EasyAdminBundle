@@ -1,0 +1,12 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index 4ff401d..a71ab00 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -90,6 +90,6 @@ class UserCrudController extends AbstractCrudController
+     public function configureFilters(Filters $filters): Filters
+     {
+         return parent::configureFilters($filters)
+-            ->add(BooleanFilter::new('enabled'));
++            ->add(BooleanFilter::new('enabled')->setFormTypeOption('expanded', false));
+     }
+ }

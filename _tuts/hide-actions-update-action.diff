@@ -1,0 +1,14 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index c3287c5..59c906b 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -36,6 +36,9 @@ class QuestionCrudController extends AbstractCrudController
+     public function configureActions(Actions $actions): Actions
+     {
+         return parent::configureActions($actions)
++            ->update(Crud::PAGE_INDEX, Action::DELETE, static function(Action $action) {
++                dd($action);
++            })
+             ->setPermission(Action::INDEX, 'ROLE_MODERATOR')
+             ->setPermission(Action::DETAIL, 'ROLE_MODERATOR')
+             ->setPermission(Action::EDIT, 'ROLE_MODERATOR')

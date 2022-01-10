@@ -1,11 +1,12 @@
 diff --git a/templates/admin/crud/approve_action.html.twig b/templates/admin/crud/approve_action.html.twig
-index a19559b..ef5104b 100644
+index f340729..2f1c481 100644
 --- a/templates/admin/crud/approve_action.html.twig
 +++ b/templates/admin/crud/approve_action.html.twig
-@@ -1,5 +1,5 @@
- {% if action.name == 'approve' and ea.entity.fqcn == 'App\\Entity\\Question' %}
--    <form action="{{ action.linkUrl }}" method="post">
-+    <form action="{{ action.linkUrl }}" method="post" style="margin-right: 10px">
-         {{ include('@EasyAdmin/crud/action.html.twig') }}
-     </form>
- {% else %}
+@@ -1,6 +1,6 @@
+ {# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+ {# @var action \EasyCorp\Bundle\EasyAdminBundle\Dto\ActionDto #}
+ {# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+-<form action="{{ action.linkUrl }}" method="POST">
++<form action="{{ action.linkUrl }}" method="POST" style="margin-right: 10px">
+     {{ include('@EasyAdmin/crud/action.html.twig') }}
+ </form>

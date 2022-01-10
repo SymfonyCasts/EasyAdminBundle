@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 58c2059..08c2881 100644
+index a730214..c68c9a3 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -10,15 +10,17 @@ index 58c2059..08c2881 100644
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
  use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
-@@ -146,7 +147,10 @@ class QuestionCrudController extends AbstractCrudController
+@@ -153,7 +154,12 @@ class QuestionCrudController extends AbstractCrudController
          parent::deleteEntity($entityManager, $entityInstance);
      }
  
 -    public function approve()
 +    public function approve(AdminContext $adminContext)
      {
-+        /** @var Question $question */
 +        $question = $adminContext->getEntity()->getInstance();
++        if (!$question instanceof Question) {
++            throw new \LogicException('Entity is missing or not a Question');
++        }
 +        $question->setIsApproved(true);
      }
  }

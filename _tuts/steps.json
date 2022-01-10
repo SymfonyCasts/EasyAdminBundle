@@ -616,6 +616,11 @@
             "description": null
         },
         {
+            "id": "permissions-filter-users",
+            "name": "Permissions: Filter users",
+            "description": null
+        },
+        {
             "id": "filters-override-usercrudcontroller-configurefilters",
             "name": "Filters: Override UserCRUDController::configureFilters()",
             "description": null
@@ -631,8 +636,8 @@
             "description": null
         },
         {
-            "id": "filters-set-available-choices-on-roles",
-            "name": "Filters: Set available choices on roles",
+            "id": "filters-set-form-type-option",
+            "name": "Filters: set form type option",
             "description": null
         },
         {
@@ -676,8 +681,8 @@
             "description": null
         },
         {
-            "id": "multiple-crud-fix-invalid-andwhere",
-            "name": "Multiple CRUD: Fix invalid andWhere()",
+            "id": "delete-me-1",
+            "name": "delete me 1",
             "description": null
         },
         {
@@ -706,28 +711,38 @@
             "description": null
         },
         {
-            "id": "topic-fields-specify-fields-explicitly",
-            "name": "Topic fields: Specify fields explicitly",
+            "id": "multiple-crud-add-autocomplete-to-answer",
+            "name": "Multiple CRUD: add autocomplete() to answer",
             "description": null
         },
         {
-            "id": "topic-fields-add-questions-field",
-            "name": "Topic fields: Add questions field",
+            "id": "multiple-crud-set-crud-controller",
+            "name": "Multiple CRUD: set crud controller",
             "description": null
         },
         {
-            "id": "topic-fields-call-autocomplete",
-            "name": "Topic fields: Call autocomplete()",
+            "id": "delete-me-2",
+            "name": "delete me 2",
             "description": null
         },
         {
-            "id": "topic-fields-set-crud-controller",
-            "name": "Topic fields: Set CRUD controller",
+            "id": "delete-me-3",
+            "name": "delete me 3",
             "description": null
         },
         {
-            "id": "topic-fields-set-by-reference-to-false",
-            "name": "Topic fields: Set by_reference to false",
+            "id": "delete-me-4",
+            "name": "delete me 4",
+            "description": null
+        },
+        {
+            "id": "delete-me-5",
+            "name": "delete me 5",
+            "description": null
+        },
+        {
+            "id": "delete-me-6",
+            "name": "delete me 6",
             "description": null
         },
         {
@@ -796,8 +811,38 @@
             "description": null
         },
         {
+            "id": "hide-actions-update-action",
+            "name": "Hide Actions: update() action",
+            "description": null
+        },
+        {
+            "id": "hide-actions-displayif",
+            "name": "Hide Actions: displayIf",
+            "description": null
+        },
+        {
+            "id": "hide-actions-comment-out-change",
+            "name": "Hide Actions: comment out change",
+            "description": null
+        },
+        {
+            "id": "hide-actions-deleteentity-override",
+            "name": "Hide Actions: deleteEntity() override",
+            "description": null
+        },
+        {
+            "id": "hide-actions-prevent-non-approved-delete",
+            "name": "Hide Actions: prevent non-approved delete",
+            "description": null
+        },
+        {
             "id": "hide-actions-create-subscriber",
             "name": "Hide actions: Create subscriber",
+            "description": null
+        },
+        {
+            "id": "hide-actions-dump-event",
+            "name": "Hide actions: dump $event",
             "description": null
         },
         {
@@ -806,18 +851,28 @@
             "description": null
         },
         {
+            "id": "hide-actions-disable-action-when-possible",
+            "name": "Hide actions: disable action when possible",
+            "description": null
+        },
+        {
             "id": "hide-actions-hide-if-not-approved",
             "name": "Hide actions: Hide if not approved",
             "description": null
         },
         {
-            "id": "hide-actions-override-deleteentity",
-            "name": "Hide actions: Override deleteEntity()",
+            "id": "delete-me-7",
+            "name": "delete me 7",
             "description": null
         },
         {
-            "id": "hide-actions-throw-if-approved",
-            "name": "Hide actions: Throw if approved",
+            "id": "delete-me-8",
+            "name": "delete me 8",
+            "description": null
+        },
+        {
+            "id": "delete-me-9",
+            "name": "delete me 9",
             "description": null
         },
         {
@@ -1011,5 +1066,5 @@
             "description": null
         }
     ],
-    "sha": "bff95b6b992dc6f6982f23d80e4e90994462399d"
+    "sha": "f145cc49a35bcd48fde4a67e46ca37b154bd98ed"
 }

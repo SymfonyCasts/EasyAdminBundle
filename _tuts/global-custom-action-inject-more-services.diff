@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 70e691c..1288564 100644
+index 6fe2e44..5ebc1f6 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -21,9 +21,19 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
@@ -22,7 +22,7 @@ index 70e691c..1288564 100644
      public static function getEntityFqcn(): string
      {
          return Question::class;
-@@ -139,7 +149,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -146,7 +156,7 @@ class QuestionCrudController extends AbstractCrudController
       */
      public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
      {

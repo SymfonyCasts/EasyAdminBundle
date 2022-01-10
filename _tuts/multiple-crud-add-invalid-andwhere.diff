@@ -1,13 +1,14 @@
 diff --git a/src/Controller/Admin/QuestionPendingApprovalCrudController.php b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
-index 44a81e8..0964181 100644
+index 44a81e8..ff54903 100644
 --- a/src/Controller/Admin/QuestionPendingApprovalCrudController.php
 +++ b/src/Controller/Admin/QuestionPendingApprovalCrudController.php
-@@ -12,6 +12,7 @@ class QuestionPendingApprovalCrudController extends QuestionCrudController
+@@ -12,6 +12,8 @@ class QuestionPendingApprovalCrudController extends QuestionCrudController
  {
      public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
      {
 -        return parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
 +        return parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters)
-+            ->andWhere('isApproved = 0');
++            ->andWhere('entity.isApproved = :approved')
++            ->setParameter('approved', false);
      }
  }

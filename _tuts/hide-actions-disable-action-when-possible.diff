@@ -1,0 +1,25 @@
+diff --git a/src/EventSubscriber/HideActionSubscriber.php b/src/EventSubscriber/HideActionSubscriber.php
+index a83145c..605cea2 100644
+--- a/src/EventSubscriber/HideActionSubscriber.php
++++ b/src/EventSubscriber/HideActionSubscriber.php
+@@ -3,6 +3,7 @@
+ namespace App\EventSubscriber;
+ 
+ use App\Entity\Question;
++use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+ use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeCrudActionEvent;
+ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+ 
+@@ -19,6 +20,12 @@ class HideActionSubscriber implements EventSubscriberInterface
+         if ($crudDto->getEntityFqcn() !== Question::class) {
+             return;
+         }
++
++        // disable action entirely delete, detail, edit
++        $question = $adminContext->getEntity()->getInstance();
++        if ($question instanceof Question && $question->getIsApproved()) {
++            $crudDto->getActionsConfig()->disableActions([Action::DELETE]);
++        }
+     }
+ 
+     public static function getSubscribedEvents()

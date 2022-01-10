@@ -28,7 +28,7 @@ index ca70882..5fd4997 100644
          "symfony/yaml": "6.0.*",
          "twig/extra-bundle": "^2.12|^3.0",
 diff --git a/composer.lock b/composer.lock
-index 7d599fd..058beeb 100644
+index 7c6eb97..ea7794e 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -40,9 +40,9 @@ index 7d599fd..058beeb 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -6623,6 +6623,90 @@
+@@ -6574,6 +6574,90 @@
              ],
-             "time": "2021-12-08T15:13:44+00:00"
+             "time": "2021-12-16T22:13:01+00:00"
          },
 +        {
 +            "name": "symfony/ux-chartjs",

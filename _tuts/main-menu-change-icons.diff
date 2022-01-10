@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 274ecf9..0b504a6 100644
+index 3c5fb72..18bd467 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -60,10 +60,10 @@ class DashboardController extends AbstractDashboardController
@@ -12,6 +12,6 @@ index 274ecf9..0b504a6 100644
                      ->setPermission('ROLE_MODERATOR'),
 -                MenuItem::linkToCrud('Pending Approval', 'far fa-question-circle', Question::class)
 +                MenuItem::linkToCrud('Pending Approval', 'fa fa-warning', Question::class)
+                     ->setPermission('ROLE_MODERATOR')
                      ->setController(QuestionPendingApprovalCrudController::class),
              ]);
-         yield MenuItem::linkToCrud('Answers', 'fas fa-comments', Answer::class);

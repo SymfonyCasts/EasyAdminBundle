@@ -1,0 +1,15 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index 50cd850..de26ba1 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -38,7 +38,9 @@ class QuestionCrudController extends AbstractCrudController
+         return parent::configureActions($actions)
+             ->update(Crud::PAGE_INDEX, Action::DELETE, static function(Action $action) {
+                 $action->displayIf(static function (Question $question) {
+-                    return !$question->getIsApproved();
++                    // always display, so we can try via the subscriber instead
++                    return true;
++                    //return !$question->getIsApproved();
+                 });
+             })
+             ->setPermission(Action::INDEX, 'ROLE_MODERATOR')

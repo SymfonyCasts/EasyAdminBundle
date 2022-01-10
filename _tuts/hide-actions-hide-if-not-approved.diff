@@ -1,30 +1,25 @@
 diff --git a/src/EventSubscriber/HideActionSubscriber.php b/src/EventSubscriber/HideActionSubscriber.php
-index a83145c..5fd2460 100644
+index 605cea2..2bfd451 100644
 --- a/src/EventSubscriber/HideActionSubscriber.php
 +++ b/src/EventSubscriber/HideActionSubscriber.php
-@@ -3,6 +3,8 @@
- namespace App\EventSubscriber;
+@@ -4,6 +4,7 @@ namespace App\EventSubscriber;
  
  use App\Entity\Question;
-+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 +use EasyCorp\Bundle\EasyAdminBundle\Dto\ActionDto;
  use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeCrudActionEvent;
  use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  
-@@ -19,6 +21,21 @@ class HideActionSubscriber implements EventSubscriberInterface
-         if ($crudDto->getEntityFqcn() !== Question::class) {
-             return;
+@@ -26,6 +27,17 @@ class HideActionSubscriber implements EventSubscriberInterface
+         if ($question instanceof Question && $question->getIsApproved()) {
+             $crudDto->getActionsConfig()->disableActions([Action::DELETE]);
          }
 +
 +        // This gives you the "configuration for all the actions".
 +        // Calling ->getActions() returns the array of actual actions that will be
 +        // enabled for the current page... so then we can modify the one for "delete"
 +        $actions = $crudDto->getActionsConfig()->getActions();
-+        if (!isset($actions[Action::DELETE])) {
-+            return;
-+        }
-+        $deleteAction = $actions[Action::DELETE];
-+        if (!$deleteAction instanceof ActionDto) {
++        if (!$deleteAction = $actions[Action::DELETE] ?? null) {
 +            return;
 +        }
 +        $deleteAction->setDisplayCallable(function(Question $question) {

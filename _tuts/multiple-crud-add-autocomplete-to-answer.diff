@@ -1,0 +1,12 @@
+diff --git a/src/Controller/Admin/AnswerCrudController.php b/src/Controller/Admin/AnswerCrudController.php
+index 614e153..9094bbf 100644
+--- a/src/Controller/Admin/AnswerCrudController.php
++++ b/src/Controller/Admin/AnswerCrudController.php
+@@ -25,6 +25,7 @@ class AnswerCrudController extends AbstractCrudController
+         yield IntegerField::new('votes')
+             ->setTemplatePath('admin/field/votes.html.twig');
+         yield AssociationField::new('question')
++            ->autocomplete()
+             ->hideOnIndex();
+         yield VotesField::new('votes', 'Total Votes')
+             ->setTextAlign('right');

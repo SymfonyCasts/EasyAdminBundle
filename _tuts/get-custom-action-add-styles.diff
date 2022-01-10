@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 0209329..0be4347 100644
+index 1ca2560..e6f647e 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -40,7 +40,8 @@ class QuestionCrudController extends AbstractCrudController
@@ -11,4 +11,4 @@ index 0209329..0be4347 100644
 +            ->addCssClass('btn btn-success');
  
          return parent::configureActions($actions)
-             ->setPermission(Action::INDEX, 'ROLE_MODERATOR')
+             ->update(Crud::PAGE_INDEX, Action::DELETE, static function(Action $action) {

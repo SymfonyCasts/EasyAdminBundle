@@ -1,0 +1,23 @@
+diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
+index 340be9e..7adc7d8 100644
+--- a/src/Controller/Admin/UserCrudController.php
++++ b/src/Controller/Admin/UserCrudController.php
+@@ -35,7 +35,17 @@ class UserCrudController extends AbstractCrudController
+ 
+     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
+     {
+-        return parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
++        $queryBuilder = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
++
++        if ($this->isGranted('ROLE_SUPER_ADMIN')) {
++            return $queryBuilder;
++        }
++
++        $queryBuilder
++            ->andWhere('entity.id = :id')
++            ->setParameter('id', $this->getUser()->getId());
++
++        return $queryBuilder;
+     }
+ 
+     public function configureFields(string $pageName): iterable
