@@ -6,6 +6,7 @@ use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use Goodby\CSV\Export\Standard\Exporter;
 use Goodby\CSV\Export\Standard\ExporterConfig;
+use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -46,13 +47,18 @@ class CsvExporter
             array_unshift($data, $headers);
         }
 
-        return new StreamedResponse(function () use ($data) {
+        $response = new StreamedResponse(function () use ($data) {
             $config = new ExporterConfig();
             $exporter = new Exporter($config);
             $exporter->export('php://output', $data);
-        }, StreamedResponse::HTTP_OK, [
-            'Content-Type' => 'text/csv; charset=utf-8',
-            'Content-Disposition', 'attachment; filename="'.$filename.'"',
-        ]);
+        });
+        $dispositionHeader = $response->headers->makeDisposition(
+            HeaderUtils::DISPOSITION_ATTACHMENT,
+            $filename
+        );
+        $response->headers->set('Content-Disposition', $dispositionHeader);
+        $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
+
+        return $response;
     }
 }
