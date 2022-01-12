@@ -1,0 +1,22 @@
+diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
+index c29412a..f973580 100644
+--- a/src/Controller/Admin/QuestionCrudController.php
++++ b/src/Controller/Admin/QuestionCrudController.php
+@@ -110,7 +110,7 @@ class QuestionCrudController extends AbstractCrudController
+     {
+         yield IdField::new('id')
+             ->onlyOnIndex();
+-        yield FormField::addPanel('Basic Data')
++        yield FormField::addTab('Basic Data')
+             ->collapsible();
+         yield AssociationField::new('topic');
+         yield Field::new('slug')
+@@ -136,7 +136,7 @@ class QuestionCrudController extends AbstractCrudController
+         yield VotesField::new('votes', 'Total Votes')
+             ->setTextAlign('right')
+             ->setPermission('ROLE_SUPER_ADMIN');
+-        yield FormField::addPanel('Details')
++        yield FormField::addTab('Details')
+             ->collapsible()
+             ->setIcon('fa fa-info')
+             ->setHelp('Additional Details');

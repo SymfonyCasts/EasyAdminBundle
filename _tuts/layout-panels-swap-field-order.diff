@@ -1,22 +1,21 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 3e00f93..a2f32a9 100644
+index 5e55411..3e00f93 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -114,13 +114,15 @@ class QuestionCrudController extends AbstractCrudController
+@@ -113,14 +113,14 @@ class QuestionCrudController extends AbstractCrudController
+         yield FormField::addTab('Basic Data')
              ->collapsible();
          yield AssociationField::new('topic');
-         yield Field::new('name')
--            ->setSortable(false);
-+            ->setSortable(false)
-+            ->setColumns(5);
++        yield Field::new('name')
++            ->setSortable(false);
          yield Field::new('slug')
              ->hideOnIndex()
              ->setFormTypeOption(
                  'disabled',
                  $pageName !== Crud::PAGE_NEW
--            );
-+            )
-+            ->setColumns(5);
+             );
+-        yield Field::new('name')
+-            ->setSortable(false);
          yield TextareaField::new('question')
              ->hideOnIndex()
              ->setFormTypeOptions([

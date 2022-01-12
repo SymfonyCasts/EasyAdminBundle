@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index db9b1ba..c3287c5 100644
+index db9b1ba..f10452a 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -4,6 +4,7 @@ namespace App\Controller\Admin;
@@ -14,7 +14,7 @@ index db9b1ba..c3287c5 100644
       */
      public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
      {
-+        $user = $this->security->getUser();
++        $user = $this->getUser();
 +        if (!$user instanceof User) {
 +            throw new \LogicException('Currently logged in user is not an instance of User?!');
 +        }

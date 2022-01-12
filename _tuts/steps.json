@@ -1046,6 +1046,11 @@
             "description": null
         },
         {
+            "id": "layout-panels-add-basic-data-panel",
+            "name": "Layout Panels: add Basic data panel",
+            "description": null
+        },
+        {
             "id": "layout-panels-make-it-collapsible",
             "name": "Layout Panels: Make it collapsible",
             "description": null
@@ -1061,10 +1066,25 @@
             "description": null
         },
         {
+            "id": "layout-panels-change-to-tabs",
+            "name": "Layout Panels: change to tabs",
+            "description": null
+        },
+        {
+            "id": "layout-panels-clean-up-icon",
+            "name": "Layout Panels: clean up icon",
+            "description": null
+        },
+        {
+            "id": "layout-panels-swap-field-order",
+            "name": "Layout Panels: swap field order",
+            "description": null
+        },
+        {
             "id": "layout-panels-form-rows",
             "name": "Layout Panels: Form rows",
             "description": null
         }
     ],
-    "sha": "f145cc49a35bcd48fde4a67e46ca37b154bd98ed"
+    "sha": "b011109a46d4a82c1a677fa2693c49c86bd94f1e"
 }

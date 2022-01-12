@@ -1,17 +1,17 @@
 diff --git a/templates/question/show.html.twig b/templates/question/show.html.twig
-index 058dc77..3f14dd6 100644
+index 28c83fb..1e73dfc 100644
 --- a/templates/question/show.html.twig
 +++ b/templates/question/show.html.twig
-@@ -12,7 +12,11 @@
-             </h2>
-             <h2 class="my-4">
-                 Question:
--                <a class="fa-pull-right" href="">
-+                <a class="fa-pull-right" href="{{ ea_url()
-+                    .setController('App\\Controller\\Admin\\QuestionCrudController')
-+                    .setAction('edit')
-+                    .setEntityId(question.id)
-+                }}">
-                     <i class="fa fa-edit"></i>
-                 </a>
-             </h2>
+@@ -40,7 +40,11 @@
+                                 <h1 class="q-title-show">{{ question.name }}</h1>
+ 
+                                 {% if is_granted('ROLE_ADMIN') %}
+-                                    <a class="text-white" href="">
++                                <a class="text-white" href="{{ ea_url()
++                                    .setController('App\\Controller\\Admin\\QuestionCrudController')
++                                    .setAction('edit')
++                                    .setEntityId(question.id)
++                                }}">
+                                         <span class="fa fa-edit"></span>
+                                     </a>
+                                 {% endif %}

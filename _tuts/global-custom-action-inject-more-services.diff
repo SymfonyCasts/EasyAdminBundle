@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 6fe2e44..5ebc1f6 100644
+index c225d80..5ebc1f6 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -21,9 +21,19 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
@@ -22,12 +22,3 @@ index 6fe2e44..5ebc1f6 100644
      public static function getEntityFqcn(): string
      {
          return Question::class;
-@@ -146,7 +156,7 @@ class QuestionCrudController extends AbstractCrudController
-      */
-     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
-     {
--        $user = $this->security->getUser();
-+        $user = $this->getUser();
-         if (!$user instanceof User) {
-             throw new \LogicException('Currently logged in user is not an instance of User?!');
-         }
