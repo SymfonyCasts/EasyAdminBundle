@@ -1,1 +1,10 @@
-chapters: []
+chapters:
+    - install
+    - dashboard
+    - crud-controller
+    - menu-items
+    - assets
+    - fields
+    - field-rendering
+    - field-config
+    - upload
