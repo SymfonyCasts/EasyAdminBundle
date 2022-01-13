@@ -14,7 +14,7 @@ index 0561613..7d5bed3 100644
          yield MenuItem::linkToCrud('Topics', 'fas fa-folder', Topic::class);
          yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 1c19a59..254bc0f 100644
+index beb82d1..1c5db2f 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -33,7 +33,7 @@ class QuestionCrudController extends AbstractCrudController

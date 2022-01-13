@@ -1,0 +1,14 @@
+diff --git a/src/Entity/Answer.php b/src/Entity/Answer.php
+index 76f8142..23b83a3 100644
+--- a/src/Entity/Answer.php
++++ b/src/Entity/Answer.php
+@@ -90,4 +90,9 @@ class Answer
+ 
+         return $this;
+     }
++
++    public function __toString(): string
++    {
++        return $this->getId();
++    }
+ }

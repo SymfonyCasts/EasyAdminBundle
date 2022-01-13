@@ -1,13 +1,12 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 60bbac0..d253e93 100644
+index a883dcc..47ac7a3 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -87,6 +87,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -42,7 +42,6 @@ class QuestionCrudController extends AbstractCrudController
+             });
+         yield AssociationField::new('answers')
+             ->autocomplete()
+-            ->setFormTypeOption('choice_label', 'id')
              ->setFormTypeOption('by_reference', false);
          yield Field::new('createdAt')
              ->hideOnForm();
-+        yield AssociationField::new('updatedBy')
-+            ->onlyOnDetail();
-     }
- 
-     public function configureFilters(Filters $filters): Filters

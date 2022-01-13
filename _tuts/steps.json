@@ -316,6 +316,21 @@
             "description": null
         },
         {
+            "id": "association-fields-change-to-autocomplete",
+            "name": "Association fields: change to autocomplete",
+            "description": null
+        },
+        {
+            "id": "association-fields-remove-choice-label",
+            "name": "Association fields: remove choice_label",
+            "description": null
+        },
+        {
+            "id": "association-fields-add-tostring",
+            "name": "Association fields: add toString()",
+            "description": null
+        },
+        {
             "id": "more-fields-add-slug-field",
             "name": "More fields: Add slug field",
             "description": null
@@ -1086,5 +1101,5 @@
             "description": null
         }
     ],
-    "sha": "b011109a46d4a82c1a677fa2693c49c86bd94f1e"
+    "sha": "da0b2969ed3263a0ec7b05a3d8543dceea18598b"
 }
