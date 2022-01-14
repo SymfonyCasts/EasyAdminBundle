@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 197bb5c..a217f00 100644
+index 1ec7877..2e87d9c 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
-@@ -88,6 +88,7 @@ class UserCrudController extends AbstractCrudController
+@@ -85,6 +85,7 @@ class UserCrudController extends AbstractCrudController
  
      public function configureFilters(Filters $filters): Filters
      {

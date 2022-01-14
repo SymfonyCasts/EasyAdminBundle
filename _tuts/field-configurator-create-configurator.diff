@@ -1,9 +1,9 @@
 diff --git a/src/EasyAdmin/TruncateLongTextConfigurator.php b/src/EasyAdmin/TruncateLongTextConfigurator.php
 new file mode 100644
-index 0000000..bd89337
+index 0000000..b094733
 --- /dev/null
 +++ b/src/EasyAdmin/TruncateLongTextConfigurator.php
-@@ -0,0 +1,23 @@
+@@ -0,0 +1,22 @@
 +<?php
 +
 +namespace App\EasyAdmin;
@@ -13,7 +13,6 @@ index 0000000..bd89337
 +use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 +use EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto;
 +use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-+use function Symfony\Component\String\u;
 +
 +class TruncateLongTextConfigurator implements FieldConfiguratorInterface
 +{

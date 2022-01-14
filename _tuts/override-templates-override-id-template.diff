@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 0cee25b..2c618f4 100644
+index 0cee25b..c23364d 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -82,7 +82,8 @@ class DashboardController extends AbstractDashboardController
@@ -8,15 +8,15 @@ index 0cee25b..2c618f4 100644
                  'id' => 'DESC',
 -            ]);
 +            ])
-+            ->overrideTemplate('crud/field/id', 'admin/crud/field/id_with_icon.html.twig');
++            ->overrideTemplate('crud/field/id', 'admin/field/id_with_icon.html.twig');
      }
  
      public function configureActions(): Actions
-diff --git a/templates/admin/crud/field/id_with_icon.html.twig b/templates/admin/crud/field/id_with_icon.html.twig
+diff --git a/templates/admin/field/id_with_icon.html.twig b/templates/admin/field/id_with_icon.html.twig
 new file mode 100644
 index 0000000..90f9f8d
 --- /dev/null
-+++ b/templates/admin/crud/field/id_with_icon.html.twig
++++ b/templates/admin/field/id_with_icon.html.twig
 @@ -0,0 +1,5 @@
 +{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
 +{# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}

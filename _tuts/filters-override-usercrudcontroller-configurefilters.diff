@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 7adc7d8..197bb5c 100644
+index be24227..1ec7877 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -7,6 +7,7 @@ use Doctrine\ORM\QueryBuilder;
@@ -10,9 +10,9 @@ index 7adc7d8..197bb5c 100644
  use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
  use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
  use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
-@@ -84,4 +85,9 @@ class UserCrudController extends AbstractCrudController
+@@ -81,4 +82,9 @@ class UserCrudController extends AbstractCrudController
              ->renderExpanded()
-             ->hideOnIndex();
+             ->renderAsBadges();
      }
 +
 +    public function configureFilters(Filters $filters): Filters

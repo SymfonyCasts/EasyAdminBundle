@@ -526,23 +526,23 @@
             "description": null
         },
         {
-            "id": "override-templates-add-specialrole-field",
-            "name": "Override templates: Add specialRole field",
+            "id": "delete-me-10",
+            "name": "delete me 10",
             "description": null
         },
         {
-            "id": "override-templates-create-template-for-specialrole-field",
-            "name": "Override templates: Create template for specialRole field",
+            "id": "delete-me-11",
+            "name": "delete me 11",
             "description": null
         },
         {
-            "id": "override-templates-finish-template",
-            "name": "Override templates: finish template",
+            "id": "delete-me-12",
+            "name": "delete me 12",
             "description": null
         },
         {
-            "id": "override-templates-show-role-fields-on-specific-pages",
-            "name": "Override templates: Show role fields on specific pages",
+            "id": "delete-me-13",
+            "name": "delete me 13",
             "description": null
         },
         {
@@ -1101,5 +1101,5 @@
             "description": null
         }
     ],
-    "sha": "da0b2969ed3263a0ec7b05a3d8543dceea18598b"
+    "sha": "27d08cb1620bafdde2477fa9b0803f81213b4423"
 }

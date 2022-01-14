@@ -1,8 +1,12 @@
 diff --git a/src/EasyAdmin/TruncateLongTextConfigurator.php b/src/EasyAdmin/TruncateLongTextConfigurator.php
-index bd89337..2a4b836 100644
+index b094733..2a4b836 100644
 --- a/src/EasyAdmin/TruncateLongTextConfigurator.php
 +++ b/src/EasyAdmin/TruncateLongTextConfigurator.php
-@@ -11,6 +11,8 @@ use function Symfony\Component\String\u;
+@@ -7,9 +7,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldConfiguratorInterface;
+ use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+ use EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto;
+ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
++use function Symfony\Component\String\u;
  
  class TruncateLongTextConfigurator implements FieldConfiguratorInterface
  {
@@ -11,7 +15,7 @@ index bd89337..2a4b836 100644
      public function supports(FieldDto $field, EntityDto $entityDto): bool
      {
          return $field->getFieldFqcn() === TextareaField::class;
-@@ -18,6 +20,12 @@ class TruncateLongTextConfigurator implements FieldConfiguratorInterface
+@@ -17,6 +20,12 @@ class TruncateLongTextConfigurator implements FieldConfiguratorInterface
  
      public function configure(FieldDto $field, EntityDto $entityDto, AdminContext $context): void
      {

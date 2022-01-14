@@ -1,7 +1,7 @@
-diff --git a/templates/admin/crud/field/id_with_icon.html.twig b/templates/admin/crud/field/id_with_icon.html.twig
+diff --git a/templates/admin/field/id_with_icon.html.twig b/templates/admin/field/id_with_icon.html.twig
 index 90f9f8d..81b1acb 100644
---- a/templates/admin/crud/field/id_with_icon.html.twig
-+++ b/templates/admin/crud/field/id_with_icon.html.twig
+--- a/templates/admin/field/id_with_icon.html.twig
++++ b/templates/admin/field/id_with_icon.html.twig
 @@ -2,4 +2,5 @@
  {# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
  {# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
