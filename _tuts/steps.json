@@ -526,26 +526,6 @@
             "description": null
         },
         {
-            "id": "delete-me-10",
-            "name": "delete me 10",
-            "description": null
-        },
-        {
-            "id": "delete-me-11",
-            "name": "delete me 11",
-            "description": null
-        },
-        {
-            "id": "delete-me-12",
-            "name": "delete me 12",
-            "description": null
-        },
-        {
-            "id": "delete-me-13",
-            "name": "delete me 13",
-            "description": null
-        },
-        {
             "id": "permissions-set-to-role-moderator-for-questions-link",
             "name": "Permissions: Set to ROLE_MODERATOR for questions link",
             "description": null
@@ -696,11 +676,6 @@
             "description": null
         },
         {
-            "id": "delete-me-1",
-            "name": "delete me 1",
-            "description": null
-        },
-        {
             "id": "multiple-crud-set-controller-on-old-link",
             "name": "Multiple CRUD: Set controller on old link",
             "description": null
@@ -733,31 +708,6 @@
         {
             "id": "multiple-crud-set-crud-controller",
             "name": "Multiple CRUD: set crud controller",
-            "description": null
-        },
-        {
-            "id": "delete-me-2",
-            "name": "delete me 2",
-            "description": null
-        },
-        {
-            "id": "delete-me-3",
-            "name": "delete me 3",
-            "description": null
-        },
-        {
-            "id": "delete-me-4",
-            "name": "delete me 4",
-            "description": null
-        },
-        {
-            "id": "delete-me-5",
-            "name": "delete me 5",
-            "description": null
-        },
-        {
-            "id": "delete-me-6",
-            "name": "delete me 6",
             "description": null
         },
         {
@@ -873,21 +823,6 @@
         {
             "id": "hide-actions-hide-if-not-approved",
             "name": "Hide actions: Hide if not approved",
-            "description": null
-        },
-        {
-            "id": "delete-me-7",
-            "name": "delete me 7",
-            "description": null
-        },
-        {
-            "id": "delete-me-8",
-            "name": "delete me 8",
-            "description": null
-        },
-        {
-            "id": "delete-me-9",
-            "name": "delete me 9",
             "description": null
         },
         {
