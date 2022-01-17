@@ -30,7 +30,7 @@ You can also run `yarn dev-server`, which is another cool way to do this. Perfec
 I'm gonna open up another tab and say, 
 
 ```terminal
-symfony seerve -d
+symfony serve -d
 ```
 
 and that's gonna start a
