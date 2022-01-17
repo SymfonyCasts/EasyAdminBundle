@@ -8,3 +8,13 @@ chapters:
     - field-rendering
     - field-config
     - upload
+    - association-field
+    - association-many
+    - field-configurator
+    - field-template
+    - custom-field
+    - configure-crud
+    - field-javascript
+    - dashboard-page
+    - override-template
+    - permissions
