@@ -1,20 +1,20 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 81d35c1..49490d9 100644
+index 7b58301..aa21cc7 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -45,6 +45,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -47,6 +47,7 @@ class QuestionCrudController extends AbstractCrudController
              ->setIcon('fa fa-eye')
              ->setLabel('View on site');
          $approveAction = Action::new('approve')
-+            ->setTemplatePath('admin/crud/approve_action.html.twig')
++            ->setTemplatePath('admin/approve_action.html.twig')
              ->linkToCrudAction('approve')
              ->addCssClass('btn btn-success')
              ->setIcon('fa fa-check-circle')
-diff --git a/templates/admin/crud/approve_action.html.twig b/templates/admin/crud/approve_action.html.twig
+diff --git a/templates/admin/approve_action.html.twig b/templates/admin/approve_action.html.twig
 new file mode 100644
 index 0000000..1095396
 --- /dev/null
-+++ b/templates/admin/crud/approve_action.html.twig
++++ b/templates/admin/approve_action.html.twig
 @@ -0,0 +1,4 @@
 +{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
 +{# @var action \EasyCorp\Bundle\EasyAdminBundle\Dto\ActionDto #}

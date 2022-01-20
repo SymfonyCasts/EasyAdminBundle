@@ -1,7 +1,7 @@
-diff --git a/templates/admin/crud/approve_action.html.twig b/templates/admin/crud/approve_action.html.twig
+diff --git a/templates/admin/approve_action.html.twig b/templates/admin/approve_action.html.twig
 index 1095396..f340729 100644
---- a/templates/admin/crud/approve_action.html.twig
-+++ b/templates/admin/crud/approve_action.html.twig
+--- a/templates/admin/approve_action.html.twig
++++ b/templates/admin/approve_action.html.twig
 @@ -1,4 +1,6 @@
  {# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
  {# @var action \EasyCorp\Bundle\EasyAdminBundle\Dto\ActionDto #}

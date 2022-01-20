@@ -551,6 +551,11 @@
             "description": null
         },
         {
+            "id": "permissions-also-batch-delete",
+            "name": "Permissions: Also BATCH_DELETE",
+            "description": null
+        },
+        {
             "id": "permissions-isgranted",
             "name": "Permissions: IsGranted()",
             "description": null
@@ -861,6 +866,11 @@
             "description": null
         },
         {
+            "id": "get-custom-action-use-on-2-pages",
+            "name": "GET custom action: use on 2 pages",
+            "description": null
+        },
+        {
             "id": "post-custom-action-create-approve-action",
             "name": "POST custom action: Create approve action",
             "description": null
@@ -1036,5 +1046,5 @@
             "description": null
         }
     ],
-    "sha": "27d08cb1620bafdde2477fa9b0803f81213b4423"
+    "sha": "03b7437a4e77272bae3b4c453a338a2b342488e8"
 }

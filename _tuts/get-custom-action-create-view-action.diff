@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index e1ec14d..9f66d23 100644
+index e3b9fcd..565a94a 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -35,6 +35,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -37,6 +37,8 @@ class QuestionCrudController extends AbstractCrudController
  
      public function configureActions(Actions $actions): Actions
      {
@@ -11,10 +11,10 @@ index e1ec14d..9f66d23 100644
          return parent::configureActions($actions)
              ->update(Crud::PAGE_INDEX, Action::DELETE, static function(Action $action) {
                  $action->displayIf(static function (Question $question) {
-@@ -48,7 +50,7 @@ class QuestionCrudController extends AbstractCrudController
-             ->setPermission(Action::EDIT, 'ROLE_MODERATOR')
+@@ -51,7 +53,7 @@ class QuestionCrudController extends AbstractCrudController
              ->setPermission(Action::NEW, 'ROLE_SUPER_ADMIN')
              ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN')
+             ->setPermission(Action::BATCH_DELETE, 'ROLE_SUPER_ADMIN')
 -            ->add(Crud::PAGE_DETAIL, 'view');
 +            ->add(Crud::PAGE_DETAIL, $viewAction);
      }

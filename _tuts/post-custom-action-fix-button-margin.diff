@@ -1,12 +1,12 @@
-diff --git a/templates/admin/crud/approve_action.html.twig b/templates/admin/crud/approve_action.html.twig
-index f340729..2f1c481 100644
---- a/templates/admin/crud/approve_action.html.twig
-+++ b/templates/admin/crud/approve_action.html.twig
+diff --git a/templates/admin/approve_action.html.twig b/templates/admin/approve_action.html.twig
+index f340729..dff95a8 100644
+--- a/templates/admin/approve_action.html.twig
++++ b/templates/admin/approve_action.html.twig
 @@ -1,6 +1,6 @@
  {# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
  {# @var action \EasyCorp\Bundle\EasyAdminBundle\Dto\ActionDto #}
  {# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
 -<form action="{{ action.linkUrl }}" method="POST">
-+<form action="{{ action.linkUrl }}" method="POST" style="margin-right: 10px">
++<form action="{{ action.linkUrl }}" method="POST" class="me-2">
      {{ include('@EasyAdmin/crud/action.html.twig') }}
  </form>

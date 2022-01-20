@@ -1,10 +1,10 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 6342211..3e3d4bd 100644
+index 8b41026..642faa5 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -95,7 +95,14 @@ class QuestionCrudController extends AbstractCrudController
-             ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN')
+@@ -99,7 +99,14 @@ class QuestionCrudController extends AbstractCrudController
              ->add(Crud::PAGE_DETAIL, $viewAction)
+             ->add(Crud::PAGE_INDEX, $viewAction)
              ->add(Crud::PAGE_DETAIL, $approveAction)
 -            ->add(Crud::PAGE_INDEX, $exportAction);
 +            ->add(Crud::PAGE_INDEX, $exportAction)

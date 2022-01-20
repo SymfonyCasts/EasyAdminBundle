@@ -14,10 +14,10 @@ index 6f0df13..a315dca 100644
          yield MenuItem::linkToCrud('Topics', 'fas fa-folder', Topic::class);
          yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index beb82d1..1c5db2f 100644
+index 4fbed13..2884c46 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -33,7 +33,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -35,7 +35,7 @@ class QuestionCrudController extends AbstractCrudController
      public function configureActions(Actions $actions): Actions
      {
          return parent::configureActions($actions)

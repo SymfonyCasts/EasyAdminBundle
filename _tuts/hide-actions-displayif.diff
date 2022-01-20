@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 3f82b61..f9bb4c4 100644
+index 1e66d99..c482097 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -37,7 +37,9 @@ class QuestionCrudController extends AbstractCrudController
+@@ -39,7 +39,9 @@ class QuestionCrudController extends AbstractCrudController
      {
          return parent::configureActions($actions)
              ->update(Crud::PAGE_INDEX, Action::DELETE, static function(Action $action) {

@@ -1,13 +1,15 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 114d6fe..9adf674 100644
+index dcd1375..0a96f99 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -21,9 +21,19 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+@@ -21,11 +21,21 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
  use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
  use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
  use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 +use Symfony\Component\HttpFoundation\RequestStack;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  
+ #[IsGranted('ROLE_MODERATOR')]
  class QuestionCrudController extends AbstractCrudController
  {
 +    private AdminUrlGenerator $adminUrlGenerator;

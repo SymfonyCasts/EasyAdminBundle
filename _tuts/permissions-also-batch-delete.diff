@@ -1,14 +1,14 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 84bbfa1..e3b9fcd 100644
+index beb82d1..3c6fa2e 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -50,7 +50,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -37,7 +37,8 @@ class QuestionCrudController extends AbstractCrudController
+             ->setPermission(Action::DETAIL, 'ROLE_MODERATOR')
              ->setPermission(Action::EDIT, 'ROLE_MODERATOR')
              ->setPermission(Action::NEW, 'ROLE_SUPER_ADMIN')
-             ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN')
--            ->setPermission(Action::BATCH_DELETE, 'ROLE_SUPER_ADMIN');
-+            ->setPermission(Action::BATCH_DELETE, 'ROLE_SUPER_ADMIN')
-+            ->add(Crud::PAGE_DETAIL, 'view');
+-            ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN');
++            ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN')
++            ->setPermission(Action::BATCH_DELETE, 'ROLE_SUPER_ADMIN');
      }
  
      public function configureFields(string $pageName): iterable

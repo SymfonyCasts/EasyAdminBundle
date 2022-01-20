@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 9bf841d..c9ecb11 100644
+index 85dd156..c0597ba 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -44,7 +44,10 @@ class QuestionCrudController extends AbstractCrudController
+@@ -46,7 +46,10 @@ class QuestionCrudController extends AbstractCrudController
              ->addCssClass('btn btn-success')
              ->setIcon('fa fa-eye')
              ->setLabel('View on site');

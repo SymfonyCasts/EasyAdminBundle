@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 8ced079..905115e 100644
+index 64a1846..302bc45 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -138,7 +138,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -142,7 +142,8 @@ class QuestionCrudController extends AbstractCrudController
              ->setPermission('ROLE_SUPER_ADMIN');
          yield FormField::addPanel('Details')
              ->collapsible()

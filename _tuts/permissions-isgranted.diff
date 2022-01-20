@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index beb82d1..1e01f64 100644
+index 3c6fa2e..0d23ec0 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -13,7 +13,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;

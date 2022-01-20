@@ -1,14 +1,14 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 44d4ae5..485ca23 100644
+index 06fb30b..41f107e 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -36,8 +36,10 @@ class QuestionCrudController extends AbstractCrudController
+@@ -38,8 +38,10 @@ class QuestionCrudController extends AbstractCrudController
      public function configureActions(Actions $actions): Actions
      {
          $viewAction = Action::new('view')
--            ->linkToUrl(function () {
+-            ->linkToUrl(function() {
 -                dd(func_get_args());
-+            ->linkToUrl(function (Question $question) {
++            ->linkToUrl(function(Question $question) {
 +                return $this->generateUrl('app_question_show', [
 +                    'slug' => $question->getSlug(),
 +                ]);

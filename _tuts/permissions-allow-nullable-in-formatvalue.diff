@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 352ef21..74b7edc 100644
+index d1a8305..a2bd822 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -70,8 +70,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -73,8 +73,8 @@ class QuestionCrudController extends AbstractCrudController
              ->setPermission('ROLE_SUPER_ADMIN');
          yield AssociationField::new('askedBy')
              ->autocomplete()
