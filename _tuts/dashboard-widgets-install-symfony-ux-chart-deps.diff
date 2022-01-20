@@ -1,5 +1,5 @@
 diff --git a/assets/controllers.json b/assets/controllers.json
-index a1c6e90..fb0dbf0 100644
+index a1c6e90c..fb0dbf01 100644
 --- a/assets/controllers.json
 +++ b/assets/controllers.json
 @@ -1,4 +1,11 @@
@@ -16,7 +16,7 @@ index a1c6e90..fb0dbf0 100644
      "entrypoints": []
  }
 diff --git a/composer.json b/composer.json
-index ca70882..5fd4997 100644
+index ca708824..5fd4997d 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -25,6 +25,7 @@
@@ -28,7 +28,7 @@ index ca70882..5fd4997 100644
          "symfony/yaml": "6.0.*",
          "twig/extra-bundle": "^2.12|^3.0",
 diff --git a/composer.lock b/composer.lock
-index 7c6eb97..ea7794e 100644
+index 7c6eb970..ea7794ed 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -132,7 +132,7 @@ index 7c6eb97..ea7794e 100644
              "name": "symfony/var-dumper",
              "version": "v6.0.2",
 diff --git a/config/bundles.php b/config/bundles.php
-index 17fba26..d5084e9 100644
+index 17fba260..d5084e93 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -19,4 +19,5 @@ return [
@@ -142,7 +142,7 @@ index 17fba26..d5084e9 100644
 +    Symfony\UX\Chartjs\ChartjsBundle::class => ['all' => true],
  ];
 diff --git a/package.json b/package.json
-index 19278d4..40b271b 100644
+index 19278d44..40b271b3 100644
 --- a/package.json
 +++ b/package.json
 @@ -3,9 +3,11 @@
@@ -158,7 +158,7 @@ index 19278d4..40b271b 100644
          "jquery": "^3.6.0",
          "regenerator-runtime": "^0.13.2",
 diff --git a/symfony.lock b/symfony.lock
-index 37ff9e3..63776aa 100644
+index 37ff9e34..63776aa4 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -455,6 +455,9 @@
@@ -172,7 +172,7 @@ index 37ff9e3..63776aa 100644
          "version": "v6.0.1"
      },
 diff --git a/yarn.lock b/yarn.lock
-index 2bf9150..2a152f7 100644
+index 2bf9150e..2a152f7f 100644
 --- a/yarn.lock
 +++ b/yarn.lock
 @@ -949,6 +949,9 @@

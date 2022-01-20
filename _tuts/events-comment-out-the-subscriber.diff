@@ -1,5 +1,5 @@
 diff --git a/src/EventSubscriber/BlameableSubscriber.php b/src/EventSubscriber/BlameableSubscriber.php
-index 12c93d5..a809245 100644
+index 12c93d55..a8092450 100644
 --- a/src/EventSubscriber/BlameableSubscriber.php
 +++ b/src/EventSubscriber/BlameableSubscriber.php
 @@ -36,7 +36,7 @@ class BlameableSubscriber implements EventSubscriberInterface

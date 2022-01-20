@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 592722e..d288f9b 100644
+index 592722e0..d288f9bf 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -9,6 +9,7 @@
@@ -11,7 +11,7 @@ index 592722e..d288f9b 100644
          "knplabs/knp-time-bundle": "^1.11",
          "sensio/framework-extra-bundle": "^6.0",
 diff --git a/composer.lock b/composer.lock
-index c2a341a..e2fdedd 100644
+index c2a341af..e2fdeddf 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -652,7 +652,7 @@ index c2a341a..e2fdedd 100644
              "name": "symfony/var-dumper",
              "version": "v6.0.2",
 diff --git a/config/bundles.php b/config/bundles.php
-index 137cdd0..17fba26 100644
+index 137cdd08..17fba260 100644
 --- a/config/bundles.php
 +++ b/config/bundles.php
 @@ -18,4 +18,5 @@ return [
@@ -662,7 +662,7 @@ index 137cdd0..17fba26 100644
 +    EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
  ];
 diff --git a/symfony.lock b/symfony.lock
-index e5ea1d7..5d4df71 100644
+index e5ea1d7e..5d4df71a 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -100,6 +100,15 @@

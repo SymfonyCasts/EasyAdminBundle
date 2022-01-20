@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index b0ef4a3..b9c1f9b 100644
+index b0ef4a36..b9c1f9b8 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -8,6 +8,7 @@ use App\Entity\Topic;

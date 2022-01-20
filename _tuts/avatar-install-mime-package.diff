@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index d288f9b..ca70882 100644
+index d288f9bf..ca708824 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -19,6 +19,7 @@
@@ -11,7 +11,7 @@ index d288f9b..ca70882 100644
          "symfony/runtime": "6.0.*",
          "symfony/security-bundle": "6.0.*",
 diff --git a/composer.lock b/composer.lock
-index e2fdedd..7c6eb97 100644
+index e2fdeddf..7c6eb970 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -206,7 +206,7 @@ index e2fdedd..7c6eb97 100644
              "name": "symfony/polyfill-intl-normalizer",
              "version": "v1.24.0",
 diff --git a/symfony.lock b/symfony.lock
-index 5d4df71..37ff9e3 100644
+index 5d4df71a..37ff9e34 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -308,6 +308,9 @@
