@@ -44,7 +44,7 @@ So let's secure it! I'll also do this with annotations. I already have SensioFra
 
 So to log in, if you open `src/DataFixtures/AppFixtures`, I have a bunch of dummy users in the database. There is a super admin, a normal admin, and then somebody known as a moderator. We'll talk more about those later, when we get deeper into how to secure different parts of your admin with different roles.
 
-I'll log in with "admin@example.com"... password "admin password"...
+I'll log in with `admin@example.com`... password adminpass`, and... beautiful!
 
 And... beautiful! Now we're back to our dashboard!
 
