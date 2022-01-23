@@ -1,86 +1,29 @@
 # Fields
 
-Coming soon...
+Okay, let's open up the "User's" section. EasyAdmin has a concept of fields. A field controls how a property is displayed on the index page, but also how it's displayed inside of a form. So the field completely defines that field inside the admin. By default, EasyAdmin just guesses which fields to include on the index page and form, but *usually*, you'll want to control this. How? Via the `configureFields()` method in the CRUD controller. In this case, open `UserCrudController.php`... and you can already see that it's so common, it has already generated a `configureFields()` inside of here. I'm going to uncomment that.
 
-Okay, let's open up the user's section. Easy admin has a concept of fields, a field
-controls, how a property is displayed on the index page, but also how it's displayed
-inside of a form. So the field completely defines it completely defines that field
-inside the admin by default, easy admin, just guesses, which fields to include on the
-index page and on the form. But usually you'll want to control this how via the
-configure fields method in the credit controller. So in this is open user credit
-controller and you can actually already see it's so common that it generates a
-configure fields inside of here. So I'm gonna uncommon that. And for now you notice
-that you can either return an array or you can return an Iterable. I usually return
-an ITER role by saying yield. So right now I'm just going to one field. I'm gonna
-say, yield field, colon new. That's how you create a new field. And here you put like
-the property name for that. So ID all right. When I refresh, we have ID and nothing
-else.
+For now, you'll notice that you can either return an array or an iterable. I usually return an iterable by saying `yield Field::new()` and give it the property name `'id'`.
 
-Now there in easy admin, there are many, many different types of fields like text
-fields, uh, boo fields and association fields. And it does its best to guess which
-type to use. So in this case, you can't really see it. But when we said ID, it is
-guessing that this is an ID field. So instead of just saying field, call new and
-letting it guess what I usually do is tell the exact field type I want. So you'll
-notice here when I change it in refresh. That makes absolutely no difference because
-it was already guessing that this is an, an ID field type.
+When I refresh... we have "ID" and nothing else.
 
-So how do we figure out what all the field types are? Well, of course, documentation
-is one way. If you look on the web deal of a toolbar, there's actually a little easy
-admin tool bar. You can click into that and show you some basic information about
-what's going on and has a link to the document. So I'm gonna open this and kind of
-keep it handy inside of here. It has a field section and down here, field types. So
-there is your big list of all of the different field types inside of easy admin. Or
-if you want, you can go directly and look at the library. So vendor easy Corp, easy
-admin bundle source field, and here is the entire directory full of all of the
-different fields you can have. So let's add a few more fields inside of here. So if
-you look in the user entity, you can see of ID, email roles, password enabled, first
-name, last time avatar, and then a couple of association fields. So let's add a
-couple more fields for some of those. So I'm going to yield a text field, one of the
-most basic fields, call on call new for first name,
+In EasyAdmin, there are *many* different types of fields, such as text fields, boolean fields, and association fields, and it does its best to guess which type to use. In this case, you can't really see it, but when we said `'id'`, it's guessing that this is an `IdField`. So instead of just saying `Field::new()` and letting it guess, what I prefer to do is state the exact field type I want. Notice when I change it and refresh... that makes absolutely no difference because it was already guessing that this is an `IdField` type.
 
-Repeat that for last name. And then for that enabled field, I'm going to yield a buoy
-field, new enabled. Then finally I have a created at field inside of there. So I'll
-yield a date, field calling new, and then it's called my property is called created
-at so I'm just listening to same properties that I have here inside of my I entity.
-You don't see created ad only because I'm getting it from this timetable entity trait
+how do we figure out what all of the field types are? Documentation is the most obvious way. If you look on the web debug toolbar, there's a little EasyAdmin tool bar. Click into that and it will show you some basic information about what's going on. It also has a link to the document. I'll open this and keep it handy. It has a field section and down here, field types. So there's your big list of all of the different field types inside of EasyAdmin. *Or*, if you want, you can go directly to library, which is in `/vendor/easycorp/easyadmin-bundle/src/Field`. *Here* is the entire directory full of all of the different fields you can have. Let's add a few more fields inside of here.
 
-Anyways, with just this config here, if we move over and refresh beautiful. So the
-text renders like a text date knows how to handle date fields and the buoyant field
-gives us this nice little, uh, switcher. So as a challenge instead of rendering the
-first name and the last name columns, could we combine this into a single full name
-field? Well, let's try it. I'm gonna say yield full, full name inside of here. Now
-this is not a real property. If I go over to user, there is no full name property,
-but I do have inside of here a get full name method. So the question is, is it gonna
-be, be smart enough because I have full name here to read this, get full name method.
-And I bet, you know, the answer it does behind the scenes, easy admin uses the
-property accessor component of Symfony. It's the same component that's used inside of
-its form system. And it's really good at doing things like you giving it full name
-and it figuring out that it can access it via a get full name method. So back in
-configure fields,
+If you look in the `User.php` entity, you can see `$id`, `$email`, `$roles`, `$password`, `$enabled`, `$firstName`, `$lastName`, `$avatar`, and then a couple of association fields. Let's add a couple more fields for some of those. I'll `yield TextField::new('firstName')`... repeat that for `$lastName`... and then for that `$enabled` field, I'm going to `yield BooleanField::new('enabled')`. Finally, I have a `$createdAt` field inside here, so I'll `yield DateField::new()`, and then my property is called `'createdAt'`. So I'm just listing the same properties that I have here inside of my entity. You don't see `$createdAt` here only because I'm getting it from this `TimestampableEntity` trait.
 
-I,
+Anyways, with just this config, if we move over and refresh... beautiful! The text renders like a text, date knows how to handle date fields, and the boolean field gives us this nice little switch.
 
-One field I forgot to put was email. So I'm gonna yield text, field, call, new email,
-and no surprise over here. It renders correctly, but this is a case where if you
-want, there's actually a more specific field for that. It is email field. And the
-only difference it makes is it renders with a link to that. And also if we look at
-the form
+As a challenge, instead of rendering the "First Name" and "Last Name" columns, could we combine this into a single "Full Name" field? Let's try it!
 
-And when you look at the form, it's now gonna be rendering as an input type = email.
-Now the real power of the fields is that you can configure each one of these further.
-Some options on these are shared by all types. Like for example, you can call arrow,
-add CSS class to any field, to add a CSS class to it. That's a super handy thing, but
-some options are specific to the field type itself. For example, boo field has a
-render as switch method and we can pass this false. What this tells it to do is
-instead of running the school a switch thing, it's not, I'm just going to say yes,
-which is probably a good idea because it was pretty easy to disable a user from this,
-um, menu a few seconds ago. So this is great. We can control which fields are shown.
-And we know that there are methods you can call on each field object to configure its
-behavior. We're remember fields control, both how things are rendered on the index
-page and how they're rendered on the form. So right now, if we go to the form, yeah,
+I'll say `yield` `fullName` right here. This is not a real property. If I go over to `User.php`, the `$fullName` property does not exist. *But*, I do have a `getFullName()` method. So the question is: Will it be smart enough - because I have `'fullName'` here - to read this `getFullName()` method? And (I bet, you know the answer)... it does!
 
-That's what I expected. These are the five fields that we've configured though. It's
-not perfect for one. I do like having an ID column on my index page, but I do not
-like having an ID field in my form. So next let's learn how to show certain fields
-only on certain pages and a few more tricks for configuring them.
+Behind the scenes, EasyAdmin uses the `PropertyAccessor` component of Symfony. It's the same component that's used inside of its form system, and it's really good at doing things like what we just did.
 
+Back in `configureFields()`, I forgot to add an "email" field, so I'll say `yield TextField::new('email')`. And, no surprise, over here... it renders correctly. *But*, this is a case where, if you want, there's actually a more specific field for that: `EmailField`. The only difference it makes is that it renders with a link to each email. When you look at the form, it will now be rendering as an `<input type="email">`.
+
+The real power of fields is that you can configure each one of these further. Some options for these are shared by all types. For example, you can call `->addCssClass()` to any field to add a CSS class to it. That's a super handy thing, *but* some options are specific to the field type itself, such as `BooleanField` has a `->renderAsSwitch()` method and we can pass this `false`. Now, instead of running this little switch, it just says "YES". This is probably a good idea because it was pretty easy to disable a user from this menu earlier.
+
+This is great! We can control which fields are shown, *and* we know that there are methods you can call on each field object to configure its behavior. But remember, fields control both how things are rendered on the index page *and* how they're rendered on the form. Right now, if we go to the form... yeah. That's what I expected. These are the five fields that we've configured. It's not perfect, though. I *do* like having an "ID" column on my index page, but I do *not* like having an "ID" field in my form.
+
+So next, let's learn how to *only* show certain fields on certain pages. We'll also learn a few more tricks for configuring them.
