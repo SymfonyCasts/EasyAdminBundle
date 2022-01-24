@@ -19,3 +19,16 @@ chapters:
     - dashboard-page
     - override-template
     - permissions
+    - entity-permissions
+    - voter
+    - filters
+    - multiple-crud
+    - events
+    - sub-menu
+    - conditional-action
+    - dynamic-disable-action
+    - get-action
+    - post-action
+    - global-action
+    - twig-url
+    - form-panels
