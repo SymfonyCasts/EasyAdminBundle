@@ -1,171 +1,71 @@
-# Crud Controller
+# CRUD Controller
 
-Coming soon...
+The true reason you use EasyAdmin is for its CRUD controllers. Each CRUD controller will give us a rich set of pages to create, read, update, and delete a single entity. This is where EasyAdmin shines, and the next few minutes are going to be critically important to understanding how EasyAdmin works.
 
-The true reason you use easy admin is for its crud controllers. Each crud controller
-will give us a rich set of pages to create, read, update, and delete a single entity.
-This is where easy admin shines and the next few minutes are gonna be critically
-important to understanding how easy admin works. So we have four entities let's
-generate a crud controller. First for question to do that. Find a terminal on Symfony
-console. So bin console make admin crud. As you can see, it recognizes our four
-entities. I'll hit one for question. Let this generate into the default directory and
-with default namespace. Sweet. This did exactly one thing. It graded a new question.
-Crud controller file.
+We have four entities, so let's generate a CRUD controller. We'll do that for `Question` first. Find a terminal and run:
 
-So let's go open that up now, before we look too deeply into this head over to the
-admin page and refresh two C absolutely no difference. We do have a new question
-credit controller, but these credit controllers are kind of useless until you link to
-them from a dashboard. So back over on a dashboard and troller down at the bottom
-yield menu item, but instead of link to dashboard, there's a number of other things
-that you can link to. What we wanna do is link to crud. We're gonna pass this a
-couple things, the label. So questions in icon. So Fafa dash question dash circle.
-That's a fun, awesome icon. And then most importantly, the entity's, uh, class name.
-So question Colin class behind the scenes, easy. Admin's gonna recognize that there's
-only one crud dashboard for this entity, which is question crud controller, and it
-will know to use this. And yes, in theory, you can have multiple crud control,
-thrillers per entity, and that's something we'll talk about later. All right, so now
-refresh new link, click and whoa. This is super cool. We have an is approved slider,
-which saves automatically love that we have a search on, on top love. That also will
-also sortable columns.
+```
+symfony console make:admin:crud
+```
 
-We can edit. We can delete the edit even has a cool calendar. I mean, already we are
-absolutely loaded with cool stuff. It's pretty freaking cool. So let's repeat this
-for our other three controllers. So I'll head back to my terminal run Symfony
-console, make admin credit again, let's get one for answer with the defaults stuff.
-One for topic with the default stuff. I'm gonna clear my screen again. And the last
-one we need is for user beautiful. So no surprise. The only thing I did is it created
-three more of these crud controller classes, but to make those useful, we need to
-link to them. So I'm going to paste three more links here. Let's say answers And I'll
-fill in some And I'll customize each of these links. Beautiful. And I wanna refresh,
-yes, we have instantly four different admin sections. All right. So I wanna just look
-a little deeper into how this is working behind the scenes. So go to question crud
-controller and look at its base class. So I'll hold commander control and jump into
-abstract crud controller. So we saw earlier at our dashboard extends in abstract
-dashboard controller. Our crud controllers extend as abstract crud controller.
+As you can see, it recognizes our four entities. I'll hit 1 for `App/Entity/Question`. Let this generate into the default directory and with default namespace.
 
-So pretty much everything about how our crud controller works is going to be
-controlled by overriding, uh, these configure methods that you see inside of here.
-We're gonna talk about, we're gonna learn about all these as we go along, but on a
-high level, configure crud is to help you configure the entire crud section.
-Configure assets allows you to control custom CSS and JavaScript in this section,
-configure actions allows you to control. So what actions you want, which are things
-like having an index page, having an edit action or having a delete action more on
-that later.
+Sweet! This did exactly one thing. It created a new `QuestionCrudController` file. Let's go open that up.
 
-And then really the last important one is configure fields, which is gonna configure
-which fields we see on the index page and also which fields we see on the form. But
-don't worry about those specifically yet, because we're gonna see all those later
-then below this, you can actually see all of the code that executes the pages. So
-index is our index page. Uh, detail is a detail show page, uh, edit is the edit form.
-So you can see the code that actually runs behind all of this, which is super useful
-way to figure out how to extend things. Now, wait a second, though, because if you
-scroll back up here to the configure methods, some of these configure methods look
-familiar. Some of these also exist in the dashboard based controller class,
-specifically configure assets, configure crud, configure actions, and configure
-filters. These all live side of dashboard inside of abstract dashboard controller,
-there's configure assets, and then further down here, crud actions and filters. So
-what's going on.
+Before we look too deeply into this, head over to the admin page and refresh to see... absolutely no difference. We *do* have a new `QuestionCrudController`, but these CRUD controllers are kind of useless until you link to them from a dashboard. So, back over on a `DashboardController`, down at the bottom... `yield MenuItem`, but instead of `linkToDashboard`, there's a number of other things that you can link to. We want to `linkToCrud`. We're gonna pass this a couple things: The label... so `questions`... and an icon, `fa fa-question-circle`. That's a FontAwesome icon. And then, most importantly, the entity's class name. So `Question::class`. Behind the scenes, EasyAdmin's going to recognize that there's only one CRUD dashboard for this entity, which is `QuestionCrudController`, and it will know to use this. And yes, in theory, you can have multiple CRUD controllers per entity. That's something we'll talk about later.
 
-All right. Here's what's going on. And it is, are important. Look at the URL that
-we're on. Quick questions. Look at the URL up here. It starts with /admin and then a
-bunch of query parameters turns out that everything in easy admin is handled via a
-single giant route. Everything runs through the dashboard controller, route the
-/route, the route that's above the index. So when we go to the question credit
-controller, it's actually matching this route right here with extra query parameters
-to say which crud controller and which action runs. You can see crud controller, peer
-and crud action right there.
+Okay, go refresh to reveal our new link, click and... whoa! This is super cool! We have an `isApproved` slider, which saves automatically. We also have a search bar on top... and sortable columns to help us find whatever we're looking for.
 
-So we're rendering. When we go here, we're rendering question, crud controller, but
-in the context of our dashboard controller, anyways, when we go to this page in order
-to get the crud config, easy admin first calls, configure crud on our dashboard, and
-then it calls configure crud on our specific ride controllers. In this case question,
-crud controller, this is super powerful. It means that we can override things on a
-dashboard level, like set some crud settings that apply to all sections or for one
-specific, uh, crud controller. Watch I'll prove it. So back in abstract, uh,
-dashboard controller, configure crud, uh, everyd area has four pages. I'm actually
-gonna hold command and open this crud thing. There's some constants on the top of
-here. So every crud section has an index page. That's this in edit page, a new page,
-and also a detail page. Each page can then refer to a set of actions. These are links
-or buttons. So for example, on the index page, right now, we have an action for a new
-action. We have an action for editing and we have an action for deleting and we could
-configure, we could add more actions or remove those actions.
+We can edit, delete the edit, and it even has a nice calendar. We are absolutely loaded with awesome features. It's pretty cool! So let's repeat this for our other three controllers.
 
-All, you can see how this is configured down and configure actions. So this is for
-the dashboard. So this is the conf action configuration that applies to all of our
-sections. You can see that for the index page. It acts adds new edit and delete
-actions for the detail page there's there's edit index and delete. And if you're on
-the edit page, you of the actions save and return and save and continue. So one thing
-you notice if you look closely here is that we do have a detail page, but nobody
-actually links to it. You don't see page detail. Um, you don't see action calling,
-calling detail, uh, on any of these pages. So the page exists, but it's not really
-used out of the box. So let's add that. What we're gonna do is we're gonna go to
-dashboard controller and it doesn't matter where, but I'll go down to the bottom. I'm
-going to go to co generate or command and on the Mac go to override method and
-override configure CRUT. So first thing we do wanna call parent configure CRUT. So it
-can instant that object. And then we're gonna say, add, oh my bad.
+I'll head back to my terminal and run:
 
-So actually we wanna go to override methods and we wanna do configure actions. So we
-do wanna call the parent methods that I can create that the actions object, and, um,
-set up all those actions, default actions for us. Now we're gonna say add, and what
-we're gonna do is we're gonna add an action to our index page. So we can use that Cru
-class call on page index. So we're in, and then the action we're gonna add. We can
-actually use a constant for this as well. Action, colon, colon detail. So on the
-index page, I want to add the action, the detail action. The result of this, when we
-refresh the question credit controller is that we have this show link that goes to
-the detail action, and we can go to any section. And it now as that, we just modified
-every single credit controller in the system. But now since this topic, uh, entity is
-so simple, let's disable the Cru the detail action for just this topic section. So to
-do that, open up topic, crowd controller, and just like before, we're gonna go to co
-generate or command M the Mac go to override methods and override that same configure
-actions.
+```terminal
+Symfony console make:admin:crud
+```
 
-So by the time this method is called, it's gonna pass us. The actions of that was
-already set up by our dashboard. So it's already, already going to have the detail
-action enabled for the index page, but now we can control that by saying disable
-action co detail. We're gonna talk more about the actions configuration, but these
-are the main things that you can do inside of them. You can add a new action to a
-page, or you can just completely disable an action globally for all of your, uh,
-pages. So as soon as we refresh here, as our detail action is gone, but if, if we go
-to our other sections, it's still there.
+Once again, let's get one for `Answer` with the defaults stuff... And one for `Topic` with the default stuff. I'll clear my screen... And the last one we need is for `User`.
 
-So the big takeaway here is that everything is going through our dashboard
-controller, which means that we can configure things on a dashboard level, which will
-apply to all of our crus, or we can configure things for one specific crud. Now, the
-fact that all of the crud controllers go through this /avenue, where all has one
-other effect related to security, it means that all of our controllers are already
-secure that's thanks to our access control. So remember back in config packages
-secure to that YAML, we had a little access control here that said if the URL starts
-to /admin require roll_admin. So all of these are automatically now without doing
-anything else, requir role admin, we'll talk more later about how to secure different
-admin controllers with different roles, but at the very least, you have to have role
-admin to get anywhere, which is awesome. But one important point, adding this access
-control was necessary. Here's a, even though the URL is /admin, when you go to a crud
-control like this, it does not exit cute our dashboard controller index action. So
-this is a little bit confusing.
+Beautiful! The only thing it did is add three more of these CRUD controller classes, but to make those useful, we need to link to them. So, I'm going to paste three more links here. Let's say `Answers`... And I'll customize each of these links.
 
-This action here is what has our route.
+Nice! I'll refresh... and look! We now have four different admin sections.
 
-When we go to a crowd controller like this, it does match this route, but easy admin
-does something crazy. Instead of allowing Symfony to call this controller. It sees
-these crud, this crud controller query parameter here and magically switch is the
-controller to be the real controller. In this case, to be question crowd controller
-index, you can actually see this down here on the web Depot toolbar. If you hover
-over these a admin at admin, tell this tells you that the route name is admin. So the
-route name is actually this route right here, but the controller is question crud
-controller, call on call an index. So there's some route magic happening, but
-ultimately the methods in your crud controller are the ones that are called. So it's
-the index method in this abstract crud controller down here. This is actually the
-real roller for the page. This is important for security, just because if we had only
-put the route and the route attribute above index and not added and not added the
-access control, that wouldn't have been enough
+All right, I want to look just a little deeper into how this is working behind the scenes. Go to `QuestionCrudController` and look at its base class. Hold "cmd" or "ctrl" and jump into `AbstractCrudController`. We saw earlier that our dashboard extends an `AbstractDashboardController`. Our CRUD controllers extend an `AbstractCrudController`.
 
-<affirmative>
+Pretty much everything about how our CRUD controller works is going to be controlled by overriding these configure methods that you see inside of here. We'll learn about all of these as we go along. But on a high level, `configureCrud` is here to help you configure the entire CRUD section, `configureAssets` allows you to control custom CSS and JavaScript in this section, and `configureActions` allows you to control the actions you want, which are things like having an index page, having an edit action, or having a delete action. More on that later.
 
-Because This controller and therefore this, sorry, this is granted attribute is only
-enforced when you actually go to your dashboard page. Anyways, some of that is still
-a little fuzzy. Don't worry. Stick with me. We're gonna keep going through self. That
-was a blast of sort of easy admin theory to help us understand things a little bit
-better as we dig further and next, before we go deeper into our credit controllers,
-let's, let's, let's mess around a bit more with our dashboard by adding some custom
-links to our menu and also our user menu.
+The last important one is `configureFields()`, which is going to configure which fields we see on both the index page and the form. But don't worry about those yet. We'll see all of them later.
 
+Then, below this, you can actually see all of the code that executes the pages. So `index` is our index page, `detail` is a detail show page, `edit` is the edit form.
+
+You can see the code that actually runs behind all of this, which is super useful when we're figuring out how to extend things. But... wait a second. If you scroll back up here to the configure methods, a few of these look familiar. Some of them *also* exist in the dashboard base controller class, specifically `configureAssets`, `configureCrud`, `configureActions`, and `configureFilters`. These all live inside of `AbstractDashboardController`. There's `configureAssets`, and then further down here, CRUD actions and filters.
+
+So what's going on?
+
+Click "Questions" and look at the URL. It starts with `/admin` and then a bunch of query parameters. Turns out, everything EasyAdmin is handled via a single giant route. It all runs through the `DashboardController` route - the `/` route that's above the index. So when we go to the `QuestionCrudController`, it's actually matching this route here with extra query parameters to say which CRUD controller and which action runs. You can see `crudController` and `crudAction` right there. We're rendering `QuestionCrudController`, but in the context of our `DashboardController`.
+
+Anyways, when we go to this page, in order to get the CRUD config, EasyAdmin first calls `configureCrud` on our dashboard. Then it calls `configureCrud` on our specific CRUD controllers. In this case, `QuestionCrudController` is super powerful. It means that we can override things on a dashboard level, like set some CRUD settings to apply to all sections or for one specific CRUD controller.
+
+I'll prove it! Go back to `AbstractDashboardController`. In `configureCrud`, every area has four pages. I'll hold "cmd" and click to open this `Crud` class. There's some constants on top here. Every CRUD section has an index page - that's this - an edit page, a new page, and also a detail page. Each page can then refer to a set of actions. These are links or buttons. For example, on the index page, right now, we have an action for editing and an action for deleting. We *could* add more actions or remove those actions.
+
+You can see how this is configured down in `configureActions`. This is for the dashboard, so this is the action configuration that applies to all of our sections. You can see that for the index page. It adds new "Edit" and "Delete" actions for the detail page. There's `EDIT`, `INDEX`, and `DELETE`. And if you're on the edit page, you have the actions `SAVE_AND_RETURN` and `SAVE_AND_CONTINUE`. One thing you'll notice if you look closely here is that we *do* have a detail page, but nobody actually links to it. You don't see an action calling `DETAIL` on any of these pages. So the page exists, but it's not really used out of the box. So let's add that. 
+
+We'll go to `DashboardController` and it doesn't matter where but I'll go down to the bottom. I'm going to go to "Code Generate" or "cmd + N" on a Mac, go to "Override Methods" and select `configureActions`. Now we want to call the parent method that can create the actions object and set up all of those default actions for us. To do that, add an action to our index page. Use `Crud::index` and then the action we're going to add. We can also use a constant for this: `Action::DETAIL`.
+
+So on the index page, I want to add the action and then the `DETAIL` action. The result of this, when we refresh the `QuestionCreditController`, is that we have this "Show" link that goes to the `DETAIL` action, and we can go to any section. 
+
+And just like that, we've modified every single credit controller in the system! Easy peasy! *But*, since this entity is so simple, let's disable the `DETAIL` action for just this topic section. To do that, open up `TopicCrudController.php`, and just like before, we'll go to "Code Generate" or "cmd + N" on a Mac and go to "Override Methods" and override `configureActions`.
+
+By the time this method is called, it will pass us the `Actions` object that was already set up by our dashboard. So it will already have the `DETAIL` action enabled for the index page. But *now*, we can control that by saying `->disable(Action::DETAIL)`.
+
+We'll talk more about the actions configuration, but these are the main things that you can do inside of them: You can add a new action to a page, *or* you can just completely disable an action globally for all of your pages. As soon as we refresh here, our `DETAIL` action is gone, but if we go to our other sections, it's *still* there.
+
+The big takeaway here is that everything is going through our `DashboardController`, which means that we can configure things on a dashboard level, which will apply to all of our CRUD, *or* we can configure things for one specific CRUD. The fact that all of the CRUD controllers go through this `/admin` URL, where all has one other effect related to security, means that all of our controllers are already secure. That's thanks to our `access_control`.
+
+Remember back in `config/packages/security.yaml`, we had a little access control here that said if the URL starts with `/admin`, require `roll_admin`. So all of these automatically, without doing anything else, require `role_admin`. We'll talk more later about how to secure different admin controllers with different roles, but at the very least, you have to have `role_admin` to get anywhere, which is awesome.
+
+But one important point: Adding this `access_control` was necessary. Why? This action here is what has our route. When we go to a CRUD controller like this, it does match this route, but EasyAdmin does something crazy. Instead of allowing Symfony to call this controller, it sees this `crudController` query parameter here and magically switches the controller to be the real controller - in this case, to be `QuestionCrudController` index. You can actually see this down here on the web debug toolbar. If you hover over "@admin", this tells you that the route name is "admin". So the route name is *actually* this route right here, but the controller is `QuestionCrudController::index`. There's some route magic happening, but ultimately the methods in your CRUD controller are the ones that are called. It's the index method in this abstract CRUD controller down here, which is the actual controller for the page. This is important for security, because if we had only put the route and the route attribute above index and not added the access control, that wouldn't have been enough. This `isGranted` attribute is only enforced when you actually go to your dashboard page.
+
+Anyways, some of that is still a little fuzzy. Don't worry. Stick with me, and we'll keep going through self. That was a blast of EasyAdmin theory to help us understand things a little bit better as we dig further.
+
+Next, before we go deeper into our credit controllers, let's mess around a bit more with our dashboard by adding some custom links to our admin menu and user menu.
