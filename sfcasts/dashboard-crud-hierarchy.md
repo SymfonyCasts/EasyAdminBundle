@@ -2,14 +2,15 @@
 
 The methods `configureAssets()`, `configureCrud()`, `configureActions()` and
 `configureFilters()` all live here inside of `AbstractCrudController`. And each
-will give us a way to control different parts of the CRUD section.
+gives us a way to control different parts of the CRUD section.
 
 But, these methods *also* live inside of `AbstractDashboardController`. Here's
-`configureAssets()`, and then further down, we see the method for, CRUD actions and
-filters.
+`configureAssets()`, and then further down, we see the methods for, CRUD, actions
+and filters.
 
-But... that doesn't make sense. The dashboard controller just renders... the dashboard.
-And it doesn't have any actions or any CRUD to configure. What's going on here?1
+But... that doesn't make sense! The dashboard controller just renders... the dashboard
+page. And that page doesn't have any actions or any CRUD to configure. What's going
+on here?
 
 ## One Route for All of your Admin
 
@@ -23,26 +24,27 @@ hiding in the URL. Yup, we're rendering `QuestionCrudController`, but in the *co
 of `DashboardController`.
 
 And when we go to this page, in order to get the CRUD config, EasyAdmin *first*
-calls `configureCrud()` on our *dashboard* controller. *Then* it calls `configureCrud()`
-on the specific CRUD controller, in this case, `QuestionCrudController`. This is
-*incredibly* powerful. It means that we can configure things inside of our dashboard -
-and have those apply to *all* sections in our admin - or configure things inside
-of one specific CRUD controller to only change the behavior for that *one* section.
+calls `configureCrud()` on our *dashboard* controller. *Then* it
+calls `configureCrud()` on the specific CRUD controller, in this case,
+`QuestionCrudController`. This is *incredibly* powerful. It means that we can
+configure things inside of our dashboard - and have those apply to *every* section
+in our admin - or configure things inside of one specific CRUD controller to only
+change the behavior for that *one* section.
 
 ## Understanding Pages and Actions
 
 We can prove it! Go back to `AbstractDashboardController`. Look at `configureCrud()`.
 Every CRUD section has four pages. Hold "cmd" or Ctrl and click to open this `Crud`
 class. Check out the constants on top. Every CRUD section has an index page -
-that's this - an edit page a new page, and also a detail page. Each page can then
+that's this - an edit page, a new page, and also a detail page. Each page can then
 have links and buttons to a set of *actions*. For example, on the index
 page, right now, we have an action for editing, an action for deleting... and also
-an action at the top to ad a *new* question. And, of course, this is all something
+an action on top to add a *new* question. And, of course, this is all something
 we can control.
 
 You can see how this is configured down in `configureActions()`. Because we're
 inside of the *dashboard* controller class, this is the default action configuration
-that applies to *every* CRUD section. You can see that for the index page, it adds
+that applies to *every* CRUD section. You can see that, for the index page, it adds
 `NEW`, `EDIT` and `DELETE` actions. For the detail page, there's `EDIT`, `INDEX`,
 and `DELETE`. And if you're on the edit page, you have the actions `SAVE_AND_RETURN`
 and `SAVE_AND_CONTINUE`.
@@ -50,18 +52,18 @@ and `SAVE_AND_CONTINUE`.
 ## Adding an Action Globally
 
 If you look closely, you'll notice that while we *do* have a detail page, nobody
-links to it. We don't see an action called `DETAIL` on any of these pages. So the
-page exists, but it's not really used out-of-the-box. Let's add it!
+links to it! We don't see an action called `DETAIL` on any of these pages. So the
+page exists, but it's not really used out-of-the-box. Let's change that!
 
 Go back to `DashboardController`. It doesn't matter where, but I'll go down to the
 bottom, go to "Code -> Generate" - or "cmd + N" on a Mac - click "Override Methods"
 and select `configureActions()`.
 
 We *do* want to call the `parent` method so that it can create the `Actions` object
-and set up all of those default actions for us. Let's link add a link to the "detail"
-page from the "index" page. In EasyAdmin language, this means we're going to add
-a `DETAIL` *action* to the index page. Do that by saying `->add()` and passing
-`Crud::index` and then the action: `Action::DETAIL`.
+and set up all of those default actions for us. Let's add a link to the "detail"
+page from the "index" page. In EasyAdmin language, this means we want to add
+a `DETAIL` *action* to the index page. Do that by saying `->add()`, passing the
+page name - `Crud::index` - and then the action: `Action::DETAIL`.
 
 Thanks to this, when we refresh the index page of `QuestionCrudController`... we
 have a "Show" link that goes to the `DETAIL` action! And you'll see this on
@@ -77,17 +79,17 @@ and select `configureActions()`.
 
 By the time this method is called, it will pass us the `Actions` object that was
 already set up by our dashboard. So it will already have the `DETAIL` action enabled
-for the index page. But *now*, we can control change that by saying
+for the index page. But *now*, we can change that by saying
 `->disable(Action::DETAIL)`.
 
 We'll talk more about the actions configuration later. But these are the main things
-that you can do inside of them: add a new action to a page, *or* you completely
-disable an action. Now, when we refresh here, our `DETAIL` action is gone! But if
+that you can do inside of them: add a new action to a page, *or* completely
+disable an action. Now, when we refresh, our `DETAIL` action is gone! But if
 we go to any other section, it's *still* there.
 
 The big takeaway is that everything is processed *through* our `DashboardController`,
 which means that we can configure things on a dashboard-level, which will apply to
-all of our CRUD, *or* we can configure things for one *specific* CRUD.
+all of our CRUDs, *or* we can configure things for one *specific* CRUD.
 
 ## Re-Visiting Securing your Admin
 
@@ -100,7 +102,7 @@ that said if the URL starts with `/admin`, require `ROLE_ADMIN`. This means that
 without doing *anything* else, *every* CRUD controller and action in our admin
 already requires `ROLE_ADMIN`. We'll talk more later about how to secure different
 admin controllers with different roles... but at the very least, you need to have
-`ROLE_ADMINB` to get anywhere, which is awesome.
+`ROLE_ADMIN` to get anywhere, which is awesome.
 
 But one important point: adding this `access_control` *was* necessary. Why? The
 `index()` action in our dashboard is what holds the *one* route. When we go to a
@@ -109,25 +111,25 @@ something crazy. Instead of allowing Symfony to call this controller, it sees th
 `crudController` query parameter and magically *switches* the controller to be
 the *real* controller. In this case, it changes it to `QuestionCrudController::index`.
 
-You can actually see this down on the web debug toolbar. If you hover over "@admin",
+You can see this down on the web debug toolbar. If you hover over "@admin",
 this tells you that the matched route name was `admin`. So, yes, the route *is*
 matching the main dashboard route. But the controller is
 `QuestionCrudController::index`.
 
-This means that, ultimately, the method in your CRUD controller is what Symfony
-calls. In this case, it's the `index()` method in this `AbstractCrudController` down
-here. *This* is the *real* controller for the page.
+This means that the method in your *CRUD* controller is what Symfony ultimately
+executes. In this case, it's the `index()` method in this `AbstractCrudController`...
+down here. *This* is the *real* controller for the page.
 
-Why does matter? First, it's nice to know that, even with all the EasyAdmin coolness
-and magic, at the end of the day, the actions in our controller are *real* actions
-that are called completely normally. And second, this is important for security.
-Because if we had *only* put the `IsGranted` above `index()` and *not* added the
-`access_control`, that would *not* have been enough. Why? Because this `isGranted`
-attribute is *only* enforced when you actually execute *this* action. So, when we
-go to the dashboard page.
+Why does that matter? First, it's nice to know that, even with all the EasyAdmin
+coolness and magic, at the end of the day, the actions in our controller are *real*
+actions that are called like any normal action. And second, this is important for
+security. Because if we had *only* put the `IsGranted` above `index()` and *not*
+added the `access_control`, that would *not* have been enough. Why? Because this
+`isGranted` attribute is *only* enforced when you execute *this* action. So, when
+we go to the dashboard page.
 
-Anyways, if some of this is still a bit fuzzy, now worries! This was a blast of
-EasyAdmin theory that'll help us understand things a better as we dig and experiment.
+Anyways, if some of this is still a bit fuzzy, no worries! This was a blast of
+EasyAdmin theory that'll help us understand things better as we dig and experiment.
 
 Next, before we go deeper into our CRUD controllers, let's mess around a bit more
 with our dashboard by adding some custom links to our admin menu and user menu.
