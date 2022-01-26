@@ -74,7 +74,7 @@ shiny new version *4* of EasyAdmin, which only works with Symfony 6. So if you'r
 Symfony 5, run:
 
 ```
-composer require admin:^3
+$ composer require admin:^3
 ```
 
 to get version 3. Right now, version 4 and version 3 are identical,
