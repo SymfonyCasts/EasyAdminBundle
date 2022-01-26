@@ -88,7 +88,7 @@ Some field options are shared by *all* field types. For example, you can call
 But *other* options are specific to the field *type* itself. For example,
 `BooleanField` has a `->renderAsSwitch()` method... and we can pass this `false`.
 Now, instead of rendering this cute switch, it just says "YES". This... is probably
-a good idea anyways... because it was a bit *too* easy to accidental disable a user
+a good idea anyways... because it was a bit *too* easy to accidentally disable a user
 before this.
 
 So... this is great! We can control which fields are displayed *and* we know that
