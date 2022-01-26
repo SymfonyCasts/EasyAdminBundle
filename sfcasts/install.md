@@ -73,7 +73,7 @@ This is a Flex alias for `easycorp/easyadmin-bundle`. Notice that it downloads t
 shiny new version *4* of EasyAdmin, which only works with Symfony 6. So if you're using
 Symfony 5, run:
 
-```terminal
+```
 composer require admin:^3
 ```
 
