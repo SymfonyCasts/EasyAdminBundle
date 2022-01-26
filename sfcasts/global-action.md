@@ -30,7 +30,13 @@ action
 Now in refresh. Awesome. It's up on top. So I need to correct that new. It's probably
 a global action. If you click this, we get an error because we haven't made that
 action to export, to CSV. We're going to install a third party library to help at
-your command line. Come around. Compos require hand crafted in the Alps. How's that
+your command line. Come around.
+
+```terminal
+composer require handcraftedinthealps/goodby-csv
+```
+
+Now's that
 for a great name /goodbye. CSV good by CSV is a well known CSV package, but it hasn't
 been updated for a while. So handcrafted in the Alps has forked that and made it work
 with modern versions of PHP. Awesome. Also, if you downloaded the course code, you

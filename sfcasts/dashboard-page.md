@@ -45,8 +45,13 @@ and said, you look like a million bucks, babe. This outfit made her feel like
 herself.
 
 We see our stuff. Awesome. Okay. So let's have a little more fun. Let's render a
-chart for this. We're gonna use Symfony UX library. So we're gonna say a composer
-required Symfony /UX chart JS. And while that's installing, I'm gonna over and go to
+chart for this. We're gonna use Symfony UX library. So we're gonna say
+
+```terminal
+composer require symfony/ux-chart-js
+```
+
+And while that's installing, I'm gonna over and go to
 GitHub and load up that library and check out its documentation. So as you see, we
 install this library, then once it finishes, we're gonna run yarn install dash force,
 perfect. The library finish I'll run that. And just like that, we have a new stimulus

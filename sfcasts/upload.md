@@ -33,6 +33,11 @@ check to make sure I don't do something crazy. Sweet. And now we have this great
 little menu here, including even a delete link. All right. So lemme choose a file
 here. We'll choose Molly. <affirmative> hit save. And another error. You cannot guess
 the extension as the mind component is not installed. So it says trial running
+
+```terminal
+composer require symfony/mime
+```
+
 composer requires so many /mine. Come on in, dude. Hey,
 
 Huggy made it home with you. Can I?
