@@ -29,8 +29,13 @@ I ran this already to save time... so I'll skip to compiling my assets with:
 yarn watch
 ```
 
-You can also run `yarn dev-server`, which can do cool things like update your
-CSS without refreshing.
+You can also run:
+
+```terminal
+yarn dev-server
+```
+
+Which can do cool things like update your CSS without refreshing.
 
 Perfect! For the *second* thing, open up another tab and run:
 
@@ -39,11 +44,14 @@ symfony serve -d
 ```
 
 This fires up a local web server - using the Symfony binary - at
-`https://127.0.0.1:8000`. I'll be lazy by holding "Cmd" and clicking the link to pop
+https://127.0.0.1:8000. I'll be lazy by holding `Cmd` and clicking the link to pop
 open my browser. Say "hello" to... Cauldron Overflow! If you've been doing our
 Symfony 5 series, you're definitely familiar with this project. But, this
-is a *Symfony 6* project, not Symfony 5. Oooo. If you *are* using Symfony
-5, don't worry: very little will be different.
+is a *Symfony 6* project, not Symfony 5:
+
+[[[ code('312def2054') ]]]
+
+Oooo. If you *are* using Symfony 5, don't worry: very little will be different.
 
 You don't need to worry too much about the majority of the code inside the project. The
 most important thing is probably our `src/Entity/` directory. Our site has questions,
