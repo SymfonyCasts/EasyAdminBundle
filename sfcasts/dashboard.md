@@ -26,8 +26,8 @@ symfony console make:admin:dashboard
 As a reminder, `symfony console` is exactly the same as running `php bin/console`.
 The only difference is that running `symfony console` allows the Docker environment
 variables to be injected into this command. It typically makes no difference unless
-you're running a command that requires database access. So, in this case, `php
-bin/console` would work just fine.
+you're running a command that requires database access. So, in this case,
+`php bin/console` would work just fine.
 
 I'll stick with `symfony console` throughout this tutorial. So say:
 
@@ -39,9 +39,16 @@ We'll call it `DashboardController`, generate it into `src/Controller/Admin` and
 done! This created one new file: `src/Controller/Admin/DashboardController.php`.
 Let's go check it out!
 
-When I open it... hmm. There's not much here yet. But one thing you might notice
-is that it has a *route* for `/admin`. So now, if we find our browser and go to
-`/admin`... we *do* hit the admin dashboard!
+When I open it...
+
+[[[ code('7cdbf2c4a2') ]]]
+
+Hmm. There's not much here yet. But one thing you might notice is that it has
+a *route* for `/admin`:
+
+[[[ code('4e607c09de') ]]]
+
+So now, if we find our browser and go to `/admin`... we *do* hit the admin dashboard!
 
 I want to point out a few important things. The first is that we *do* have a
 `/admin` route... and there's nothing fancy or "EasyAdmin" about it. This is just...
@@ -52,8 +59,11 @@ tutorial. Don't worry though! They work exactly the same. If you're still using
 PHP 7, you can use annotations just fine.
 
 The second important thing is that `DashboardController` is just a normal controller.
-Though, it *does* extend `AbstractDashboardController`. Hold "Cmd" or Ctrl and click
-to jump into that class.
+Though, it *does* extend `AbstractDashboardController`:
+
+[[[ code('73a7f3ca33') ]]]
+
+Hold `Cmd` or `Ctrl` and click to jump into that class.
 
 This implements `DashboardControllerInterface`. So this *is* a normal controller,
 but by implementing this interface, EasyAdmin knows that we're inside the admin
@@ -75,14 +85,19 @@ So let's secure it! I'll also do this with an attribute. I already have
 SensioFrameworkExtraBundle installed, so I can say `#[IsGranted()]` and hit "tab" to
 auto-complete that. Let's require any user accessing this controller to have
 `ROLE_ADMIN`... that's kind of a base admin role that all admin users have in
-my app.
+my app:
+
+[[[ code('41cffae953') ]]]
 
 Now when we refresh... beautiful! We bounced back over to the login page!
 
-To log in, open `src/DataFixtures/AppFixtures.php`. I have a bunch of dummy
-users in the database: there's a super admin, a normal admin, and then somebody known
-as a moderator. We'll talk more about these later when we get deeper into how to
-secure different parts of your admin for different roles.
+To log in, open `src/DataFixtures/AppFixtures.php`:
+
+[[[ code('9b57929611') ]]]
+
+I have a bunch of dummy users in the database: there's a super admin, a normal admin,
+and then somebody known as a moderator. We'll talk more about these later when we
+get deeper into how to secure different parts of your admin for different roles.
 
 Anyways, log in with `admin@example.com`... password `adminpass`, and... beautiful!
 We're back to our dashboard!
@@ -90,9 +105,12 @@ We're back to our dashboard!
 Of course, if you want to, instead of using the `IsGranted` PHP attribute, you
 could also say `$this->denyAccessUnlessGranted()`. And you could *also* go to
 `config/packages/security.yaml` and, down at the bottom, add an `access_control`
-that protects the entire `/admin` section. Actually, adding this `access_control`
-is basically *required*: using only the `IsGranted` attribute is *not* enough.
-We'll learn why a bit later.
+that protects the entire `/admin` section:
+
+[[[ code('c9d5ab33fe') ]]]
+
+Actually, adding this `access_control` is basically *required*: using only the
+`IsGranted` attribute is *not* enough. We'll learn why a bit later.
 
 ## Configuring the Dashboard
 
@@ -108,17 +126,28 @@ of the absolute *best* things about EasyAdmin is that all the config is done in 
 Yay! It's usually done via methods in your controller. For example: want to configure
 the dashboard? There's a `configureDashboard()` method for that!
 
-We can change the title of the page to "Cauldron Overflow Admin". When we
-refresh... we see "Cauldron Overflow Admin"! And there are a number of other methods...
-just look at the auto-complete from your editor. There are methods related to
-the favicon path... and something about the sidebar being minimized. That's referring
+[[[ code('f40ac1071e') ]]]
+
+We can change the title of the page to "Cauldron Overflow Admin":
+
+[[[ code('dd090553fe') ]]]
+
+When we refresh... we see "Cauldron Overflow Admin"! And there are a number of other
+methods... just look at the auto-complete from your editor. There are methods related
+to the favicon path... and something about the sidebar being minimized. That's referring
 to a nice feature where you can click on the separator for the sidebar to collapse
 or expand it.
 
 The *main* part of the dashboard is really these menu items. And, we only have one
-right now. This is controlled by `configureMenuItems()`. Just to prove that we
-can, let's change the icon to `fa-dashboard`. This leverages the FontAwesome library.
-When we refresh, new icon!
+right now. This is controlled by `configureMenuItems()`:
+
+[[[ code('8e02f49f40') ]]]
+
+Just to prove that we can, let's change the icon to `fa-dashboard`:
+
+[[[ code('d78cb5f50a') ]]]
+
+This leverages the FontAwesome library. When we refresh, new icon!
 
 So we can *definitely* do more with our dashboard, but that's enough for now.
 Because what we're *really* here for are the "CRUD controllers". These are the
