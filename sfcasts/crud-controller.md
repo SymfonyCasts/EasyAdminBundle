@@ -10,7 +10,7 @@ important to understand how EasyAdmin works. So, buckle up!
 We have four entities. Let's generate a CRUD controller for `Question` first. Find
 your terminal and run:
 
-```
+```terminal
 symfony console make:admin:crud
 ```
 
