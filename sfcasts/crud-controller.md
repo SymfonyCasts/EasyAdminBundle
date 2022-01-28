@@ -14,12 +14,13 @@ your terminal and run:
 symfony console make:admin:crud
 ```
 
-As you can see, it recognizes our four entities. I'll hit 1 for
-`App\Entity\Question`, let this generate into the default directory... and with
-default namespace.
+As you can see, it recognizes our four entities. I'll hit 1 for `App\Entity\Question`,
+let this generate into the default directory... and with default namespace.
 
 Sweet! This did exactly *one* thing: it created a new `QuestionCrudController.php`
 file. Let's... go open it up!
+
+[[[ code('2afaa27cba') ]]]
 
 ## Linking to the CRUD Controller
 
@@ -28,9 +29,11 @@ to see... absolutely no difference! We *do* have a new `QuestionCrudController`,
 but these CRUD controllers are *totally* useless until we link to them from a
 dashboard. So, back over in `DashboardController`, down at the bottom... `yield
 MenuItem`... but instead of `linkToDashboard()`, there are a number of other things
-that we can link to. We want `linkToCrud()`. Pass this the label - so `questions` -
+that we can link to. We want `linkToCrud()`. Pass this the label - so "Questions" -
 and some FontAwesome icon classes: `fa fa-question-circle`. Then, most importantly,
-pass the entity's class name: `Question::class`.
+pass the entity's class name: `Question::class`:
+
+[[[ code('04cf664079') ]]]
 
 Behind the scenes, when we click this new link, EasyAdmin will recognize that
 there is only *one* CRUD controller for the entity - `QuestionCrudController` -
@@ -54,13 +57,16 @@ and, once again, run:
 symfony console make:admin:crud
 ```
 
-This time generate a crud for `Answer`... with the default stuff... one for `Topic`
+This time generate a CRUD for `Answer`... with the default stuff... one for `Topic`
 with the defaults... I'll clear my screen... and finally generate one for `User`.
 
 Beautiful! The *only* thing this did was add three more CRUD controller classes.
-But to make those useful, we need to link to them. I'll paste three more
-links... then customize the label, font icons and class on each of them... super
-fast.
+But to make those useful, we need to link to them. I'll paste 3 more links...
+then customize the label, font icons and class on each of them:
+
+[[[ code('33834a5a0b') ]]]
+
+Super fast!
 
 Let's go check it out! Refresh and... look! Simply by running that command four
 times, we now have four different fully-featured admin sections!
@@ -68,15 +74,19 @@ times, we now have four different fully-featured admin sections!
 ## The Main configure() Methods of your CRUD Controller
 
 I want to look a little deeper into *how* this is working behind the scenes. Go to
-`QuestionCrudController` and look at its base class. Hold "cmd" or "ctrl" to jump
-into `AbstractCrudController`. We saw earlier that our dashboard extends
-`AbstractDashboardController`. CRUD controllers extend `AbstractCrudController`.
+`QuestionCrudController` and look at its base class:
+
+[[[ code('2d0682c79d') ]]]
+
+Hold `Cmd` or `Ctrl` to jump into `AbstractCrudController`. We saw earlier that our
+dashboard extends `AbstractDashboardController`. CRUD controllers extend
+`AbstractCrudController`.
 
 Pretty much everything about how our CRUD controller works is going to be controlled
 by overriding the configure methods that you see inside of here. We'll learn about
 all of these as we go along. But on a high level, `configureCrud()` helps you
 configure things about the CRUD section as a whole, `configureAssets()` allows you
-to add custom CSS and JavaScript to the section, and `configureActions` allows
+to add custom CSS and JavaScript to the section, and `configureActions()` allows
 you to control the *actions* you want, where an action is a button or link. So,
 you can control whether or not you have delete, edit or index links on different
 pages. More on that later.
