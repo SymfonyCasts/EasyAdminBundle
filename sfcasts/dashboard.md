@@ -50,6 +50,35 @@ a *route* for `/admin`:
 
 So now, if we find our browser and go to `/admin`... we *do* hit the admin dashboard!
 
+***TIP
+Since version `4.0.3` of EasyAdmin, this welcome page looks a bit different! For
+example, it won't have the side menu that you see in the video. To see the links -
+and follow better with the tutorial - create a new dashboard template that will
+extend the base layout from EasyAdmin:
+
+```twig
+{# templates/admin/index.html.twig #}
+
+{% extends '@EasyAdmin/page/content.html.twig' %}
+```
+
+Then, comment out the `return parent::index();` line in
+`DashboardController::index()` and instead render this template:
+
+```php
+class DashboardController extends AbstractDashboardController
+{
+    #[Route('/admin', name: 'admin')]
+    public function index(): Response
+    {
+        return $this->render('admin/index.html.twig');
+    }
+}
+```
+
+We'll talk much more later about how to use and design this dashboard page!
+***
+
 I want to point out a few important things. The first is that we *do* have a
 `/admin` route... and there's nothing fancy or "EasyAdmin" about it. This is just...
 how we create routes in Symfony. This is a PHP 8 *attribute* route, which you may
