@@ -59,7 +59,7 @@ links to it! We don't see an action called `DETAIL` on any of these pages. So th
 page exists, but it's not really used out-of-the-box. Let's change that!
 
 Go back to `DashboardController`. It doesn't matter where, but I'll go down to the
-bottom, go to "Code"->"Generate" - or `Cmd` + `N` on a Mac - click "Override Methods"
+bottom, go to "Code"->"Generate..." - or `Cmd` + `N` on a Mac - click "Override Methods"
 and select `configureActions()`:
 
 [[[ code('5697c1639b') ]]]
@@ -81,7 +81,7 @@ system!
 
 *But*, since the `Topic` entity is so simple, let's disable the `DETAIL` action
 for *just* this section. To do that, open up `TopicCrudController`, and, just
-like before, go to "Code"->"Generate" - or `Cmd` + `N` on a Mac - hit "Override Methods"
+like before, go to "Code"->"Generate..." - or `Cmd` + `N` on a Mac - hit "Override Methods"
 and select `configureActions()`:
 
 [[[ code('b639f7a187') ]]]

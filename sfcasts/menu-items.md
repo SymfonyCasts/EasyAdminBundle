@@ -77,7 +77,7 @@ this: this is an avatar for a user... and my user's avatar shows up in the upper
 right. *But* EasyAdmin doesn't *know* that our users have avatars. We need to tell
 it.
 
-Back in `DashboardController`... it doesn't matter where... go to "Code"->"Generate"
+Back in `DashboardController`... it doesn't matter where... go to "Code"->"Generate..."
 or `Cmd`+`N` on a Mac, click "Override Methods", and select `configureUserMenu()`:
 
 [[[ code('f48f61eda0') ]]]

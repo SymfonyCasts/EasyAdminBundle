@@ -14,10 +14,13 @@ every page.
 
 ## Hello configureAssets()
 
-Anywhere inside of `DashboardController`, go back to the "Code Generate"
-menu, select "Override Methods" and override `configureAssets()`. This has a lot
-of cool methods. There are some simple ones like `->addCssFile()`. If you
-said `->addCssFile('foo.css')`, that will include a `link` tag to `/foo.css`.
+Anywhere inside of `DashboardController`, go back to the "Code"->"Generate..."
+menu, select "Override Methods" and override `configureAssets()`:
+
+[[[ code('e1bb289ec7') ]]]
+
+This has a lot of cool methods. There are some simple ones like `->addCssFile()`.
+If you said `->addCssFile('foo.css')`, that will include a `link` tag to `/foo.css`.
 As long as we have `foo.css` inside of our `public/` directory, that would work.
 
 The same thing goes for `->addJsFile()`. And you can also `->addHtmlContentToBody()`
@@ -26,40 +29,58 @@ or `->addHtmlContentToHead()`. There are *tons* of interesting methods!
 ## Creating a Custom Admin Encore Entry
 
 *Our* application uses Webpack Encore. Go check out the `webpack.config.js` file:
-it's pretty standard. We have just one entry called `app`. It's responsible for
-loading all of the JavaScript *and* CSS... and we include this entry on our
-*frontend* to get everything looking and working well.
+it's pretty standard. We have just one entry called `app`:
+
+[[[ code('f0d21ea764') ]]]
+
+It's responsible for loading all of the JavaScript *and* CSS:
+
+[[[ code('ffebc503b7') ]]]
+
+and we include this entry on our *frontend* to get everything looking and working well.
 
 You probably noticed that, in `configureAssets()`, there's an
-`addWebpackEncoreEntry()` method. If we said `'app'` here, that would pull in the
+`addWebpackEncoreEntry()` method. If we said `app` here, that would pull in the
 CSS and JavaScript from our `app` entry. *But*.... that makes things look a little
 crazy... because we do *not* want *all* of our frontend styles and JavaScript to
-show up in the admin section. Nope, we just want to be able to add a *little bit*
+show up in the admin section. Nope, we just want to be able to add *a little bit*
 of new stuff.
 
 So here's what we'll do instead. Inside the `assets/styles/` directory, create an
 entirely new file called `admin.css`. This will be our CSS solely for styling
 the admin section. And just to see if things are working, I'll add a very lovely
-body background of "lightcyan". Fancy.
+body background of "lightcyan":
+
+[[[ code('ae11b3dd02') ]]]
+
+Fancy!
 
 Over in `webpack.config.js`, add a second entry for *just* the admin. But, right
 now, since we only have a CSS file (we don't need JavaScript), I'll say
 `.addStyleEntry()`... and point it to `./assets/styles/admin.css`. I should also
-change `app` to `admin`... but I'll catch that in a minute.
+change `app` to `admin`... but I'll catch that in a minute:
+
+[[[ code('68fbb7de7c') ]]]
 
 Because we just modified our webpack file, we need to go over to our terminal,
-find where we're running encore, hit "ctrl + C", and then rerun it:
+find where we're running encore, hit `Ctrl`+`C`, and then rerun it:
 
 ```terminal-silent
 yarn watch
 ```
 
-And... it exploded! That's from my mistake! I need to give my entry
-a unique name. Change `'app'` to `'admin'`, run it again, and... beautiful!
+And... it exploded! That's from my mistake! I need to give my entry a unique name.
+Change `app` to `admin`:
+
+[[[ code('811663d0f2') ]]]
+
+Run it again, and... beautiful!
 
 In addition to the original stuff, you can see that it also dumped an
 `admin.css` file. Thanks to this, over in our `DashboardController`, say
-`->addWebpackEncoreEntry('admin')`.
+`->addWebpackEncoreEntry('admin')`:
+
+[[[ code('9cb529831f') ]]]
 
 Refresh and... it works! That's a... well... interesting-looking page.
 
@@ -111,7 +132,9 @@ We're going to do the same thing.
 
 In our CSS file, remove the `body`, add `:root` and then paste. And while it's
 *totally* legal to reference CSS properties from here, let's replace that with
-a normal hex color.
+a normal hex color:
+
+[[[ code('8976440c6a') ]]]
 
 Let's try it! Watch the sidebar closely... the change is subtle. Refresh and...
 it changed! To prove it, if you find the `--sidebar-bg` on the styles and hover...
