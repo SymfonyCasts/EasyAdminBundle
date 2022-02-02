@@ -17,11 +17,14 @@ on here?
 Click "Questions" and look at the URL. It starts with `/admin` and then has a bunch
 of query parameters. It turns out that *everything* in EasyAdmin is handled by a
 single giant route. It all runs through the `DashboardController` route - the `/admin`
-route that's above `index()`. So when we go to `QuestionCrudController`, it's
-actually matching *this* route here with extra query parameters to say which CRUD
-controller and which action to run. You can see `crudController` and `crudAction`
-hiding in the URL. Yup, we're rendering `QuestionCrudController`, but in the *context*
-of `DashboardController`.
+route that's above `index()`:
+
+[[[ code('45db926fe0') ]]]
+
+So when we go to `QuestionCrudController`, it's actually matching *this* route
+here with extra query parameters to say which CRUD controller and which action to run.
+You can see `crudController` and `crudAction` hiding in the URL. Yup, we're
+rendering `QuestionCrudController`, but in the *context* of `DashboardController`.
 
 And when we go to this page, in order to get the CRUD config, EasyAdmin *first*
 calls `configureCrud()` on our *dashboard* controller. *Then* it
@@ -34,7 +37,7 @@ change the behavior for that *one* section.
 ## Understanding Pages and Actions
 
 We can prove it! Go back to `AbstractDashboardController`. Look at `configureCrud()`.
-Every CRUD section has four pages. Hold "cmd" or Ctrl and click to open this `Crud`
+Every CRUD section has 4 pages. Hold `Cmd` or `Ctrl` and click to open this `Crud`
 class. Check out the constants on top. Every CRUD section has an index page -
 that's this - an edit page, a new page, and also a detail page. Each page can then
 have links and buttons to a set of *actions*. For example, on the index
@@ -56,31 +59,39 @@ links to it! We don't see an action called `DETAIL` on any of these pages. So th
 page exists, but it's not really used out-of-the-box. Let's change that!
 
 Go back to `DashboardController`. It doesn't matter where, but I'll go down to the
-bottom, go to "Code -> Generate" - or "cmd + N" on a Mac - click "Override Methods"
-and select `configureActions()`.
+bottom, go to "Code"->"Generate" - or `Cmd` + `N` on a Mac - click "Override Methods"
+and select `configureActions()`:
+
+[[[ code('5697c1639b') ]]]
 
 We *do* want to call the `parent` method so that it can create the `Actions` object
 and set up all of those default actions for us. Let's add a link to the "detail"
 page from the "index" page. In EasyAdmin language, this means we want to add
-a `DETAIL` *action* to the index page. Do that by saying `->add()`, passing the
-page name - `Crud::index` - and then the action: `Action::DETAIL`.
+a detail *action* to the index page. Do that by saying `->add()`, passing the
+page name - `Crud::PAGE_INDEX` - and then the action: `Action::DETAIL`:
+
+[[[ code('9b9971df4e') ]]]
 
 Thanks to this, when we refresh the index page of `QuestionCrudController`... we
 have a "Show" link that goes to the `DETAIL` action! And you'll see this on
-*every* section of our admin! Yup, we just modified *every* crud controller in the
+*every* section of our admin! Yup, we just modified *every* CRUD controller in the
 system!
 
 ## Overriding Actions Config for One CRUD
 
 *But*, since the `Topic` entity is so simple, let's disable the `DETAIL` action
-for *just* this section. To do that, open up `TopicCrudController.php`, and, just
-like before, go to "Code -> Generate" - or "cmd + N" on a Mac - hit "Override Methods"
-and select `configureActions()`.
+for *just* this section. To do that, open up `TopicCrudController`, and, just
+like before, go to "Code"->"Generate" - or `Cmd` + `N` on a Mac - hit "Override Methods"
+and select `configureActions()`:
+
+[[[ code('b639f7a187') ]]]
 
 By the time this method is called, it will pass us the `Actions` object that was
-already set up by our dashboard. So it will already have the `DETAIL` action enabled
+already set up by our dashboard. So it will already have the detail action enabled
 for the index page. But *now*, we can change that by saying
-`->disable(Action::DETAIL)`.
+`->disable(Action::DETAIL)`:
+
+[[[ code('86c2ed695d') ]]]
 
 We'll talk more about the actions configuration later. But these are the main things
 that you can do inside of them: add a new action to a page, *or* completely
@@ -98,23 +109,26 @@ effect related to security. It means that all of our controllers *are* already s
 That's thanks to our `access_control`.
 
 Remember, back in `config/packages/security.yaml`, we added an `access_control`
-that said if the URL starts with `/admin`, require `ROLE_ADMIN`. This means that
-without doing *anything* else, *every* CRUD controller and action in our admin
-already requires `ROLE_ADMIN`. We'll talk more later about how to secure different
-admin controllers with different roles... but at the very least, you need to have
-`ROLE_ADMIN` to get anywhere, which is awesome.
+that said if the URL starts with `/admin`, require `ROLE_ADMIN`:
+
+[[[ code('75831e240d') ]]]
+
+This means that without doing *anything* else, *every* CRUD controller and action
+in our admin already requires `ROLE_ADMIN`. We'll talk more later about how to secure
+different admin controllers with different roles... but at the very least, you need
+to have `ROLE_ADMIN` to get anywhere, which is awesome.
 
 But one important point: adding this `access_control` *was* necessary. Why? The
 `index()` action in our dashboard is what holds the *one* route. When we go to a
 CRUD controller, like this, it *does* match this route.... but EasyAdmin does
 something crazy. Instead of allowing Symfony to call this controller, it sees this
 `crudController` query parameter and magically *switches* the controller to be
-the *real* controller. In this case, it changes it to `QuestionCrudController::index`.
+the *real* controller. In this case, it changes it to `QuestionCrudController::index()`.
 
 You can see this down on the web debug toolbar. If you hover over "@admin",
 this tells you that the matched route name was `admin`. So, yes, the route *is*
 matching the main dashboard route. But the controller is
-`QuestionCrudController::index`.
+`QuestionCrudController::index()`.
 
 This means that the method in your *CRUD* controller is what Symfony ultimately
 executes. In this case, it's the `index()` method in this `AbstractCrudController`...
