@@ -1,29 +1,125 @@
-# Field Config
+# Deep Field Configuration
 
-One other field that we have on `User.php` is a `$roles` field, which actually stores an array of the roles this user should have. That's *probably* a good thing to include on our admin page, so we can change the roles for a user if we need to. Fortunately, EasyAdmin has an `arrayField`.
+One other proeprty that we have inside `User` is `$roles`, which actually stores
+an *array* of the roles this user should have. That's *probably* a good thing to
+include on our admin page. And fortunately, EasyAdmin has an `ArrayField`!
 
-Check it out! I'll say `yield arrayField::new('roles');`... and head back to my browser. Over on the homepage... nice! It renders it as a comma-separated list, and on the "Edit" page... Oh, that's really cool! It added a nice little widget here for adding and removing roles. The only tricky part might be remembering which roles are available. Right now, you actually have to type them in manually. No worries! We can help our admins out by going back to our array field and implementing a method called `->setHelp()`. I'll also add a little message here with our available roles. When I refresh... excellent!
+## ArrayField
 
-That *does* look better, but, hmm... now that I can see this, it might look *even* better if we had check boxes here. So let's see if we can change the `ArrayField` to display check boxes. I'll hold "cmd" and open `ArrayField.php`. This is really interesting, beacuse you can actually see how the field is configured inside of its new method. It sets the `TemplateName` (we'll talk about templates later), but it *also* sets the `FormType`. Behind the scenes, the `arrayField` uses a `CollectionType`. If you're familiar with the Symfony "form" component, you know that to render check boxes, you need the `ChoiceType`. I wonder if we can use the `arrayField` and override the `FormType` to be the `ChoiceType`. Let's give that a try.
+Check it out! Say `yield ArrayField::new('roles');`... and head back to your
+browser. Over on the index page... nice! It renders it as a comma-separated list.
+And on the "Edit" page... oh, that's really cool! It added a nice widget for
+adding and removing roles.
 
-First, before this, I'll say `$roles = []` and add a list of our roles. Then, down here, after `->setHelp()`, one of the methods you can call on this is `->setFormType()`. You can see `->setFormType()` and `->setFormTypeOptions()` here. I'll select `->setFormType()` and I'll set it through `ChoiceType::class`. *Then* `->setFormTypeOptions()`, because one of the options that you have to pass when you use the `FormType` is `choices`. We can set *this* to `array_combine()`, and then pass it `$roles, $roles`. That's a little bit of a weird thing here. What this is going to do is create an array where these are both the keys *and* the values. So these will be *both* of the values that are saved to the database if that field is checked and it will *also* be the value that is displayed to the user. Lastly, I'll set `multiple` to `true`, because we can select multiple things, and then `expanded` to `true`, which is what makes the `ChoiceType` render them as check boxes.
+## Adding Help Text to Fields
 
-Now, when we try it... it explodes! Interesting... It says: 
+The only tricky part might be remembering *which* roles are available. Right now,
+you have to type each in manually. But we can at least help our admins out by going
+back to our array field and implementing a method called `->setHelp()`. Add
+a message that includes the available roles.
 
->An error occurred resolving the options of the form "[...]\ChoiceType": The options "allow_add", "allow_delete", "delete_empty", "entry_options", "entry_type" do not exist.
+Now when we refresh... much better!
 
-Hmm... I recognize these options as options that belong to the `CollectionType`, which is the type that the `arrayField` is using by default. This tells me that something *somewhere* is actually trying to add these options to our `FormType`, which we don't want because we're not using the `CollectionType` anymore. The really tricky thing is that you might expect to see it inside of `arrayField`, but it's not here. So who is setting those options? The answer is something called a "Configurator".
+## ->setFormType() and ->setFormTypeOptins()
 
-I'll scroll back down to `/vendor`. You can see I've already opened `/easycorp`, `/easyadmin_bundle`, and `/src`. Here earlier, we were looking at something called `/Field`, and these are all the built in fields. After a field is created, EasyAdmin runs each field through a `Configurator` system that can make additional changes to those fields. This `/Configurator` directory holds those. There are a couple of them, like `CommonPreConfigurator.php`, that are applied to *every* field. It returns `true` from `supports()` and does various normalizations on the field. This `CommonPostConfigurator.php` is another one that applies to every field. But *then*, there are also a bunch of configurators that are specific to fields, including one called `ArrayConfigurator.php`. The `ArrayConfigurator` is called when the `$field` is the `ArrayField`. So `$field->getFieldFqcn()` is basically checking to say "Hey, is the current field that's being configured an `ArrayField`? If it is, then call my `configure()` method so I can make additional changes. Here's where those options are being added." The `Configurator` system is something we're going to look at and talk about, and we'll even create our own later, but I wanted you to be aware of it.
+But, hmm. Now that I see this, it might look *even* better if we had check boxes.
+So let's see if we can *change* the `ArrayField` to display check boxes. Hold
+"cmd" and open `ArrayField.php`.
 
-So in this case, we don't really want this `Configurator` to do its work, but unfortunately, we don't really have a choice. The `Configurator` is always going to apply its logic if we're dealing with an `ArrayField`. And actually, that's fine.
+This is really interesting, because you can actually *see* how the field is configured
+inside of its `new()` method. It sets the template name (we'll talk about templates
+later), but it *also* sets the form type. Behind the scenes, the `ArrayField` uses
+a `CollectionType`. If you're familiar with the Symfony Form component, you know
+that, to render check boxes, you need the `ChoiceType`. I wonder if we can *use*
+`ArrayField`... but override its form type to be `ChoiceType`.
 
-Back in `UserCrudController.php`, I didn't realize it at first, but there's actually a `ChoiceField`. I'll hold "cmd" or "ctrl" to open it. Here, we can see that it automatically uses a `ChoiceType` internally. *So*, I don't need to take this `ArrayField` and try to turn it into a choice. There's already a built-in choice field that's made for this!
+Let's... give that a try!
 
-That means I don't need to set the `FormType` anymore, and I don't need the `Help` and `FormType` options. I probably *could* set them that way, but the `ChoiceField` has a special method called `->setChoices()`. Then, I'll do that same thing: `array_combine($roles, $roles)`. For the other options, we can say `->allowMultipleChoices()` and `->renderExpanded()`. How nice is that? 
+First, above this, add `$roles = []` and list our roles. Then, down here, after
+`->setHelp()`, one of the methods we can call is `->setFormType()`... we also have
+`->setFormTypeOptions()`. Select `->setFormType()` and set it to `ChoiceType::class`.
+*Then* `->setFormTypeOptions()`... because one of the options that you *must* pass
+to this form type is `choices`. Set this to `array_combine()` pass roles twice.
+Mmm, I love rolls.
 
-This time, we'll go refresh, and... *that* is what I was hoping for! Back on the homepage... the `ChoiceType` *still* renders as a nice comma-separated list. By the way, if you want to see the logic that makes a `ChoiceType` render as a comma-separated list, there's actually a `ChoiceConfigurator.php`. If you open that up and scroll down to the bottom, this has lots of normalization. But down here at the bottom, it says `$field->setFormattedValue()`. *That* has some logic in here where it uses `$selectedChoices` and it implodes them with a comma. So the `ChoiceConfigurator` is actually what's giving us that.
+I know, that looks weird. This will create an array where these are both the keys
+*and* the values. The result is that these will be *both* the values that are saved
+to the database if that field is checked *and* what is displayed to the user. Lastly,
+I'll set `multiple` to `true` - because we can select multiple roles - and
+`expanded` to `true`, which is what makes the `ChoiceType` render as check boxes.
 
-Oh, and speaking of this type - let me close a couple of core classes - one other method we can call here is `->renderAsBadges()`. That affects the formatted value we just saw, and turns it into these little guys. Nifty!
+Alrighty! Let's see what happens. Refresh and... it... explodes! Exciting!
 
-Next, let's handle our user's `$avatar` field, which actually needs to be an `$upload` field.
+> An error occurred resolving the options of the form "[...]\ChoiceType": The options
+> "allow_add", "allow_delete", "delete_empty", "entry_options", "entry_type" do not
+> exist.
+
+Hmm... I recognize these options as options that belong to the `CollectionType`,
+which is the type that the `ArrayField` was *originally* using. This tells me that
+something, *somewhere* is trying to add these options to our form type... which
+we don't want because... we're not using the `CollectionType` anymore!
+
+So... who *is* setting those options? This is tricky. You might expect to see them
+set inside of `ArrayField`. But... it's not here. What mysterious being is messing
+with our field?
+
+## Hello Field Configurators
+
+The answer is something called a "Configurator".
+
+Scroll back down to `vendor/`. I've already opened `easycorp/easyadmin_bundle/src/`.
+Earlier, we were looking at the `Field/` directory: these are all the built-in fields.
+
+After a field is created, EasyAdmin runs each through a `Configurator` system
+that can make *additional* changes to those fields. This `Configurator/` directory
+holds *those*. There are a couple of them - like `CommonPreConfigurator` - that are
+applied to *every* field. It returns `true` from `supports()`... and does various
+normalizations on the field. `CommonPostConfigurator` is another that applies to
+every field.
+
+But *then*, there are also a bunch of configurators that are specific
+to just *one*... or maybe a few... field types, including `ArrayConfigurator`. The
+This configurator does its work when the `$field` is an `ArrayField`. The
+`$field->getFieldFqcn()` is basically helping to ask:
+
+> Hey, is the current field that's being configured an `ArrayField`? If it is,
+> then call my `configure()` method so I can make additional changes.
+
+And... yup! *Here* is where those options are being added. The Configurator system
+is something we're going to look at more later. Heck we're even going to create our
+own! For now, just be aware that it exists.
+
+## Refactoring to ChoiceField
+
+So, hmm. In this situation, we *don't* want the `ArrayConfigurator` to do its work.
+But, unfortunately, we don't really have a choice! The Configurator is *always* going
+to apply its logic if we're dealing with an `ArrayField`.
+
+And actually, that's fine! Back in `UserCrudController.php`, I didn't realize it
+at first, but there's actually a `ChoiceField`! Hold "cmd" or "ctrl" to open
+it. Here, we can see that it already uses `ChoiceType`. *So*, we don't need to take
+this `ArrayField` and try to turn it *into* a choice... there's already a built-in
+`ChoiceField` made for this!
+
+This means that we don't need to set the `FormType` anymore, and we don't need the
+help and form type options. I probably *could* set the choices that way, but the
+`ChoiceField` has a special method called `->setChoices()`. Do that same
+thing: `array_combine($roles, $roles)`. For the other options, we can say
+`->allowMultipleChoices()` and `->renderExpanded()`. How nice is that?
+
+Ok, let's try this thing. Refresh and... *that* is what I was hoping for! Back on
+the index... `ChoiceType` *still* renders as a nice comma-separated list.
+
+Oh, and by the way: if you want to see the logic that makes `ChoiceType` render
+as a comma-separated list, there a `ChoiceConfigurator.php`. If you open that...
+and scroll to the bottom - beyond a lot of normalization code - here it is:
+`$field->setFormattedValue()` where it implodes the `$selectedChoices` with a comma.
+
+## Rendering ChoiceList as Badges
+
+Oh, and speaking of this type - let me close some core classes - one other
+method we can use is `->renderAsBadges()`. That affects the "formatted value" that
+we just saw... and turns it into these little guys. Cute!
+
+Next, let's handle our user's `$avatar` field, which actually needs to be an
+upload field!
