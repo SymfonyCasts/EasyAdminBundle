@@ -1,139 +1,56 @@
 # Association Many
 
-Coming soon...
+The association field creates these pretty cool select elements here. But, these are really just normal, boring select elements with a fancy UI. *All* of the options, in this case, every user in the database, is loaded onto this page in the background to build a select element. This means that if you have even a hundred users in your database, this page is going to start slowing down, and eventually, it'll break. To fix this, head over and call a custom method on the association field called `->autocomplete()`. So nice!
 
-The association field creates these pretty cool select elements here, but these are
-really just select normal, boring select elements with a fancy UI, all of the
-options. So in this case, every user in the database is loaded onto this page in the
-background To build a select element. This means that if you even have a hundred
-users in your database, this page is going to start getting really slow. And
-eventually it's gonna break To fix this. We can head over and call a custom method on
-the association appeal called autocomplete. Ugh. So nice try. Now, when we refresh,
-It looks the same, but if I type and go to network tools, check this out, that
-actually made an O that made an a X request when I was typing. So instead of loading
-all the options on the page, it leverages an a X endpoint to handle this auto
-completion. So problem solved. And as you can see, it's using our two string method
-on user to, um, display what's here,
+When we refresh, it *looks* the same, but if I type in the searchbar and go to Network Tools... check this out! That made an AJAX request when I was typing. So instead of loading *all* of the options on the page, it leverages an AJAX endpoint to handle this auto completion. Problem solved! And as you can see, it's using our `__toString()` method on user to display what's here, which is the same thing it's doing on the Question list page in the Asked By column. We *can* control that, however. I want to point out that this is something we did before. We'll use `->formatValue()` which, if you remember, needs a callback function, `static function()`, with `$value` as the *first* argument, and `Question` as the second argument. The `$value` here is going to be the formatted value that it's about to print onto the page, and then `Question` is our current question object. We'll eventually need to make this nullable, and I'll explain *why* later, but for now, we'll just pretend that we always have a question object here to work with.
 
-Which is the same thing it's doing on the question list page. You can see the asked
-by it's using the two stream method that we used on user. However, we can control
-that. And I just wanna point this out. This is something we did before we can control
-it with format value, which if you remember, what we do is we pass it a callback
-function with value you as the first argument question as the second argument. So
-value here is gonna be the format of value that it would, that it's about to print
-onto the page. And then question here is our current question object again, later,
-I'm gonna tell you that we actually need to make this nullable. I'll explain why, but
-for now we can just, uh, pretend that we always have a question object here to work
-with, which makes sense Down here. I'll just put a little if statement. So if not,
-question->will get asked by for some reason that, uh, field is Noll or return will
-return. No, L will return a little string here as I present S and MBSP for a space
-and then percent S inside of parentheses and PHY op ask user arrow, get email.
+Down here, I'll just add a little "if" statement: `if (!question->getAskedBy())`. If, for some reason, that field is null, we'll `return null`. We'll also a little string here - `return sprintf()` - with `%s&nbsp;` for a space, and then `%s` inside of parentheses. For *this*, I'll pass `$user->getEmail`.
 
-Oh, and actually what I meant to do is say not user equal, so I'm kind of getting
-fancy and assigning the user variable and checking all online. Perfect user email,
-email, and I can say user arrow, get questions,->count. So we get a nice little, uh,
-thing here. Now notice I have the NVS P uh, I'm doing that in part to show off that
-most of the time, an easy admin, when you render things, you can include HTML.
-<affirmative>, that's normally not how the web works, but since this is for an admin
-interface, and we know that we're in control, a lot of times, easy admin allows you
-to embed HTL right into these strings, and it renders them just fine. So when I
-refresh boom, there we go. We get our nice ask by now. One of the reasons I show this
-is just to point out that the form format value is used on the list page. And it's
-also used on the details page, but it's not used on the form. The form always uses
-the two string on your entity. So just wanted to point that out. One of the things we
-can control, however, on these association fields is the query that's used for the
-results. So right now our auto complete is gonna be returning any user in the entire
-database. A lot of times you might want to restrict it to only a subset to do that.
-We can once again, call another custom method on the association field called set
-query builder. This is going to accept a function with a query builder argument.
+Oh, and up here, what I actually meant to say is `!$user =`, so I can get fancy and assign the `$user` variable and checking all on one line. Perfect!
 
-And so what's gonna happen is it's going to kind of create the query builder for you,
-and then you can modify it. So I'll say query builder and where, and then the only
-thing that, that you need to know about is that the entity alias is always called
-entity. So it's always entity dot enabled. So we'll do here, as I'll say, entity dot
-enabled = colon enabled, then I'll say set parameter enabled. True. So we'll filter
-out users that aren't not enabled.
+Let me finish this... and now I can say `$user->getQuestions()->count()`. Nice! And notice I have the `&nbsp;`. I'm doing that, in part, to show off that most of the time, in EasyAdmin, when you render things, you *can* include HTML. That's normally *not* how the web works, but since this is for an admin interface and we know that we're in control, a lot of times, EasyAdmin allows you to embed HTML right into these strings, and it renders them just fine.
 
-Perfect. And I don't need to return anything. This modifies, the query builder
-<affirmative> to see if that works well, we don't really notice any difference, cause
-I think all of our users are enabled, but watch this out. I'm gonna type here's the
-Aja request for that right there. And if I open up my web deal tu bar, you'll see
-here's the profiler for the Aja request. So I'm gonna hold and open this in a new
-window. So you're now looking at the profiler for that auto complete ax call. And I
-can head over to doctrine. We can kind of verify what that query looks like here it
-is down here. Perfect. So let me hit view formatted query, and you see, it's
-basically looking on every single field to see if it matches our, Our T percent ti
-percent and enabled equals, uh, one there's the value up there. So pretty cool. All
-right. There's one other field association field that I want to include on this crud.
-And it is an interesting one it's answers. So unlike top and answered by this is a
-collection. Each question has many answers. So back in our credit controller, let's
-add yield association, field new answers, and let's just kind of see what we have ha
-have here. So I'm gonna click back to the index page and awesome by default, it
-recognizes that that it's a collection. So it prints the number of answers that each
-has, which is pretty so wheat. And if we go to a form, we get a very familiar air.
-The form is once again, trying to get a string representation of our entity.
+When I refresh... boom! There we go! We get our nice "Asked By" now. One of the reasons I show this is just to point out that the formatted value is used on the list page, and it's *also* used on the details page, but it's *not* used on the form. The form always uses the `__toString` on your entity.
 
-So we know what to do. We need to go and answer, and we can add the two string
-method, but there is actually one other way to handle this. If you're familiar with
-these Symfony form components, then this problem of converting your entity into a
-string is something that you see all the time with the entity type and the two ways
-to solve it are either to add the two string method to your entity, or you can pass
-your form field, a choice label option. And we can do that here, because remember
-There is a set form type option method that we can pass here.
+One of the things we *can* control on these association fields is the query that's used for the results. Right now, our `->autocomplete()` is returning *any* user in the entire database. In a lot of situations, you may want to restrict it to only a subset. To do that, we can, once again, call another custom method on the association field called `->setQueryBuilder`. This is going to accept a `function()` with a `QueryBuilder, $queryBuilder` argument.
 
-So actually before I fill that in, let me open up the association field here, and I'm
-gonna scroll down to new. So you can see behind the scenes, this is actually using
-the entity type. So any options the entity type has we have, so we can set choice
-label here, and you can either set this to a call back or just the property on each
-entity that you want to use. So let's just use ID. So we'll just use the ID now.
-Beautiful. The ID is not super clear, but you can see that that's working. So let's
-start removing them. I'm gonna remove 95, I'll hit save and continue editing. And it
-went absolutely nowhere. If you're familiar with dealing with collections and the
-Symfony form component, you might remember the fix. I'm gonna go over and set one
-other form type option called by reference False. Now I'm not gonna go to the details
-too much, but by setting, by reference to false, if an answer is removed from this
-question that will force the system to call a re a remove answer method that I have
-on my question, and that properly removes it from my entity and even sets the answers
-question to no, if you wanna learn more about that, you can search for by reference
+This will create the query builder for you, and then you can modify it. I'll say `$queryBuilder->andWhere()`, and then the only thing that you need to know about this is that the entity alias is always called `entity`. So say, `entity.enabled = :enabled`, and then `->setParameter('enabled', true)`. This will filter out users that are not enabled. Perfect! I don't need to return anything here, because this modifies the `QueryBuilder`. Let's go see if that worked.
 
-This time. If fire remove 95 again, and hit save, we get a different error. An
-exception occurred, uh, not Noll violation on column question, ID of relation answer.
-So what happened here and actually let me load my question entity back up is when we
-remove an answer from question,
+Hm... I don't really notice any difference, because I think all of our users are enabled. But watch this! When I type... here's the AJAX request for that. And if I open up my web debug toolbar, here's the profiler for the AJAX request. I'll click to open this in a new window.
 
-What we do is we actually set the question on the answer to no, it's what we do is
-just sort of make the answer a what's called an orphan. That answer will, after this
-change is no longer related to a question. However, inside the answer entity, we have
-some code that says that this should never happen. Noble, false. We should never have
-an answer that has no question. In reality. We need to kind of decide what we wanna
-do here. If I remove an answer from a question, what should happen, probably what
-should happen is that answer should just be deleted in a doctrine. There's a way to
-force this. There's a way to say that, Hey, if an answer becomes orphaned, I want you
-to delete it. It's called orphan removal. So inside of questions, scroll up to find
-the answers property. Here it is. And on the end of this, I'm gonna add orphan
-removal
+You're now looking at the profiler for the autocomplete AJAX call. Head over to Doctrine, so we can see what that query looks like. Here it is. Click "View Formatted Query" and you'll see that it's basically looking on every single field to see if it matches our `%ti%` value, *and* `.enabled = ?` with a value of 1, which comes from this up here. So, pretty cool!
 
-Set to true. Now in refresh, yes, it worked. 95 is gone. And if you look in the
-database, there is no answer with ID 95. Awesome. So the last problem with this
-answers area is the same that we have with the other ones. If we have many answers in
-the database, they're actually all gonna be loaded onto the page to render the select
-element that's behind this. That's obviously not going to work. So we're just gonna
-solve it in the same way by saying, by adding->auto complete. But when we refresh,
-we're gonna get this error that says that the auto complete type that does not have a
-choice label option. So behind the scenes, when we call auto complete, this actually
-changes the form type behind the association field. And that form type doesn't have a
-choice label option. It actually always relies on the two string method of your
-entity, no matter what. So I'm gonna remove that and you can probably guess what's
-gonna happen now because I removed that. Now it's saying, okay, I need to have a two
-string method on answer. So let's finally add one an answer. I'll just go to the
-bottom public function, underscored score, two string
+All right, there's one other `AssociationField` that I want to include on this CRUD, and it's an interesting one: `$answers`. Unlike `$topic` and `$answeredBy`, this is a `Collection`, because each question has *many* answers.
 
-Returns, a string, and I'm just gonna return this arrow, get ID and now beautiful. It
-looks the same behind the scenes. If I search for stuff, search isn't super great,
-um, Search. Isn't super great. Cause it's just my numbers, but you get the idea I'll
-save and nice. All right, next, let's talk. Just, we're gonna talk just a tiny bit
-more about fields, but what we're really gonna focus on is a power powerful system
-called field configurators, where you can modify something about every field in the
-system from one place. It's also a key to understanding how the core of easy admin
-works.
+Back in `QuestionCrudController.php`, add `yield AssociationField::new('answers')`, and let's just see what we have here. I'll click back to the index page and... awesome! By default, it recognizes that it's a Collection, so it prints the number of answers that each has, which is pretty sweet. And if we go to a form, we get a very familiar error. The form is once again trying to get a string representation of our entity.
 
+We know how to fix this. We need to go to `Answer.php` and add the `__toString()` method. *But*, there's actually one *other* way to handle this. If you're familiar with the Symfony Form components, then this problem of converting your entity into a string is something that you see all the time with the `EntityType`. The two ways to solve it are either to add the `__toString()` method to your entity, *or* you can pass your form field a `choice_label` option. And we can do that here, because remember, there *is* a `->setFormTypeOption()` method that we can pass here.
+
+Before I fill that in, let me open up the `AssociationField` here, and I'm gonna scroll down to `new`. Behind the scenes, this is actually using the `EntityType`. So any options the `EntityType` has,  *we* have. We can set `choice_label` here, and you can either set this to a callback or just the property on each entity that you want to use. Let's just use `id`.
+
+And now... beautiful! The ID isn't super clear, but you can see that it's working. Let's try removing them. I'll remove "95" and hit "Save and continue editing" and... it went absolutely nowhere. If you're familiar with collections and the Symfony Form component, you might remember the fix. I'll go over and set one other form type option - `setFormTypeOption()` - called `by_reference` which is set to `false`. I won't go into too much detail, but basically, by setting `by_reference` to `false`, if an answer is *removed* from this question, that will force the system to call a `removeAnswer()` method that I have on my question. That properly removes it from my entity and even sets the `$answer->setQuestion()` to `null`. If you want to learn more about that, you can search for "by_reference".
+
+If I go back and remove "95" again and hit "Save", we get a *different* error.
+
+> An exception occurred, [...] Not null violation: [...] null value in
+> column "question_id" of relation "answer"
+
+So what happened here? Let me load my `Question.php` entity back up.
+
+When we remove an answer from Question, what we do is we actually set the question on the answer to "null". This makes the answer we removed what's referred to as an "orphan". After this change, that answer is no longer related to a question. However, inside the `Answer.php` entity, we have some code that says that this should never happen: `nullable: false`. We should never have an answer that isn't connected to a question. So now we need to decide what we want to do here. If I remove an answer from a question, what should happen? What *should* happen is that answer should just be deleted. In Doctrine, there's a way to force this and say:
+
+> "Hey, if an answer becomes orphaned, I want you to delete it."
+
+It's called "orphan removal". So inside of `Question.php`, scroll up to find the `$answers` property. Here it is. On the end of this, add `orphanRemoval:` set to `true`.
+
+If we refresh... yes! It worked! The "95" is gone! And if you look in the database, an answer with "ID 95" doesn't exist. Awesome!
+
+The last problem with this answers area is the *same* problem we have with the other ones. If we have many answers in the database, they're *all* going to be loaded onto the page to render the select element that's behind this. That's obviously not going to work. Well just have to solve it in the same way, by adding `->autocomplete()`.
+
+When we refresh, we're going to get this error that says that the "AutoComplete Type" does not have a "choice_label" option. Behind the scenes, when we call `->autocomplete()`, this actually changes the form type behind the `AssociationField`. And *that* form type doesn't have a `choice_label` option. It always relies on the `__toString()` method of your entity, no matter what. So I'll remove that, and you can probably guess what's going to happen next. *Now* it's saying:
+
+> "Okay, I need to have a `__toString()` method on answer."
+
+So, let's finally add one. In `Answer.php`, I'll go to the bottom and say `public function __toString(): string`, and then `return $this->getId()`. And now... beautiful! It looks the same, and if I search for something... the search isn't *great* because it's just my numbers, but you get the idea. I'll save and... nice!
+
+Next, we're going to talk a little bit more about fields. *But*, what we're really going to focus on is a power powerful system called Field Configurators, where you can modify something about *every* field in the system from one place. It's also a key to understanding how the core of EasyAdmin works.
