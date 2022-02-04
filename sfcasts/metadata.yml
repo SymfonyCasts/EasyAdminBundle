@@ -9,6 +9,7 @@ chapters:
     - field-rendering
     - field-config
     - upload
+    - formatted-value
     - association-field
     - association-many
     - field-configurator
