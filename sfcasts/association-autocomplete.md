@@ -80,3 +80,7 @@ Doctrine so we can see what that query looks like. Here it is. Click "View Forma
 Query" and cool! It looks on every single field to see if it matches the `%ti%`
 value *and*  it has WHERE `enabled = ?` with a value of 1... which comes from this
 up here. Super cool!
+
+Next: could we use an `AssociationField` to handle a *collection* relationship?
+Like to edit the collection of *answers* related to a `Question`? Totally! But
+we'll need to a few Doctrine & form tricks to help us.
