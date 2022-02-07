@@ -48,7 +48,7 @@ We see our stuff. Awesome. Okay. So let's have a little more fun. Let's render a
 chart for this. We're gonna use Symfony UX library. So we're gonna say
 
 ```terminal
-composer require symfony/ux-chart-js
+composer require symfony/ux-chartjs
 ```
 
 And while that's installing, I'm gonna over and go to
