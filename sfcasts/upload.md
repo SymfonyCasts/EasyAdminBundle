@@ -28,7 +28,7 @@ Broken image tags! But they *shouldn't* be broken: those image files *do* exist!
 
 Inspect element on an image. Ah: *every* image tag literally has just `/`
 then the filename. It's missing the `/uploads/avatars/` part! To configure that,
-we need to call `->setBasePath()` and pass `uploads/avatars` so it knows were to
+we need to call `->setBasePath()` and pass `uploads/avatars` so it knows where to
 look. If you're storing images on a CDN, you can put the full URL to your
 CDN right here instead. Basically, put whatever path needs to come right *before*
 the actual filename.
