@@ -117,7 +117,7 @@ you, try a force refresh.
 Ok, the `AssociationField` is *great*. But ultimately, what it renders is just a
 fancy-looking `select` field... which means that *all* the users in the entire
 database are being rendered into the HTML right now. Watch! I'll view the page source,
-and search for "Ticia". Yup! The server loaded *all* of the options onto the page.
+and search for "Tisha". Yup! The server loaded *all* of the options onto the page.
 If you only have a few users or topics, no biggie!. But in a real app, we're going
 to have hundreds, thousands, maybe even millions of users, and we *cannot* load all
 of those onto the page. That will absolutely break things.
