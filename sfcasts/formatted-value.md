@@ -7,9 +7,12 @@ that for some reason... like because these are meant to be tiny avatars.
 Actually, EasyAdmin has a field that's made specifically *for* avatars. It's called
 `AvatarField`!
 
-Back in our code, `yield AvatarField::new()` and pass it `avatar`. Yes, we *do*
-temporarily have two fields for `avatar`. Go refresh and... the original works,
-but the `AvatarField` is broken!
+Back in our code, `yield AvatarField::new()` and pass it `avatar`:
+
+[[[ code('caef1a87d9') ]]]
+
+Yes, we *do* temporarily have two fields for `avatar`. Go refresh and...
+the original works, but the `AvatarField` is broken!
 
 Inspect the image. Yup! This looks like the same problem as before: it's dumping
 out the filename instead of the full path to it. To fix this, the `ImageField`
@@ -19,8 +22,8 @@ not!
 ## Controlling the "Formatted Value"
 
 So let's back up. No matter which field type you use, when a field is ultimately
-printed onto the page, what's printed is something called the "formatted value".
-For some fields - like text fields - that "formatted" value is just rendered by
+printed onto the page, what's printed is something called the _formatted value_.
+For some fields - like text fields - that _formatted value_ is just rendered by
 itself. But for other fields, it's wrapped inside some markup. For example, if you
 dug into the template for the `AvatarField` - something we'll learn to do soon -
 you'd find that the formatted value is rendered as the `src` attribute of an
@@ -31,7 +34,9 @@ Anyways, the formatted value is something we can control. Do that by calling
 will receive a `$value` argument - whatever EasyAdmin would *normally* render
 as the formatted `$value` - and then our entity: `User $user`. Inside, we can
 return whatever value should be printed inside the `src` of the `img`. So,
-`return $user->getAvatarUrl()`.
+`return $user->getAvatarUrl()`:
+
+[[[ code('ce902c4b77') ]]]
 
 The `static` isn't important... it's just kind of a "cool kid" thing to do if
 your callback does *not* need to leverage the `$this` variable.
@@ -49,7 +54,11 @@ we want to use `ImageField` on the form and `AvatarField` when rendering. And we
 already know how to do that!
 
 Down here... on `ImageField,` add `->onlyOnForms()`. And above, on `AvatarField`,
-do the opposite: `->hideOnForm()`. This gives us the *exact* result we want.
+do the opposite: `->hideOnForm()`:
+
+[[[ code('0ab85b72c2') ]]]
+
+This gives us the *exact* result we want.
 
 ## Allowing Null in formatValue
 

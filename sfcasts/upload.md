@@ -1,12 +1,18 @@
 # Upload Fields
 
-Our `User` class also has a property called `$avatar`. In the database, this
-stores a simple filename, like `avatar.png`. Then, thanks to a `getAvatarUrl()`
-method that I created before the tutorial, you can get the full URL to the image,
-which is `/uploads/avatars/["the file name"]`. To get this to work, if you create a
-form that has an upload field, we need to *move* the uploaded file *into* this
-`public/uploads/avatars/` directory and then store whatever the filename is onto
-the `avatar` property.
+Our `User` class also has a property called `$avatar`:
+
+[[[ code('a2b4dc6b2e') ]]]
+
+In the database, this stores a simple filename, like `avatar.png`. Then, thanks
+to a `getAvatarUrl()` method that I created before the tutorial, you can get the full
+URL to the image, which is `/uploads/avatars/the-file-name`:
+
+[[[ code('4a9f551ce2') ]]]
+
+To get this to work, if you create a form that has an upload field, we need to *move*
+the uploaded file *into* this `public/uploads/avatars/` directory and then store
+whatever the filename is onto the `avatar` property.
 
 Let's add this to *our* admin area as an "Upload" field and... see if we can get
 it all working. Fortunately, EasyAdmin makes this pretty easy! It's like it's
@@ -15,7 +21,10 @@ in the name or something...
 ## The ImageField
 
 Back over in `UserCrudController` (it doesn't matter where, you can have this
-in whatever order you want), I'm going to say `yield ImageField::new('avatar')`.
+in whatever order you want), I'm going to say `yield ImageField::new('avatar')`:
+
+[[[ code('2b2396119e') ]]]
+
 If you have an upload field that is *not* an image, there isn't a generic
 `FileField` or anything like that. But you *could* use a `TextField`, then
 override its form type to be a special `FileUploadType` that comes from
@@ -29,9 +38,12 @@ Broken image tags! But they *shouldn't* be broken: those image files *do* exist!
 Inspect element on an image. Ah: *every* image tag literally has just `/`
 then the filename. It's missing the `/uploads/avatars/` part! To configure that,
 we need to call `->setBasePath()` and pass `uploads/avatars` so it knows where to
-look. If you're storing images on a CDN, you can put the full URL to your
-CDN right here instead. Basically, put whatever path needs to come right *before*
-the actual filename.
+look:
+
+[[[ code('45e8222d9c') ]]]
+
+If you're storing images on a CDN, you can put the full URL to your CDN right here
+instead. Basically, put whatever path needs to come right *before* the actual filename.
 
 ## Setting the Upload Dir
 
@@ -42,8 +54,12 @@ Head back over, refresh and... got it! Now edit the user and... error!
 
 That's a pretty great error message! According to this, we need to tell the
 `ImageField()` that when we upload, we want to store the files in the
-`public/uploads/avatar` directory. We can do that by saying `->setUploadDir()` with
-`public/avatars/uploads`. Um, actually that path isn't quite right.
+`public/uploads/avatar/` directory. We can do that by saying `->setUploadDir()` with
+`public/avatars/uploads`:
+
+[[[ code('a8c175b511') ]]]
+
+Um, actually that path isn't quite right.
 
 And when I refresh... EasyAdmin tells me! The directory *actually* is
 `public/uploads/avatars`. Now that I've fixed that... it works. And that's nice!
@@ -53,7 +69,7 @@ and even its size! Click the file icon and choose a new image. I'll choose my fr
 Molly! Hit save and... *another* error.
 
 > You cannot guess the extension as the Mime component is not installed. Try running
-> "composer require symfony/mime".
+> `composer require symfony/mime`.
 
 The Mime component helps Symfony look inside of a file to make sure it's *really*
 an image... or whatever type of file you're expecting. So, head over to your terminal
@@ -74,13 +90,16 @@ with the same name - some other fan of Molly - it would *replace* mine! So let's
 control how this file is named to avoid any mishaps.
 
 Do that by calling `->setUploadedFileNamePattern()`. Before I put anything here,
-hold "cmd" or "ctrl" to open that up... because this method has *really* nice
-documentation. There are a bunch of wildcards that we can use to get *just* the
-filename we want. For example, I'll pass `[slug]-[timestamp].[extension]`, where
-`[slug]` is, sort of a cleaned-up version of the original filename. By including
-the time it was uploaded, that will keep things unique!
+hold `Cmd` or `Ctrl` to open that up... because this method has *really* nice
+documentation. There are a bunch of wildcards that we can use to get *just*
+the filename we want. For example, I'll pass `[slug]-[timestamp].[extension]`,
+where `[slug]` is, sort of a cleaned-up version of the original filename:
 
-Ok, edit that same user again, re-upload "Molly", hit save and... beautiful! It
+[[[ code('e555a4f411') ]]]
+
+By including the time it was uploaded, that will keep things unique!
+
+Ok, edit that same user again, re-upload "Molly", hit "Save" and... beautiful! It
 *still* works! And over in the file location... awesome! We now have a "slugified"
 version of the new file, the timestamp, then `.jpg`. And notice that the old file
 is gone! That's another nice feature of EasyAdmin. When we uploaded the new
@@ -90,9 +109,9 @@ file, it deleted the original since we're not using it anymore. I love that!
 
 Oh, and many people like to upload their files to something like Amazon S3 instead
 of uploading them locally to the server. Does EasyAdmin support that? Totally! Though,
-you'll need to hook parts of this up by yourself. Hold "cmd" or "ctrl" to open
-`ImageField`. Behind the scenes, its form type is something called
-`FileUploadType`. Hold "cmd" or "ctrl" *again* to jump into that.
+you'll need to hook parts of this up by yourself. Hold `Cmd` or `Ctrl` to open
+`ImageField`. Behind the scenes, its form type is something called `FileUploadType`.
+Hold `Cmd` or `Ctrl` *again* to jump into that.
 
 This is a custom EasyAdmin form type for uploading. Scroll down a bit to find
 `configureOptions()`. This declares all of the options that *we* can pass to this
@@ -108,6 +127,6 @@ set to a callback that contains that logic.
 So it's *very* flexible. And if you dig into the source a bit, you'll be able
 to figure out exactly what you need to do.
 
-Next, it's time to learn about the purpose of the "formatted value" for each field
+Next, it's time to learn about the purpose of the _formatted value_ for each field
 and how to control it. That will let us render *anything* we want on the index
 and detail page for each field.
