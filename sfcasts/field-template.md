@@ -1,72 +1,19 @@
 # Field Template
 
-Coming soon...
+We know that these fields describe both the form type that you see on the form and also *how* that field is rendered on the detail and index pages. We also know how easy it is to costomize the form behind this. We can `->setFormType()` to use a completely different form type, or we can `->setFormTypeOption()` to configure one of the options.
 
-We know that these fields describe both the form type that you see on the form and
-also how that field is rendered on the detail and on the index page. And we already
-know that we can customize the form behind this really easily. We can set, set form
-type to use a completely different form type, or we can set form type option to
-configure one of the options. So we already know how to take a lot of control over
-how the field is rendered in the form. You can also change a lot about how it renders
-on the index X and details page. Like for example, let's play with this votes thing
-here, field here by auto complete the methods on this. We have things like set CSS
-class a to Webpack Encore entries, add HML contents to body, to head. There are many
-ways to customize, uh, how this field renders. You can even call set template path to
-completely over ride how this field is rendered on the index in details page, which
-is something that we're gonna do. But also notice that there's set template path and
-set template name like what's going on. What's the difference between those two?
+You can *also* change a lot about how it *renders* on the detail and index pages. For example, let's play with this "Votes" field here. If I autocomplete the methods on this, we have options like `->setCssClass()`, `->addWebpackEncoreEntries()`, `->addHtmlContentsToBody`, and `->addHtmlContentsToHead`. There are *many* ways to customize how this field renders. You can even call `->setTemplatePath()` to completely override how this field is rendered on the index and details page, which we'll do in a moment. But also notice that there's `->setTemplatePath()` and `->setTemplateName()`. What's going on? What's the difference between these two?
 
-Well, to answer that question, I'm gonna hit shift shift and open up a core class
-from easy Adam called template registry. If you don't see, it makes you include all
-non-project items. Perfect. So internally easy admin has a bunch of templates and it
-maintains this map of sort of template names and then the actual templates behind
-them. So when you call set template name, what you would pass here is some other
-template name. So for example, I could pass crud field money here. If I wanted to use
-that template instead of the normal one, but you're not really gonna be setting the
-template name very often. Most of the time, if you wanna completely override at how a
-field is rendered, you are gonna, uh, call set template path. So let's do that. Let's
-just take control of this. When votes is rendered on the index and template page, I
-want to com render a completely different template.
+To answer that question, I'm going to hit "shift" + "shift" and open up a core class from EasyAdmin called `TemplateRegistry.php`. If you don't see it, make sure you "Include non-project items". Perfect! Internally, EasyAdmin has a bunch of templates and it maintains this "map" of template names and then the *actual* templates behind them. So when you call `->setTemplateName()`, what you would pass here is some *other* template name. For example, I could pass `crud/field/money` here if I wanted to use that template instead of the normal one. But you won't need to set the template name very often. Most of the time, if you want to completely override at how a field is rendered, you're going to call `->setTemplatePath()`. Let's do that and take control of this.
 
-Let's have a call. How about admin /field /votes.ht L that twig, and then let's go
-create that. So templates I'll create a new directory admin sub directory field. Here
-we go. And a new file called votes dot H HG, all that twig inside of here. I don't
-really know what to put yet. So I'm just gonna put a hundred votes and see what
-happens. So when I move over and refresh, there we go. We are now incomplete control
-of the votes. So of course the obvious question here is what variables do we have
-access to? Like what kind of stuff can we do in here? One of the really important
-things to realize, and you can kind of see it here in the template registry is that
-every single field has a corresponding template. And if you need to extend or change
-how a field is rendered, looking in the parent template is pretty handy, for example,
-and this is an integer field.
+When "votes" is rendered on the index and template page, I want to render a completely different template. Let's make a new one called "admin/field/votes.html.twig", and then go create that. In `templates/` I'll create a new directory called "admin/field"... and a new file called `votes.html.twig`. Inside, I don't really know what to put here yet, so I'll just put "💯 votes!" and see what happens. When we move over and refresh... there we go! We are now in complete control of the votes!
 
-Well, there's a template called integer dot H twig. So I'm gonna close this template
-registry and let's actually go find that. So on vendor composer, easy admin source,
-I'll close up field and instead open resources, views, crud, and there is the list of
-all of the field templates in the system. You can also see other templates here that
-are used to render other parts of the system, and you can override these as well.
-Let's open integer dot H channel that twig. So you can see it's super, uh, you can do
-two things here. The first thing is three lines of com. This is really cool. This is
-a way to help hint to our editor and us, what variables we have access to.
-Apparently, apparently we have access to the field variable, which is that very
-familiar field DTO object. We were just talking about. And all the integer does is
-just say field dot, formatted value. So I'm gonna copy these three lines into ours so
-that we can get a little bit of auto completion help. And then now Sarah, instead of
-hundred votes, we know we can say field that formatted value. And then I'll just say
-votes on the other side, why we try this beautiful. Let's make this a little fancier.
+Now, you're probably wondering what we can do with this. What kind of variables do we have access to? One important thing to realize (and you can see it here in `TemplateRegistry.php`) is that every single field has a corresponding template. If you need to extend or change how a field is rendered, looking in the parent template is pretty handy. For example, this is an `IntegerField`. There's a template called "integer.html.twig". I'll close this template registry and let's actually go find it. On `vendor/easycorp/easyadmin-bundle/src/`, I'll close up `Field/` and instead open `/Resources/views/crud/field`, and *there* is the list of all of the field templates in the system. You can also see other templates here that are used to render other parts of the system, and you can override these as well.
 
-If these votes are negative, let's put a little thumbs down. If they're positive,
-let's put a little thumbs up. So I'll take off the word votes here. And before this,
-we can do an if statement, if field dot and what I wanna get is the actual underlying
-value. We can get that by saying field dot value. So formatted value is the string
-format that would be used to print on the page value, actual true underlying in this
-case, integer. So a field that value is greater than equal to zero else. And if, and
-if it is greater than zero, I'll add a little icon here and I'll copy that for our
-little thumbs down with text danger and just like that we have customized how this
-field renders. It doesn't customize how it shows inside of our form. That's entirely
-handled by the form field, but it does control how it's rendered on the index page.
-And I'll how it's rendered on the details page. But we also have a votes field inside
-of questions. And while it would be pretty easy, just to point this votes field at
-the same template, instead of doing that, I wanna create a totally new custom field
-and easy admin that's next.
+Let's open `integer.html.twig`. You can do two things here. The first thing is three lines of comments. This is really cool! This is a way to help hint to our editor (and us) which variables we have access to. Apparently, we have access to the `field` variable, which is that very familiar `FieldDto` object we were just talking about. All the integer does is just say `field.formattedValue`. Copy these three lines into `votes.html.twig` so that we can get a little autocompletion help. And then instead of "💯 votes!", we can say `field.formattedValue`, and then just say "votes" on the other side. When we try this... beautiful! But I bet we can make this a little fancier.
 
+If the votes are negative, let's put a little thumbs down, and if they're positive, let's put a little thumbs up. Take off the word "votes" here, and before this, we can do an "if" statement: `if field.`. What we want to get is the actual underlying value, and we can do that by saying `field.value`. So `formattedValue` is the string format that would be used to print on the page, while `value` is the actual true underlying (in this case) integer. So `if field.value >= 0`, `else`, and `endif`, and if it *is* greater than zero, I'll add a little icon here, `fas fa-thumbs-up text-success`, and I'll copy that for our little thumbs down with `text-danger`.
+
+And just like that, we have customized how this field renders. It doesn't customize what it looks like inside of our form (that's entirely handled by the form field), but it *does* control how it's rendered on the index page, *and* the details page.
+
+We also have a "votes" field inside of Questions. While it would be pretty easy to just point this votes field at the same template, instead of doing that, I want to create a brand new custom field in EasyAdmin. That's next.
