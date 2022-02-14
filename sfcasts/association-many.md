@@ -23,7 +23,7 @@ field a `choice_label` option. We can do that here thanks to the
 `->setFormTypeOption()` method.
 
 Before we fill that in, open up the `AssociationField` class... and scroll down to
-`new`. Behind the scenes, this is uses the `EntityType` for the form. So any options
+`new`. Behind the scenes, this uses the `EntityType` for the form. So any options
 `EntityType` has, *we* have. For example, we can set `choice_label`, which accepts
 a callback or just the property on the entity that it should use. Let's try
 `id`.
@@ -55,9 +55,9 @@ Ok, try removing "95" again and saving. Hey! We upgraded to an error!
 
 So what happened? Open `Question.php` back up. When we remove an answer from `Question`,
 our method sets the `question` property on the `Answer` object to "null". This makes
-that `Answer` an "orphan": its an `Answe` that is no longer related to *any* `Question`.
+that `Answer` an "orphan": its an `Answer` that is no longer related to *any* `Question`.
 
-However, inside `Answer` entity, we have some code that prevents this from ever
+However, inside `Answer`, we have some code that prevents this from ever
 happening: `nullable: false`. If we ever try to save an Answer without a Question,
 our database will stop us.
 
@@ -73,14 +73,15 @@ In Doctrine, there's a way to force this and say:
 It's called "orphan removal". Inside of `Question`, scroll up to find the `$answers`
 property... here it is. On the end, add `orphanRemoval` set to `true`.
 
-No refresh and... yes! It worked! The "95" is gone! And if you looked in the database,
+Now refresh and... yes! It worked! The "95" is gone! And if you looked in the database,
 no answer with "ID 95" would exist. Problem solved!
 
 ## Customizing the AssociationField
 
 The last problem with this answers area is the *same* problem we have with the other
 ones. If we have many answers in the database, they're *all* going to be loaded onto
-the page to render the `select`. That's not going, so let's add `->autocomplete()`.
+the page to render the `select`. That's not going to work, so let's add
+`->autocomplete()`.
 
 When we refresh, uh oh!
 
@@ -97,7 +98,7 @@ refresh. Yup! *Now* it's saying:
 
 > Hey Ryan! Go add that `__toString()` method!
 
-Ok fine! in `Answer`, anywhere in here, add `public function __toString(): string`...
+Ok fine! In `Answer`, anywhere in here, add `public function __toString(): string`...
 and `return $this->getId()`.
 
 Now... we're back! And if we type... well... the search isn't *great* because
