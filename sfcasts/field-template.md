@@ -1,19 +1,91 @@
-# Field Template
+# Overriding Field Templates
 
-We know that these fields describe both the form type that you see on the form and also *how* that field is rendered on the detail and index pages. We also know how easy it is to costomize the form behind this. We can `->setFormType()` to use a completely different form type, or we can `->setFormTypeOption()` to configure one of the options.
+We know that fields describe both the *form type* that you see on the form and
+also *how* that field is rendered on the detail and index pages. We also know how
+easy it is to customize the form type behind this. We can `->setFormType()` to use
+a completely different type or `->setFormTypeOption()` to configure one of the options
 
-You can *also* change a lot about how it *renders* on the detail and index pages. For example, let's play with this "Votes" field here. If I autocomplete the methods on this, we have options like `->setCssClass()`, `->addWebpackEncoreEntries()`, `->addHtmlContentsToBody`, and `->addHtmlContentsToHead`. There are *many* ways to customize how this field renders. You can even call `->setTemplatePath()` to completely override how this field is rendered on the index and details page, which we'll do in a moment. But also notice that there's `->setTemplatePath()` and `->setTemplateName()`. What's going on? What's the difference between these two?
+We can *also* change a lot about how each *renders* on the detail and index pages.
+For example, let's play with this "Votes" field. If I autocomplete the methods on
+this, we have options like `->setCssClass()`, `->addWebpackEncoreEntries()`,
+`->addHtmlContentsToBody()`, and `->addHtmlContentsToHead()`. You can even call
+`->setTemplatePath()` to *completely* override how this field is rendered on the
+index and details page, which we'll do in a moment.
 
-To answer that question, I'm going to hit "shift" + "shift" and open up a core class from EasyAdmin called `TemplateRegistry.php`. If you don't see it, make sure you "Include non-project items". Perfect! Internally, EasyAdmin has a bunch of templates and it maintains this "map" of template names and then the *actual* templates behind them. So when you call `->setTemplateName()`, what you would pass here is some *other* template name. For example, I could pass `crud/field/money` here if I wanted to use that template instead of the normal one. But you won't need to set the template name very often. Most of the time, if you want to completely override at how a field is rendered, you're going to call `->setTemplatePath()`. Let's do that and take control of this.
+But also notice that there's `->setTemplatePath()` *and* `->setTemplateName()`. What's
+going on? What's the difference?
 
-When "votes" is rendered on the index and template page, I want to render a completely different template. Let's make a new one called "admin/field/votes.html.twig", and then go create that. In `templates/` I'll create a new directory called "admin/field"... and a new file called `votes.html.twig`. Inside, I don't really know what to put here yet, so I'll just put "💯 votes!" and see what happens. When we move over and refresh... there we go! We are now in complete control of the votes!
+## Template "Names" and the Template Registry
 
-Now, you're probably wondering what we can do with this. What kind of variables do we have access to? One important thing to realize (and you can see it here in `TemplateRegistry.php`) is that every single field has a corresponding template. If you need to extend or change how a field is rendered, looking in the parent template is pretty handy. For example, this is an `IntegerField`. There's a template called "integer.html.twig". I'll close this template registry and let's actually go find it. On `vendor/easycorp/easyadmin-bundle/src/`, I'll close up `Field/` and instead open `/Resources/views/crud/field`, and *there* is the list of all of the field templates in the system. You can also see other templates here that are used to render other parts of the system, and you can override these as well.
+To answer that question, I'm going to hit "shift" + "shift" and open up a core class
+from EasyAdmin called `TemplateRegistry.php`. If you don't see it, make sure to
+"Include non-project items".
 
-Let's open `integer.html.twig`. You can do two things here. The first thing is three lines of comments. This is really cool! This is a way to help hint to our editor (and us) which variables we have access to. Apparently, we have access to the `field` variable, which is that very familiar `FieldDto` object we were just talking about. All the integer does is just say `field.formattedValue`. Copy these three lines into `votes.html.twig` so that we can get a little autocompletion help. And then instead of "💯 votes!", we can say `field.formattedValue`, and then just say "votes" on the other side. When we try this... beautiful! But I bet we can make this a little fancier.
+Perfect! Internally, EasyAdmin has *many* templates and it maintains this "map"
+of template names to the *actual* template behind each. So when you call
+`->setTemplateName()`, what you would pass is some *other* template name. For
+example, I could pass `crud/field/money` if I wanted to use *that* template instead
+of the normal one.
 
-If the votes are negative, let's put a little thumbs down, and if they're positive, let's put a little thumbs up. Take off the word "votes" here, and before this, we can do an "if" statement: `if field.`. What we want to get is the actual underlying value, and we can do that by saying `field.value`. So `formattedValue` is the string format that would be used to print on the page, while `value` is the actual true underlying (in this case) integer. So `if field.value >= 0`, `else`, and `endif`, and if it *is* greater than zero, I'll add a little icon here, `fas fa-thumbs-up text-success`, and I'll copy that for our little thumbs down with `text-danger`.
+But, you probably need override the template *name* very often. Most of the time,
+if you want to completely control how a field is rendered, you're going to call
+`->setTemplatePath()`.
 
-And just like that, we have customized how this field renders. It doesn't customize what it looks like inside of our form (that's entirely handled by the form field), but it *does* control how it's rendered on the index page, *and* the details page.
+Here's the plan: when "votes" is rendered on the index and detail page, I want
+to render a *completely* different template. Let's call it
+`admin/field/votes.html.twig`.
 
-We also have a "votes" field inside of Questions. While it would be pretty easy to just point this votes field at the same template, instead of doing that, I want to create a brand new custom field in EasyAdmin. That's next.
+Ok! Time to create that. In `templates/`, add a new directory called `admin/field`...
+and a new file called `votes.html.twig`. Inside, I don't really know what to put
+here yet, so I'll just put "💯 votes!"... and see what happens.
+
+When we move over and refresh... there it is! We are now in *complete* control of
+the votes!
+
+## Digging into the Core Templates
+
+But, if you're like me, you're probably wondering what we can *do* inside of here.
+What variables do we have access to? One important thing to realize (and you can
+see it here in `TemplateRegistry.php`) is that every single field has a corresponding
+template. If you need to extend or change how a field is rendered, looking into
+the *core* template is pretty handy.
+
+For example, `votes` is an `IntegerField`. Whelp, there's a template called
+`integer.html.twig`. Close this template registry and... let's go find that! On
+`vendor/easycorp/easyadmin-bundle/src/`. Close up `Field/` and instead open
+`Resources/views/crud/field`. And *here* is the list of *all* of the field templates
+in the system. You can *also* see other templates that are used to render *other*
+parts of EasyAdmin... and you can override these as well.
+
+Open up `integer.html.twig`. You can see two things here. The first thing is three
+lines of comments. This is really cool! It helps to our editor (and us) to know which
+variables we have access to. Apparently, we have access to a `field` variable,
+which is that very familiar `FieldDto` object we talked about earlier. All the
+integer does is just... print `field.formattedValue`.
+
+## Customizing the Template
+
+Copy these three lines and paste them into our `votes.html.twig`. Then instead of
+"💯 votes!", say `field.formattedValue` "votes".
+
+And when we try this... beautiful! But I bet we can make this a little fancier!
+If the votes are negative, let's put a little thumbs down. And if positive, a
+thumbs up.
+
+Take off the word "votes" here, and this, add `if field.`. Hmm. What we want to get
+is the *underlying* value - the true `integer`, not necessarily the "formatted" value.
+We can get that by saying `field.value`.
+
+So `formattedValue` is the string format that would print on the page, while `value`
+is the actual underlying (in this case) integer. So `if field.value >= 0`, `else`,
+and `endif`. If it *is* greater than zero, add an icon with
+`fas fa-thumbs-up text-success`. Copy that for our thumbs down with `text-danger`.
+
+And... just like that, we're making this field render *however* we want. It doesn't
+customize what it looks like inside of the *form* (that's entirely handled by the form
+field), but it *does* control how it's rendered on the index page, *and* the details
+page.
+
+But, hmm. We also have a "votes" field inside of the Questions section. While it
+would be pretty easy to also point *that* votes field to the same new template,
+instead, I want to create a brand new *custom* field in EasyAdmin. That's next.
