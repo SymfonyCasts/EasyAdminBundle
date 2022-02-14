@@ -9,7 +9,9 @@ database, this page is going to start slowing down, and eventually, explode.
 ## AssociationField::autoComplete()
 
 To fix this, head over and call a custom method on the `AssociationField` called
-`->autocomplete()`.
+`->autocomplete()`:
+
+[[[ code('2c55c950e3') ]]]
 
 Yes, this *is* as nice as it sounds. Refresh. It *looks* the same, but when we type
 in the search bar... and open the Network Tools... check it out! That made an AJAX
@@ -23,10 +25,14 @@ option, which is the same thing it does on the index page in the "Asked By"
 column. We *can* control that, however. How? We already know: it's our old friend
 `->formatValue()`. As you might remember, this takes a callback function as its
 argument: `static function()` with `$value` as the *first* argument
-and `Question` as the second. The `$value` argument will be the formatted value that
-it's *about* to print onto the page. And then `Question` is the current `Question`
-object. We'll eventually need to make this argument `nullable` and I'll explain *why*
-later. But for now, just pretend that we always have a `Question` to work with.
+and `Question` as the second:
+
+[[[ code('568e743513') ]]]
+
+The `$value` argument will be the formatted value that it's *about* to print onto
+the page. And then `Question` is the current `Question` object. We'll eventually
+need to make this argument `nullable` and I'll explain *why* later. But for now,
+just pretend that we always have a `Question` to work with.
 
 Inside: `if (!$question->getAskedBy())` - if for some reason that field is `null`,
 we'll `return null`. If that *is* set, `return sprintf()` - with `%s`, `&nbsp;` for
@@ -36,7 +42,9 @@ a space, and then `%s` inside of parentheses. For the first wildcard, pass
 Oh, whoops! In the if statement, I meant to say if `!$user =`. This, fancily, assigns
 the `$user` variable *and* checks to see if there *is* an askedBy user all at once.
 Finish the `->getEmail()` method and use `$user->getQuestions()->count()` for the
-second wildcard.
+second wildcard:
+
+[[[ code('69f7dbd321') ]]]
 
 ## HTML IS Allowed in EasyAdmin
 
@@ -61,25 +69,28 @@ the database. Let's restrict this to only *enabled* users.
 
 How? Once again, we can call a custom method on `AssociationField` called
 `->setQueryBuilder()`. Pass this a `function()` with a `QueryBuilder $queryBuilder`
-argument.
+argument:
+
+[[[ code('44b01e8577') ]]]
 
 When EasyAdmin generates the list of results, it creates the query builder *for*
 us, and then we can modify it. Say `$queryBuilder->andWhere()`. The only secret
 is that you need to know that the entity *alias* in the query is always
-`entity`. So: `entity.enabled = :enabled`, and then
-`->setParameter('enabled', true)`.
+`entity`. So: `entity.enabled = :enabled`, and then `->setParameter('enabled', true)`:
+
+[[[ code('de61807928') ]]]
 
 That's it! We don't need to *return* anything because we *modified* the
 `QueryBuilder`. So let's go see if it worked!
 
 Well, I don't think we'll *notice* any difference because I'm pretty sure every
 user *is* enabled. But watch this. When I type... here's the AJAX request.
-Open up the web debug toolbar... hover over the Ajax section and click to open
+Open up the web debug toolbar... hover over the AJAX section and click to open
 the profiler.
 
 You're now looking at the profiler for the autocomplete AJAX call. Head over to
 Doctrine section so we can see what that query looks like. Here it is. Click "View
-Formatted Query". Cool! It looks on every field to see if it matches the `%ti%`
+formatted query". Cool! It looks on every field to see if it matches the `%ti%`
 value *and* it has WHERE `enabled = ?` with a value of 1... which comes from up
 here. Super cool!
 
