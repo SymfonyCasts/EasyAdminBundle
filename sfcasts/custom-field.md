@@ -1,67 +1,19 @@
 # Custom Field
 
-Coming soon...
+On the Answers CRUD, we just created this cool little custom Votes template, which we then used by calling the `->setTemplatePath()` on our votes field. But we also have a votes field over on Questions, which still uses the default. I want to use this in both places. Technically, doing this is really easy. We could copy this `->setTemplatePath()`, go up and find our `QuestionCrowdController.php`, find our votes field right here, and then just paste to use that template path. But *instead*, let's create a custom field.
 
-On the answers crud. We just created this cool little custom votes template, which we
-then used by calling the set template path on our votes field. But we also have a
-votes field over on questions, which still uses the default. I wanna use this in both
-places now, in theory, then technically doing this is really easy. I could copy this
-template path. We could go up and find our question. Crowd controller, find our votes
-field right here, and then just paste to use that template path. But instead let's
-create a custom field. So since a field class like text area, field or association,
-field defines how a field looks on the index page and details page as well as how
-it's rendered on a form. A custom field is a great way to encompass a bunch of custom
-field configuration in one place. So then you can reuse it and creating custom field
-is pretty easy. So down in our source, easy admin directory, I'll create a new PHP
-class called votes field.
+Since a field class like `TextareaField` or `AssociationField` defines how a field looks on the index page and details page, as well as how it's rendered on a form, a custom field is a great way to encompass a bunch of custom field configurations in one place so you can reuse it. Creating a custom field is pretty easy. Down in our `src/EasyAdmin/` directory, I'll create a new PHP class called "VotesField".
 
-The only rule of I fields that needs to implement field interface. Now this requires
-us to have two methods new and get as DTO. Um, but what you'll typically do is use a
-field trait. Now I'm gonna click to open that so you can kind of see what it is.
-Field trait helps manage the DT, this DTO stuff, and also has a bunch of sort of
-common things like set label, set value, set, formatted value that every field
-shares. So the only thing that we need to implement, I go down here to code generate
-or Command + N on a Mac is the new method. And this is really where we customize all
-the options on this field. So to see what we wanna put here, as a reminder, our votes
-field is currently an integer field. So I'm gonna hold command or control to open
-that integer field and look at its new function. Cause we basically wanted to look
-very much like the integer field with a few differences. So let's copy the new field,
-all the code from new I'll close this, go to votes, field and paste, and I'll hit
-okay to add that use statement up there
+The only rule of fields is that it needs to implement `FieldInterface`. This requires us to have two methods, "new" and "getAsDto", but what you'll typically do is `use FieldTrait`. Click to open that. As you can see here, `FieldTrait` helps manage the Dto stuff, and it also has a bunch of the usual things like `setLabel`, `setValue`, `setFormattedValue` that every field shares. If you go to Code Generate, or "cmd + N" on a Mac, the only thing we need to implement is "new" method. This is really where we customize all the options on this field. As a reminder, our votes field is currently an `IntegerField`. I'll hold "cmd" or "ctrl" to open it and look at its new function. We want our new method to look very much like the `IntegerField` with a few differences, so copy all the code from `new`, close this, go to `VotesField.php`, and paste. I'll hit "Ok" to add that use statement up there.
 
-And I'm gonna remove this option number format thing. We're not gonna need that. And
-it actually relates to a field configurator that I'll show you in a second. Perfect.
-Now I notice this set default columns is crossed out because it's marked as internal.
-It's actually okay to use this method. Um, it's only meant to be used from inside of
-your field, which were inside of a field. So that's okay. Now, in addition to this,
-you know, we can customize anything we want. So we could even say add Webpack Encore
-entries. So extra, an extra Webpack Encore entry that would be included when this
-field is used. Um, you can do whatever you want. Now, what we wanna do is instead of
-calling set template and name so that it uses the normal integer field, we're gonna
-say set template path and then pass the same thing that we have an answer credit
-controller, which is admin /field /votes, HTML twig. So just as a reminder here, this
-template is used in the index and detail three pages in the form type.
+I'll also remove `OPTION_NUMBER_FORMAT`, since we won't need it. It relates to a field configurator that I'll show you in a second. Perfect! You may have noticed that this `->setDefaultColumns()` is crossed out. That's because it's marked as "internal", meaning it's only meant to be used from *inside* of your field. *But* that's where we are, so it's *okay* to use it.
 
-That's really what controls, how it looks on the edit and new pages. And that's it.
-Now we can just go use this. So an answer, correct controller. I'm gonna change this
-to a boats field and then we don't need the set temple path. And then in question
-controller, I'm gonna do the same thing, boats field, and that's it. If we wanted to,
-we could do this text line, right, uh, inside the custom field <affirmative> or
-remove it, whatever we want. All right. So let's try it over in question over
-refresh. Got it. And of course, over on our answers, it looks great there too. Now,
-one thing to be aware of if now that we of changes from an integer field to a votes
-field, if there is a specific field configurator for the integers field, it will no
-longer be used for our votes field.
+Additionally, you can customize anything you want here, like saying `->addWebpackEncoreEntires()` to add an extra Webpack Encore entry that will be included when this field is used. What *we* want to do, instead of calling `->setTemplateName()` so that it uses the normal `IntegerField`, is say `->setTemplatePath()` and then pass the same thing we have in `AnswerCrudController.php`, which is `admin/field/votes.html.twig`. Just as a reminder, "this template is used in the index and details pages", and above the form type, "this is used in the edit and new pages". That's it! Now we can go use this.
 
-And there actually is. If you go back down to vendor, easy Corp, easy admin bundle
-source field configurator, there is actually an integer or configurator, and you can
-see this operates only when the field you're using is actually integer field. So this
-configurator was being used a second ago, but it's not being used now. But if you
-look into it, it's just doing some stuff with a custom number format basically allows
-the integer field, allows you to control the format that the, uh, number is printed
-in. So we don't really need this anyways, cause we're taking, uh, control of how
-things are printed, um, inside of our votes, uh, template. So we don't really need
-anything custom there. So no big deal, just be aware next let's learn how to
-configure a bit more of the crud itself. Like how a crud is sorted by default pation
-settings and more okay.
+In `AnswerCrudController.php`, change this to a `VotesField`. We don't need the `->setTemplatePath()` anymore, so delete it. Then, in `QuestionCrudController.php`, do the same thing. Add `VotesField` and... done! If we wanted to, we could even put this `->setTextAlign('right')` *inside* the custom field *or* remove it.
 
+All right, let's try it. Over in Questions, refresh and... got it! Over on the Answers page... it looks great there too! One thing to be aware of, now that we've changed this from an `IntegerField` to a `VotesField`, is if there's a specific field configurator for the `IntegerField`, it will *no* longer be used for our votes field.
+
+And we actually have one of those. If you go back down to `/vendor/easycorp/easyadmin-bundle/src/Field/Configurator`, you'll find `IntegerConfigurator.php`, which operates *only* when the field you're using is an `IntegerField`. This configurator was being used a second ago, but it's not being used now. If you look into it, it's just doing some stuff with a custom number format, which basically allows you to control the format that the number is printed in. So we don't really need this anyway, since we're taking control of how things are printed inside of our votes template. It's just helpful to know this exists.
+
+Next, let's learn how to configure a bit more of the CRUD itself, like how CRUD is sorted by default, pagination settings, and more.
