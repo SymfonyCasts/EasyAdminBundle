@@ -76,7 +76,9 @@ Copy these three lines and paste them into our `votes.html.twig`:
 
 [[[ code('c9da81e0b8') ]]]
 
-Then instead of "💯 votes!", say `field.formattedValue` "votes".
+Then instead of "💯 votes!", say `field.formattedValue` "votes":
+
+[[[ code('7b7db8b7aa') ]]]
 
 And when we try this... beautiful! But I bet we can make this fancier!
 If the votes are negative, let's put a little thumbs down. And if positive, a
