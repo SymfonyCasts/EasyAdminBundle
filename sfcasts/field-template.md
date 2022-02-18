@@ -6,18 +6,21 @@ easy it is to customize the form type. We can `->setFormType()` to use
 a completely different type or `->setFormTypeOption()` to *configure* that type.
 
 We can *also* change a lot about how each *renders* on the detail and index pages.
-For example, let's play with this "Votes" field. If I autocomplete the methods on
-this, we have options like `->setCssClass()`, `->addWebpackEncoreEntries()`,
-`->addHtmlContentsToBody()`, and `->addHtmlContentsToHead()`. You can even call
-`->setTemplatePath()` to *completely* override how this field is rendered on the
-index and detail pages, which we'll do in a moment.
+For example, let's play with this "Votes" field:
+
+[[[ code('8c316437ef') ]]]
+
+If I autocomplete the methods on this, we have options like `->setCssClass()`,
+`->addWebpackEncoreEntries()`, `->addHtmlContentsToBody()`, and `->addHtmlContentsToHead()`.
+You can even call `->setTemplatePath()` to *completely* override how this field
+is rendered on the index and detail pages, which we'll do in a moment.
 
 But also notice that there's `->setTemplatePath()` *and* `->setTemplateName()`.
 What's the difference?
 
 ## Template "Names" and the Template Registry
 
-To answer that question, I'm going to hit "shift" + "shift" and open up a core class
+To answer that question, I'm going to hit `Shift` + `Shift` and open up a core class
 from EasyAdmin called `TemplateRegistry.php`. If you don't see it, make sure to
 "Include non-project items".
 
@@ -31,13 +34,17 @@ But you probably won't override the template *name* very often. Most of the time
 if you want to completely control how a field is rendered, you'll call
 `->setTemplatePath()`.
 
-Here's the plan: when "votes" is rendered on the index and detail pages, I want
+Here's the plan: when "Votes" is rendered on the index and detail pages, I want
 to render a *completely* different template. Let's call it
-`admin/field/votes.html.twig`.
+`admin/field/votes.html.twig`:
+
+[[[ code('e35d52be8a') ]]]
 
 Ok! Time to create that. In `templates/`, add 2 new directories `admin/field`...
 and a new file: `votes.html.twig`. Inside, I don't really know what to put
-here yet, so I'll just put "💯 votes!"... and see what happens.
+here yet, so I'll just put "💯 votes!"... and see what happens:
+
+[[[ code('71278b2d2c') ]]]
 
 When we move over and refresh... there it is! We are now in *complete* control of
 the votes!
@@ -65,8 +72,11 @@ integer template does is just... print `field.formattedValue`.
 
 ## Customizing the Template
 
-Copy these three lines and paste them into our `votes.html.twig`. Then instead of
-"💯 votes!", say `field.formattedValue` "votes".
+Copy these three lines and paste them into our `votes.html.twig`:
+
+[[[ code('c9da81e0b8') ]]]
+
+Then instead of "💯 votes!", say `field.formattedValue` "votes".
 
 And when we try this... beautiful! But I bet we can make this fancier!
 If the votes are negative, let's put a little thumbs down. And if positive, a
@@ -78,9 +88,14 @@ We can get that by saying `field.value`.
 
 So `formattedValue` is the *string* that would print on the page, while `value`
 is the actual underlying (in this case) integer. So `if field.value >= 0`, `else`,
-and `endif`. If it *is* greater than zero, add an icon with
-`fas fa-thumbs-up text-success`. Copy that... and paste for our thumbs down with
-`text-danger`.
+and `endif`:
+
+[[[ code('65648439ec') ]]]
+
+If it *is* greater than zero, add an icon with `fas fa-thumbs-up text-success`.
+Copy that... and paste for our thumbs down with `text-danger`:
+
+[[[ code('917380ae2b') ]]]
 
 And... just like that, we're making this field render *however* we want. It doesn't
 change how it looks like inside of the *form* (that's entirely handled by the form
