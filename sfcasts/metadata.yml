@@ -19,6 +19,7 @@ chapters:
     - custom-field
     - configure-crud
     - field-javascript
+    - field-stimulus
     - dashboard-page
     - override-template
     - permissions
