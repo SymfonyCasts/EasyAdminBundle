@@ -1,65 +1,90 @@
-# Configure Crud
+# configureCrud()
 
-Coming soon...
+If you look at the index page of any of the crud sections, it doesn't sort by default.
+It just... lists things in whatever order they come out of the database. It would
+nice to *change* that: to sort by a specific column whenever we go to a section.
 
-If you look at the index page of any of these crud, it doesn't sort by default. It
-just lists them. However they come out of the database. It would be cool if we could
-control how, which column they sorted by just when we click on them, this is a
-setting on the crud itself. So as a reminder, if I go to one of my crud controllers
-and open its base class, there are a number of different methods inside of here that
-we can override to configure things. The main ones are really configuring the crud
-where crud controls things about the entire. So like things about the entire answers,
-crud, configure actions, controls, which actions are linked from which pages. And of
-course, configure fields con controls the fields that show up and the crud is
-something that can be configured F at once for all crud by configuring this inside of
-our dashboard on, or only on one specific crud. So let's change these sort globally
-across our entire admin to sort by ID ascending, to do that. We are going to want to
-go into our dashboard anywhere inside of here, I'll go to co generate or command N on
-a Mac hit overrides methods and override configure crud.
+So far, we've talked about configuring assets, fields and actions. But "how a crud
+section sorts"... doesn't fall into any of these categories. Nope, for the first
+time, we need to configure something on the "crud section" as a whole.
 
-Then this is a number of methods on them. One of them is called set default sort,
-pass that in array of the things we wanna sort by. We wanna sort by ID descending.
-Now back over, when we click on the questions thing beautiful, you can see by
-default, it is sorting by ID. And if I click any of these, they're all sorting by ID
-descending. I need to fix that text earlier, but what if we wanna sort questions in a
-different way by default or even sort them across a relationship? So every question
-is owned by a user. What if we wanted to actually show the questions whose users are
-enable old first? How can we do that? Well, first, since we want to only apply this
-to the question, we need to do it inside of our question crud. So inside of here,
-I'll go to the bottom, same thing, we'll override and figure crud and call the exact
-same methods before set default sort. So override the one on our dashboard in here.
-We can say, ask by. So that's the relationship from question to user and then dot
-enabled. So this is actually referencing the enabled property on user, and we can set
-that to descending. And then also, uh, a in addition to that, once they're sorted by
-the enabled first we'll will then sort them by created that descending.
+Go to one of your crud controllers and open its base class. We know that there are
+a number of methods that we can override to control things... and we've already
+done that for many of these. But we have *not* yet used `configureCrud()`. As its
+name suggests, this is all about controlling settings on the entire crud *section*.
 
-So now when we click on the questions link, because we're sorting across multiple
-fields, you don't see any of these, like one thing selected, but it looks right
-created at seems like it's first. And if we on here and I'll click to open up the, on
-the web Depot toolbar, the database section, and on here, I'm gonna search for on the
-queries for search for order by Perfect. There it is right here. So it's inside the
-view format. The query, you can see it is ordering by the, our user dot enabled and
-then are created at pretty cool.
+And *just* like with most of the other methods, we can override this in our dashboard
+controller to make changes to *all* crud sections, or override it in one specific
+crud controller.
 
-So in addition to the default, sorting the user can of course come in here and sort
-by whatever column they want, but sometimes sorting for a specific field. Doesn't
-really make sense. You can see that it's already disabled for answers. And if we went
-over to the user Cru, you can see there's no sort for the avatar, which would make no
-sense. If you wanna control this a bit further, you can like, let's pretend for some
-reason, we don't want people sorting by the name of, of the question. This is
-actually something that you configure on the field itself. So in question credit
-controller for our name, field set, sortable false. Yep. And you can see the error
-just disappears. Let's open the topic index page. This entity is really simple and
-there's not a lot that we can improve here. But one thing we can do is we can render
-these actions, which are normally sort of under this dropdown. We can render them in
-line. Since we have some more space on the page To do that, of course, we're gonna
-head to topic a crowd controller, and this is also something that you can configure
-on the crud. So I'll go down here and I'll say it, uh, override, configure, crud,
+## Sorting All Crud Sections
 
-And say, show entity actions in line dropdown is the default and now super cool.
-There are a few other ways to kind of configure your crowd. And I invite you to look
-in the methods and check those out. But next I wanna talk about using a, what you see
-is what you get editor. There's actually a simple one built into easy admin, but
-we're gonna go a bit further and install our own, which is going to require some
-custom JavaScript. That's next.
+Let's see if we can set the default sorting across our entire *admin* to sort by id
+descending. To do that, open `DashboardController` and, anywhere inside, go to
+Code -> Generate - or command+N on a Mac - select override methods and choose
+`configureCrud()`.
 
+The `Crud` object has a bunch of methods on it... including one called
+`setDefaultSort()`. That sounds handy! Pass that the array of the fields we want
+to sort by. So, `id` set to `DESC`.
+
+Back over at the browser, when we click on "Questions"... beautiful! By default,
+it now sorts by id. Really, *all* sections now sort by id.
+
+## Sorting Differently in One Section
+
+And what if we want to sort Questions in a different way than the default? I bet
+you already know how we would do that. So let's make things more interesting. Every
+`Question` is owned by a `User`. What if we wanted to show the questions whose
+users are enabled first? Can we do that?
+
+First, since we want to only apply this to the questions section, we need to make
+this change inside of `QuestionCrudController`. Go to the bottom and... same thing:
+override `configureCrud()`... and call the exact same method as before:
+`setDefaultSort()`. Now we can say, `askedBy` - that's the property on `Question`
+that is a relation to `User` - `askedBy.enabled`. Set this to `DESC`.
+
+And then, after sorting by enabled first, sort the rest by `createdAt` `DESC`.
+
+Let's check it! Click "Questions". Because we're sorting across multiple
+fields, you don't see any header highlighted as the currently-sorted column. But...
+it looks right, at least based on the "Created At" dates.
+
+To know for sure, click the database link on the web debug toolbar. Then... search
+this page for "ORDER BY". There it is! Click "View formatted query". And...yes!
+It's ordering by `user.enabled` and then `createdAt`. Pretty cool.
+
+## Disabling Sorting on a Field
+
+So we now have default sorting... though the user can, of course, still click any
+header to sort by whichever column they want. But sometimes, sorting by a specific
+field doesn't make sense! You can see that it's already disabled for "answers".
+
+And if we go over to... let's see... the Users section, there's also no sort for
+the avatar field, which *also* seems reasonable.
+
+If you want to control this a bit further, you *can*. Like, let's pretend that we
+don't want people sorting by the name of the question. This is something we can
+configure on the field itself.
+
+In `QuestionCrudController`, for the name field, call `setSortable(false)`.
+
+And... just like that, the arrow is gone.
+
+## Inlining Controls for an Admin Section
+
+Before we move on - because there isn't a *ton* that we need to control on the
+CRUD-level, let me show you one more thing. Head to the Topics section. This entity
+is really *simple*... so we have plenty of space here to show these fields.
+
+Normally, the "actions" on the index page are hidden under this dropdown. But, we
+*can* render them inline.
+
+To do that, head to `TopicCrudController`... head down... and override
+`configureCrud()`. On the `Crud` object, call `->showEntityActionsInlined()`.
+
+That's it. Now... yea! That looks better.
+
+Next: I want to talk about using a what-you-see-is-what-you-get editor. There's
+actually a simple one built *into* Easy Admin. But we're going to go further and
+install our own. Doing *that* will require some custom JavaScript.
