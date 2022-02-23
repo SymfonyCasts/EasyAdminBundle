@@ -1,85 +1,86 @@
-# Field Stimulus
+# Custom Stimulus JavaScript Controller
 
-Coming soon...
+We just created a Stimulus controller. *Now* we need to *apply* this controller to
+the "row" that's around each field. Let me make things a bit smaller. So we're
+going to apply the controller to this row. The code in the controller will *watch*
+the textarea for changes and render a preview.
 
-We're going to apply this controller to
-the
-row that's around our field. So let me make things a little bit smaller here. So
-we're going to apply the controller to this row. That's around here. We're going to
-add
-a target to the actual text area itself and an action. So the end result of this is
-that when this controller is initialized, it's going to create a little markdown
-preview
-dev. And then whenever we type into the field, it's going to call render, which is
-going
-to re render the, uh, preview into the box. If you have any, we're not going to go
-too
-much into this. You have any questions about this control it's you can ask in the
-comments,
+The whole flow looks like this. When that row first appears on the page, the
+`initialize()` method will add a preview div. Then, whenever we type into the field,
+Stimulus will call `render()`... which will render the HTML preview. We're not going
+to talk more about the Stimulus code, but if you have any questions, let us know
+in the comments.
 
-But thanks to the fact that admin JS is importing bootstrap. That's initializing our
-controllers. This snark down controller is already available in our admin section to
-connect it to our field.
+Thanks to the fact that `admin.js` is importing `bootstrap.js`, which initializes
+all of the controllers in the `controllers/` directory, our new `snarkdown_controller`
+*is* already available in the admin section. So, we can get to work!
 
-We're going to say set form type options past this NRA. And we're going to add a
-couple of
-attributes. The first thing I wanna add is row_ATTR. This is attributes you wanna add
-to the form row. This is not an easy admin thing. This is just a, uh, an option
-inside Symfony's form system. Here. We're going to say data-controller. This is how
-you initialize a stimulus controller, and we're going to say snark down next, pass an
-ATTR option. This is going to be attributes to it or applied to the text area itself.
-We
-need to here the first one's data-snark down-target set to input that adds
-a target to our stimulus controller called input, that points to our text area. And
-the next one is data action set to snark down name of our controller pound sign
-render. What that's going to do is it's going to say whenever the text area changes,
-call
-the render method on our snark down controller, which is what's going to update the
-markdown preview. All right. So let's try it. I'm going to go over and refresh and
-actually let's do a, let's do a force refresh and Hmm. I don't see anything that's
-like in our console here. That looks fine.
+On the field, call `setFormTypeOptions()` and pass this an array. We need to set
+a few attributes. The first is `row_attr`: the attributes that you want to add
+to the form "row". This is not an Easy Admin thing... it's a normal option
+inside Symfony's form system. Add a `data-controller` attribute set to `snarkdown`.
+I *did* just typo that, which is going to *totally* confuse future me.
 
-Let me make sure that my actually let's inspect element on this debugging time. Oh,
-there it is right there. You guys probably saw data. <inaudible> go SAR down. So if
-you don't type of that, my controller is never actually initialized snark down.
-<affirmative>. Now, when we refresh, there we go. A little more luck. You can see our
-preview down there and as I type it instantly updates to make something bold. Awesome
-though, we could probably fix the styling here a little bit. So fortunately, we also
-know how to add styles to our admin area. So I'll go to our admin.CSS file and
-I'm AOL markdown preview selector here. This is a class that our controller adds to
-the preview area. So we're going to take advantage of that to add a little bit of
-Styling to it. Now, if we try this much better, I love that Actually, to improve this
-even a little bit more, check this out in question credit control arm, I call one
-more method on here called set help, and just say preview, cuz the help message
-renders below the field. There he goes. It gives a nice little preview thing right
-there. Now one warning is that if you use stimulus every controller in your
-controller's directory,
+Next pass an `attr` option: the attributes that should be added the textarea itself.
+Add one called `data-snarkdown-target` set to `input`. In Stimulus language, this
+makes the textarea a "target"... so that it's easy for us to find. Also add
+`data-action` set to `snarkdown#render`.
 
-Including our snark down controller is going to be, I include it in the build app dot
-JS, which is the file that's on the front end. In other words, our frontend users
-right now that go on the main part of our site. They are now downloading our snark
-down controller and snark down itself. That's not really a problem. It's not a
-security problem. It's just wasteful because we are not using these on our front end.
-So the easiest way to fix this
+This says: whenever the textarea changes, call the `render()` method on our `snarkdown`
+controller.
 
-Is to go into our controller and add a little superpower. That's special to stimulus
-instead of Symfony, but little comment here and say stimulus, fetch colon, then
-inside single quotes, lazy. What that does is it doesn't it, it tells stimulus not to
-download this controller or any of the thing that it imports until an element on the
-page appears that matches this controller. So this is going to be downloaded via Ajax
-only when it's needed. So check this out. If I go back to my admin, I'll pull up my
-network tools here. We'll go to question. Now I'll make this a little bit bigger and
-I'll go to edit and then click on JS. So you can see down here, this last one here,
-this assets controller, snark down controller, JS.JS. That is actually what
-contains our snark down controller. And the key thing is here is the initiator.
+Let's try this! Move over and refresh... and type a little... hmm. No preview.
+And no errors in the console either. Debugging time! Inspect the element.
+Bah! A typo on the controller name... so the controller was never initialized.
 
-What? So I move that load script that tells me that the load script means that this
-was loaded after the page is loaded. Once this, uh, text area was visible, it wasn't
-included in the main download. You wouldn't see this assets controller snark down
-controller in the source code for our page. In fact, if I go to any other page, like
-our question list page, you can see that file's not there. It's not there. It doesn't
-get downloaded until stimulus sees a matching element that has that controller pretty
-cool. All right. Next, it's finally time to do something with our dashboard. Let's
-render a chart here and talk about what other things you can do with your main
-dashboard page. Okay.
+Fix that - `snarkdown` - and now when we refresh, there it is! It starts with a
+preview... and when we type... it instantly updates to show that as bold. Awesome!
 
+Though, we could style this a bit better... and fortunately we know how to add
+CSS to our admin area. In `admin.css`, add a `.markdown-preview` selector. This
+is the class that the preview div has when we add it. Let's give this some margin,
+a border and some padding.
+
+And now... neato! And to make this *even* cooler, in `QuestionCrudController`,
+on the field, call `->setHelp('Preview')`.
+
+Help messages render below the field... so... ah. This gives the preview a
+little header.
+
+## Making Admin Controllers Lazy
+
+So with the combination of Stimulus and an `admin.js` file that imports
+`bootstrap.js`, we can add custom JavaScript to our admin section simply
+by dropping a new controller into the `controllers/` directory.
+
+This *does* create one small problem. *Every* file in the `controllers/` directory
+is *also* registered and packaged into the built `app.js` file for the frontend.
+This means that users that visit our frontend are downloading `snarkdown_controller`
+*and* snarkdown itself. That's probably not a security problem... but it *is* wasteful
+and will slow down the frontend experience.
+
+My favorite way to fix this is to go into the controller and add a superpower
+that's special to Stimulus inside of Symfony. Put a comment directly above the
+controller with `stimulusFetch` colon then inside single quotes `lazy`.
+
+What does that do? It tells Encore to *not* download this controller code - *or*
+anything it imports - until the moment that an element appears on the page that
+matches this controller. In other words, the code *won't* be downloaded immediately.
+But then, the *moment* a `data-controller="snarkdown"` element appears on the page,
+it'll be downloaded via Ajax and executed. Pretty perfect for admin stuff.
+
+Check it out. On your browser, go back to the admin section. Pull up your
+network tools and go to the Questions section. I'll make the tools bigger... then
+go edit a question. On the network tools filter, click "JS".
+
+Check out this last entry: `assets_controllers_snarkdown_controller_js.js`. *That*
+is the file that contains our `snarkdown_controller` code. And notice the "initiator"
+is "load_script". That's a Webpack function that tells me that this was downloaded
+*after* the page was loaded. Specifically, once the textarea appeared on the
+page.
+
+And if we visit any *different* page... yep! That file was *not* downloaded at all
+because there is *no* `data-controller="snarkdown"` element on the page.
+
+Next, it's finally time to do something with our dashboard! Let's render a chart
+and talk about what other things you can do with your admin section's landing page.

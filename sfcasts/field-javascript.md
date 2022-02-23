@@ -88,6 +88,6 @@ Excellent! Next, up in `assets/controllers/`, create a new file called
 I'll paste in some contents.
 
 What's inside of here... isn't that important. But to get it to work, we're going
-to need a custom template where we can add the preview div and *attach* this
-controller. Let's do that next *and* use a performance trick so that our new
-controller isn't unnecessarily downloaded by frontend users.
+to need some custom attributes that will *attach* this controller to the form field.
+Let's do that next *and* use a performance trick so that our new controller isn't
+unnecessarily downloaded by frontend users.
