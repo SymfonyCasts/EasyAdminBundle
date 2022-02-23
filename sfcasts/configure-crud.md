@@ -80,7 +80,7 @@ is really *simple*... so we have plenty of space here to show these fields.
 Normally, the "actions" on the index page are hidden under this dropdown. But, we
 *can* render them inline.
 
-To do that, head to `TopicCrudController`... head down... and override
+To do that, head to `TopicCrudController`... go down... and override
 `configureCrud()`. On the `Crud` object, call `->showEntityActionsInlined()`.
 
 That's it. Now... yea! That looks better.
