@@ -1,34 +1,100 @@
 # Permissions
 
-In `/config/packages/security.yaml`, thanks to the `access_control` that we added way back at the beginning of the tutorial, you can only get to the admin section if you have `ROLE_ADMIN`. As far as security goes, that's all we have so far. If you have `ROLE_ADMIN`, you have access to everything inside of the admin area. But in reality, in this application, we have *three* different user types. You can see them described up here under `role_hierarchy`. We have `ROLE_ADMIN`, which is the lowest level. Then we have `ROLE_MODERATOR` above that, which *includes* `ROLE_ADMIN`, but we're going to give this some *special* permissions, like the ability to moderate questions. And finally, there's `ROLE_SUPER_ADMIN`, which is the highest level of permissions and is allowed to do everything.
+In `config/packages/security.yaml`, thanks to the `access_control` that we added
+*way* back at the start of the tutorial, you can only get to the admin section
+if you have `ROLE_ADMIN`. As far as security goes.... that's all we have so far. If
+you have `ROLE_ADMIN`, you get access to *everything* inside of the admin area.
 
-Only users with `ROLE_MODERATOR` should be allowed to go to the Questions CRUD section. Right now I have... if I hover over this... `ROLE_ADMIN`, and I *do* currently have access to this. To fix that, the first thing we want to do is hide this link unless I have `ROLE_MODERATOR`. So let's go over to our `DashboardController.php` - that's where we can configure our links - and up to `configureMenuItems()`. Here's the `Questions` one right here. We can call `->setPermission()` and then pass this the permission to check, which for us is `ROLE_MODERATOR`. As I mentioned, the user I'm logged in as right now does *not* have this role. So, not surprisingly, when we refresh, the link disappears. But check it out! I still *technically* have access to the Questions section. It just doesn't show the link anymore. So if someone sent me this URL, then I could *still* access this, but I would never be able to *guess* this URL. Thst's because EasyAdmin generates a signature on this URL. You can actually see it up here - this "signature=". What that does is prevent anyone from messing with a URL and trying to access something else. For example, if I tried to change "QuestionCrudController" to "AnswerCrudController", because I'm attempting to change the URL to gain access somewhere else, I see:
+But in this application, we have *three* different admin user types and each needs
+to have access to different *parts* of the admin section.
+
+You can see them described up here under `role_hierarchy`. We have `ROLE_ADMIN`,
+which is the lowest level. Then we `ROLE_MODERATOR` above that, which *includes*
+`ROLE_ADMIN`, but we're going to give this some *special* permissions, like the
+ability to moderate questions. And finally, there's `ROLE_SUPER_ADMIN`, which is
+the highest level of permissions and will be allowed to do everything.
+
+## Hiding a Menu Link by Role
+
+Here's the first goal: only users with `ROLE_MODERATOR` should be allowed to go to
+the Questions CRUD section. Right now if I hover over the security part of the
+web debug toolbar.... yup! I *only* have `ROLE_ADMIN`... so I should *not* be
+able to go here.
+
+Fixing this is two steps. First, we need hide this link unless the user has
+`ROLE_MODERATOR`. Open up `DashboardController`... a find
+`configureMenuItems()`: this is where we configure those links. On the
+`Questions` link, add `->setPermission()` and then pass the role that's needed:
+`ROLE_MODERATOR`.
+
+Since the user *I'm* logged in as does *not* have this role... when we refresh, the
+link disappears.
+
+## The ?signature In the URL
+
+But, of course, I still *technically* have access to this section! The link is gone,
+but if someone sent me this URL, then I *could* still access this. So that *is*
+still a problem. Though, at the very least, a user wouldn't be able to *guess* the
+URL, because EasyAdmin generates a signature. That's this `signature="` part. What
+that does is prevent anyone from messing with a URL and trying to access something
+else. For example, if I tried to change "QuestionCrudController" to
+"AnswerCrudController" to try to gain access to another section, I see:
 
 > The signature of the URL is not valid.
 
-So without the link to Questions, there won't be a way for me to somehow guess what that is by changing the URL. *But* if somebody just links me directly there, I do still technically have access. We'll fix that in a second. By the way, if you want to disable that signature feature in your admin section for some reason, that can be done in `configureDashboard()` by calling `->disableUrlSignatures()`.
+So without the link to Questions, there won't be a way for me to somehow *guess*
+the URL. *But* if somebody just sends me the link, I do still technically have access.
+We'll fix that in a second.
 
-Anyways, to *truly* restrict access to this CRUD section, let's go to `QuestionCrudController.php`. We don't have `configureActions` in here yet, so I'll go to "Override Methods" and override `configureActions`. What we've been doing so far is adding actions to certain pages or disabling them. One of the other things you can do is call `->setPermission()`, and here you put an action name. I'll use `Action::INDEX`. So on the index page, you need to have `ROLE_MODERATOR`. If I refresh the index page... it fails!
+By the way, if you want to disable that signature feature in your admin section,
+that can be done in `configureDashboard()` by calling `->disableUrlSignatures()`.
+Just be *extra* careful that you have your security configured correctly.
+
+## Restricting a Crud Section By Role
+
+Anyways, to *truly* restrict access to this CRUD section, go to
+`QuestionCrudController`. In EasyAdmin language, what we need to do is set a
+permission on the *action* or *actions* that should require that role. We don't have
+`configureActions()` method yet, so I'll go to "Override Methods" to add that.
+
+What we've been doing so far is adding actions to certain pages or disabling them.
+We can *also* call `->setPermission()` and pass an action name - like `Action::INDEX`
+and the role you need to have: `ROLE_MODERATOR`.
+
+If I refresh the index page now... it fails!
 
 > You don't have enough permissions to run the "index" action
 
-Let's rewind a bit. Go to the Homepage... log out... and I'll log *back* in as "moderatoradmin@example.com" with password "adminpass". Beautiful! I'll head back to my Admin section, and now I *do* have the Questions link and I can access the Questions section. Sweet! *However*, we only restricted access to the index action, so the same thing applies here. If someone is able to guess the URL to the new page or the edit page, they're going to be able to access it.
+Let's rewind a bit. Go to the Homepage... log out... and log *back* in as
+"moderatoradmin@example.com" with password "adminpass". Cool. Head back to
+the Admin section... and *now* we *do* see the Questions link... and we can access
+the Questions section. Sweet!
 
-*So*, let's lock down a couple more pages: The `DETAIL` page for `ROLE_MODERATOR` and also the `EDIT` action for `ROLE_MODERATOR`. In a few minutes, I'll also show you how to restrict access to an entire CRUD controller. This is *only* needed if different users have access to your CRUD controller, but you need to restrict on an action-by-action basis.
+*However*, we only restricted access to the *index* action. So the same problem
+applies to the other actions: if someone sent me the URL to the "new" or "edit"
+pages, then I *will* be able to access those... as long as I have the minimum
+`ROLE_ADMIN`.
 
-All right, let's think about it. The only two pages that we haven't listed here yet are the `NEW` action and the `DELETE` action, and those are kind of sensitive. I only want to allow super admins to be able to access those actions. Copy this, paste, and say `Action::NEW` and restrict it to `ROLE_SUPER_ADMIN`. Paste this again and say `Action::DELETE`. This will also be  restricted to `ROLE_SUPER_ADMIN`. There's also a `BATCH_DELETE`, so you may want to restrict that one as well if you want this to be locked down correctly.
+*So*, let's lock down a couple more actions: the `DETAIL` action for `ROLE_MODERATOR`
+and also the `EDIT` action for `ROLE_MODERATOR`. In a few minutes, I'll also show
+you how to restrict access to an entire CRUD controller. What we're doing should
+*only* be needed if you are restricting things differently on an action-by-action
+basis.
 
-As a result of these changes, when we refresh... yes! You can see that it hides the delete link correctly. Even if I were able to guess the URL, I wouldn't be able to get there. If you look over here, you'll notice that the batch delete is still allowed, so if I checked these, I can hit Delete and that would still be allowed. Let's go ahead and lock that down as well. Paste another line here, change this to `BATCH_DELETE` with `ROLE_SUPER_ADMIN`. Now when we refresh, the check boxes are gone! I have no batch actions that I can do on this page. This is how you can restrict things on an action-by-action basis. But *sometimes*, it's not this complicated. *Sometimes* you just want to say:
+Ok, let's think. The only two actions that we haven't listed here yet are the `NEW`
+action and the `DELETE` action. Those are pretty sensitive, so I only want to allow
+super admins to access those. Copy this, paste, and say
+`Action::NEW` and restrict it to `ROLE_SUPER_ADMIN`. Paste again and say
+`Action::DELETE` *also* restricted to `ROLE_SUPER_ADMIN`.
 
-> Look, I want to require a role like `ROLE_MODERATOR` to
-> be able to access *any* CRUD section as a whole.
+Thanks to these changes,, when we refresh... yes! It hides the delete link correctly.
+And even if I were able to guess the URL to that action, I wouldn't be able to get
+there. But that EasyAdmin has a really nice "batch delete"... and that *is* still
+allowed. Let's lock that down as well.
 
-In that case, instead of trying to set the permission on *every* single action like this, you can skip this part and instead, just use *normal* security.
+Paste another line, change this to `BATCH_DELETE` with `ROLE_SUPER_ADMIN`. Now when
+we refresh, the check boxes are gone! I have no batch actions that I can do on this
+page.
 
-For example, let's head up to the top of `QuestionCrudController.php`, and I'm going to leverage the `[IsGranted]` from SensioFrameworkExtraBundle. Just for a second, let's pretend that we're going to require `ROLE_SUPER_ADMIN` to get to *anywhere* under this `QuestionCrudController.php`. If we head over now and refresh... we get "Access Denied". Keep in mind that these controllers are *real* controllers. So just about everything you can do in a normal controller, you can do inside of these CRUD controllers.
-
-Let's undo that. *Or*, if you want, we can put `ROLE_MODERATOR` up there just to make sure that if we missed any actions, users will *at least* need to have `ROLE_MODERATOR` to get to them. Since we're already logged in with that user, now... we're good!
-
-One thing I do want to point out here is that you do need to keep your security when you link to something in line with the security that you require on your controller. For example, let's temporarily remove the link permission down here. Then, in `QuestionCrudController.php`, down on the index, temporarily require `ROLE_SUPER_ADMIN`. This means that currently, we should not have access to the index page. If we go over here and refresh... that's true! We're denied access! But if we go back to `/admin` here, you can see the Questions link *does* show up. EasyAdmin isn't smart enough to realize that if we click this, we're not going to have access. We need to make sure that we keep that in sync ourselves. Go change this back to `ROLE_MODERATOR`... and over here, we'll restore that permission. Now we're good. Our question section requires `ROLE_MODERATOR` and specific actions inside of it, like `DELETE` require `ROLE_SUPER_ADMIN`. Very nice!
-
-Next, security can go even further, where we hide individual fields based on permissions, or even hiding and showing specific entities based on which admin user is logged in. Whoa...
+Next, sometimes permissions are... *not* this complex! Let's learn how we can
+restrict access to an *entire* crud section with one line of code.
