@@ -21,6 +21,7 @@ chapters:
     - field-javascript
     - field-stimulus
     - dashboard-page
+    - action-injection
     - override-template
     - permissions
     - entity-permissions
