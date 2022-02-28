@@ -1,15 +1,98 @@
-# Override Template
+# Override all the Templates!
 
-Everything you see in EasyAdmin, from the layout to this table, to even how the individual fields are rendered, is controlled from a template. EasyAdmin bundle has a *bunch* of templates and we can override *all* of them. We looked at these a bit earlier. Let's dive in back in: `/vendor/easycorp/easyadmin-bundle/src/Resources/views`. There's a lot of good stuff here, like `layout.html.twig`, which is the layout that's used by every single page. A few minutes ago, we also saw `content.html.twig`. This is a really nice layout template that you can extend if you're creating a page inside of EasyAdmin.
+Everything you see in EasyAdmin, from the layout to this table, to even how the
+individual fields are rendered, is controlled by a template. EasyAdmin has a
+*bunch* of templates and we can override *all* of them.
 
-Perhaps *most* importantly, inside of `/crud`, we can see the templates for the individual pages, and inside of `/field`, we have a template that controls how every single field type is rendered. You'll see things in these templates, like `ea.templatePath('layout')`. To understand that, hit "shift+shift" and open up a class called `TemplateRegistry`. This is actually a file inside of EasyAdmin, and we opened it up earlier. Internally, EasyAdmin maintains a map from a template name to an actual template path. So when you see something like `ea.templatePath('layout')`, that's going to use `TemplateRegistry` to figure out that it's going to load `@EasyAdmin/layout`, where `@EasyAdmin` is a twig alias that points to this `/views` directory.
+We looked at these a bit earlier. Let's dive back into
+`vendor/easycorp/easyadmin-bundle/src/Resources/views/`. There's a *lot* of good
+stuff here, like `layout.html.twig`. This is the base layout file for *every* page.
+A few minutes ago, we also saw `content.html.twig`. This is a nice layout template
+that you can extend if you're creating a custom page inside of EasyAdmin.
 
-With that in mind, here's our goal: We want to override the layout and add a footer that appears on the bottom of every page. If you look over at `layout.html.twig`, near the bottom, let's see... search for "footer". There we go! We have a block here called `content_footer`, so if you *define* a `content_footer`, then it will get dumped right here. Let's override `layout.html.twig` and add a new `content_footer`.
+Inside of `crud/`, we see the templates for the individual pages and in
+`field/`, there's a template that controls how *every* field type is rendered.
 
-There are two ways to do this. The first is to just use Symfony's normal system for overriding templates that live inside of a bundle. You do that by creating a very specific path. Inside of templates, create a directory called "bundles", and inside of that, another directory with the name of the bundle: "EasyAdminBundle". Inside this, you match whatever path you want to override down here. We want to override `layout.html.twig`, so create a new file called "layout.html.twig". We don't really want to override this *entirely*. I want to extend it, so we can say `{% extends %}`, with `@EasyAdmin/layout.html.twig`. The only problem with this is that now that we've overridden `layout.html.twig` using this syntax, anytime this template name is referenced, it's going to think it's *this* template. Symfony's going look at this and open this template, which is going to load this, which will then load *this* template. To tell Symfony that we want to to use the *original* one (since we don't want to take our override into account), we can put an exclamation point in front. Perfect! Down here, let's override our block: `{% block content_footer %}` and `{ endblock %}'. And I'll put our nice little footer there.
+Inside a lot of these templates, you'll see things like
+`ea.templatePath('layout')`. To understand that more deeply, hit "shift+shift" and
+open up a core class that we opened earlier called `TemplateRegistry`.
 
-All right, let's try it! Refresh *any* page and... hello, footer! Sweet! I mentioned earlier that there are two ways to override templates in EasyAdmin The second one is even *more* powerful because we can control exactly *when* we want our override templates to be used. Let me close a couple of our files here. So, what we want to do *here* is override the template that's used to render ID fields. I want to add a little key icon to the ID. If you open `idField.php`, you can see that it sets its template name to `crud/field/id`, and that corresponds to the template registry. So `crud/field/id`... here it is... corresponds to this template right here, which we can find down in here in `/Resources/views/crud/field/id.html.twig`. What I want to do is override this template, but for the *whole* system, so that *all* ID fields automatically use it.
+Internally, EasyAdmin maintains a map from a template "name" to an actual template
+path. So when you see something like `ea.templatePath('layout')`, that's going to
+use `TemplateRegistry` to figure out to load `@EasyAdmin/layout`, where `@EasyAdmin`
+is a Twig alias that points to this `views/` directory.
 
-Copy this template and let's create our override. In `/templates/admin/field`, I'll create `id_with_icon.html.twig`. Paste that here, and I'll put a little icon right before this. At the moment, this file does absolutely nothing. To activate this globally, go to `DashboardController.php`. You can configure template override paths down in `configureCrud`. Check this out! We can say `->overrideTemplate()`, and here we're going to use the name of our template. That's the thing you see inside `TemplateRegistry.php` or `idField.php`. Globally, whenever we render `crud/field/id`, we'll now have it point to `admin/crud/field/id_with_icon.html.twig`. How cool is that? Let's try it! Refresh and... whoops... let me get rid of my extra `crud/` there. Now let's try it! And... there we go! Awesome! We get our key icon across the entire system. That is *super* powerful. We can even improve this a little bit. The ID template is super simple since it just prints out the formatted value. But *sometimes*, a template might do more complex stuff. Instead of repeating it down here, you can just *include* the original template. So quite literally `include()`, and I'm just going to start typing `id.html.twig` and let that autocomplete. Over here, we'll get the same result. Super nice!
+## Overriding a Core Template
 
-Next, let's talk about permissions: How we can deny access to entire CRUD controllers or even specific actions based on the user's role.
+With that in mind, here's our goal: I want to add a footer to the bottom
+of *every* page. Look again at `layout.html.twig`. Near the bottom, let's see...
+search for "footer". There we go! This has a block called `content_footer`. So
+if you *define* a `content_footer`, then it will get dumped right here. Let's override
+the `layout.html.twig` template and add a new `content_footer`.
+
+There are two ways to do this. The first is to use Symfony's normal system for
+overriding templates that live inside of a bundle. You do that by creating a file
+in a very specific path. Inside of `templates/`, create a directory called
+`bundles/`... and inside of that, another directory with the name of the bundle:
+`EasyAdminBundle`. Now, match whatever path from the bundle that you want to override.
+Since we want to override `layout.html.twig`, create a new file called
+`layout.html.twig`.
+
+But, hmm. I don't really want to override this *entirely*. I want to *extend*
+it. And, we can do that! Add `{% extends %}`, with `@EasyAdmin/layout.html.twig`.
+The only problem is that, by creating a `templates/bundles/EasyAdmin/layout.html.twig`
+template, we have now *overridden* the `@EasyAdmin/layout.html.twig`. In other words,
+we're effectively extending *ourselves*!
+`layout.html.twig`
+
+To tell Symfony that we want to use the *original* template, we can put an exclamation
+point in front.
+
+Perfect! Below, add `{% block content_footer %}` and `{% endblock %}`... with a
+nice little message inside.
+
+Let's try it! Refresh *any* page and... hello, footer! Sweet!
+
+## Overriding a Field Template
+
+I mentioned earlier that there are *two* ways to override templates in EasyAdmin.
+The second one is even *more* powerful because it allows us to control exactly *when*
+we want our override templates to be used. Let me close a couple of files.
+
+For our next trick, I want to override the template that's used to render id fields.
+Let's add a little key icon next to the ID.
+
+Open up `IdField.php`. Ok, it sets its template name to `crud/field/id`. In the
+template registry... here it is... that corresponds to this template right. So
+the template that renders `IdField` is `Resources/views/crud/field/id.html.twig`.
+
+So... let's override this! Instead of using the *first* method to do this - which
+*would* work - let's do something different.
+
+Copy this template and create our override template... which could live anywhere.
+How about in `templates/admin/field`... and call it `id_with_icon.html.twig`.
+Paste the contents... and I'll put a little icon right before this.
+
+At the moment, this will *not* be used. To activate it globally, go to
+`DashboardController.php`: you can configure template override paths down in
+`configureCrud()`. Check it out: `->overrideTemplate()` where the first argument
+is the *name* of the template - that's the thing you see inside `TemplateRegistry`
+or `IdField`. Ok, so globally whenever EasyAdmin renders `crud/field/id`, we'll now
+have it point to `admin/crud/field/id_with_icon.html.twig`.
+
+How cool is that? Let's try it! Refresh and... whoops... let me get rid of my extra
+`crud/` path. *Now* let's try it! And... yes! Awesome! We see the key icon across
+the entire system.
+
+## Re-Using the Parent Template
+
+But we can make this even better. The id template is super simple... since it just
+prints out the formatted value. But *sometimes* the original template might do more
+complex stuff. Instead of repeating all of that in *our* template, we can *include*
+the original template. So quite literally `include()`... and I'll start typing
+`id.html.twig`... and let that autocomplete.
+
+At the browser... we get the same result.
+
+Next, let's talk about permissions: How we can deny access to entire CRUD controllers
+or specific actions based on the user's role.
