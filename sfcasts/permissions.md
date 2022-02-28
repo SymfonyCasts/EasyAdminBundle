@@ -1,111 +1,34 @@
 # Permissions
 
-Coming soon...
+In `/config/packages/security.yaml`, thanks to the `access_control` that we added way back at the beginning of the tutorial, you can only get to the admin section if you have `ROLE_ADMIN`. As far as security goes, that's all we have so far. If you have `ROLE_ADMIN`, you have access to everything inside of the admin area. But in reality, in this application, we have *three* different user types. You can see them described up here under `role_hierarchy`. We have `ROLE_ADMIN`, which is the lowest level. Then we have `ROLE_MODERATOR` above that, which *includes* `ROLE_ADMIN`, but we're going to give this some *special* permissions, like the ability to moderate questions. And finally, there's `ROLE_SUPER_ADMIN`, which is the highest level of permissions and is allowed to do everything.
 
-In config, packages, security dot Yael, thanks to the access control that we added
-way back at the beginning of the tutorial, you can only get to the admin section if
-you have role_admin, but as far as security goes, that's all we've done. If you have
-role admin, you have access to do everything inside of the admin area. But in
-reality, in this application, we have three different user types. You can see them
-described up here under roll hierarchy. We have roll admin, which is the lowest
-level. Then we have roll moderator above that <affirmative> which includes role
-admin, but we're gonna give this some special permissions, like the ability to
-moderate questions, and finally there's role super admin, which is the highest and is
-allowed to do everything.
+Only users with `ROLE_MODERATOR` should be allowed to go to the Questions CRUD section. Right now I have... if I hover over this... `ROLE_ADMIN`, and I *do* currently have access to this. To fix that, the first thing we want to do is hide this link unless I have `ROLE_MODERATOR`. So let's go over to our `DashboardController.php` - that's where we can configure our links - and up to `configureMenuItems()`. Here's the `Questions` one right here. We can call `->setPermission()` and then pass this the permission to check, which for us is `ROLE_MODERATOR`. As I mentioned, the user I'm logged in as right now does *not* have this role. So, not surprisingly, when we refresh, the link disappears. But check it out! I still *technically* have access to the Questions section. It just doesn't show the link anymore. So if someone sent me this URL, then I could *still* access this, but I would never be able to *guess* this URL. Thst's because EasyAdmin generates a signature on this URL. You can actually see it up here - this "signature=". What that does is prevent anyone from messing with a URL and trying to access something else. For example, if I tried to change "QuestionCrudController" to "AnswerCrudController", because I'm attempting to change the URL to gain access somewhere else, I see:
 
-So for example, only moderators only users with role moderator should be allowed to
-go to the questions crud section. So right now I am actually rolled, logged in. If I
-hover over this with role_admin, see that, and I do currently have access to this to
-fix that. The first thing we wanna do is hide this link unless I have roll moderator.
-So let's go over to our dashboard controller. That's where we can configure our
-links, uh, up to configure menu items. Here's the questions we're on right here. And
-we can just call on this->set permission, and then past this, the permission to
-check, which for us is role_moderator. Now, as I mentioned, the user I'm logged in as
-right now, does not have this role. So not refresh the link disappears, but check it
-out. I still technically have access to the questions section.
+> The signature of the URL is not valid.
 
-I just don't have. I just doesn't show the link anymore. So if somebody sent me this
-URL, then I could still access this, but I wouldn't ever be able to guess this URL
-because one of the things I haven't talked about is that easy admin generates a
-signature on this URL. You can actually see it down here. The signature = what that
-does, is it prevents anybody from messing with a URL and trying to access something
-else. Like if I did, if I tried to change question credit controller to answer credit
-controller, because I'm trying to change the URL to get access somewhere else, I get
-the signature of the URL as not valid. So without the link to questions, there's not
-gonna be a way for me to somehow guess what that is by changing the URL here and
-getting there. But if somebody just links me directly there, I do still technically
-have access. And we'll fix that in a second. But by the way, if you wanna disable
-that signature feature in your a for some reason That can be done in configured
-dashboard, by calling disabled URL signatures Anyways, to truly restrict access to
-this crud section, let's go to question crud controller.
+So without the link to Questions, there won't be a way for me to somehow guess what that is by changing the URL. *But* if somebody just links me directly there, I do still technically have access. We'll fix that in a second. By the way, if you want to disable that signature feature in your admin section for some reason, that can be done in `configureDashboard()` by calling `->disableUrlSignatures()`.
 
-And what we're gonna do is over is configure our actions. So I don't think I have
-configure actions in here yet. So I'll go to override methods, override configure
-actions in. Normally what we've been doing so far is we've been maybe like adding
-Actions to certain pages or disabling actions. One of the other things you can do is
-call set permission and here you put an action name. So I'll use the action class, an
-index. So on the index page, you need to have role_moderator. And now if I refresh
-the index page, it fails. You don't have enough permissions to run the index action.
-All right. So let me kind of go back here. I'm gonna log out. I'm go to my home on
-page, actually log out and I'll log back in as moderator admin, at example.com
-password Admin pass. Beautiful. I'll head back to my admin section and now I do have
-the questions link and I can access the questions section sweet, but we only
-restricted access to the index action. So same thing. If somebody's able to guess
-that URL to the new page or the edit page, they're going to be able to get there.
-<affirmative>
+Anyways, to *truly* restrict access to this CRUD section, let's go to `QuestionCrudController.php`. We don't have `configureActions` in here yet, so I'll go to "Override Methods" and override `configureActions`. What we've been doing so far is adding actions to certain pages or disabling them. One of the other things you can do is call `->setPermission()`, and here you put an action name. I'll use `Action::INDEX`. So on the index page, you need to have `ROLE_MODERATOR`. If I refresh the index page... it fails!
 
-Okay.
+> You don't have enough permissions to run the "index" action
 
-So let's lock down a couple more of those let's lock down the detail page for roll
-moderator and also the edit, the edit action for roll modifier. And by the way, I'll
-in a few minutes, I'm gonna show you how to restrict access to an entire crud
-controller. This is only needed if different users have access to your correct
-controller, but you need to restrict on a action by action basis. All right. So let's
-think about it. The only two pages that I haven't listened here yet are the new PA
-the new action and the delete action, and those are kind of sensitive. So I wanna
-only allow super admins to be able to access those actions. So let me copy this and
-we'll say, action, new it's gonna be roll super admin. And then action. Delete will
-also be role super admin. And there is also a batch delete. So you could probably
-probably want to, um, restrict that one as well. If you really want this to be locked
-down, grow
+Let's rewind a bit. Go to the Homepage... log out... and I'll log *back* in as "moderatoradmin@example.com" with password "adminpass". Beautiful! I'll head back to my Admin section, and now I *do* have the Questions link and I can access the Questions section. Sweet! *However*, we only restricted access to the index action, so the same thing applies here. If someone is able to guess the URL to the new page or the edit page, they're going to be able to access it.
 
-As a result of this one, refresh, yes, you can see the delete action, the delete even
-highs, the delete links correctly. You even if, I guess that you were all, I wouldn't
-be able to get there. Now I saw a second ago that the batch delete was still allowed
-as if I checked these, I can still hit that would still be allowed. Let's go ahead
-and lock that down as well. Batch delete, roll super admin. Now I refresh, you can
-see the check boxes are gone, cause I have no batch actions that I can do on this
-page. So this is how you can restrict things on an action by action basis. But
-sometimes it's not this complicated. Sometimes you just wanna say, look, I wanna
-require a role like role moderator to be able to access any entire crud section as a
-whole. So in that case, instead of trying to set the permission on every single
-action like this, you can skip this part instead, just use normal security. So first
-we've all
+*So*, let's lock down a couple more pages: The `DETAIL` page for `ROLE_MODERATOR` and also the `EDIT` action for `ROLE_MODERATOR`. In a few minutes, I'll also show you how to restrict access to an entire CRUD controller. This is *only* needed if different users have access to your CRUD controller, but you need to restrict on an action-by-action basis.
 
-So far as example, let's head up to the top of question, product controller, and I'm
-gonna leverage the, is granted from Sensio framework, extra bundle. And just for a
-second, let's pretend that we're gonna require role super admin to get to anywhere
-under this Cru question, crash controller. And we head over now and refresh we get
-access denied. So just keep in mind that these controllers are real controllers. So
-pretty much everything you can do in a normal controller, you can do inside of these
-crud controllers as well. All right, but let me undo that. Or if you want, I'll put
-role moderator up there just to make sure if I missed any actions you at least need
-to have role moderator to get to them. Since I am logged in with that user now I'm
-good.
+All right, let's think about it. The only two pages that we haven't listed here yet are the `NEW` action and the `DELETE` action, and those are kind of sensitive. I only want to allow super admins to be able to access those actions. Copy this, paste, and say `Action::NEW` and restrict it to `ROLE_SUPER_ADMIN`. Paste this again and say `Action::DELETE`. This will also be  restricted to `ROLE_SUPER_ADMIN`. There's also a `BATCH_DELETE`, so you may want to restrict that one as well if you want this to be locked down correctly.
 
-Now, one thing I do wanna point out here is that you do need to keep your security
-when you link to something in line with the security that you should require on your
-controller. For example, let's temporarily remove the link permission down here. And
-then in question crud controller down on the index, I'm temporarily gonna require
-roll super admin. So this means that I currently should not have access to the index
-page. And if we go over here and refresh, that's true, I am denied access, but if I
-just go back to /admin here, you can see the question link does show up so easy
-admin. Isn't smart enough to realize that if we go like this, we're not gonna have
-access. We need to make sure that we keep that in sync ourselves. So I'm gonna go
-back and undo that role moderator. And over here, we'll go and put that permission
-back and we are now good. Our question section now requires role moderator and
-specific actions inside of it, like delete require role, super adamant, pretty sweet.
-Next security can go further where we even hide individual fields based on the, on
-security or even hiding or showing specific entities like showing this entity and
-this entity, but not that entity to based on which admin user is logged in. Whoa,
+As a result of these changes, when we refresh... yes! You can see that it hides the delete link correctly. Even if I were able to guess the URL, I wouldn't be able to get there. If you look over here, you'll notice that the batch delete is still allowed, so if I checked these, I can hit Delete and that would still be allowed. Let's go ahead and lock that down as well. Paste another line here, change this to `BATCH_DELETE` with `ROLE_SUPER_ADMIN`. Now when we refresh, the check boxes are gone! I have no batch actions that I can do on this page. This is how you can restrict things on an action-by-action basis. But *sometimes*, it's not this complicated. *Sometimes* you just want to say:
 
+> Look, I want to require a role like `ROLE_MODERATOR` to
+> be able to access *any* CRUD section as a whole.
+
+In that case, instead of trying to set the permission on *every* single action like this, you can skip this part and instead, just use *normal* security.
+
+For example, let's head up to the top of `QuestionCrudController.php`, and I'm going to leverage the `[IsGranted]` from SensioFrameworkExtraBundle. Just for a second, let's pretend that we're going to require `ROLE_SUPER_ADMIN` to get to *anywhere* under this `QuestionCrudController.php`. If we head over now and refresh... we get "Access Denied". Keep in mind that these controllers are *real* controllers. So just about everything you can do in a normal controller, you can do inside of these CRUD controllers.
+
+Let's undo that. *Or*, if you want, we can put `ROLE_MODERATOR` up there just to make sure that if we missed any actions, users will *at least* need to have `ROLE_MODERATOR` to get to them. Since we're already logged in with that user, now... we're good!
+
+One thing I do want to point out here is that you do need to keep your security when you link to something in line with the security that you require on your controller. For example, let's temporarily remove the link permission down here. Then, in `QuestionCrudController.php`, down on the index, temporarily require `ROLE_SUPER_ADMIN`. This means that currently, we should not have access to the index page. If we go over here and refresh... that's true! We're denied access! But if we go back to `/admin` here, you can see the Questions link *does* show up. EasyAdmin isn't smart enough to realize that if we click this, we're not going to have access. We need to make sure that we keep that in sync ourselves. Go change this back to `ROLE_MODERATOR`... and over here, we'll restore that permission. Now we're good. Our question section requires `ROLE_MODERATOR` and specific actions inside of it, like `DELETE` require `ROLE_SUPER_ADMIN`. Very nice!
+
+Next, security can go even further, where we hide individual fields based on permissions, or even hiding and showing specific entities based on which admin user is logged in. Whoa...
