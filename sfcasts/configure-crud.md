@@ -24,9 +24,13 @@ descending. To do that, open `DashboardController` and, anywhere inside, go to
 Code -> Generate - or command+N on a Mac - select override methods and choose
 `configureCrud()`.
 
+[[[ code('5a9be0f658') ]]]
+
 The `Crud` object has a bunch of methods on it... including one called
 `setDefaultSort()`. That sounds handy! Pass that the array of the fields we want
 to sort by. So, `id` set to `DESC`.
+
+[[[ code('b31bd2ec70') ]]]
 
 Back over at the browser, when we click on "Questions"... beautiful! By default,
 it now sorts by id. Really, *all* sections now sort by id.
@@ -45,6 +49,8 @@ override `configureCrud()`... and call the exact same method as before:
 that is a relation to `User` - `askedBy.enabled`. Set this to `DESC`.
 
 And then, after sorting by enabled first, sort the rest by `createdAt` `DESC`.
+
+[[[ code('ad3b704379') ]]]
 
 Let's check it! Click "Questions". Because we're sorting across multiple
 fields, you don't see any header highlighted as the currently-sorted column. But...
@@ -69,6 +75,8 @@ configure on the field itself.
 
 In `QuestionCrudController`, for the name field, call `setSortable(false)`.
 
+[[[ code('3f02f6b710') ]]]
+
 And... just like that, the arrow is gone.
 
 ## Inlining Controls for an Admin Section
@@ -82,6 +90,8 @@ Normally, the "actions" on the index page are hidden under this dropdown. But, w
 
 To do that, head to `TopicCrudController`... go down... and override
 `configureCrud()`. On the `Crud` object, call `->showEntityActionsInlined()`.
+
+[[[ code('0fe15e944c') ]]]
 
 That's it. Now... yea! That looks better.
 
