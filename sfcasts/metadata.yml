@@ -24,6 +24,7 @@ chapters:
     - action-injection
     - override-template
     - permissions
+    - crud-permissions
     - entity-permissions
     - voter
     - filters

@@ -1,6 +1,6 @@
 ## Restricting Access to an Entire Crud Section
 
-So.. great! We can now restrict things on an action-by-action basis. But
+So... great! We can now restrict things on an action-by-action basis. But
 *sometimes*... it's not that complicated! *Sometimes* you just want to say:
 
 > I want to require `ROLE_MODERATOR` to be able to access *any* part of a
