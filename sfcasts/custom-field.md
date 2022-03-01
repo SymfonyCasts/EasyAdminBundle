@@ -26,6 +26,8 @@ The only rule for a field is that it needs to implement `FieldInterface`. This r
 us to have two methods: `new` and `getAsDto()`. But what you'll typically do is
 `use FieldTrait` to make life easier.
 
+[[[ code('7822da0fe2') ]]]
+
 Click to open that. Ok, this `FieldTrait` helps manage the `FieldDto` object, with
 a bunch of useful methods like `setLabel()`, `setValue()` and `setFormattedValue()`
 that all fields share.
@@ -34,12 +36,16 @@ So *now*, if you go to Code Generate - or "cmd + N" on a Mac - the only thing we
 need to implement is `new()`. *This* is where we customize all the options
 for the field.
 
+[[[ code('b8ab74ed77') ]]]
+
 Our votes field is *currently* an `IntegerField`. Hold "cmd" or "ctrl"
 to open that and look at *its* `new()` method... because we want *our* method to
 look *very* much like this... with a few differences. So copy all of this, close,
 head to `VotesField`... and paste. Hit "Ok" to add that use statement on top.
 I'll also remove `OPTION_NUMBER_FORMAT`. We won't need that... and it relates to
 a field configurator that I'll show you in a minute.
+
+[[[ code('72ba949b0b') ]]]
 
 Ok, good start! You may have noticed that `->setDefaultColumns()` is crossed
 out. That's because it's marked as "internal". That *usually* means it's a function
@@ -55,14 +61,22 @@ same thing we have in `AnswerCrudController`, which is `admin/field/votes.html.t
 As a reminder to myself, I'll add some comments about which part controls the
 index and detail pages... and which part controls the form.
 
+[[[ code('e3c40ac9ed') ]]]
+
 ## Using the Custom field
 
 Ok, that's it! Let's go use this!
 
 In `AnswerCrudController`, change this to `VotesField`... and we don't need
-`->setTemplatePath()` anymore. Then, in `QuestionCrudController`, do the same thing.
+`->setTemplatePath()` anymore. 
+
+[[[ code('3d4611b245') ]]]
+
+Then, in `QuestionCrudController`, do the same thing.
 Add `VotesField` and... done! If we wanted to, we could even put this
 `->setTextAlign('right')` *inside* the custom field... *or* remove it.
+
+[[[ code('ea92e96f36') ]]]
 
 Testing time! Over in Questions, refresh and... got it! And on the Answers page...
 it looks great there too!
