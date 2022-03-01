@@ -1,30 +1,126 @@
-# Voter
+# Security Voter & Entity Permissions
 
-Thanks to `->setEntityPermission()`, EasyAdmin now runs *every* entity in this list through the security system, passing `ADMIN_USER_EDIT` for each one. If we're running this manually in a normal Symfony application, this would be the equivalent of running `$this->isGranted('ADMIN_USER_EDIT')`, where you pass the actual entity object - the `$user` object - as the second argument. Right now, when we do that, security always returns false because I just invented this `ADMIN_USER_EDIT` string. To run our custom security logic, we need a voter. Find your terminal and run:
+Thanks to `->setEntityPermission()`, EasyAdmin now runs *every* entity in this list
+through the security system, passing `ADMIN_USER_EDIT` for each. If we were running
+this security check manually in a normal Symfony app, it would be the equivalent of
+`$this->isGranted('ADMIN_USER_EDIT')`, where you pass the actual entity object -
+the `$user` object - as the second argument.
+
+Right now, when we do that, security always returns false because... i just invented
+this `ADMIN_USER_EDIT` string. To run our custom security logic, we need a voter.
+
+## Creating The Voter
+
+Find your terminal and run:
 
 ```terminal
 symfony console make:voter
 ```
 
-I'll call it "AdminUserVoter". Perfect! Then we'll spin over and go to `/src/Security/Voter/AdminUserVoter.php`. I'm not going to talk *too* deeply about how voters work. We talk about those in our Symfony Security tutorial. But basically, the `supports` method here will be passed `ADMIN_USER_EDIT`, and then this is going to be the user object. We want to return true in that situation. So what I'll do here is check to see if the attribute is in an array with just `ADMIN_USER_EDIT`.
+I'll call it "AdminUserVoter". Perfect! Spin over and open this:
+`src/Security/Voter/AdminUserVoter.php`. I'm not going to talk *too* deeply about
+how voters work: we talk about those in our Symfony Security tutorial. But basically,
+the `supports()` method will be passed *every* time the security system is called.
+The first argument will be something like `ROLE_ADMIN` or, in our case,
+`ADMIN_USER_EDIT`. And *also*, in our case, `$subject` will be the `User` object.
+Our job is to return true in that situation.
 
-I don't really need `in_array` here anymore, but I'll keep it in case I add more attributes later, and they'll check to make sure that the subject is an `instanceof User`. Perfect! So if the security system calls supports and we return true from this method, we know that we are trying to decide or "vote" on our situation. In that case, the security system calls `voteOnAttribute()` and we simply need to return true or false based on whether or not the current user should have access to view this user object in the admin.
+So let's check to see if the attribute is in an array with just `ADMIN_USER_EDIT`.
 
-Once again, we're passed the `$attribute`, which will be `ADMIN_USER_EDIT` and this `$subject`, which will be the user object. To help my editor. add an extra "if" statement here: `if (!$subject instanceof User)`. Then `throw new \LogicException('Subject is not an instance of User?')`. This should never happen, but that will help my editor in any stack analysis. Finally, down here in the `switch` case (we only have one case right now), if that attribute is equal to `ADMIN_USER_EDIT`, then we want to allow access if `$user === $subject`. So if the currently authenticated user object - that's what this is here - is equal to the user object that we're asking about for security, then grant access. Otherwise, deny access. Symfony will instantly know to use our voter thanks to auto configuration. When we refresh... got it! We *just* see our one user and the message:
+I don't really need `in_array()` anymore, but I'll keep it in case I add more
+attributes later. Also check to make sure that `$subject` is an `instanceof User`.
 
-> Some results can't be displayed because you don't have
-> enough permissions
+That's it! Now, whne the security system calls `supports()`, *if* we return true,
+then Symfony will call `voteOnAttribute()`. Our job there is simply to return
+true or false based on whether or not the current user should have access to
+this `User` object in the admin.
 
-Awesome! If you go down to the web debug toolbar, click this security icon, and then click "Access Decision", this shows you all the security decisions that were made in that request. And if you look, `ADMIN_USER_EDIT` was called multiple times. It was passed with this user - access was denied. It was passed with this user - that's us - and access was granted. It was passed with a different user - access denied. So you can see those security decisions being made in real time. The entity permissions are also enforced when you go to the details, edit, or delete pages. Again, if you go down to the web debug toolbar and click "Access Decision", down here... you can see it was checking for `ADMIN_USER_EDIT`.
+Once again, we're passed the `$attribute`, which will be `ADMIN_USER_EDIT`, and
+`$subject`, which will be the `User` object. To help my editor. add an extra "if"
+statement here: `if (!$subject instanceof User)`. Then throw a new
+`LogicException('Subject is not an instance of User?')`.
 
-This is great, except that super admin users should be able to see *all* users. Right now, no matter who I log in as, we're only going to show *that* user. To solve this, down in our logic, we can just check to see if the user has `ROLE_SUPER_ADMIN`. In order to do that, we're going to need a service. Add `public function __construct()`, and inject the security service from Symfony (I'll call it `$security`), hit "alt" + "enter", and go to "Initialize properties" to create that property and set it. And then, down here, we return true if `$user === $subject`, *or* if `$this->security->isGranted('ROLE_SUPER_ADMIN')`. Cool!
+This should never happen, but that will help my editor or static analysis. Finally,
+down in the `switch` case (we only have one `case` right now), if that attribute
+is equal to `ADMIN_USER_EDIT`, then we want to allow access if `$user === $subject`.
+So if the currently-authenticated `User` object - that's what this is here - is equal
+to the `User` object that we're asking about for security, then grant access. Otherwise,
+deny access.
 
-I won't bother logging in as a super admin to try this. You can, but if we *did* do that, we would see *every* user now. Okay, there's just one *tiny* problem with that. Imagine we have a lot of users in our database - like *thousands* - which is pretty realistic, and *our* user is ID 500. In that case, you would actually see *many* pages of results here. And our user *might* be on page 200. So you'd see no results on page one... or two... or three... until finally, on page 200, you'd find our *one* result. So it can get a little weird if you have *many* items in an admin section, and *many* of them are hidden.
+Symfony will instantly know to use our voter thanks to auto configuration. So when
+we refresh... got it! We *just* see our one user and the message:
 
-To fix this, we can modify the query that's made for the index page to *only* return the users we want. This is totally optional, but can make for a better user experience. We haven't actually done this yet. So far, we're just letting EasyAdmin query for *every* user or *every* question. But we can *actually* have full control over that query. To do that, go into our `UserCrudController.php`, and it doesn't matter where - I'll go near the top - I'm going to override a method from the base controller called "createIndexQueryBuilder". Being able to override these methods is super powerful.
+> Some results can't be displayed because you don't have enough permissions.
 
-What happens here is the parent class starts the query builder for us. And it already takes into account things like the Search on top or the filters that we're going to talk about in a few minutes. Instead of returning that, I'll say `$queryBuilder =`, and then remember, if we're a super admin, we can see *everything*. So we're going to say `if $this->isGranted('ROLE_SUPER_ADMIN')`, then just `return $queryBuilder`, which is going to return every result. But if we *don't* have `ROLE_SUPER_ADMIN`, that's where we want to modify things. Say `$queryBuilder`, then `->andWhere()`. Inside the query, the alias for our entity is going to be called "entity", so say `entity.id = :id` and `->setParameter('id', $this->getUser()->getId())`. I don't get the auto complete on this because it thinks my user is just a user interface, but we know this is our user entity and we know it has a `getId()` method, so that will work. At the bottom, we'll `return $queryBuilder`. I guess I could have just returned right here, so let's just do that. Beautiful!
+Awesome! If you go down to the web debug toolbar, click this security icon, and then
+click "Access Decision", this shows you all the security decisions that were made
+during that request. It looks like `ADMIN_USER_EDIT` was called multiple times
+for the multiple rows on the page. With this user object - access was denied...
+and with this other user object - that's us - access was granted. So you can see
+those security decisions being made in real-time.
 
-All right, let's try it! Spin over and... nice! Just our *one* result. And you don't see that message about results being hidden anymore due to security. That's because, *technically*, *none* of them were hidden due to security. They were just hidden due to our query. But the thing is, permissions are *still* being enforced. So if a user somehow got the edit URL to something they're not supposed to be able to see, the entity permissions are *still* going to deny that.
+Entity permissions are also enforced when you go to the detail, edit, or delete
+pages. Again, if you go down to the web debug toolbar and click "Access Decision",
+at the bottom... you can see it was checking for `ADMIN_USER_EDIT`.
 
-Next, we know that each CRUD section has a nice search box up here. Yay! But EasyAdmin *also* has a nice filter system where you can add more ways to slice and dice the data in each section.
+## Granting Access to ROLE_SUPER_ADMIN
+
+This is great! Except that super admins should be able to see *all* users. Right
+now, no matter who I log in as, we're only going to show *my* user. To solve this,
+down in our logic, we can check to see if the user has `ROLE_SUPER_ADMIN`. Biut
+to do *that*, we need a service.
+
+Add `public function __construct()`, and inject the `Security` service from Symfony
+(I'll call it `$security`). Hit "alt" + "enter", and go to "Initialize properties"
+to create that property and set it. Then, down here, return true if
+`$user === $subject` *or* if `$this->security->isGranted('ROLE_SUPER_ADMIN')`.
+
+Cool! I won't bother logging in as a super admin to try this. But if we *did*,
+we would now see *every* user.
+
+## Adding Permissions Logic to the Query
+
+So there's just one *tiny* problem with our setup. Imagine that we have a lot of
+users - like *thousands* - which is pretty realistic. And *our* user is ID 500. In
+that case, you would actually see *many* pages of results here. And our user *might*
+be on page 200. So you'd see no results on page one... or two... or three... until
+finally, on page 200, you'd find our *one* result. So it can get a little weird if
+you have *many* items in an admin section, and *many* of them are hidden.
+
+To fix this, we can modify the query that's made for the index page to *only* return
+the users we want. This is totally optional, but can make for a better user
+experience.
+
+So far, we've been letting EasyAdmin query for *every* user or *every* question.
+But we *do* have control over that query. Open up `UserCrudController` and, anywhere,
+I'll go near the top, override a method from the base controller called
+`createIndexQueryBuilder()`.
+
+Here's how this works: the parent method starts the query builder for us. And it
+already takes into account things like the Search on top or "filters", which we'll
+talk about in a few minutes.
+
+Instead of returning this query builder, set it to `$queryBuilder`. Then, because
+super admins should be able see *everything*, add if
+`$this->isGranted('ROLE_SUPER_ADMIN')`, then just return the unmodified `$queryBuilder`
+so that *all* results are shown.
+
+But if we *don't* have `ROLE_SUPER_ADMIN`, that's where we want to change things.
+Add `$queryBuilder->andWhere()`. Inside the query, the alias for our entity
+is always going to be called "entity". So we say `entity.id = :id` and
+`->setParameter('id', $this->getUser()->getId())`. I don't get the auto complete
+on this because it thinks my user is just a `UserInterface`, but we know this will
+be our `User` entity which *does* have a `getId()` method. At the bottom,
+`return $queryBuilder`. And... I guess I could have just returned right here... so
+let's do that.
+
+I love it! Let's try it! Spin over and... nice! Just our *one* result. And you don't
+see that message about results being hidden anymore due to security. That's because,
+*technically*, *none* of them were hidden due to security. They were just hidden due
+to our query. But regardless, permissions are *still* being enforced. So if a user
+somehow got the edit URL to something they're not supposed to be able to access, the
+entity permissions will *still* going deny that.
+
+Next, each CRUD section has a nice search box on top. Yay! But EasyAdmin *also* has
+a great filter system where you can add more ways to slice and dice the data in each
+section. Let's explore those.
