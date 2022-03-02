@@ -1,11 +1,100 @@
-# Filters
+# The Filter System
 
-Let's go log out... and then log *in* as our "super admin" user: "super admin@example.com"... "adminpass". Head back to our admin, find the Users list and... perfect! As promised, we can now see *every* user on the system. Our user list is pretty short right now, but it's going to get longer and longer. It would be nice to able to filter the records in this index section by some criteria like, for example, only show users with enabled true or enabled false. Fortunately, EasyAdmin has a system for this called "filters". Over in `UserCrudController.php`, I'll go to the bottom and override yet another method called `configureFilters`.
+Let's go log out... and then log *back* in as our "super admin" user:
+"superadmin@example.com"... and "adminpass". Now head back to the admin area, find
+the Users list and... perfect! As promised, we can see *every* user in the system.
 
-This looks and feels a lot like `configureFields`. We can call `->add()` and then put the name of a field like `enabled`. And that's it! If we refresh the page, watch this section around here. We have a new "Filters" button, and that opens up a modal where we can filter by whatever fields we want. Let's say "Enabled", "No" and... *all* of these are gone because *all* of my users are enabled. Now I can go and reenable that... and even clear out that filter. Notice that "enabled" in my entity is a boolean field and it detected that. It knew to make this as a "Yes" or "No" check box. Just like the field system, there are *many* different types of filters. And if you just add it via its string like this, EasyAdmin tries to guess the correct filter for you to use. Just saying `->add('enabled')` is the same as saying `->add(BooleanFilter::new('enabled'))`. If you refresh now... and check the filters... that makes no difference because that was already the field type that it was guessing.
+Our user list is pretty short right now, but it's going to get longer and longer
+as people realize just how amazing our site is. It would be *great* if we could
+filter the records in this index section by some criteria, for example, to only
+show users that are enabled or *not* enabled. Fortunately, EasyAdmin has a system
+for this called, well, filters!
 
-As I mentioned earlier, filters are similar to our fields. Each filter class controls how that filter looks in the form up here, and *also* how it modifies the query for the page. Hold "cmd" and open the `BooleanFilter` class so we can look at it. You can see it has a new method, just like our fields, and this sets some basic information. The most important thing it sets are the "FormType" and "FormTypeOption". The `apply` method is the method that will be called when your filter is applied, and it's *your* job to modify the query. Up here, this is using something called a `BooleanFilterType`. I'll hold `cmd` and open that. Like all form types, this gives us a bunch of different options that we can put on it. Apparently, there's an `expanded` option, which is the reason that we're seeing this field as expanded radio buttons. Let's try changing that. Close that file... and at the end of this, I'm going to say `->setFormTypeOption('expanded', false)`. When we try that now, refresh... head to the filters and... awesome! Now the non-expanded version means it's rendered as a dropdown.
+## Hello configureFilters()
 
-All right, let's add a couple more filters over on our Questions section. Go to `QuestionCrudController.php` and, down to the bottom, override the `configureFilters` method just like before. Start with one that's an entity relation. Every question is a many-to-one relationship to topic, so let's `->add('topic')`. Go refresh... and we get our new filter section... and "Topic" is... this cool dropdown list here where you can select whatever topic you want. If you wanted to know what options to pass to that, you'd need to know what *type* of filter that is. Just like fields, if you click on the filter class, you can see there's a `/src/Filter` directory in the bundle. So `/vendor/easycorp/easyadmin-bundle/src/Filter`, and then you can see a full list of all the filters in there. It looks like `EntityFilter.php` is probably the filter that is being used for the relationship. You can also check out whatever options you want to see how you configure them, *or* you can see how the query logic is done behind the scenes.
+Over in `UserCrudController`, I'll go to the bottom and override yet another method
+called `configureFilters()`.
 
-Okay, let's add a couple more here, like `createdAt`... `votes`... and `name`. And... no surprise. Those all show up, and the coolest thing is what they look like. The Created At field has a really easy way to check dates, or even between two dates. For Votes, you can choose "is equal", "is greater than", "is less than", etc. And Name has different types of fuzzy search that you can apply to that. *Super* powerful. We can also create our *own* custom filter class. That's as easy as creating a custom class, making implement `FilterInterface`, and using this `FilterTrait` to help. *Then* all you need to do is implement the new method where you set the form type and then the `apply()` method where you actually apply your changes to the query. Right now, we have one `AdminCrudController.php` per entity, but it's *totally* legal to have multiple CRUD controllers for the *same* entity. You may have a situation where each shows a different filtered list, but even if you don't, adding a second admin CRUD for an entity will help us dive deeper into how EasyAdmin works. That's next.
+This looks and feels a lot like `configureFields()`: we can call `->add()` and then
+put the name of a field like `enabled`.
+
+And... that's all we need! If we refresh the page, watch this section around the
+top. We have a new "Filters" button! And that opens up a modal where we can filter
+by whichever fields we want. Let's say "Enabled", "No" and... *all* of these are gone
+because *all* of our users *are* enabled.
+
+We could go and change that... or clear the filter entirely.
+
+## Filter Types
+
+Notice that `enabled` in our entity is a boolean field... and EasyAdmin detected
+that. It knew to make this as a "Yes" or "No" checkbox. Just like the field system,
+there are *many* different types of filters. And if you just add a filter by
+saying `->add()` and then the property name, EasyAdmin tries to guess the correct
+filter to use.
+
+But, you *can* choose the filter explicitly. What we have now is, in practice,
+identical to saying `->add(BooleanFilter::new('enabled'))`.
+
+When we refresh now... and check the filters... that makes no difference because
+that was already the filter type it was guessing.
+
+Each filter class controls how that filter looks in the form up here, and *also*
+how it modifies the *query* for the page. Hold cmd or ctrl and open the
+`BooleanFilter` class. It has a `new()` method just like fields, and this sets
+some basic information, the most important being the form type and any form type
+options.
+
+The `apply()` method is the method that will be called when the filter is *applied*:
+it's where the filter *modifies* the query.
+
+## Filter Form Type Options
+
+Back in `new()`, this uses a form field called `BooleanFilterType`. Hold cmd or
+ctrl to open *that*. Like all form types, this exposes a bunch of options that
+allow us to control its behavior. Apparently there's an `expanded` option, which
+is the reason that we're seeing this field as *expanded* radio buttons.
+
+Just to see if we can, let's try changing that. Close that file... and after the
+filter, add `->setFormTypeOption('expanded', false)`.
+
+Try it now: refresh... head to the filters and... awesome! The non-expanded version
+means it's rendered as a dropdown.
+
+## The Many Filter Type Classes
+
+Let's add some filters to the Questions section. Open `QuestionCrudController`
+and, near the bottom, override `configureFilters()`. Start with an entity
+relation. Each question has `ManyToOne` relationship to `Topic`, so let's
+`->add('topic')`.
+
+Go refresh. We get the new filter section... and "Topic" is... this cool dropdown
+list here where we can select whatever topic we want! To know what options you can
+pass to this filter, you need to know what *type* it is. Just like with fields,
+if you click on the filter class, you can see there's a `src/Filter/` directory
+deep in the bundle. So `vendor/easycorp/easyadmin-bundle/src/Filter/`... and here
+is the full list of all possible filters.
+
+I bet `EntityFilter` is the filter that's is being used for the relationship.
+By opening this up, we can learn about any methods it might have that will let
+us configure it *or* how the query logic is done behind the scenes.
+
+Let's add a few more filters, like `createdAt`... `votes`... and `name`.
+
+And... no surprise, those all show up! And the coolest thing is what they look like.
+The `createdAt` field has a really easy way choose dates, or even filter *between*
+two dates. For Votes, you can choose "is equal", "is greater than", "is less than",
+etc. And Name has different types of fuzzy search that you can apply. *Super*
+powerful.
+
+We can also create our *own* custom filter class. That's as easy as creating
+a custom class, making it implement `FilterInterface`, and using this `FilterTrait`.
+*Then* all you need to do is implement the `new()` method where you set the
+form type and then the `apply()` method where you actually apply your changes to
+the query.
+
+Ok, right now, we have one "crud controller" per entity. But it's *totally* legal
+to have *multiple* CRUD controllers for the *same* entity... you may have a situation
+where each section shows a different filtered list. But even if you don't have this
+use-case, adding a second CRUD controller for an entity will help us dive deeper
+into how EasyAdmin works. That's next.
