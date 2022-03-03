@@ -26,6 +26,8 @@ Add one called `data-snarkdown-target` set to `input`. In Stimulus language, thi
 makes the textarea a "target"... so that it's easy for us to find. Also add
 `data-action` set to `snarkdown#render`.
 
+[[[ code('e423030bfc') ]]]
+
 This says: whenever the textarea changes, call the `render()` method on our `snarkdown`
 controller.
 
@@ -41,8 +43,12 @@ CSS to our admin area. In `admin.css`, add a `.markdown-preview` selector. This
 is the class that the preview div has when we add it. Let's give this some margin,
 a border and some padding.
 
+[[[ code('6352ed4f96') ]]]
+
 And now... neato! And to make this *even* cooler, in `QuestionCrudController`,
 on the field, call `->setHelp('Preview')`.
+
+[[[ code('db20bdc66c') ]]]
 
 Help messages render below the field... so... ah. This gives the preview a
 little header.
@@ -62,6 +68,8 @@ and will slow down the frontend experience.
 My favorite way to fix this is to go into the controller and add a superpower
 that's special to Stimulus inside of Symfony. Put a comment directly above the
 controller with `stimulusFetch` colon then inside single quotes `lazy`.
+
+[[[ code('8b22a7502d') ]]]
 
 What does that do? It tells Encore to *not* download this controller code - *or*
 anything it imports - until the moment that an element appears on the page that
