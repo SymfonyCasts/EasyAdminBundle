@@ -9,6 +9,8 @@ helps with our markup.
 Fortunately EasyAdmin has something *just* for this. In `QuestionCrudController`,
 for the `question` field, instead of a textarea, change to `TextEditorField`.
 
+[[[ code('f91576f416') ]]]
+
 Refresh the page and... we have a cute lil' editor for free! Nice!
 
 If you look inside of `TextEditorField`... you can see a bit about how this
@@ -23,6 +25,8 @@ So this is nice... except that... our `question` field isn't meant to hold HTML.
 It's meant to hold markdown... so this editor doesn't make a lot of sense.
 
 Let's go back to using the `TextareaField`.
+
+[[[ code('6fdd2d9eff') ]]]
 
 So we don't need a fancy field... but it *would* be really cool if, as we type
 inside of here, a preview of the final HTML were rendered right below this.
@@ -39,6 +43,8 @@ right next to the main `app.js` that's included on the frontend, create a new
 Inside, we're going to import two things. First, import `./styles/admin.css` to
 bring in our admin styles. And second, import `./bootstrap`.
 
+[[[ code('b7c4c00273') ]]]
+
 This file is also imported by `app.js`. Its purpose is to start the Stimulus
 application and load anything in our `controllers/` directory as a Stimulus
 controller.
@@ -50,6 +56,8 @@ awesome. We have a big tutorial all about it if you want to jump in.
 So the `admin.js` file imports the CSS file and it also initializes the Stimulus
 controllers. Now over in `webpack.config.js`, we can change this to be a *normal*
 entrypoint... and point it at `./assets/admin.js`.
+
+[[[ code('0353f83ac2') ]]]
 
 The end result is that Encore will now output a built `admin.js` file and a built
 `admin.css` file... since we're import CSS from our JavaScript.
@@ -86,6 +94,8 @@ yarn add snarkdown --dev
 Excellent! Next, up in `assets/controllers/`, create a new file called
 `snarkdown_controller.js`. And because this tutorial is *not* a Stimulus tutorial,
 I'll paste in some contents.
+
+[[[ code('803d049e9b') ]]]
 
 What's inside of here... isn't that important. But to get it to work, we're going
 to need some custom attributes that will *attach* this controller to the form field.
