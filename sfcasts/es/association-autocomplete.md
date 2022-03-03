@@ -69,14 +69,14 @@ la base de datos. Restrinjamos esto a sólo los usuarios *habilitados*.
  `->setQueryBuilder()` . Pásale un `function()` con un argumento `QueryBuilder $queryBuilder`
 argumento:
 
-[[[ código('44b01e8577') ]]]
+[[[ code('44b01e8577') ]]]
 
 Cuando EasyAdmin genera la lista de resultados, crea el constructor de consultas *para*
 para nosotros, y luego podemos modificarlo. Por ejemplo, `$queryBuilder->andWhere()`. El único secreto
 es que tienes que saber que el *alias* de la entidad en la consulta es siempre
  `entity` . Así que: `entity.enabled = :enabled`, y luego `->setParameter('enabled', true)`:
 
-[[[ código('de61807928') ]]]
+[[[ code('de61807928') ]]]
 
 ¡Eso es todo! No necesitamos *devolver* nada porque hemos *modificado* el
  `QueryBuilder` . ¡Así que vamos a ver si ha funcionado!
