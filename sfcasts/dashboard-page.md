@@ -25,6 +25,8 @@ Add a constructor... then autowire `QuestionRepository $questionRepository`.
 I'll hit Alt+Enter and go to initialize properties to create that property and set
 it.
 
+[[[ code('f725512407') ]]]
+
 If you're wondering why I'm not using *action* injection - where we add the argument
 to the method - I'll explain why in a few minutes. But it *is* possible.
 
@@ -33,12 +35,18 @@ equals `$this->questionRepository->findLatest()`. That's a custom method
 I added before we started. Also set `$topVoted` to
 `$this->questionRepository->findTopVoted()`: *another* custom method.
 
+[[[ code('be7cf28f3e') ]]]
+
 Finally, at the bottom, like almost *any* other controller, return
 `$this->render()` to render, how about, `admin/index.html.twig`. Pass in the
 two variables: `latestQuestions` and `topVoted`.
 
+[[[ code('82b5b0e0c3') ]]]
+
 Awesome! Let's go add that! In `templates/admin/`, create a new `index.html.twig`...
 and I'll paste in the contents.
+
+[[[ code('ef06bd0a90') ]]]
 
 But there's nothing tricky here. I *am* extending `@EasyAdmin/page/content.html.twig`.
 If you ever need to render a custom page... but one that still *looks* like it
@@ -81,6 +89,8 @@ build a chart called `ChartBuilderInterface`. Add that as a second argument to
 the controller: `ChartBuilderInterface $chartBuilder`. I'll hit Alt+Enter and go
 to initialize properties to create that property and set it.
 
+[[[ code('552ddadd81') ]]]
+
 Then, all the way at the bottom... just to keep things clean... create a new private
 function called `createChart()`... that will return a `Chart` object. *Now* steal
 the example code from the docs - everything except for the render - paste it into
@@ -89,12 +99,18 @@ the method... and, at the bottom `return $chart`.
 Oh, and `$chartBuilder` needs to be `$this->chartBuilder`. I'm not going to bother
 making any of this dynamic: I just want to see that the chart *does* render.
 
+[[[ code('292f308e94') ]]]
+
 Back up in the `index()` method, pass a new `chart` variable to the template set
 to `$this->createChart()`.
+
+[[[ code('99fa7187c2') ]]]
 
 *Finally*, to render this, over in `index.html.twig`, add one more `div` with
 `class="col-12"`... and, inside, `render_chart(chart)`... where `render_chart()`
 is a custom function that comes from the library that we just installed.
+
+[[[ code('fd1e4a7013') ]]]
 
 And... that should be it! Find your browser, refresh and... nothing! Um, force
 refresh? Still nothing. In the console... a big error.
