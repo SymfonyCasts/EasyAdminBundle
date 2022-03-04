@@ -10,9 +10,13 @@ Let's actually try that, at least for `ChartBuilderInterface`. Remove
 `ChartBuilderInterface` from the constructor... and, instead add it to the method:
 `ChartBuilderInterface $chartBuilder`.
 
+[[[ code('b95d230048') ]]]
+
 And now... I need to pass `$chartBuilder` into `createChart()`... because, down here
 we can't reference the property anymore. So add `ChartBuilderInterface $chartBuilder`...
 and use that argument.
+
+[[[ code('8bb9927a80') ]]]
 
 Cool. So in theory, this should work... because this is a normal controller and...
 this is how action injection works! But you might already notice that PhpStorm is
@@ -37,6 +41,8 @@ just in case, I'm going to add a little `assert()` function.
 This may or may not be a function you're familiar with. It comes from PHP itself.
 You put an expression inside like `null !== $chartBuilder` - and if that expression
 is *false*, an exception will be thrown.
+
+[[[ code('fe66c2f691') ]]]
 
 So now we can *confidently* know that *if* our code gets this far, we *do* have
 a `ChartBuilderInterface` object.
