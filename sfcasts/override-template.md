@@ -48,8 +48,12 @@ words, we're extending *ourselves*!
 To tell Symfony that we want to use the *original* template, add an exclamation
 point in front.
 
+[[[ code('22f87f949e') ]]]
+
 Perfect! Below, add `{% block content_footer %}` and `{% endblock %}`... with a
 nice little message inside.
+
+[[[ code('8e5b22a505') ]]]
 
 Let's try it! Refresh *any* page and... hello footer!
 
@@ -74,12 +78,16 @@ Copy this template and create our override template... which could live *anywher
 How about in `templates/admin/field/`... and call it `id_with_icon.html.twig`.
 Paste the contents... and I'll put the icon right before the id.
 
+[[[ code('7ad17f64a4') ]]]
+
 At this moment, this will not, *yet* be used. To activate it globally, go to
 `DashboardController`: you can configure template override paths down in
 `configureCrud()`. Check it out: `->overrideTemplate()` where the first argument
 is the *name* of the template: that's the thing you see inside `TemplateRegistry`
 or `IdField`. So whenever EasyAdmin renders `crud/field/id`, we'll now
 have it point to `admin/crud/field/id_with_icon.html.twig`.
+
+[[[ code('a94bba3675') ]]]
 
 How cool is that? Let's try it! Refresh and... whoops... let me get rid of my extra
 `crud/` path. *Now* let's try it! And... yes! Awesome! We see the key icon across
@@ -92,6 +100,8 @@ prints the formatted value. But *sometimes* the original template might do more
 complex stuff. Instead of repeating all of that in *our* template, we can *include*
 the original template. So quite literally `include()`... and I'll start typing
 `id.html.twig`... and let that autocomplete.
+
+[[[ code('efc69320ba') ]]]
 
 At the browser... we get the same result.
 
