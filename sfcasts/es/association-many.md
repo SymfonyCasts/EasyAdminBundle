@@ -29,7 +29,7 @@ Antes de rellenarlo, abre la clase `AssociationField`... y desplázate hasta
  que tenga`EntityType`, la tenemos *nosotros*. Por ejemplo, podemos establecer `choice_label`, que acepta
 una devolución de llamada o simplemente la propiedad de la entidad que debe utilizar. Probemos con `id`:
 
-[[[ código('5343658e4b') ]]]
+[[[ code('5343658e4b') ]]]
 
 Y ahora... ¡qué bonito! El ID no está súper claro, pero *podemos* ver que funciona.
 
