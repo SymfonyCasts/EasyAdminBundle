@@ -29,7 +29,7 @@ Ahora cuando refresquemos... ¡mucho mejor!
 
 ->setFormType() y ->setFormTypeOptins()
 
-Pero... Ahora que veo esto, podría quedar aún mejor si tuviéramos casillas de verificación.
+Pero... Ahora que lo veo, podría quedar aún mejor si tuviéramos casillas de verificación.
 Así que vamos a ver si podemos cambiar el `ArrayField` para que muestre casillas de verificación. Mantén
 `Cmd` y abre esta clase principal.
 
