@@ -1,9 +1,9 @@
 Otra propiedad que tenemos dentro de `User` es `$roles`, que en realidad almacena
-un *array* de los roles que debe tener este usuario:
+una matriz de los roles que debe tener este usuario:
 
 [[[ code('24694ac22e') ]]]
 
-Eso es *probablemente* una buena cosa para incluir en nuestra página de administración. Y afortunadamente,
+Eso es probablemente algo bueno para incluir en nuestra página de administración. Y afortunadamente
 ¡EasyAdmin tiene un `ArrayField`!
 
 ## ArrayField
@@ -18,7 +18,7 @@ una lista separada por comas. Y en la página "Editar"... ¡qué bien! Se ha añ
 
 ## Añadir texto de ayuda a los campos
 
-La única parte complicada podría ser recordar *qué* roles están disponibles. Ahora mismo
+La única parte complicada podría ser recordar qué roles están disponibles. Ahora mismo
 tienes que escribir cada uno manualmente. Al menos podemos ayudar a nuestros administradores volviendo
 a nuestro campo de matriz e implementando un método llamado `->setHelp()`. Añade a
 un mensaje que incluya los roles disponibles:
@@ -29,16 +29,16 @@ Ahora cuando refresquemos... ¡mucho mejor!
 
 ->setFormType() y ->setFormTypeOptins()
 
-Pero... Ahora que lo veo, podría quedar *incluso* mejor si tuviéramos casillas de verificación.
-Así que vamos a ver si podemos *cambiar* el `ArrayField` para que muestre casillas de verificación. Mantén pulsado
+Pero... Ahora que veo esto, podría quedar aún mejor si tuviéramos casillas de verificación.
+Así que vamos a ver si podemos cambiar el `ArrayField` para que muestre casillas de verificación. Mantén
 `Cmd` y abre esta clase principal.
 
-Esto es *realmente* interesante, porque realmente puedes *ver* cómo se configura el campo
+Esto es realmente interesante, porque puedes ver cómo se configura el campo
 configurado dentro de su método `new()`. Establece el nombre de la plantilla (hablaremos
-sobre las plantillas más adelante), pero *también* establece el tipo de formulario. Entre bastidores
+sobre las plantillas más adelante), pero también establece el tipo de formulario. Entre bastidores
 el `ArrayField` utiliza un `CollectionType`. Si estás familiarizado con el componente de formulario Symfony
-Ya sabes que, para representar las casillas de verificación, necesitas el `ChoiceType`.
-Me pregunto si podemos *utilizar* `ArrayField`... pero anulando su tipo de formulario para que sea
+Sabes que, para representar las casillas de verificación, necesitas el `ChoiceType`.
+Me pregunto si podemos utilizar `ArrayField`... pero anulando su tipo de formulario para que sea
 `ChoiceType`.
 
 Vamos a... ¡intentarlo!
@@ -49,16 +49,16 @@ Primero, encima de esto, añade `$roles = []` y enumera nuestros roles. Luego, a
 
 [[[ code('9b1814a144') ]]]
 
-*Entonces* `->setFormTypeOptions()`... porque una de las opciones que *debe* pasar
-a este tipo de formulario es `choices`. Establece esto en `array_combine()` y pasa `$roles` dos veces:
+Luego `->setFormTypeOptions()`... porque una de las opciones que debes pasar
+a este tipo de formulario es `choices`. Ponlo en `array_combine()` y pasa dos veces `$roles`:
 
 [[[ code('b5ef65869c') ]]]
 
 ¡Me encantan los rollos!
 
 Lo sé, parece raro. Esto creará un array en el que estas son las claves
-*y* los valores. El resultado es que estos serán *tanto* los valores que se guardan
-en la base de datos si ese campo está marcado *y* lo que se muestra al usuario. Por último,
+y los valores. El resultado es que estos serán tanto los valores que se guardan
+en la base de datos si ese campo está marcado y lo que se muestra al usuario. Por último,
 establece `multiple` en `true` - porque podemos seleccionar varios roles - y
 `expanded` a `true`... que es lo que hace que los `ChoiceType` se muestren como casillas de verificación:
 
@@ -71,44 +71,44 @@ establece `multiple` en `true` - porque podemos seleccionar varios roles - y
 > no existen.
 
 Hmm... Reconozco estas opciones como opciones que pertenecen al `CollectionType`,
-que es el tipo que el `ArrayField` estaba usando *originalmente*. Esto me dice que
-algo, *en algún sitio* está intentando añadir estas opciones a nuestro tipo de formulario... que
+que es el tipo que utilizaba originalmente el `ArrayField`. Esto me dice que
+algo, en algún lugar, está intentando añadir estas opciones a nuestro tipo de formulario... que
 no queremos porque... ¡ya no usamos `CollectionType`!
 
-Así que... ¿quién *está* configurando esas opciones? Esto es complicado. Podrías esperar verlas
+Entonces... ¿quién está configurando esas opciones? Esto es complicado. Podrías esperar verlas
 dentro de `ArrayField`. Pero... ¡no está aquí! ¿Qué misterioso ser se está metiendo
 con nuestro campo?
 
 ## Hola configuradores de campo
 
-La respuesta es algo llamado _Configurador_.
+La respuesta es algo llamado Configurador.
 
 Vuelve a bajar a `vendor/`. Ya he abierto `easycorp/easyadmin-bundle/src/`.
 Antes hemos visto el directorio `Field/`: son todos los campos incorporados.
 
-Después de crear un campo, EasyAdmin pasa cada uno por un sistema `Configurator` 
-que puede hacer cambios *adicionales* en él. Este directorio `Configurator/` 
-contiene *esos*. Hay un par de ellos -como `CommonPreConfigurator` - que se
-aplican a *todos* los campos. Devuelve `true` desde `supports()`... y realiza varias
+Después de crear un campo, EasyAdmin lo hace pasar por un sistema `Configurator` 
+que puede realizar cambios adicionales en él. Este directorio `Configurator/` 
+los contiene. Hay un par de ellos -como `CommonPreConfigurator` - que se
+aplican a cada campo. Devuelve `true` de `supports()`... y hace varias
 normalizaciones en el campo. `CommonPostConfigurator` es otro que se aplica a
 todos los campos.
 
-Pero *entonces*, también hay un montón de configuradores que son específicos
-a sólo *un*... o quizá a unos pocos... tipos de campo, entre ellos `ArrayConfigurator`.
+Pero también hay un montón de configuradores que son específicos
+a un solo... o quizás a unos pocos... tipos de campo, entre ellos `ArrayConfigurator`.
 Este configurador hace su trabajo cuando el `$field` es un `ArrayField`. El
 `$field->getFieldFqcn()` básicamente ayuda a preguntar:
 
 > Oye, ¿es el campo actual que se está configurando un `ArrayField`? Si lo es,
 > entonces llama a mi método `configure()` para que pueda hacer algunas cosas
 
-Y... ¡sí! *Aquí* es donde se están añadiendo esas opciones. El sistema del Configurador
+Y... ¡sí! Aquí es donde se están añadiendo esas opciones. El sistema del Configurador
 es algo que vamos a ver más adelante. Incluso vamos a crear nuestro
 ¡propio! Por ahora, sólo tienes que saber que existe.
 
 ## Refactorización a ChoiceField
 
-Así que... En nuestra situación, *no* queremos que el `ArrayConfigurator` haga su trabajo.
-Pero, por desgracia, ¡no tenemos otra opción! El Configurador *siempre* va a aplicar su lógica
+Así que... En nuestra situación, no queremos que el `ArrayConfigurator` haga su trabajo.
+Pero, por desgracia, ¡no tenemos otra opción! El Configurador siempre va a
 aplicar su lógica si se trata de un `ArrayField`.
 
 Y en realidad, ¡eso está bien! En `UserCrudController.php`, no me di cuenta
@@ -117,11 +117,11 @@ Y en realidad, ¡eso está bien! En `UserCrudController.php`, no me di cuenta
 [[[ code('3cb0eed2ae') ]]]
 
 Mantén pulsado `Cmd` o `Ctrl` para abrirlo. Sí, podemos ver que ya utiliza `ChoiceType`.
-*Así* que no hace falta que cojamos `ArrayField` e intentemos convertirlo *en* una opción...
-¡ya hay un `ChoiceField` integrado *hecho* para esto!
+Así que no necesitamos coger `ArrayField` e intentar convertirlo en una opción...
+¡ya hay un `ChoiceField` incorporado hecho para esto!
 
 Y ahora no necesitamos establecer el tipo de formulario... y no necesitamos la ayuda ni las
-opciones del tipo de formulario. Probablemente *podría* establecer las opciones de esa manera, pero el
+opciones del tipo de formulario. Probablemente podría establecer las opciones de esa manera, pero el
 `ChoiceField` tiene un método especial llamado `->setChoices()`. Pasa eso mismo
 cosa: `array_combine($roles, $roles)`. Para las demás opciones, podemos decir
 `->allowMultipleChoices()` y `->renderExpanded()`:
@@ -130,10 +130,10 @@ cosa: `array_combine($roles, $roles)`. Para las demás opciones, podemos decir
 
 ¿Qué tan bonito es eso?
 
-Vamos a probar esto. Refresca y... *¡eso* es lo que esperaba! De nuevo en
-el índice... `ChoiceType` *todavía* se muestra como una bonita lista separada por comas.
+Vamos a probar esto. Refresca y... ¡eso es lo que esperaba! De nuevo en
+el índice... `ChoiceType` sigue mostrándose como una bonita lista separada por comas.
 
-Ah, y por cierto: si quieres ver la lógica que hace que `ChoiceType` se muestre como una lista separada por comas, hay un sitio web 
+Ah, y por cierto: si quieres ver la lógica que hace que `ChoiceType` se muestre
 como una lista separada por comas, hay un `ChoiceConfigurator.php`. Si lo abres...
 y te desplazas hasta el final -más allá de un montón de código de normalización- aquí está
 `$field->setFormattedValue()` donde implosiona el `$selectedChoices` con una coma.
