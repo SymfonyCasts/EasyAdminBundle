@@ -14,6 +14,8 @@ leverage the `#[IsGranted]` attribute from SensioFrameworkExtraBundle. Just for 
 minute, let's pretend that we're going to require `ROLE_SUPER_ADMIN` to use *any*
 part of this section.
 
+[[[ code('9df3db3bd4') ]]]
+
 If we move over now and refresh... "Access Denied"! Yea, since these controllers
 are *real* controllers, just about everything that works in a normal controller
 also works inside of these CRUD controllers.
@@ -23,6 +25,8 @@ sure that if we missed any actions, users will *at least* need to have
 `ROLE_MODERATOR`. Since we're already logged in with that user, now...
 we're good!
 
+[[[ code('a41c8d14d4') ]]]
+
 ## Make sure Permissions Match Link Permissions
 
 One thing I *do* want to point out is that, when you link to something, you *do*
@@ -30,8 +34,13 @@ need to keep the permissions on that link "in sync" with the permissions
 for the controller you're linking to.
 
 For example, let's temporarily remove the link permission for the menu item.
+
+[[[ code('7211ca9cc7') ]]]
+
 Then, in `QuestionCrudController`, down on index, temporarily require
 `ROLE_SUPER_ADMIN`. This means that we should *not* have access.
+
+[[[ code('036fb11eb2') ]]]
 
 And if we move over and refresh... that's true! We're denied access! But go
 back to `/admin`. Uh oh: the Questions link *does* show up. EasyAdmin isn't smart
