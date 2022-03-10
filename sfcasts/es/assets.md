@@ -4,7 +4,7 @@ de la barra lateral. ¿Cómo podemos hacerlo?
 
 Este tipo de cosas se pueden controlar a través del método `configureAssets()`. Como
 recordatorio, este es uno de esos métodos que existe dentro de nuestro controlador
-y* cada controlador CRUD individual. Así que podemos controlar los activos a nivel
+*y* cada controlador CRUD individual. Así que podemos controlar los activos a nivel
 nivel global *o* para una sola sección.
 
 Hagamos nuestro cambio a nivel global para poder cambiar el color de la barra lateral en
