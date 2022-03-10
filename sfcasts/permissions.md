@@ -28,6 +28,8 @@ Fixing this is two steps. First, we need hide this link unless the user has
 `Questions` link, add `->setPermission()` and then pass the role that's required:
 `ROLE_MODERATOR`.
 
+[[[ code('207efdd041') ]]]
+
 Since the user *I'm* logged in as does *not* have this role... when we refresh, the
 link disappears.
 
@@ -62,6 +64,8 @@ What we've been doing so far is adding and disabling actions on certain pages.
 We can *also* call `->setPermission()` and pass an action name - like `Action::INDEX`
 and the role you need to have: `ROLE_MODERATOR`.
 
+[[[ code('e5f2811b14') ]]]
+
 If I refresh the index page now... it fails!
 
 > You don't have enough permissions to run the "index" action
@@ -82,11 +86,15 @@ how to restrict access to an *entire* CRUD controller. What we're doing should
 *only* be needed if you need to restrict things differently on an action-by-action
 basis.
 
+[[[ code('23e9f11e33') ]]]
+
 Ok, let's think. The only two actions that we haven't listed yet are `NEW` and
 `DELETE`. Those are pretty sensitive, so I only want to allow super admins to
 access those. Copy this, paste, and say `Action::NEW` restricted to
 `ROLE_SUPER_ADMIN`. Paste again and say `Action::DELETE` *also* restricted to
 `ROLE_SUPER_ADMIN`.
+
+[[[ code('f46a22c9a3') ]]]
 
 Thanks to these changes, when we refresh... yes! It hides the delete link correctly.
 And even if I were able to guess the URL to that action, I wouldn't be able to get
@@ -96,6 +104,8 @@ allowed. Let's lock that down as well.
 Paste another line, change this to `BATCH_DELETE` with `ROLE_SUPER_ADMIN`. Now when
 we refresh, the check boxes are gone! I have no batch actions that I can do on this
 page.
+
+[[[ code('74def96003') ]]]
 
 Next, sometimes permissions are... *not* this complex! Let's learn how we can
 restrict access to an *entire* crud section with one line of code.
