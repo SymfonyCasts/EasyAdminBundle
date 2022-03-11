@@ -25,9 +25,13 @@ The first argument will be something like `ROLE_ADMIN` or, in our case,
 `ADMIN_USER_EDIT`. And *also*, in our case, `$subject` will be the `User` object.
 Our job is to return true in that situation.
 
+[[[ code('a80271b5fe') ]]]
+
 So let's check to see if the attribute is in an array with just `ADMIN_USER_EDIT`.
 I don't really need `in_array()` anymore, but I'll keep it in case I add more
 attributes later. Also check to make sure that `$subject` is an `instanceof User`.
+
+[[[ code('ecdc7c752f') ]]]
 
 That's it! Now, when the security system calls `supports()`, *if* we return true,
 then Symfony will call `voteOnAttribute()`. Our job there is simply to return
@@ -39,12 +43,16 @@ Once again, we're passed the `$attribute`, which will be `ADMIN_USER_EDIT`, and
 statement: `if (!$subject instanceof User)`, then throw a new
 `LogicException('Subject is not an instance of User?')`.
 
+[[[ code('27a1236fc0') ]]]
+
 This should never happen, but that'll help my editor or static analysis. Finally,
 down in the `switch` (we only have one `case` right now), if that attribute
 is equal to `ADMIN_USER_EDIT`, then we want to allow access if `$user === $subject`.
 So if the currently-authenticated `User` object - that's what this is here - is equal
 to the `User` object that we're asking about for security, then grant access.
 Otherwise, deny access.
+
+[[[ code('c273049aab') ]]]
 
 Symfony will instantly know to use our voter thanks to auto configuration. So when
 we refresh... got it! We *just* see our one user and the message:
@@ -73,6 +81,8 @@ Add `public function __construct()`, and inject the `Security` service from Symf
 to create that property and set it. Then, down here, return true if
 `$user === $subject` *or* if `$this->security->isGranted('ROLE_SUPER_ADMIN')`.
 
+[[[ code('432cbf7b0a') ]]]
+
 Cool! I won't bother logging in as a super admin to try this. But if we *did*,
 we would now see *every* user.
 
@@ -94,6 +104,8 @@ But we *do* have control over that query. Open up `UserCrudController` and, anyw
 I'll go near the top, override a method from the base controller called
 `createIndexQueryBuilder()`.
 
+[[[ code('ebfd2fbb56') ]]]
+
 Here's how this works: the parent method starts the query builder for us. And it
 already takes into account things like the Search on top or "filters", which we'll
 talk about in a few minutes.
@@ -103,6 +115,8 @@ super admins should be able see *everything*, if
 `$this->isGranted('ROLE_SUPER_ADMIN')`, then just return the unmodified `$queryBuilder`
 so that *all* results are shown.
 
+[[[ code('a72dddced4') ]]]
+
 But if we *don't* have `ROLE_SUPER_ADMIN`, that's where we want to change things.
 Add `$queryBuilder->andWhere()`. Inside the query, the alias for the entity
 will always be called "entity". So we can say `entity.id = :id` and
@@ -111,6 +125,8 @@ on this because it thinks my user is just a `UserInterface`, but we know this *w
 be our `User` entity which *does* have a `getId()` method. At the bottom,
 `return $queryBuilder`. And... I guess I could have just returned that right here...
 so let's do that.
+
+[[[ code('6456c354f7') ]]]
 
 I love it! Let's try it! Spin over and... nice! Just our *one* result. And you don't
 see that message about results being hidden due to security... because,
