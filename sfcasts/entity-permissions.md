@@ -11,6 +11,8 @@ number that should *only* be displayed and modified by super admins. Head over t
 find `VotesField`. Here it is. Add `->setPermission()` and then pass
 `ROLE_SUPER_ADMIN`.
 
+[[[ code('2fef3517d9') ]]]
+
 I'm currently logged in as "moderatoradmin", so I'm *not* a super admin. And so,
 when I refresh, it's as simple as that! The votes field disappears, both on the list
 page *and* on the edit page. Super cool!
@@ -33,6 +35,8 @@ user. And we control this on the CRUD level: we set an entity permission for an
 Head over to `UserCrudController` and, at the bottom, override the
 `configureCrud()` method. And now, for this entire CRUD, we can say
 `->setEntityPermission()` and pass `ADMIN_USER_EDIT`.
+
+[[[ code('62cdabaea7') ]]]
 
 Notice this is *not* a role. EasyAdmin calls the security system for *each* entity
 that it's about to display and passes this `ADMIN_USER_EDIT` string *into* the security
@@ -72,9 +76,13 @@ And then, because we're using PHP 8, we can be super trendy by using a new synta
 `$user?->getAvatarUrl()`. That says that *if* there is a user, call
 `->getAvatarUrl()` and return it. Else, just return `null`.
 
+[[[ code('0fa0c6e35c') ]]]
+
 There's one other place that we need to do this. It's in `QuestionCrudController`,
 down here on the `askedBy` field. Add a question mark, and then another
 question mark right in the middle of `$question?->getAskedBy()`.
+
+[[[ code('f87c5e8283') ]]]
 
 Go refresh again and... beautiful! No results are showing, and we get this nice
 message:
