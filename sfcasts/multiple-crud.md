@@ -34,7 +34,7 @@ But let's try this. Refresh. We get two links... and each section looks absolute
 identical, which makes sense. Let's modify the query for the new section to only
 show *non-approved* questions. And... we already know how to do that!
 
-Over in the new controller, override the method called "`createIndexQueryBuilder()`.
+Over in the new controller, override the method called `createIndexQueryBuilder()`.
 Then we'll just modify this: `->andWhere()` and we know that our entity alias
 is always `entity`. So `entity.isApproved` (that's the field on our `Question` entity)
 `= :approved`... and then `->setParameter('approved', false)`.
