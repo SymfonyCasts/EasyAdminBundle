@@ -1,98 +1,31 @@
 # Events
 
-Coming soon...
+One more way to add some custom behavior to our code instead of overriding parent methods in our controllers is events. Check this out. Over on our Question section... so `QuestionCrudController.php`, up in `configureField`... let's return one more field. Say `yield AssociationField::new('updatedBy')`. This is a field on my question entity, which is a many-to-one to User. The idea is that, whenever someone updates a question, this field will be set to the user that just updated it. I'm going to make this *only* show up on the detail page: `->onlyOnDetail()`.
 
-One more way to add some custom behavior to our code instead of overriding parent
-methods in our controllers is events. So check this out over on our question section.
-So question crowd controller up and configure field. Here we go. Let's return one
-more field. I'm gonna say yield association field <affirmative> new updated by. So
-this is a field on my question entity, which is a many to one to user. And the idea
-is that whenever somebody updates a question, this field will be set to the user that
-last, that, that just updated it. I'm gonna have this show up only on the detail
-page.
+Right now, in my fixtures, I didn't set that field. So if I go to any question, you're going to see "Updated By" "Null". Our goal is to set that field automatically when a question is updated. A great solution for this is to use the doctrine extensions library, and it's "blameable". This is a way to update a field to the last user that modified it across your *entire* application. Let's see if we can achieve this *just* for inside our EasyAdmin section via events. EasyAdmin has a bunch of events that it dispatches and the best way to find them is to go into the source code and open the `/Event` directory. Most of these are pretty self explanatory. Before any CRUD action is executed, "after" would be at the end of it. We also have a bunch of things related to entities here, like `BeforeEntityUpdatedEvent.php` or `BeforeEntityPersistedEvent.php`, where "persisted" means "created".
 
-So right now I didn't in my fixtures. I didn't set that field. So if I go to any
-question you're gonna see updated by no, our goal is to update this field
-automatically to set that field automatically. Whenever a question is updated now, a
-great solution for this is to use the doctrine extensions library, and it's
-believable. This is a way where you can update a field to the last user that modified
-it across your entire application. But let's see if we can achieve this just for
-inside our easy admin section via events. SOEA Yemen has a bunch of events that it
-dispatches and the best way to find them is to go into the source code and open the
-event directory. So most of these are pretty self explanatory. Um, before crud action
-is called before any crud action is executed after it would be at the end of it. You
-also have a bunch of things related to entities here, like before entity updated or
-before entity persistent or persisted means created.
+In our case, the one I'm looking at is `BeforeEntityUpdatedEvent.php`. If we could run code *before* an entity is updated, we can set this `updatedBy` field and then it will save naturally. So let's do that. I'll open up that `BeforeEntityUpdatedEvent.php` field, copy its namespace, and then, over on our terminal, generate the entity:
 
-So in our case, the one I'm looking at is before entity updated. If we could run code
-whenever before an entity is updated, we can set this updated by field and then it
-will save naturally. So let's do that. I'm actually gonna open up that before entity
-updated event field, and I'm gonna copy its namespace and then go over and we'll,
-let's generate the entity. So we can do that with Symfony consult, make subscriber,
-and let's call it believable subscriber. It's gonna ask us which event we want to
-listen to. It's gonna suggest a bunch of events, um, just from the core of Symfony,
-one from easy, Adam, bundle's not gonna be there, so I'm gonna paste it. It's
-namespace, then go grab its class name. There we go. And perfect. We have a new
-liable subscriber class, so let's go open that up. So source event subscriber,
-blendable subscriber. This is a normal Symfony event subscriber, thanks to auto
-configuration. It's instantly going to see this class and it's already set up so that
-whenever easy admin dispatches this before entity updated events, it's going to call
-our method right here.
+```terminal
+symfony console make:subscriber
+```
 
-And this event object is packed with information that's useful for us. So for
-example, if I just say event arrow, you can see it has a one method on it called get
-entity instance, which is exactly what we want now to be able to set the update of
-that property on our question, we're going to need the, the current user object. So
-we get that via the security service. So let's auto wire that I'll add_underscore
-instruct with a security argument. Then I'll hit alt enter and go to a new properties
-to create that property and set it. All right. Beautiful. Let's start with question =
-event->GI entity instance, And just as a little sanity check here and to help her
-editor, I'll say, if not, question is an instance of question, then I'll throw a, oh,
-then I will return because this is gonna be called whenever any entity is saved
-across our entire system. Next I'll say user = this->Security arrow, get user and do
-a little sanity check there. If not user is an instance of our user, then I'll throw
-an exception. So throw new Logic exception. The exception class doesn't matter.
+And let's call it:
 
-And this is a situation that will never actually happen. We only have one user class
-in our app. So if you're logged in, you're definitely this user instance, but this
-helps our editor and static analysis tools know confidently that this user object is
-going to be our user object down here. We can now say question arrow, set, updated
-by, and then user. And my editor's gonna be happy with that. Knowing that this user
-is my user entity. All right, let's try it. I have one here. My updated by is Nole.
-I'm gonna edit something, make sure you actually make a change so that it saves I'll
-have save changes and got it updated by is populated. And that is my current user
-sweet.
+```terminal
+BlameableSubscriber
+```
 
-So evens are a super powerful concept and an easy admin. However, they're a little
-bit less important in easy add and bundle three and four than they used to be. And
-that's because most of our configuration is now written in PHP in our controller. So
-instead of leveraging events, there is an easier way we can just override a method in
-our controller. Now, event subscribers still have their place, cuz this is a great
-way to do some operation on multiple entities in your system. But if you only need to
-do something on one entity, it's easier just to override a method inside that
-entity's controller.
+It's going to ask us which event we want to listen to, aqnd it will suggest a bunch of them, just from the core of Symfony. The one from EasyAdmin Bundle won't be there, so I'll paste its namespace, *then* go grab its class name. There we go. And... perfect! We have a new `BlameableSubscriber` class. Go open that up: `/src/EventSubscriber/BlameableSubscriber.php`. This is a normal Symfony event subscriber, thanks to auto configuration. It's instantly going to see this class and it's already set up so that whenever EasyAdmin dispatches `BeforeEntityUpdatedEvent.php`, it will call our method right here.
 
-So it doesn't matter where, but I'm gonna go to the bottom. We're going to override
-yet another method. So the, the methods that we can override are just a, almost a
-read me in all the different ways that you can modify things. So there's a create
-entity method, a create edit form method. Um, the one that we want is going to be
-called update entity. This is a method that actually updates and saves the entity. So
-before we update the entity, we wanna set our set the property. So I'm gonna go steal
-this code from our subscriber. Actually, I'm gonna close that event. Class, face that
-in. I'll hit. Okay. To add that use statement and then let's tweak some code, just
-user = this here, get user. And then question is actually going to be instant
-instance.
+This `$event` object is *packed* with information that's useful for us. For example, if I just say `$event->`, you can see it has *one* method on it called `getEntityInstance()`, which is *exactly* what we want. To be able to set the `updatedBy` property on our question, we're going to need the current user object. We get that via the security service. So let's autowire that - `__construct()` - with a `Security $security` argument. Then hit "alt" + "enter" and go "Initialize properties" to create that property and set it. Beautiful!
 
-So we can say entity instance,->set updated by, okay. I'm kind of skipping here, but
-if you wanted to code defensively, you because the, you can see there's no type on
-entity instance here. We could actually do another check like this and say, if the
-entity instance is not an instance of question, you could throw an exception, but in
-practice it always will be. So we can call these set up date by method on it. All
-right. See if this works, I'm gonna go into my subscriber and comment out my
-listener. So the subscriber's still here, but it's not going to do anything anymore.
-Then go back to questions. Add a different question actually, before I edit it, let's
-go look at the details to make sure that there's no updated by perfect edit, make a
-change, save changes and beautiful. That works. All right. Next. Let's do a little
-bit more with our admin menu over here, like adding sections so we can organize this
-a bit better. Okay.
+Let's start with `$question = $event->getEntityInstance`. And just as a little sanity check here (and to help our editor), I'll say `if (!$question instanceof Question)` and then I'll `return` because this is going to be called when *any* entity is saved across our entire system. Next, say `$user = $this->security->getUser()` and `if (!$user instanceof User)`. Then throw an exception: `throw new LogicException()`. The exception class doesn't matter, so we'll just add a little message here.
 
+This is a situation that will *never* actually happen. We only have one user class in our app, so if you're logged in, you're *definitely* this `User` instance. *But*, this helps our editor and static analysis tools know confidently that this `User` object is going to be *our* `User` object. Down here... we can now say `$question->setUpdatedBy()`, and then `$user`. My editor's going to be happy knowing that this user is my user entity. All right, let's try it. I have one here and my "Updated By" is "Null". Edit something (make sure you actually make a change so it saves), I'll hit "Save changes" and... got it! "Updated By" is populated! And *that* is my current user. Sweet!
+
+So events are a super powerful concept in EasyAdmin. However, they're a little bit less important in EasyAdmin Bundle 3 and 4 than they used to be. And that's because most of our configuration is now written in PHP in our controller. So instead of leveraging events, there's an easier way. We can just override a method in our controller. Event subscribers *still* have their place, because this is a great way to do an operation on multiple entities in your system. But if you only need to do something on *one* entity, it's easier just to override a method inside that entity's controller.
+
+It doesn't matter where, but I'll go to the bottom. We're going to override yet *another* method. The methods that we can override are almost a ReadMe in all the different ways you can modify things. There's a `createEntity` method, a `createEditForm` method, and the one we want is called `updateEntity`. This is a method that actually updates and saves the entity. Before we update the entity, we want to set the property. Go steal this code from our subscriber... close that event class... paste that in... and hit "OK" to add that use statement. And now we'll tweak some code: Just `$user = $this->getUser()`. And then `$question` is actually going to be `$entityInstance`, so we can say `$entityInstance->setUpdatedBy()`. Okay, I'm kind of skipping ahead here, but if you wanted to code defensively, since there's no type on `$entityInstance` here, we could actually do another check like this and say `if (!$entityInstance instanceof Question)` and you could throw an exception. But in practice, it will always have a type, so we can call the `setUpdatedBy()` method on it. All right, let's see if this works. Go into `BlameableSubscriber.php` and comment out the listener. The subscriber's still here, but it's not going to *do* anything anymore. Then go back to Questions... edit a different question... Actually, before I edit it, let's go look at the details to make sure there's no "Updated By". Perfect! Now edit, make a change, save your changes, and... beautiful! That works!
+
+Next, let's do a little bit more with our admin menu over here, like adding sections so we can organize this better.
