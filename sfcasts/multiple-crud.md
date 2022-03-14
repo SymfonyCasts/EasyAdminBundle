@@ -1,17 +1,111 @@
-# Multiple Crud
+# Multiple Cruds for a Single Entity?
 
-Right now, we have one CRUD controller per entity, but we can create *more* than one CRUD controller for the *same* entity. It's useful if you need to set up some filters behind the scenes and always apply them. For example, we're going to create a separate "Pending Approval" questions section that *only* lists questions that need to be approved. To do this, we're going to create a new CRUD controller, and instead of generating it this time, I'm going to create it by hand. Call it "QuestionPendingApprovalCrudController". We're creating it by hand because, instead of having an extended normal base class for a CRUD controller, we'll have it extend `QuestionCrudController.php`. That way, it inherits all of the normal `QuestionCrudController.php` syntax. Now, whenever we have a new CRUD controller, we need to link to it from our dashboard. Open `DashboardController.php`, duplicate this question here... say "Pending Approval"... and I'll tweak the icon slightly. If we stop now, you might be wondering, since both of these simply point to `Question` entity, how do they know to go to the correct controller? That actually *is* a problem. As soon as we have multiple CRUD controllers for the same entity, EasyAdmin is just going to *guess* the correct one to use,. To tell it explicitly, you can say `->setController()` and then pass it `QuestionPendingApprovalCrudController::class`. Do we need to set the controller on this other one to be safe? Absolutely. We'll do that in a few minutes.
+Right now, we have one CRUD controller per entity. But we *can* create *more* than
+one CRUD controller for the *same* entity. Why would this be useful? Well, for
+example, we're going to create a separate "Pending Approval" questions section that
+*only* lists questions that need to be approved.
 
-All right, let's try it. Refresh. We get two links and they look absolutely identical, which makes sense. Now let's modify a query for this one to only show *non-approved* questions. We already know how to do that! Over in our new controller, I'm going to override a method called "createIndexQueryBuilder". And then we'll just modify this. Say `->andWhere()` and we know that our entity alias is called "entity", so `entity.isApproved` (as the field on our `Question` entity) `= :approved`, and then `->setParameter('approved')` set to `false`.
+Ok, so, we need a new CRUD controller. Instead of generating it this time, let's
+create it by hand. Call the class `QuestionPendingApprovalCrudController`. We're
+making this by hand because, instead of extending the normal base class for a CRUD
+controller, we'll extend `QuestionCrudController`. That way, it inherits *all* the
+normal `QuestionCrudController` config and logic.
 
-You can see we have a *bunch* of these right now. If we refresh, we go from a bunch to just *five*. It works! Except if you go to the original Question section, that *also* only shows five. As I mentioned, it's guessing the wrong CRUD controller. So in practice, as soon as you have multiple CRUD controllers for an entity, you should *always* specify the controller when you link to it. For this one, use `QuestionCrudControlle::class`. And if we head over and refresh this page... there's visually no difference. That' because we actually modified this link. If I click it, that will take me to the *correct* admin section.
+## Linking to the Controller and setController()
 
-All right, let's tweak a couple of things on our new CRUD controller. I'm going to override `configureCrud`. Most importantly, we need to `->setPageTitle()`. I'm going to set this up for the index page, so say `Crud::PAGE_INDEX` with "Questions pending approval". Now... that change is *much* more obvious.
+Done! Step two: whenever we add a new CRUD controller, we need to link to it from
+our dashboard. Open `DashboardController`... duplicate the question menu item...
+say "Pending Approval"... and I'll tweak the icon.
 
-When we're setting the page title, we can actually pass a callback if we want to use the question object itself in the name. So let's call `->setPageTitle()` again, and set *this* one up for the details page: `Crud::PAGE_DETAIL`. Then, instead of a string here, I'm going to pass a callback, `static function`, and that will receive the `Question` object as the first argument. Inside, we can return whatever we want, so I'll `return sprintf()` and let's put a little `#%s %s` and pass `$question->getId()` and `$question->getName()`. Nice! Let's try that. Head over to the show page for one of these quetions and... awesome! We now control a title with that dynamic data. And while we're here, the last thing I want to do is add a little "help" message on a specific page. We'll add it to our index page in case someone comes here and doesn't know what they're looking atm, with "Questions are not published to users until approved by a moderator".
+If we stopped now, you might be thinking:
 
-If we refresh... our message shows up right here next to the title! Okay, there's one more subtle problem that having these two CRUD controllers has just created. To see that, jump into `AnswerCrudController.php`. One of the fields we have here is the `AssociationField` to `question`. Change this to `->autocomplete()`, which it should probably have since there's going to be *a lot* of questions in my database. If we look at our main Questions page here... this first question is *probably* an approved question. Now go to Answers. We'll Edit an answer... go down to the Question here... and now this uses autocomplete, which is cool, but if I paste that string, it says "No results found". The reason is subtle. If you go down to the web debug toolbar and open the profiler for one of those autocomplete AJAX requests, look at the URL closely. Part of the URL actually says "crudController = QuestionPendingApprovalCrudController".
+> Wait a second! Both of these menu items simply point to the `Question` entity.
+> How will EasyAdmin know which controller to go to?
 
-When an autocomplete AJAX request is done for an entity (in this case, it's trying to autocomplete Question), that AJAX request is done *by* a CRUD controller. If you jump into `AbstractCrudController.php`, there's actually an `autocomplete` action. This is the action that's called to create the autocomplete response. It's done this way so that the autocomplete results can reuse your index query builder for the results. Unfortunately, just like with our dashboard, the autocomplete is guessing the wrong CRUD controller. It's going to `QuestionPendingApprovalCrudController.php`. To fix this, once again, we just need to be explicit. We can say `->setCrudController(QuestionCrudController::class)`. This time, I'll refresh... go down in Question, search for my string and... it finds it!
+This definitely *is* a problem. The truth is that, when we have multiple CRUD
+controllers for the same entity, EasyAdmin  *guesses* which to use. To tell it
+explicitly, add `->setController()` and then pass it
+`QuestionPendingApprovalCrudController::class`.
 
-Next, what if we want to run some code before or after an entity is updated, created, or deleted? EasyAdmin has two solutions: Events and controller methods.
+Do we need to set the controller on the other link to be safe? Absolutely. And we'll
+do that in a few minutes.
+
+But let's try this. Refresh. We get two links... and each section looks absolutely
+identical, which makes sense. Let's modify the query for the new section to only
+show *non-approved* questions. And... we already know how to do that!
+
+Over in the new controller, override the method called "`createIndexQueryBuilder()`.
+Then we'll just modify this: `->andWhere()` and we know that our entity alias
+is always `entity`. So `entity.isApproved` (that's the field on our `Question` entity)
+`= :approved`... and then `->setParameter('approved', false)`.
+
+Let's try it! We go from a *bunch* question to... just *five*. It works! Except that
+if you go to the original Question section... that *also* only shows five!
+
+Yup, it's guessing the *wrong* CRUD controller. So in practice, as soon as you have
+multiple CRUD controllers for an entity, you should *always* specify the controller
+when you link to it. For this one, use `QuestionCrudController::class`.
+
+If we head over and refresh this page... there's no difference! That's because
+we modified the *link*... but we're already *on* the page for the *new* CRUD
+controller. So click the link and... much better!
+
+## Including Entity Data in the Page Title
+
+Let's tweak a few things on our new CRUD controller. Override
+`configureCrud()`. Most importantly, we should `->setPageTitle()` to set the
+title for `Crud::PAGE_INDEX` to "Questions Pending Approval".
+
+Now... it's *much* more obvious which page we're on.
+
+Oh, and when we set the page title, we can actually pass a *callback* if we want
+to use the `Question` object itself in the name... assuming you're setting the page
+title for the detail or edit pages where you're working with a *single* entity.
+
+Check it out: call `->setPageTitle()` again, and set *this* one for
+`Crud::PAGE_DETAIL`. Then, instead of a string, pass a callback: a `static function`
+that will receive the `Question` object as the first argument. Inside, we can
+return whatever we want: how about `return sprintf()` with `#%s %s`...
+passing `$question->getId()` and `$question->getName()` as the wildcards.
+
+Let's check it! Head over to the detail page for one of these questions and... awesome!
+Dynamic data in the title.
+
+And while we're here, I also want to add a "help" message to the index page:
+
+> Questions are not published to users until approved by a moderator
+
+When we refresh... our message shows up right next to the title!
+
+## Autocomplete() and Multiple CRUD Controllers
+
+Okay, there's one more subtle problem that having two CRUD controllers has just
+created. To see it, jump into `AnswerCrudController`. Find the `AssociationField`
+for `question`... and add `->autocomplete()`... which it needs because there's going
+to be *a lot* of questions in our database.
+
+If we look at our main Questions page... this first question is *probably* an
+approved question - since most are - so I'll copy part of its name. Now go to
+Answers, edit an answer... and go down to the Question field. This uses
+autocomplete, which is cool! But if I paste the string, it says "No results found"?
+
+The reason is subtle. Go down to the web debug toolbar and open the profiler for
+one of those autocomplete AJAX requests. Look at the URL closely... part of it
+says "crudController = QuestionPendingApprovalCrudController"!
+
+When an autocomplete AJAX request is made for an entity (in this case, it's trying to
+autocomplete Question), that AJAX request is done *by* a CRUD controller. If you jump
+into `AbstractCrudController`... there's actually an `autocomplete()` action. This
+is the action that's called to create the autocomplete response. It's done this way
+so that the autocomplete results can reuse your index query builder. Unfortunately,
+just like with our dashboard links, the autocomplete system is *guessing* which
+of our two CRUD controllers to use for Question... and it's guessing wrong.
+
+To fix this, once again, we just need to be explicit. Add
+`->setCrudController(QuestionCrudController::class)`.
+
+This time, I'll refresh... go down to the Question field, search for the string
+and... it finds it!
+
+Next, what if we want to run some code before or after an entity is updated, created,
+or deleted? EasyAdmin has two solutions: Events and controller methods.
