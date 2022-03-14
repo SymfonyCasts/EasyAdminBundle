@@ -1,50 +1,9 @@
 # Sub Menu
 
-Coming soon...
+Our menu on the left here is getting a *little* long and *kind of* confusing, since we actually have *two* question links here. To make this a bit more user-friendly, we can divide this into a sub-menu. We do that inside of `DashboardController.php` because that's, of course, where we configure our menu items. To create a sub-menu, we start the same way. Say `yield MenuItem::subMenu()` and then give that sub-menu a name, like `Questions`, and then an icon like we normally do: `fa fa-question-circle`. To populate the sub-menus, say `->setSubItems()`, pass this an array, and then we'll wrap our other two menu item objects inside of there. Of course, when we do that, we'll need to indent, remove the `yield`, and then we'll replace the semicolons with commas. Perfect! Now we can change `Questions` to... how about `All`... and we can also play with the icon. I'll change this to `fa fa-list`... and down here, how about `fa fa-warning`. Let's try that. Move over... refresh and... ahhh, much cleaner!
 
-<affirmative>
+In addition to this, we can also create separators, since we just have our dashboard, our entity links, and then our homepage. We do that with something called a section. Right after `linkToDashboard`, you're going to add these sections where you want a horizontal line to appear. So `yield MenuItem::section()` and I'll say `Content`. Let's put one more down here - `yield MenuItem::section()` - and for the label, this time, I'll just leave it blank. So in this case, unlike the sub-menu which wraps these menu items, you'll just use the sections wherever you want a separator. Go refresh and... awesome! You can see we get a little separator here that says "CONTENT", and down here, it just gives us a nice little gap without any text. We saw earlier that you can make links on this go anywhere. We can link to other CRUD sections (Admin CRUD is the most common), but we can also just link to *any* URL like our Homepage. So, not surprisingly, you can *also* link to external sites. For instance, let's say that we love StackOverflow *so* much, we want to link to it. We can tweak the icons, and for the URL, we can add *whatever* URL we want there. I'll direct this to "https://stackoverflow.com". Oh, and let me fix my icon name. Great! Now when we refresh... that works!
 
-Our menu on the left here is getting a little bit long and it's especially confusing.
-Cause we actually have two question links here. So what we can do is divide this into
-a sub menu. So we do that instead of dashboard controller because that's of course
-where we configure our menu it. So to create a sub menu, it starts the same way you
-say, yield menu item, and then call, call sub menu, and then give that sub menu a
-name like questions, And then an icon like normal FA FA Circle to populate the sub
-menus on there. You're gonna say set, set, sub items, pass this array, and then I'm
-gonna wrap my other two menu item objects inside of there. Of course, when I do that,
-I need to indent remove the yield and then I'll replace the semicolons with com.
-Perfect. Now we can retrain change questions to how about all, And we can also play
-with the icon. So I'm gonna change this to FA list And down here. How about FA FA
-dash warning? Let's try that move over. Refresh and Ugh, so much cleaner. In
-addition, we can also do separators cuz we just have sort of our dashboard, our
-entity links and then homepage. So we can add kind of some separators to separate
-these, these sections. And we do that with something called a section. So right after
-linked dashboard, you're basically gonna add these sections where you want a
-horizontal line to appear. So yield menu item, section,
+Another thing I want to mention is that these menu items have a lot of options on them. We know we have things like `setPermission` and `setController`, but we *also* have things like `setLinkTarget`, `setLinkRel`, `setCssClass`, or `setQueryParameter`. The point is, make sure you take advantage of the methods that you have on your menu items so you can customize them. In this case, I'll `->setLinkTarget('_blank')`, so now if I click "StackOverflow", it pops up in a new tab. Handy! And with *just* those quick little tips there, our menu looks *much* nicer.
 
-And I'll say content and let's you put one more down here.
-
-You'll menu item on calling section and for the label this time, I'm just going to
-leave it blank. <affirmative> so in this case, unlike the, the menu items, which kind
-of wrap the sub menu, which wraps these menu items, these sections, you just kind of
-put them wherever you want a separate her I'm gonna refresh. Awesome. So you can see,
-we get a little separated here. It says content down here just gives us a nice
-separator without any text. And we saw earlier that you can make links on this, go
-anywhere. So going to other crud, admin crud is the most common, but you can also
-just link to anywhere out like our homepage. So of course not surprisingly, you can
-also link to external sites. Like let's say that We love stack overflow so much Wanna
-link to it. I'll tweak the icons and then for the URL,
-
-Let me just put whatever URL we want there. Oh, let me fix my on name. So that works,
-but that's nothing new. But one thing that we can do that I want to mention is that
-these menu items have a lot of options on them. So we know we have things like set
-permission and set controller. We also have things like set link, talk, link, target,
-or link link re or a set CSS class or a set query parameter. So make sure you take
-advantage of the methods that you have on your menu items. So you can customize this.
-So in this case, I'm gonna set the link target To_blank. And now if I click stack
-overflow, I get it popped up in a new tab. All right. And with just those quick
-little tips there, we got a much nicer looking menu. All right. Next, what if we need
-to disable an action on an, an entity by entity basis? Like for example, what if we
-only want to allow a question to be deleted? If it is not approved, let's dive into
-that.
-
+We've got a good grasp on how to leverage methods on our menu items. But what if we need to disable an action on an entity-by-entity basis? For example, what if we only want to allow a question to be deleted if it's not approved? Let's dive into that next.
