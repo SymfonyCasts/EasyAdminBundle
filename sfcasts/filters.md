@@ -15,8 +15,12 @@ for this called, well, filters!
 Over in `UserCrudController`, I'll go to the bottom and override yet another method
 called `configureFilters()`.
 
+[[[ code('1728527317') ]]]
+
 This looks and feels a lot like `configureFields()`: we can call `->add()` and then
 put the name of a field like `enabled`.
+
+[[[ code('51335aa706') ]]]
 
 And... that's all we need! If we refresh the page, watch this section around the
 top. We have a new "Filters" button! That opens up a modal where we can filter
@@ -35,6 +39,8 @@ the correct filter type to use.
 
 But, you *can* be explicit. What we have now is, in practice,
 identical to saying `->add(BooleanFilter::new('enabled'))`.
+
+[[[ code('c8d06a57cf') ]]]
 
 When we refresh now... and check the filters... that makes no difference because
 that was already the filter type it was guessing.
@@ -58,6 +64,8 @@ is the reason that we're seeing this field as *expanded* radio buttons.
 Just to see if we can, let's try changing that. Close that file... and after the
 filter, add `->setFormTypeOption('expanded', false)`.
 
+[[[ code('77dbd444da') ]]]
+
 Try it now: refresh... head to the filters and... awesome! The non-expanded version
 means it's rendered as a dropdown.
 
@@ -67,6 +75,8 @@ Let's add some filters to the Questions section. Open `QuestionCrudController`
 and, near the bottom, override `configureFilters()`. Start with an entity
 relation. Each question has a `ManyToOne` relationship to `Topic`, so let's
 `->add('topic')`.
+
+[[[ code('5e8f464dc8') ]]]
 
 Go refresh. We get the new filter section... and "Topic" is... this cool dropdown
 list where we can select whatever topic we want!
@@ -82,6 +92,8 @@ By opening this up, we can learn about any methods it might have that will let
 us configure it *or* how the query logic is done behind the scenes.
 
 Let's add a few more filters, like `createdAt`... `votes`... and `name`.
+
+[[[ code('a6f029dc22') ]]]
 
 And... no surprise, those all show up! The coolest thing is what they look like.
 The `createdAt` field has a really easy way to choose dates, or even filter *between*
