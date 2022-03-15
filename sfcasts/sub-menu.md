@@ -1,9 +1,58 @@
-# Sub Menu
+# Having Fun with the Menu
 
-Our menu on the left here is getting a *little* long and *kind of* confusing, since we actually have *two* question links here. To make this a bit more user-friendly, we can divide this into a sub-menu. We do that inside of `DashboardController.php` because that's, of course, where we configure our menu items. To create a sub-menu, we start the same way. Say `yield MenuItem::subMenu()` and then give that sub-menu a name, like `Questions`, and then an icon like we normally do: `fa fa-question-circle`. To populate the sub-menus, say `->setSubItems()`, pass this an array, and then we'll wrap our other two menu item objects inside of there. Of course, when we do that, we'll need to indent, remove the `yield`, and then we'll replace the semicolons with commas. Perfect! Now we can change `Questions` to... how about `All`... and we can also play with the icon. I'll change this to `fa fa-list`... and down here, how about `fa fa-warning`. Let's try that. Move over... refresh and... ahhh, much cleaner!
+Our menu on the left is getting a *little* long and... *kind of* confusing, since
+we actually have *two* question links. To make this more user-friendly, let's divide
+this into a sub-menu. We do that inside of `DashboardController` because that's,
+of course, where we configure our menu items.
 
-In addition to this, we can also create separators, since we just have our dashboard, our entity links, and then our homepage. We do that with something called a section. Right after `linkToDashboard`, you're going to add these sections where you want a horizontal line to appear. So `yield MenuItem::section()` and I'll say `Content`. Let's put one more down here - `yield MenuItem::section()` - and for the label, this time, I'll just leave it blank. So in this case, unlike the sub-menu which wraps these menu items, you'll just use the sections wherever you want a separator. Go refresh and... awesome! You can see we get a little separator here that says "CONTENT", and down here, it just gives us a nice little gap without any text. We saw earlier that you can make links on this go anywhere. We can link to other CRUD sections (Admin CRUD is the most common), but we can also just link to *any* URL like our Homepage. So, not surprisingly, you can *also* link to external sites. For instance, let's say that we love StackOverflow *so* much, we want to link to it. We can tweak the icons, and for the URL, we can add *whatever* URL we want there. I'll direct this to "https://stackoverflow.com". Oh, and let me fix my icon name. Great! Now when we refresh... that works!
+## Adding a Sub Menu
 
-Another thing I want to mention is that these menu items have a lot of options on them. We know we have things like `setPermission` and `setController`, but we *also* have things like `setLinkTarget`, `setLinkRel`, `setCssClass`, or `setQueryParameter`. The point is, make sure you take advantage of the methods that you have on your menu items so you can customize them. In this case, I'll `->setLinkTarget('_blank')`, so now if I click "StackOverflow", it pops up in a new tab. Handy! And with *just* those quick little tips there, our menu looks *much* nicer.
+To create a sub-menu, say `yield MenuItem::subMenu()` and then give that a name -
+like `Questions` - and an icon... just like we do with normal menu items.
 
-We've got a good grasp on how to leverage methods on our menu items. But what if we need to disable an action on an entity-by-entity basis? For example, what if we only want to allow a question to be deleted if it's not approved? Let's dive into that next.
+To populate the *items* in this menu, say `->setSubItems()`, pass this an array,
+and then we'll wrap our other two menu item objects *inside* of here. Of course,
+now we need to indent, remove the `yield`, and... then replace the semicolons with
+commas.
+
+Perfect! Now we can change `Questions` to... how about `All`... and let's play with
+the icons. Change the first to `fa fa-list`... and the second to `fa fa-warning`.
+
+Let's try that. Move over... refresh and... ahhh, much cleaner!
+
+## Menu Sections
+
+But wait, there's *more* we can do with the menu... like adding separators...
+technically called "sections". Right after `linkToDashboard()`, add
+`yield MenuItem::section()` and pass it `Content`.
+
+Let's put one more down here - `yield MenuItem::section()`. This time leave the
+label blank. So unlike sub-menus, which *wrap* these menu items, you can just pop
+a section anywhere that you want a separator.
+
+Let's go check it out. Refresh and... very nice! Separator one says "Content"...
+and separator two gives us a little gap without any text.
+
+## External Links
+
+We saw earlier that you add menu links to point to a dashboard, other CRUD
+sections... or just *any* URL like the Homepage. So, not surprisingly, you
+can *also* link to external sites. For instance, let's say that we love StackOverflow
+*so* much, that we want to link to it. We can tweak the icons, and for the URL,
+pass whatever you want, like https://stackoverflow.com.
+
+Oh, but let me fix my icon name. Great! Now when we refresh... no surprise, that
+works fine.
+
+## More Menu Item Options
+
+Another thing I want to mention is that these menu items have a *lot* of options on
+them. We know we have things like `setPermission()` and `setController()`, but we *also*
+have things like `setLinkTarget()`, `setLinkRel()`, `setCssClass()`, or
+`setQueryParameter()`. For this case, let's
+`->setLinkTarget('_blank')`... so that *now* if I click "StackOverflow", it pops
+up in a new tab. Handy!
+
+Next: what if we need to disable an action on an entity-by-entity basis? Like,
+*do* want only want to allow questions to be deleted if they are *not* approved.
+Let's dive into that.
