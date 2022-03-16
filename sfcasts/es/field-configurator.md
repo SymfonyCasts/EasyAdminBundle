@@ -16,8 +16,8 @@ controlarlas. Sin embargo, una vez que se ha creado una pregunta y se ha estable
 nunca debería cambiar.
 
 Por eso, en la página de edición, quiero desactivar este campo. Podríamos eliminarlo
-por completo añadiendo `->onlyWhenCreating()`... pero pff. ¡Eso es demasiado fácil! Mostrémoslo, 
-pero deshabilitémoslo.
+por completo añadiendo `->onlyWhenCreating()`... pero pff. ¡Eso es demasiado fácil! Mostrémoslo
+mostrarlo, pero deshabilitarlo.
 
 ¿Cómo? Ya sabemos que cada campo tiene un tipo de formulario detrás. Y cada tipo de formulario
 en Symfony tiene una opción llamada `disabled`. Para controlar esto, podemos decir
@@ -26,8 +26,8 @@ en Symfony tiene una opción llamada `disabled`. Para controlar esto, podemos de
 [[[ code('5748aa1ddb') ]]]
 
 Pero no podemos poner esto en "true" en todas partes... ya que eso lo deshabilitaría
-en la nueva página. Aquí es donde el argumento `$pageName` resulta útil. Será
-una cadena como `index` o `edit` o `details`. Así que podemos establecer `disabled`
+en la nueva página. Aquí es donde el argumento `$pageName` resulta útil Será
+será una cadena como `index` o `edit` o `details`. Así que podemos establecer `disabled`
 a `true` si `$pageName !==`... y usaré la clase `Crud` para referenciar su
 `PAGE_NEW` constante:
 
@@ -36,7 +36,7 @@ a `true` si `$pageName !==`... y usaré la clase `Crud` para referenciar su
 ¡Hagamos esto! Aquí en la página de edición... está desactivada. Y si volvemos a
 Preguntas... y creamos una nueva pregunta... ¡tenemos un campo slug no desactivado!
 
-Bien, ¡Suficiente con la sección de preguntas! Cierra `QuestionCrudController` y abre
+Bien, ¡basta con la sección de preguntas! Cierra `QuestionCrudController` y abre
 `AnswerCrudController`. Descomenta `configureFields()`... y luego pegaré
 algunos campos. Sólo tengo que volver a escribir el final de estas clases y pulsar `Tab` para
 autocompletarlas... para obtener las declaraciones que faltan en `use`:
@@ -46,7 +46,7 @@ autocompletarlas... para obtener las declaraciones que faltan en `use`:
 Perfecto No hay nada especial aquí. Tal vez quieras añadir autocompletar a
 los campos `question` y `answeredBy`, pero lo dejo a tu elección.
 
-Si refrescamos... ¡la página de Respuestas tiene un aspecto impresionante! Y si editamos una, obtenemos nuestro
+Si actualizamos... ¡la página de Respuestas tiene un aspecto impresionante! Y si editamos una, obtenemos nuestro
 error favorito:
 
 > El objeto de la clase `Question` no se ha podido convertir en cadena
@@ -66,16 +66,16 @@ Hacer esto es... realmente fácil. Dirígete al campo `answer`, utiliza `TextFie
 y luego aprovecha un método personalizado `->setMaxLength()`:
 
 ```php
-public function configurarCampos(cadena $nombreDePágina): iterable
+public function configureFields(string $pageName): iterable
 {
     // ...
-    yield TextField::new('respuesta')
+    yield TextField::new('answer')
         // ...
         ->setMaxLength(50);
 }
 ```
 
-Si lo establecemos en 50, ¡se truncará cualquier texto que supere los 50 caracteres!
+Si lo ponemos a 50, ¡se truncará cualquier texto que supere los 50 caracteres!
 
 Pero voy a deshacerlo. ¿Por qué? ¡Porque quiero que hagamos algo más interesante!
 
