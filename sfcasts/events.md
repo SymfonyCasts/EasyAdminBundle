@@ -12,6 +12,8 @@ The idea is that, whenever someone updates a `Question`, this field will be set 
 the `User` object that just updated it. Let's make this *only* show up on the detail
 page: `->onlyOnDetail()`.
 
+[[[ code('c82afa8938') ]]]
+
 Right now, in our fixtures, we are *not* setting that field. So if we go to any
 question... it says "Updated By", "Null". Our goal is to set that field automatically
 when a question is updated.
@@ -52,6 +54,8 @@ and paste that too.
 And... perfect! We have a new `BlameableSubscriber` class! Go open that
 up: `src/EventSubscriber/BlameableSubscriber.php`.
 
+[[[ code('4bd0d51381') ]]]
+
 This is a normal Symfony event subscriber and, thanks to auto configuration,
 Symfony will instantly see this and start using it. In other words, whenever EasyAdmin
 dispatches `BeforeEntityUpdatedEvent`, it will call our method.
@@ -65,6 +69,8 @@ current user object, which we get via the security service. Let's autowire that:
 add `public function __construct()` - with a `Security $security` argument. Hit
 "alt" + "enter" and go "Initialize properties" to create that property and set it.
 
+[[[ code('de83b152eb') ]]]
+
 Love it. Below, start with `$question = $event->getEntityInstance()`. And then
 `if (!$question instanceof Question)`, just `return`... because this is going to
 be called when *every* entity is saved across our entire system. Next,
@@ -74,7 +80,11 @@ situation that will never *actually* happen: we only have one `User` class in ou
 app. So if you're logged in, you will *definitely* have this `User` instance. *But*,
 this helps our editor and static analysis tools.
 
+[[[ code('19ba984cdd') ]]]
+
 Down here... we can now say `$question->setUpdatedBy()`, and pass `$user`.
+
+[[[ code('e12bb3f9b9') ]]]
 
 Let's try it. This question's "Updated By" is "Null". Edit something (make sure you
 actually make a change so it saves), hit "Save changes" and... got it! "Updated
@@ -98,10 +108,14 @@ method, and the one we want is called `updateEntity()`. This is the method that
 actually updates and saves the entity. *Before* that happens, we want to set the
 property.
 
+[[[ code('e053f848c3') ]]]
+
 Go steal the code from our subscriber... close that event class... paste that in...
 and hit "OK" to add that use statement. And now we'll tweak some code: `$user
 = $this->getUser()`... and then `$question` is actually going to be `$entityInstance`.
 So we can say `$entityInstance->setUpdatedBy()`.
+
+[[[ code('cc9e127bda') ]]]
 
 If you want to code defensively, since there's no type-hint on `$entityInstance`,
 we could do another check where we say `if (!$entityInstance instanceof Question)`
