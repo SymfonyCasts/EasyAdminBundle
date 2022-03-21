@@ -1,50 +1,155 @@
-# Dynamic Disable Action
+# Dynamic Disable an Action & AdminContext
 
-We've done a good job of hiding the `DELETE` action conditionally and disallowing deletes under that same condition. But it would be much simpler if we could *truly* disable the `DELETE` action on an entity-by-entity basis. Then EasyAdmin would naturally just hide the "Delete" link. To figure out how to do this, let's click into our base class, `AbstractCrudController.php`, and go down to where our actions are. Check this out! In every action like `index`, `detail`, or `delete`, we're passed something called an `AdminContext`. This is a configuration object that holds everything about your admin section, including information about what actions should be enabled. So by the time our action method has actually been called, our actions config has already been used to create the action objects and we have figured out which actions we want. And look what it does here. It dispatches an event. So I wonder if we can hook into this event and actually change that action config conditionally before the rest of the action runs and the template renders.
+We've done a good job of hiding the `DELETE` action conditionally and disallowing
+deletes using that same condition. But it would be *much* simpler if we could truly
+*disable* the `DELETE` action on an entity-by-entity basis. Then EasyAdmin would
+naturally just... hide the "Delete" link.
 
-All right, I'm going to scroll up to `BeforeCrudActionEvent` - let me search for that... there we go - and I'll copy that. Spin over to your terminal and run:
+## The AdminContext Object
+
+To figure out how to do this, let's click into our base class -
+`AbstractCrudController` - and go down to where the controller methods are. Check
+this out: in every controller method - like `index()`, `detail()`, or `delete()` -
+we're passed something called an `AdminContext`. This is a configuration object that
+holds *everything* about your admin section, *including* information about which
+EasyAdmin *actions* should be enabled. So, by the time our controller method
+has been called, our EasyAdmin *actions* config has already been used to
+populate details inside of this `AdminContext`.
+
+And look what happens immediately inside the method: it dispatches an event! I
+wonder if we could hook into this event and *change* the action config - like
+conditionally disabling the `DELETE` action - before the rest of the method
+runs and the template renders.
+
+## Creating the Event Subscriber
+
+Let's try that! Scroll up to `BeforeCrudActionEvent` - let me search for
+that... there we go - and copy it. Spin over to your terminal and run:
 
 ```terminal
 symfony console make:subscriber
 ```
 
-Let's call it
+Let's call it `HideActionSubscriber`... and then paste the long event class.
+Beautiful! Let's go see what that subscriber looks like. It looks...
+pretty familiar! Let's `dd($event)` to get started.
 
-```terminal
-HideActionSubscriber
+When we refresh... it immediately hits that because this event is dispatched *before*
+every single CRUD action.
+
+## Working with AdminContext
+
+The hardest part of figuring out how to dynamically disable the action is just...
+figuring out where all the data is. As you can see, we have the `AdminContext`.
+*Inside* the `AdminContext`, among other things, is something called a `CrudDto`.
+Inside the `CrudDto`, we have an `ActionConfigDto`. *This* holds information about
+all the actions, including "index" (the current page name), and all the action
+config. This shows us, for each page, which array of action objects should be
+enabled. So for the "edit" page, we have these two `ActionDto` objects, and each
+`ActionDto` object contains all the information about what that action should
+look like. Whew...
+
+So now the trick is to use this information (and there's *a lot* of it) to modify
+this config and disable the `DELETE` action in the right situation. Back over
+in our listener, the first thing we need to do is get that `AdminContext`. Set a
+variable and do an if statement all at once:
+`if (!$adminContext = $event->getAdminContext())`, then `return`.
+
+I'm coding defensively. It's probably not necessary... but technically the
+`getAdminContext()` method might not return an `AdminContext`. I'm not even sure
+if that's possible, but better safe than sorry. Now get the `CrudDto` the same way:
+`if (!$crudDto = $adminContext->getCrud())`, then also `return`. Once again, this
+is *theoretically* possible... but not going to happen (as far as I know) in any
+real situation.
+
+Next, remember that we only want to perform our change when we're dealing with
+the `Question` class. The `CrudDto` has a way for us to check which entity we're
+dealing with. Say `if ($crudDto->getEntityFqcn() !== Question::class)`, then
+`return`.
+
+So... this is *relatively* straightforward, but, to be honest, it took me some
+digging to find *just* the right way to get this info.
+
+## Disabling the Action
+
+*Now* we can get to the core of things. The first thing we want to do is *disable*
+the delete action entirely if a question is approved. We can get the entity
+instance by saying `$question = $adminContext->getEntity()->getInstance()`. The
+`getEntity()` gives us an `EntityDto` object... and then you can get the instance
+from that.
+
+Below, we're going to do something a *little* weird at first. Say
+`if ($question instanceof Question)` (I'll explain why I'm doing that in a second)
+`&& $question->getIsApproved()`, then disable the action by saying
+`$crudDto->getActionsConfig()` - which gives us an `ActionsDto` object - then
+`->disableActions()` with `[Action::DELETE]`.
+
+There are a few things I want to explain. The first is that this event is going to
+be called at the beginning of *every* CRUD page. If you're on a CRUD page like
+`EDIT`, `DELETE`, or `DETAIL`, then `$question` *is* going to be a `Question` instance.
+*But*, if you're on the index page... that page does *not* operate on a *single*
+entity. In that case, `$question` will be null. By checking for `$question` being
+an `instanceof Question`, we're basically checking to make sure that `Question`
+isn't null. It also helps my editor know, over here, that I can call the
+`->getIsApproved()` method.
+
+The other thing I want to mention is that, at this point, when you're working with
+EasyAdmin, you're working with a lot of DTO objects. We talked about these earlier.
+Inside of our controller, we deal with these nice objects like `Actions` or
+`Filters`. But behind the scenes, these are just helper objects that ultimately
+configure DTO objects. So in the case of `Actions`, internally, it's *really*
+configuring an `ActionConfigDto`. Any time we call a method on `Actions`... it's
+actually... if I jump around... making changes to the DTO.
+
+And if we looked down here on the `Filters` class, we'd see the same thing. So by
+the time you get to *this* part of EasyAdmin, you're dealing with those DTO objects.
+They hold all of the same data as the objects we're used to working with, but
+with different methods for interacting with them. In this case, if you dig a
+bit, `getActionsConfig()` gives you that `ActionConfigDto` object... and it
+has a method on it called `->disabledActions()`. I'll put a comment above this that
+says:
+
+```
+// disable action entirely for delete, detail & edit pages
 ```
 
-and I'll paste my long event name right there. Beautiful! Let's go see what that subscriber looks like. It should be pretty familiar. We've got the setup, the method, and to start here, let's just `dd($event)`. When we refresh... it gets hit immediately because that event is dispatched *before* every single CRUD action.
+Yup, if we're on the detail, edit, or delete pages, then we're going to have a
+`Question` instance... and we can disable the `DELETE` action entirely.
 
-The hardest part of figuring out how to dynamically disable this event is just figuring out where all of the data is. As you can see, we have the `AdminContext`. *Inside* the `AdminContext`, among other things, is something called a `CrudDto`. Inside the `CrudDto`, we have an `ActionConfigDto`. This holds information about all the actions, including the index (the current page name), and all of our action config. The action config shows us, for each page, which array of action objects should be enabled. So for the edit page, we have these two `ActionDto` objects, and each `ActionDto` object contains all the information about what that action should look like. Whew...
-
-So now, the trick is to use this information (and there's *a lot* of it) to modify this action config to disable the `DELETE` action in the right situation. Back over in our listener, the first thing we need do is get that `adminContext`. I'll set a variable and do an if statement all at once, so `if (!$adminContext = $event->getAdminContext())`, then `return`. What I'm doing is coding defensively. It's probably not necessary, but technically this `getAdminContext()` method might not have an `adminContext`. I'm not even sure if that's possible, but I'm coding defensively just in case. And then we're going to get the `crudDto`, so I'll do the same thing: `if (!$crudDto = $adminContext->getCrud())`, and also `return`. Once again, this is *theoretically* possible, but not going to happen (as far as I know) in any real situation.
-
-And remember, we only want to perform these changes when we're dealing with the `Question` class. The `crudDto` has a way for us to check what entity we're operating on. Say `if crudDto->getEntityFqcn() !== Question::class)`, and then we can `return`. So... relatively straightforward, but it took me a little bit of digging to find *just* the right way to get this information.
-
-Now we can get to the core of things. The first thing we want to do is *disable* the delete action entirely if a question is approved. We can actually get the entity instance by saying `$question = $adminContext->getEntity()->getInstance()`. This `getEntity()` gives you an `entityDto`, and then you can get the instance from that.
-
-Then below this, we're going to do something a *little* weird at first. Say `if ($question instanceof Question)` (I'll explain why I'm doing that in a second) `&& $question->getIsApproved()`. Then we want to disable the action by saying `$crudDto->getActionsConfig()`, which gives us an `actionsDto`, and then `->disableActions()`, with `[Action::DELETE]`.
-
-There are couple of things here that I want to explain. The first is that this event is going to be called at the beginning of every CRUD action. So if you're on a CRUD action, like `EDIT`, `DELETE`, or `DETAILS`, then `$question` *is* going to be a question instance. *But*, if you're on the index page, then that page is not operating on a single entity. In that case, there will actuually be *no* entity instance and `$question` will be null. By checking for `$question` being an `instanceof Question` here, we're basically checking to make sure that `Question` isn't null. It will also help my editor know, over here, that I can call this `->getIsApproved()` method. 
-
-The other thing I want to mention is that, at this point, when you're working with EasyAdmin, you're working with a lot of DTO objects. We've talked about this a little bit before. Inside of our controller, we're often dealing with these nice objects like `Actions` or `Filters`, but behind the scenes, these are just helper objects that ultimately configure a DTO class. So in the case of `Actions`, internally, it is really configuring an `ActionConfigDto()`. Any time we call method on it, it is actually... if I jump around... making changes to the DTO. And if we look down here on the `Filters` class, you'd see the same thing. So by the time you get to this part of EasyAdmin, you're dealing with those DTO objects and they hold all of the same data as these objects we're used to working with, but you'll have to use different methods for interacting with them. In this case, if you dig a little bit, this `getActionsConfig()` gives you that `ActionConfigDto()`, and it has a method on it called `->disabledActions()`. I'll put a comment above this that says:
-
-```
-// disable action entirely for delete, detail & edit page
-```
-
-This is what I talked about earlier. If I'm on the detail, edit, or delete pages, then we're going to have a `$question` instance and we can disable that action entirely. But this *isn't* going to disable the links on the index page. So I'll actually refresh this page here and... all of these are approved, so I should *not* be able to delete them. If I go and hit "Delete" on ID 19... perfect! It says:
+But this *isn't* going to disable the links on the index page. Watch: if we refresh
+that page... all of these are approved, so I should *not* be able to delete them.
+If I *click* "Delete" on ID 19... yay! It *does* prevent us:
 
 ```
 You don't have enough permissions to run the "delete"
 action [...] or the "delete" action has been disabled.
 ```
 
-That is thanks to us disabling it right here. And also, if I go to the show page, you'll notice that the "Delete" action is gone. That's, once again, thanks to our code on the details page. We're disabling the "Delete" action, so it's not showing the "Delete" link. If I clicked one down here, like ID 24 that is *not* approved, you can see that it *does* have a "Delete" button.
+That's thanks to us disabling it right here. And also, if we go to the detail page,
+you'll notice that the "Delete" action is gone. But if we click a Question down here,
+like ID 24 that is *not* approved, it *does* have a "Delete" button.
 
-The only thing we still need to do is hide this "Delete" link on the index page. To do that, we can say `$actions = $crudDto->getActionConfig()`, just like we did before, and then `->getActions()`. What this is going to give us is an array of `ActionDto` that will be enabled for this page. So if this is the index page, for example, then it's going to have a "Delete" action. I'm actually going to check for that. I'll say `if (!$deleteAction = $actions[Action::DELETE])`, and then I'l add `?? null` in case that's not set already. Then we're just going to `return`. What I'm doing here is actually grabbing the `$deleteAction` DTO from the array if it exists. If it *doesn't* exist, it means the `$deleteAction` isn't on this page already, so it's not a problem. But if we *do* have a `$deleteAction`, then we can say `$deleteAction->setDisplayCallable()`. This is a great example of the difference between how code looks on these DTOs and how it looks in our controllers. In our controllers, on the `Action` object, we can call `$action->displayIf()`. Inside of *here*, with this action DTO, you can do the same thing, but it's called `->setDisplayCallable()`.
+Ok, let's finish by hiding the "Delete" link on the index page. To do that,
+add `$actions = $crudDto->getActionConfig()`, just like we did before, and then
+`->getActions()`. *This* will give us an *array* of the `ActionDto` objects that
+will be enabled for this page. So if this is the index page, for example, then
+it will have a "Delete" action in that array. I'm going to check for that:
+`if (!$deleteAction = $actions[Action::DELETE])`... and then add `?? null` in case
+that key isn't set. If there is *no* delete action for some reason, just `return`.
+But if we *do* have a `$deleteAction`, then say `$deleteAction->setDisplayCallable()`.
 
-Here, I'm going to pass a callable, `function()` with a `Question, $question` argument. Then, we'll `return !$question->getIsApproved()`. All right, let's try that. The only thing that wasn't working before is that this "Delete" action needs to be hidden on the index page. And now... it *is*. It's gone for all of them, *except* if I go down and find one of the higher IDs, which are not currently approved. And... yes! We have a "Delete" action there.
+This is a great example of the difference between how code looks on these DTO
+objects and how it looks with the objects in the controllers. There,
+on the `Action` object, we can call `$action->displayIf()`. In the event
+listener, with this `ActionDto`, you can do the same thing, but it's called
+`->setDisplayCallable()`. Pass this a `function()` with a `Question $question`
+argument... then we'll say: please display this action link if
+`!$question->getIsApproved()`.
 
-Next, let's add a custom action. We're going to start simple: A custom action link that takes us to the frontend of this site, when we're viewing a specific item. Then we'll get *more* complicated.
+Phew! Let's try that! We're looking to see that this "Delete" action link is hidden
+from the index page. And now... it *is*! It's gone for all of them, *except*...
+if I go down and find one with a higher ID... which is *not* approved... yes!
+It *does* have a "Delete" link.
+
+Next, let's add a custom action! We're going to start simple: a custom action link
+that takes us to the frontend of the site. Then we'll get *more* complicated.
