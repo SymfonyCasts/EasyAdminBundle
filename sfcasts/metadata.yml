@@ -35,6 +35,7 @@ chapters:
     - dynamic-disable-action
     - get-action
     - post-action
+    - custom-controller
     - global-action
     - twig-url
     - form-panels
