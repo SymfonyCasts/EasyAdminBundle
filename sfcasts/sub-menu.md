@@ -18,6 +18,8 @@ commas.
 Perfect! Now change `Questions` to... how about `All`... and let's play with
 the icons. Change the first to `fa fa-list`... and the second to `fa fa-warning`.
 
+[[[ code('94c40480fe') ]]]
+
 Let's try that. Move over... refresh and... ahhh, much cleaner!
 
 ## Menu Sections
@@ -26,9 +28,13 @@ But wait, there's *more* we can do with the menu... like adding separators...
 technically called "sections". Right after `linkToDashboard()`, add
 `yield MenuItem::section()` and pass it `Content`.
 
+[[[ code('da68162acd') ]]]
+
 Let's put one more down here - `yield MenuItem::section()`... but this time leave the
 label blank. So unlike sub-menus, which *wrap* menu items, you can just pop
 a section anywhere that you want a separator.
+
+[[[ code('b5f17707ef') ]]]
 
 Let's go check it out. Refresh and... very nice! Separator one says "Content"...
 and separator two gives us a little gap without any text.
@@ -41,6 +47,8 @@ can *also* link to external sites. For instance, let's say that I love StackOver
 *so* much, that I want to link to it. We can tweak the icons, and for the URL,
 pass whatever you want, like https://stackoverflow.com.
 
+[[[ code('7f7bc5789d') ]]]
+
 Oh, but let me fix my icon name. Great! Now when we refresh... no surprise, that
 works fine.
 
@@ -51,6 +59,8 @@ on them! We know we have things like `setPermission()` and `setController()`, bu
 we *also* have methods like `setLinkTarget()`, `setLinkRel()`, `setCssClass()`,
 or `setQueryParameter()`. For this case, let's `->setLinkTarget('_blank')`... so
 that *now* if I click "StackOverflow", it pops up in a new tab.
+
+[[[ code('133e1b37b0') ]]]
 
 Next: what if we need to disable an action on an entity-by-entity basis? Like,
 we want only want to allow questions to be deleted if they are *not* approved.
