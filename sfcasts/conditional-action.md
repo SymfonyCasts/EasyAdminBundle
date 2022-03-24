@@ -66,6 +66,8 @@ Perfect! This now means that, after the `DELETE` action object is created for
 `PAGE_INDEX`, it will be passed to *us* so we can make changes. For now, just
 `dd($action)`.
 
+[[[ code('86272b9681') ]]]
+
 If we refresh... yup! It dumped the `Action` object, as expected... which has an
 `ActionDto` object inside... where all the data is really held.
 
@@ -75,6 +77,8 @@ a `static function()` that will receive a `Question $question` argument. Now,
 for the first, second then third question, etc - it will call our function and
 pass us that `Question`. Then, we can decide whether or not the delete action
 link should be shown. Let's show the delete link if `!$question->getIsApproved()`.
+
+[[[ code('2188da90bb') ]]]
 
 Sweet! Let's see what happens. Refresh and... error!
 
@@ -104,10 +108,14 @@ check to see if it's approved. And if it *is*, we'll throw an exception.
 To test this, temporarily comment-out this logic and `return true`... so that the
 delete link *always* shows. Back to the Questions page... got it!
 
+[[[ code('2e5893247b') ]]]
+
 Now go to the bottom of `QuestionCrudController`. Earlier we overrode `updateEntity()`.
 This time we're going to override `deleteEntity()`... which will allow us to call
 code right *before* an entity is deleted. To help my editor, I'll document that
 the entity is going to be an instance of `Question`.
+
+[[[ code('10edad7950') ]]]
 
 Now, `if ($entityInstance->getIsApproved())`, throw a new
 `\Exception('Deleting approved questions is forbidden')`. This is going
@@ -115,6 +123,8 @@ to look like a 500 Error to the user... so we could also throw an "access denied
 exception". Either way, this isn't a situation that anyone should have... unless
 we have a bug in our code or a user is trying to do something they shouldn't.
 Bad admin user!
+
+[[[ code('26481d8c61') ]]]
 
 I won't try this, but I'm pretty sure it would work. However, this *is* all
 a bit tricky! You need to secure the actual *action*... and also make sure that
