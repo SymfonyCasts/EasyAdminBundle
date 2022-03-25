@@ -31,8 +31,13 @@ symfony console make:subscriber
 ```
 
 Let's call it `HideActionSubscriber`... and then paste the long event class.
-Beautiful! Let's go see what that subscriber looks like. It looks...
-pretty familiar! Let's `dd($event)` to get started.
+Beautiful! Let's go see what that subscriber looks like. 
+
+[[[ code('f81a8ff705') ]]]
+
+It looks... pretty familiar! Let's `dd($event)` to get started.
+
+[[[ code('1b44ef3330') ]]]
 
 When we refresh... it immediately hits that because this event is dispatched *before*
 every single CRUD action.
@@ -62,10 +67,14 @@ if that's possible, but better safe than sorry. Now get the `CrudDto` the same w
 is *theoretically* possible... but not going to happen (as far as I know) in any
 real situation.
 
+[[[ code('8c330dee76') ]]]
+
 Next, remember that we only want to perform our change when we're dealing with
 the `Question` class. The `CrudDto` has a way for us to check which entity we're
 dealing with. Say `if ($crudDto->getEntityFqcn() !== Question::class)`, then
 `return`.
+
+[[[ code('80fc6fba50') ]]]
 
 So... this is *relatively* straightforward, but, to be honest, it took me some
 digging to find *just* the right way to get this info.
@@ -78,11 +87,15 @@ instance by saying `$question = $adminContext->getEntity()->getInstance()`. The
 `getEntity()` gives us an `EntityDto` object... and then you can get the instance
 from that.
 
+[[[ code('5636140278') ]]]
+
 Below, we're going to do something a *little* weird at first. Say
 `if ($question instanceof Question)` (I'll explain why I'm doing that in a second)
 `&& $question->getIsApproved()`, then disable the action by saying
 `$crudDto->getActionsConfig()` - which gives us an `ActionsDto` object - then
 `->disableActions()` with `[Action::DELETE]`.
+
+[[[ code('04eaf159c3') ]]]
 
 There are a few things I want to explain. The first is that this event is going to
 be called at the beginning of *every* CRUD page. If you're on a CRUD page like
@@ -136,6 +149,9 @@ will be enabled for this page. So if this is the index page, for example, then
 it will have a "Delete" action in that array. I'm going to check for that:
 `if (!$deleteAction = $actions[Action::DELETE])`... and then add `?? null` in case
 that key isn't set. If there is *no* delete action for some reason, just `return`.
+
+[[[ code('cf3adc4cee') ]]]
+
 But if we *do* have a `$deleteAction`, then say `$deleteAction->setDisplayCallable()`.
 
 This is a great example of the difference between how code looks on these DTO
@@ -145,6 +161,8 @@ listener, with this `ActionDto`, you can do the same thing, but it's called
 `->setDisplayCallable()`. Pass this a `function()` with a `Question $question`
 argument... then we'll say: please display this action link if
 `!$question->getIsApproved()`.
+
+[[[ code('35aca99040') ]]]
 
 Phew! Let's try that! We're looking to see that this "Delete" action link is hidden
 from the index page. And now... it *is*! It's gone for all of them, *except*...
