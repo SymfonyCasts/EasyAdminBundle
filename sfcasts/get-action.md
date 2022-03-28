@@ -7,6 +7,8 @@ we'll probably need to do some work inside of `configureActions()`. We already k
 how to add actions to different pages: with the `->add()` method. Let's try adding,
 to `Crud::PAGE_DETAIL`, a new action called `view`.
 
+[[[ code('d0f0ac749f') ]]]
+
 ## Adding the Custom Action in configureActions()
 
 There are a bunch of built-in action names - like `index` or `delete` - and we
@@ -31,6 +33,8 @@ and pass this the action name that we just invented: `view`. Then, below, instea
 of the string, this argument accepts an `$actionNameOrObject`. Pass in that new
 `$viewAction` variable.
 
+[[[ code('3b1dd14709') ]]]
+
 ## Setting the Action to redirect
 
 Refresh again to see... *another* error:
@@ -54,11 +58,15 @@ the argument accepts a string or *callable*. Let's try that: pass a `function()`
 and then to see what arguments this receives, let's use a trick:
 `dd(func_get_args())`.
 
+[[[ code('fe493d350b') ]]]
+
 Back in the browser... awesome! We are apparently passed *one* argument, which is
 the `Question` object. We're dangerous! Use that: `return $this->generateUrl()`,
 passing the frontend route name: which is `app_question_show`. This route has
 a `slug` route wildcard... so add the `Question $question` argument to the
 function and set `slug` to `$question->getSlug()`.
+
+[[[ code('cd5844c723') ]]]
 
 Testing time! And now... yes! We have a "View" button. If we click it... it works!
 
@@ -68,10 +76,14 @@ And just like any other action, we can modify how this looks. Let's
 `->addCssClass('btn btn-success')`, `->setIcon('fa fa-eye`), and
 `->setLabel('View on site')`: all things that we've done before for other actions.
 
+[[[ code('02c063a2e9') ]]]
+
 Refresh and... that looks great! If we want to include this action on other pages,
 we can. Because, if you go to the index page, there's no "view on frontend" action.
 Thankfully, we created this nice `$viewAction` variable, so, at the bottom, we
 can reuse it: `->add(Crud::PAGE_INDEX, $viewAction)`.
+
+[[[ code('a0b3815239') ]]]
 
 Refresh and... got it! Though... you can see the `btn` styling doesn't really work
 well here. I won't do it, but you could clone the `Action` object and then
