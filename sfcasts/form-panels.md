@@ -1,81 +1,19 @@
 # Form Panels
 
-Coming soon...
+Last topic! We made it! And our admin is getting *really* customized. For this final trick, I want to look closer at the form. Almost all of this is controlled by the `Field` configuration. Each field corresponds to a Symfony form type, and then EasyAdmin renders all of those fields. It really *is* that simple. EasyAdmin comes with a custom form theme, so if you wanted to, for example, make a text type field look different in EasyAdmin, you could create a *custom* form theme template. Then this theme can be added to the `$crud` object in `configureCrud()`.
 
-Last topic we made it and her admin is getting really customized for this final
-trick. I wanna cl closer at the form. Almost all of this is controlled by the field
-configuration, each field corresponds to a Symfony form type, then easy admin simply
-renders all of those fields. It's basically that simple, easy admin does come with a
-custom form theme. And so if you wanted to, for example, make a text type feel, look
-different in easy Evan, you could create a custom form theme template. Then this
-theme can be added to the crud object and configure crud.
+Down here, for example, we could say `->addFormTheme()`, and we can add this to just *one* one CRUD controller, *or* you could put this code into your dashboard to apply that form theme *globally* in your admin. *But*, there are a few other ways that EasyAdmin allows us to control what this page looks like, which, right now, is just a long list of fields. Over in `QuestionCrudController.php`, up in `configureFields()`... here we go... right before the `askedBy` field, I'll add a special `yield FormField::` so we're starting as normal, but instead of saying `new`, let's say `addPanel('Details')`.
 
-Here we go. For example, we could say->add form theme. And of course you could add
-this just to one credit controller, or you could put this quote code into your
-dashboard to apply that form theme globally in your admin. But there are a few other
-ways that easy admin allows us to control how this page looks, which right now is
-just long list of fields over in question crowd controller, up in configure fields.
-Here we go down here. Let's see <affirmative> right before the asked by field, I'm
-gonna add a special yield form field, so we're starting normal, but instead of saying
-new, I'm gonna say, add panel and say details.
+Watch what this does! Refresh and... cool! "Asked By" and "Answers" appear under this "Details" header. As you can see here, `askedBy` and `answers` are the two fields that appear after our `addPanel()` call. So we get this nice little panel and then those two fields. And because the rest of these fields are not under a panel, they just kind of appear at the bottom, which *works*, *but* it doesn't look the greatest. So, when I use `addPanel()`, I'm going to put *everything* in the panel. Right after my `IdField`, which *isn't* going to appear on the form, I'll say `FormField::addPanel('Basic Data')`. Oh! And let me make sure I don't forget to `yield` that. With that set up... awesome! We have our "Basic Data" panel, all of the fields below that, then the second panel down here.
 
-Watch what this does gonna refresh. Cool asked by an answers appear under this
-details. Headline asked by an answers and also created at, uh, are the only two form
-fields of the two fields that appear after our ad panel call. So we get this nice
-little panel and then those two fields. And then because all these fields are not
-under a panel, they just kind of appear at the bottom, which doesn't really look
-great. So when I use an ad panel, I'm gonna put everything in the panel. So right
-after my ID field, I don't need to put it, uh, which isn't going to appear in the
-form. I'll say form field ad panel, I'll say basic data. So with that setup, Oh, and,
-uh, need, make sure I don't forget to yield that. So with that setup, awesome. Basic
-data, all the fields below that, then the second panel down here, One property of
-these panels, um, these panels have some custom methods on 'em and probably the most
-useful is collapsible. So let's make both the, this panel Collapsable and let's make
-our other panel Collapsable that you can guess what this does. Yep. We get a nice
-little way to collapse both of those sections, which is cool.
+These panels have some custom methods on them, and one of the most useful is `->collapsible()`. Let's make this panel collapsible, and down here... we'll make this one collapsible too. I'm sure you can guess what this does. Yep! We get a nice way to collapse both of those sections, which is handy.
 
-And then you can also customize some other things that you might be able to guess at
-this point, like set icon FA FA dash info, And also a set help. And I'll say
+You can also customize other things, which you might be able to guess at this point, like `->setIcon('fa fa-info')`, and also `->setHelp()`, where I'll say `Additional Details`. I actually meant to put this down on the other panels, so let me grab this really quick, find my other panel... here we go... and paste it here. If we go over and check those, down here on our Additional Details... cool! A little "help" icon there!
 
-<affirmative>
+By the way, the changes we're making not only affect the form page, but also the Show page. If I go and look at a Show page for one of these, you can see that the same organizations are happening here, which is nice. *Or*, instead of panels, you can use tabs. Change `addPanel()` to `addTab()`, and then down here, do the same thing: `addTab()`. When we refresh now... that shows up as two separate tabs. The `->collapsible()` doesn't really make sense here anymore, since we switched to organizing our content with tabs. It's still being called, but it no longer has any effect, so let's remove that.
 
-Additional details And actually meant to put this down on the other panels. Let me
-close that up here. Find my other panel. Here we go. This is where we have our
-additional details.
+You also may have noticed that we lost our icon. We know we have this cool little `fa fa-info` icon, but it's not showing up here. Or *is* it? If you look closely, it *is* showing up. There's some space here, and if you inspect the element, there *is* an icon there, but it looks a little weird. It has an extra `fa-fa` for some reason. We can fix this by simply changing the icon to `info`. This is... sort of a bug. It's a little inconsistent, but when you use tabs, EasyAdmin adds the `fa` for you. So all we need is `info` in anticipation of the `fa`, which will show up right there. Watch! When I refresh... there! We get `fa-info` and now our icon shows up.
 
-Okay. I,
+The last thing we can do, instead of having this long list of fields, is put the fields next to each other. You have some control over the columns on this page, and to show this off, I'm going to move my `name` field above my `slug` field. That won't make *too* much of a difference. And now let's see if we can put these fields *next* to each other. We're using bootstrap, which means there's 12 invisible columns on each page. So, on `name`, I'll say `->setColumns(5)` and then, down here on `slug`, I'll do the same thing: `->setColumns(5)`. I could also say `6` and use *all* of the space, but we'll stick with `5` and give it some room. Refresh again and... very nice! Our fields are floating next to each other. This is a great way to help this page make a little more sense for our users.
 
-Now I'm gonna check those down here on our additional details. Cool. A little help.
-And I a icon there, by the way, I forgot to mention this, but the changes we're
-making affect form page, but they also affect the show page. So if I go and look at a
-show page for one of these, you can see that these same organizations are happening
-there, which is nice, Or instead of panels, you can use tabs. So I'll change this ad
-panel to add tab And then down here, same thing, add tab winery refresh. Now that
-shows up as two separate taps. The collapsible doesn't really make sense anymore. I'm
-not really sure why that method's even allowed to be called, cuz it doesn't have any
-effect. So let's And remove that. And then also you might have noticed that we lost
-our icon. So I have this cool little FA FA info icon, but it's not showing up there.
-In fact, if you look closely, it is showing up. It's got some space here. If you
-inspected element on this, there is an icon there, but it looks a little weird. It's
-got a FA FA inside of there.
-
-The fix for this is actually to just change the icon to info. What happens is it's
-kind of a bug. It's a little inconsistent, but when you change this to a tab, easy
-evidence puts the FA for you. The, uh, So all we need is the info, which will end
-showing up right there watching I refresh there, we get F eight info and now it shows
-up. And the last thing is, instead of having this long list of fields, you can also
-put fields next to each other. You have some control over the columns on this page.
-So to show this off, I'm actually going to move my name, field above my slug field.
-That won't make too much of a difference. Let's see if we can put these fields next
-to each other. So we're using bootstraps. So there's 12 columns on each page.
-
-So on name, I'm gonna say set columns five and then down here on my slug, I'm gonna
-do the same thing. So set columns five. I could also say six and use all of the space
-now. Very nice to see those float next to each other. Great way to make this page
-make a little bit more sense. All right, friends, we are done. This was fun. We
-should do it again. Sometime. I love easy admin and we are super happy at Symfony
-casts with the admin section that we built with with it, which includes a lot of
-custom stuff. Let us know what you're building. And as always, we're here for you
-down in the common section with any questions, ideas, or delicious recipes that you
-might have. All right. See you next time.
-
+And that's it, friends! We are *done*! This was fun! We should do it again sometime. I *love* EasyAdmin, and we here at SymfonyCasts are *super* proud of the admin section we built with it, which includes *a lot* of custom stuff. Let us know what you're building! And as always, we're here for you down in the Comments section with any questions, ideas, or delicious recipes that you might have. All right, see you next time!
