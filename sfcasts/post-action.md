@@ -13,8 +13,12 @@ Over in `QuestionCrudController`, say `$approveAction = Action::new()`... and
 I'll make up the word `approve`. Down at the bottom, add that to the detail page:
 `->add(Crud::PAGE_DETAIL, $approveAction)`.
 
+[[[ code('a074145efa') ]]]
+
 Before we try that, call `->addCssClass('btn btn-success')` and
 `->setIcon('fa fa-check-circle')`. Also add `->displayAsButton()`.
+
+[[[ code('774aee608e') ]]]
 
 By default, an action renders as a *link*... where the URL is wherever you want it
 to go. But in this case, we don't want approval to be done with a simple link
@@ -28,6 +32,8 @@ Ok, we *have* now created the action... but we need to link it to a URL or
 to a CRUD action. In this case, we need a CRUD action where we can write the
 approve logic. So say `linkToCrudAction()` passing the name of a method that
 we're going to create later. Let's call it `approve`.
+
+[[[ code('a7566eabaf') ]]]
 
 Sweet! Refresh and... duh! The button won't be here... but if we go to the detail
 page... got it! "Approve"!
@@ -51,8 +57,12 @@ our *own* custom template. Inside `templates/admin/`, add a new file called
 `approve_action.html.twig`. Paste in the comments... and then... just to *further*
 help us know what's going on, dump that `action` variable: `dump(action)`.
 
+[[[ code('b6350b41ae') ]]]
+
 To *use* this template, over in `QuestionCrudController`... right on the action,
 add `->setTemplatePath('admin/approve_action.html.twig')`.
+
+[[[ code('bb551c23ff') ]]]
 
 Let's try it. Refresh and... cool! We see the dump and *all* the data on that
 `ActionDto` object. The most important thing for *us* is `linkURL`. This contains
@@ -64,9 +74,13 @@ to do whatever we want! All the other actions are still using the core
 and then `method="POST"`. Inside, we need the button. We *could* create it ourselves...
 or we can be lazy and `{{ include('@EasyAdmin/crud/action.html.twig') }}`.
 
+[[[ code('4824e1f1d9') ]]]
+
 That's all we need! Reload the page... and inspect that element to see... exactly
 what we want: a `form` with the correct action... and our button inside. Though,
 we *do* need to fix the styling a little bit. Add `class="me-2"`.
+
+[[[ code('7ee47cd5d3') ]]]
 
 Refresh and... looks better!
 
