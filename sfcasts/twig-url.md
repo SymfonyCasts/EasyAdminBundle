@@ -1,67 +1,17 @@
 # Twig Url
 
-Coming soon...
+Let's go look at the Show page for a question that is *not* approved yet. We have a lot of buttons up here, which is fine, but what if we don't like their order? Perhaps we'd like to display the Delete button last instead of in the middle. No problem! We can control this inside of `configureActions`. I'll go down to the bottom, after we've set up the actions, and call another method called `->reorder()` and pass this the page we want to reorder them on. In this case, it's `CRUD::PAGE_DETAIL`. Then, very simply, we'll add the names of the actions. We have quite a few actions here, so let's start with our `approve` action, the `view` action, and the our three built-in actions: `Action::EDIT`, `Action::INDEX`, and `Action::DELETE`. These are the five actions that correspond with these five buttons. If we refresh... very nice! They appear in the same order we listed them in.
 
-Check out the detail page of a particular chapter, uh, question actually better.
-Let's go look at one that is not approved yet. So we have kind of a lot of buttons up
-here, which is probably fine, but what if we don't like their order, like to display
-the delete link last, instead of showing in the middle, we can control this, not
-surprisingly inside of our configure actions, which is where we are right now. So
-I'll go down to the bottom. After we've set up the actions, I'll call another method
-on here called reorder and, and past is the page that we wanna reorder them on. So
-crowd calling page detail in this case, and then very simply it's just the names of
-the actions. So, uh, we have quite a few actions on here. Let's start with our
-approved action, then our view action, and then the three built-in actions action,
-edit action, colon index, and then finally action delete.
+Now that we're looking at these buttons, you might notice that most of them have icons, but these two don't. I prefer icons, so let's see if we can add an icon to the Edit and index action button across our entire site. If we're modifying an action across the entire site, we're doing it inside of `DashboardController.php`. As we saw earlier, when we're trying to modify a built-in action like this, we do that by calling the `->update()` function.
 
-So these, the five actions that correspond with these five button and wanna refresh
-very nice. We get them in the same order, by the way, look at these buttons. Most of
-them have icons, but these two don't kinda like icons. So let's see if we can fix
-the, add an icon to the edit and index button action button across our entire site.
-So we're modifying something across the entire site. That means we're doing it inside
-a dashboard controller, and we know that we're modifying an action. Now I saw earlier
-when we're trying to modify a built in action like this, we can do that by calling
-the update function.
+Right here, I'll say `->update()` and we're going to update `Crud::PAGE_DETAIL`. Let's start with `Action::EDIT`, and then we'll pass this a callback: `static function (Action $action)`. Inside, we have to return the action, so say `return $action->setIcon('fa fa-edit')`.
 
-So here I'll say->update, and we're gonna update the detail page and the let's start
-with the edit action. And we'll pass this a call back. It's gonna receive action
-action object as an argument and inside we have to return the action, but we can say
-return action,->set icon FA FA dash edit so that as the icon, and then it returns the
-action which this function needs to do. And let's do the same thing one more time. So
-again, detail page this time, the index action, and we'll give a FA FA dash list and
-now beautiful. Those have icons, and we can go anywhere like over to the answer
-detail page, and they're gonna have icons there as well.
+Let's do the same thing one more time for the index action button, but chance this to `Action::PAGE_INDEX` and we'll give this `fa fa-list`. Refresh now and... beautiful! We can see the icons here, and if we go anywhere else, like over to the Answer's Show page, the icons are there as well.
 
-Now, at this point, we know how to rate a link to any easy admin bundle page. The key
-is to get the, I scroll up a little bit, the admin, you were all generator, and then
-you can kind of set whatever things you need, like the action and the crud controller
-on that. What I'm gonna do now is from the question show page. So let me go to the
-homepage and then click into a question. If we are in admin, I wanna put a little
-edit button right here. That takes me right to the edit action for this specific
-question. So how do we generate anywhere URL to easy admin from twig?
+At this point, we know how to generate a link to any EasyAdminBundle page. If I scroll up a little bit... the key is to get the `->adminUrlGenerator()`, and then you can set whatever you need on that, like the action and CRUD controller. I'll go to the Homepage and click into a question. If we're an admin, I want to put a little Edit button right here that takes me right to the edit action for this specific question. So how do we generate URLs to EasyAdmin from twig?
 
-Well, first let's go add that at a button. So the template for this lives at
-templates, question show HTL twig, and let's find the H one. There it is. And for
-organization, I'm gonna add a little wrap here. So class = de justify content
-between, and I'm just gonna put the H one inside of there and now it will let me, now
-I can put a link. We can say if is granted roll admin. And if inside an anchor, I'll
-leave the empty for a second. Let's say text dash white for the class, instead of
-that, a span with class = Fafa dash edit. So just a little edit link here.
+First, let's go add that Edit button. The template for this lives at `/templates/question/show.html.twig`, and let's find the `<h1>`. There it is. For organization, I'll wrap this in a `<div>` with `class = d-flex justify-content-between,`. Let's grab the `<h1>`... and now I can put a link: `{% if is_granted('ROLE_ADMIN') %}` `{% edif %}`. Inside, add `<a href="">` (I'll leave the `href` empty for a moment),  and let's say `class="text-white"`. Inside of *that*, add a `<span class="fa fa-edit">`, which is just an edit icon.
 
-We try that. Awesome. Looks good. We have a little edit link there now to generate to
-you where else, since we need to set the credit controller, we need to set the action
-and we need to set the T ID. Easy admin gives us a nice little, uh, shortcut in twig.
-It's called EA_URL. What that does is actually creates, gives you that admin URL
-generator object. And then you can just call things on like normal. So we can say dot
-set controller, and then, then we can target our controller. So app //controller
-//admin //question crud controller. So you can see, I have to do double slashes here
-so that they don't get escaped because we're inside of a
+Back in our browser, try that and... awesome! Looks good! We have an edit link there. To generate the URL, since we still need to set the CRUD controller, action, and entity ID, EasyAdmin gives us a nice little shortcut in twig. It's called `ea_url`. This gives you that `->adminUrlGenerator()` object, and then you can just call things on it like normal. So we can say `.setController()`, and then we can target our controller with `App\\Controller\\Admin\\QuestionCrudController`. We have to use double slashes here so that they don't get escaped because we're inside of a string. Finally, add `.setAction('edit')` and `.setEntityId()` with `question.id`. It's a little weird to write this kind of code in twig, but that's how it's done. And it does the job, right? Over here, I'll refresh... and hit the new edit button, and... got it! This took us straight to the Edit page for our question.
 
-String kind of annoying, then that set action edit. Then that set entity ID. We can
-pass this question.id. So a little weird to write this kind of code in twig, but
-that's how you do it. And it gets the job done, right? Let's refresh over here and,
-and let's see hit, edit, and got it right straight to the edit page for our question.
-Next last topic. Let's talk about how we can leverage layout panels and other things
-to organize our form into different groups, rows, or even tabs on this form page.
-Okay.
-
+Next: Last topic! Let's talk about how we can leverage layout panels and other things to organize our form into different groups, rows, or even tabs on this form page.
