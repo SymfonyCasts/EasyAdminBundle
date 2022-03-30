@@ -1,17 +1,71 @@
-# Twig Url
+# Linking to EasyAdmin from Twig
 
-Let's go look at the Show page for a question that is *not* approved yet. We have a lot of buttons up here, which is fine, but what if we don't like their order? Perhaps we'd like to display the Delete button last instead of in the middle. No problem! We can control this inside of `configureActions`. I'll go down to the bottom, after we've set up the actions, and call another method called `->reorder()` and pass this the page we want to reorder them on. In this case, it's `CRUD::PAGE_DETAIL`. Then, very simply, we'll add the names of the actions. We have quite a few actions here, so let's start with our `approve` action, the `view` action, and the our three built-in actions: `Action::EDIT`, `Action::INDEX`, and `Action::DELETE`. These are the five actions that correspond with these five buttons. If we refresh... very nice! They appear in the same order we listed them in.
+Let's go look at the "Show" page for a question that is *not* approved yet. We have
+a lot of buttons up here... which is fine. But what if we don't like their order?
+Like, Delete might make more sense as the last button instead of in the middle.
 
-Now that we're looking at these buttons, you might notice that most of them have icons, but these two don't. I prefer icons, so let's see if we can add an icon to the Edit and index action button across our entire site. If we're modifying an action across the entire site, we're doing it inside of `DashboardController.php`. As we saw earlier, when we're trying to modify a built-in action like this, we do that by calling the `->update()` function.
+## Ordering Actions
 
-Right here, I'll say `->update()` and we're going to update `Crud::PAGE_DETAIL`. Let's start with `Action::EDIT`, and then we'll pass this a callback: `static function (Action $action)`. Inside, we have to return the action, so say `return $action->setIcon('fa fa-edit')`.
+No problem! We can control this inside of `configureActions()`. At the bottom,
+after we've set up the actions, call another method - `->reorder()` - and pass
+this the page that we want to reorder them on. In this case, it's `CRUD::PAGE_DETAIL`.
+Then, very simply, add the names of the actions. We have quite a few... Let's
+start with `approve`, `view`... and then the three built-in actions:`Action::EDIT`,
+`Action::INDEX`, and `Action::DELETE`. These are the five actions that correspond
+to these five buttons.
 
-Let's do the same thing one more time for the index action button, but chance this to `Action::PAGE_INDEX` and we'll give this `fa fa-list`. Refresh now and... beautiful! We can see the icons here, and if we go anywhere else, like over to the Answer's Show page, the icons are there as well.
+## Adding Action Icons to the Entire Admin
 
-At this point, we know how to generate a link to any EasyAdminBundle page. If I scroll up a little bit... the key is to get the `->adminUrlGenerator()`, and then you can set whatever you need on that, like the action and CRUD controller. I'll go to the Homepage and click into a question. If we're an admin, I want to put a little Edit button right here that takes me right to the edit action for this specific question. So how do we generate URLs to EasyAdmin from twig?
+Now when we refresh... very nice! Though... now I'm noticing that it looks a bit
+odd that some of these have icons and some don't. Let's see if we can add an icon
+to the Edit and Index action buttons across our entire admin.
 
-First, let's go add that Edit button. The template for this lives at `/templates/question/show.html.twig`, and let's find the `<h1>`. There it is. For organization, I'll wrap this in a `<div>` with `class = d-flex justify-content-between,`. Let's grab the `<h1>`... and now I can put a link: `{% if is_granted('ROLE_ADMIN') %}` `{% edif %}`. Inside, add `<a href="">` (I'll leave the `href` empty for a moment),  and let's say `class="text-white"`. Inside of *that*, add a `<span class="fa fa-edit">`, which is just an edit icon.
+If we want to modify something for the entire admin, we need to do it inside of
+`DashboardController`. As we saw earlier, to modify a *built-in* action like this,
+we can call the `->update()` function. Pass this the page - `Crud::PAGE_DETAIL` -
+the action - `Action::EDIT` - and then a: `static function` with an `Action $action`
+argument. Inside, modify and return the `Action` at the same time:
+`return $action->setIcon('fa fa-edit')`.
 
-Back in our browser, try that and... awesome! Looks good! We have an edit link there. To generate the URL, since we still need to set the CRUD controller, action, and entity ID, EasyAdmin gives us a nice little shortcut in twig. It's called `ea_url`. This gives you that `->adminUrlGenerator()` object, and then you can just call things on it like normal. So we can say `.setController()`, and then we can target our controller with `App\\Controller\\Admin\\QuestionCrudController`. We have to use double slashes here so that they don't get escaped because we're inside of a string. Finally, add `.setAction('edit')` and `.setEntityId()` with `question.id`. It's a little weird to write this kind of code in twig, but that's how it's done. And it does the job, right? Over here, I'll refresh... and hit the new edit button, and... got it! This took us straight to the Edit page for our question.
+Let's do the same thing one more time for the index action button: use
+`Action::PAGE_INDEX`... and we'll give this `fa fa-list`.
 
-Next: Last topic! Let's talk about how we can leverage layout panels and other things to organize our form into different groups, rows, or even tabs on this form page.
+Refresh now and... I love it! We can see the icons here... and if we go anywhere
+else - like to an Answer's detail page, the icons are here too
+
+## Adding a Link to the Admin From Twig
+
+At this point, we know how to generate a link to any EasyAdminBundle page. If I
+scroll up a bit... the key is to get the `AdminUrlGenerator`, and then set whatever
+you need on it, like the action and CRUD controller.
+
+Go to the Homepage... and click into a question. To make life easier for admin users,
+I want to put an "Edit" button that takes me directly to the edit action for this
+specific question. So... how *do* we generate URLs to EasyAdmin from Twig?
+
+Open the template for this page - `templates/question/show.html.twig` - and find
+the `<h1>`. Here it is. For organization, I'll wrap this in a `<div>` with
+`class="d-flex justify-content-between"`.
+
+After the `h1`, add the link... but only for admin users. So
+`{% if is_granted('ROLE_ADMIN') %}`... `{% edif %}`. Inside `<a href="">` -
+I'll leave the `href` empty for a moment - with `class="text-white"`... and
+inside of *that*, a `<span class="fa fa-edit">`.
+
+Back in our browser, try that and... looks good! We have an edit link.
+
+To generate the URL, we need to tell EasyAdmin which CRUD controller, action, and
+entity ID to use... all stuff we've done in PHP. In Twig, it's *nearly* the same
+thing thanks to a shortcut function called `ea_url()`.
+
+*This* gives us the `AdminUrlGenerator` object. And so, we can just... call the
+normal methods, like `.setController()`... passing the *long* controller class
+name. We have to use double slashes so that they don't get escaped.... since we're
+inside of a string. Now add `.setAction('edit')` and `.setEntityId()` with
+`question.id`.
+
+It's a little weird to write this kind of code in Twig, but that's how it's done!
+Back over here, refresh... and try the button. Got it!
+
+Ok team, last topic! Let's talk about how we can leverage layout panels and other
+things to organize our form into groups, rows, or even tabs on this form page.
