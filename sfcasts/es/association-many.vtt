@@ -1,0 +1,335 @@
+WEBVTT
+
+00:00:01.006 --> 00:00:05.286 align:middle
+Hay otro AssociationField que quiero
+incluir dentro de esta sección CRUD
+
+00:00:05.336 --> 00:00:08.536 align:middle
+y es interesante: $answers.
+
+00:00:08.536 --> 00:00:16.366 align:middle
+A diferencia de $topic y $answeredBy, éste es un
+Collection: cada Question tiene muchas respuestas:
+
+00:00:16.846 --> 00:00:23.666 align:middle
+En QuestionCrudController, yield
+AssociationField::new('answers'):
+
+00:00:23.666 --> 00:00:25.866 align:middle
+Y .... ¡vamos a ver qué pasa!
+
+00:00:26.246 --> 00:00:28.006 align:middle
+Vuelve a la página del índice y...
+
+00:00:28.616 --> 00:00:32.956 align:middle
+¡Impresionante! Reconoce que es una
+Colección e imprime el número de respuestas
+
+00:00:32.956 --> 00:00:35.136 align:middle
+que tiene cada Question...
+
+00:00:35.206 --> 00:00:37.446 align:middle
+lo cual es bastante bonito.
+
+00:00:37.446 --> 00:00:41.666 align:middle
+Y si vamos al formulario, ¡me
+empieza a gustar mucho este error!
+
+00:00:42.046 --> 00:00:47.026 align:middle
+El formulario está, una vez más, intentando
+obtener una representación de cadena de la entidad.
+
+00:00:47.676 --> 00:00:53.996 align:middle
+Ya sabemos cómo solucionarlo: dirígete a
+Answer.php y añade el método __toString().
+
+00:00:54.906 --> 00:00:58.646 align:middle
+Pero, en realidad, hay
+otra forma de manejar esto.
+
+00:00:59.276 --> 00:01:01.906 align:middle
+Si estás familiarizado con
+el componente Symfony Form,
+
+00:01:02.276 --> 00:01:06.826 align:middle
+entonces este problema de convertir
+tu entidad en una cadena es algo que
+
+00:01:06.826 --> 00:01:09.676 align:middle
+ves todo el tiempo con el EntityType.
+
+00:01:10.416 --> 00:01:16.136 align:middle
+Las dos formas de solucionarlo son añadir
+el método __toString() a tu entidad,
+
+00:01:16.516 --> 00:01:20.886 align:middle
+o pasarle a tu campo una opción choice_label.
+
+00:01:21.576 --> 00:01:25.266 align:middle
+Aquí podemos hacerlo gracias al
+método ->setFormTypeOption().
+
+00:01:25.266 --> 00:01:30.036 align:middle
+Antes de rellenarlo, abre
+la clase AssociationField...
+
+00:01:30.036 --> 00:01:31.546 align:middle
+y desplázate hasta new.
+
+00:01:32.376 --> 00:01:36.386 align:middle
+Entre bastidores, esto utiliza
+el EntityType para el formulario.
+
+00:01:36.946 --> 00:01:40.106 align:middle
+Así que cualquier opción que tenga
+EntityType, la tenemos nosotros.
+
+00:01:40.106 --> 00:01:47.346 align:middle
+Por ejemplo, podemos establecer choice_label, que acepta
+una devolución de llamada o simplemente la propiedad
+
+00:01:47.346 --> 00:01:49.126 align:middle
+de la entidad que debe utilizar.
+
+00:01:49.446 --> 00:01:50.776 align:middle
+Probemos con id:
+
+00:01:52.256 --> 00:01:53.086 align:middle
+Y ahora...
+
+00:01:54.356 --> 00:01:55.216 align:middle
+¡hermoso!
+
+00:01:55.706 --> 00:01:59.956 align:middle
+El ID no está súper claro,
+pero podemos ver que funciona.
+
+00:02:00.876 --> 00:02:02.926 align:middle
+Vamos a... ¡intentar eliminar una pregunta!
+
+00:02:03.346 --> 00:02:08.136 align:middle
+Quita "95", dale a "Guardar
+y continuar editando" y...
+
+00:02:08.616 --> 00:02:11.936 align:middle
+eh. ¿No ha pasado absolutamente nada?
+
+00:02:12.516 --> 00:02:15.656 align:middle
+¡La respuesta id "95" sigue ahí!
+
+00:02:16.426 --> 00:02:21.396 align:middle
+Si estás familiarizado con las colecciones y el
+componente Symfony Form, puede que conozcas la solución.
+
+00:02:21.876 --> 00:02:28.336 align:middle
+Dirígete a él y configura otra opción de tipo de formulario
+llamada by_reference establecida en false: No entraré
+
+00:02:29.206 --> 00:02:33.996 align:middle
+en demasiados detalles, pero básicamente,
+al configurar by_reference a false,
+
+00:02:34.346 --> 00:02:38.806 align:middle
+si se elimina una respuesta de
+esta pregunta, obligará al sistema
+
+00:02:38.806 --> 00:02:42.746 align:middle
+a llamar al método removeAnswer()
+que tengo en Question:
+
+00:02:43.476 --> 00:02:46.826 align:middle
+Ese método elimina correctamente
+el Answer de Question.
+
+00:02:47.246 --> 00:02:52.686 align:middle
+Pero lo más importante es que establece
+$answer->setQuestion() en null,
+
+00:02:53.176 --> 00:02:56.276 align:middle
+que es la parte propietaria
+de esta relación...
+
+00:02:56.276 --> 00:02:58.816 align:middle
+para los frikis de Doctrine.
+
+00:02:59.676 --> 00:03:02.826 align:middle
+Bien, intenta eliminar "95" de nuevo y guardar.
+
+00:03:03.536 --> 00:03:06.126 align:middle
+¡Oye! ¡Hemos actualizado a un error!
+
+00:03:06.746 --> 00:03:07.846 align:middle
+Se ha producido una excepción ...
+
+00:03:07.846 --> 00:03:09.226 align:middle
+Violación de nulo: ... valor nulo
+
+00:03:09.286 --> 00:03:15.736 align:middle
+en la columna question_id de la relación answer...
+¿Qué ha pasado? Vuelve a abrir Question.php.
+
+00:03:16.446 --> 00:03:18.336 align:middle
+Cuando
+
+00:03:18.976 --> 00:03:21.286 align:middle
+eliminamos una respuesta de
+Question, nuestro método
+
+00:03:21.716 --> 00:03:26.496 align:middle
+establece la propiedad question del
+objeto Answer en null. Esto convierte a
+
+00:03:27.276 --> 00:03:29.836 align:middle
+ese Answer en huérfano: es un
+
+00:03:30.246 --> 00:03:34.226 align:middle
+Answer que ya no está relacionado con
+ningún Question. Sin embargo, dentro de
+
+00:03:34.976 --> 00:03:39.426 align:middle
+Answer , tenemos un código que impide que esto
+
+00:03:39.456 --> 00:03:42.126 align:middle
+ocurra: nullable: false: Si
+
+00:03:43.016 --> 00:03:47.996 align:middle
+alguna vez intentamos guardar una Respuesta sin una
+Pregunta, nuestra base de datos nos detendrá. Así que
+
+00:03:48.026 --> 00:03:53.156 align:middle
+tenemos que decidir qué debe ocurrir cuando
+una respuesta queda "huérfana". En algunas
+
+00:03:53.846 --> 00:03:57.356 align:middle
+aplicaciones, puede que las respuestas
+huérfanas estén bien. En ese caso
+
+00:03:57.786 --> 00:04:01.356 align:middle
+, cambia a nullable: true y
+deja que se guarde. Pero en
+
+00:04:02.106 --> 00:04:07.966 align:middle
+nuestro caso, si una respuesta es eliminada de
+su pregunta, debe ser borrada. En Doctrine, hay
+
+00:04:08.676 --> 00:04:11.256 align:middle
+una forma de forzar esto y decir Si un
+
+00:04:11.666 --> 00:04:14.776 align:middle
+Answer se queda huérfano,
+por favor, bórralo. Se llama
+
+00:04:15.456 --> 00:04:17.396 align:middle
+"eliminación de huérfanos". Dentro de
+
+00:04:18.046 --> 00:04:21.506 align:middle
+Question, desplázate hacia arriba para
+encontrar la propiedad $answers... aquí
+
+00:04:22.246 --> 00:04:22.936 align:middle
+está. Al
+
+00:04:23.446 --> 00:04:26.726 align:middle
+final, añade orphanRemoval
+ajustado a true: Ahora actualiza
+
+00:04:27.546 --> 00:04:29.046 align:middle
+y... ¡sí! ¡ Ha
+
+00:04:30.536 --> 00:04:32.306 align:middle
+funcionado! El "95"
+
+00:04:32.376 --> 00:04:34.536 align:middle
+¡ha desaparecido! Y si
+
+00:04:35.046 --> 00:04:39.896 align:middle
+miraras en la base de datos, no existiría ninguna
+respuesta con "ID 95". ¡Problema resuelto!
+
+00:04:40.206 --> 00:04:41.436 align:middle
+El último
+
+00:04:42.246 --> 00:04:47.576 align:middle
+problema con esta área de respuestas es
+el mismo que tenemos con las otras. Si
+
+00:04:48.046 --> 00:04:52.426 align:middle
+tenemos muchas respuestas en la base
+de datos, se cargarán todas en la
+
+00:04:52.426 --> 00:04:54.626 align:middle
+página para mostrar el select. Eso no va a
+
+00:04:55.316 --> 00:04:59.176 align:middle
+funcionar, así que añadamos
+->autocomplete(): Cuando
+
+00:05:00.046 --> 00:05:02.706 align:middle
+actualicemos, ¡oh! Error al resolver
+
+00:05:03.256 --> 00:05:09.016 align:middle
+CrudAutocompleteType: La opción
+choice_label no existe. Ahhh. Cuando
+
+00:05:09.616 --> 00:05:16.296 align:middle
+llamamos a ->autocomplete(), esto cambia el tipo de formulario
+detrás de AssociationField . ¡ Y ese tipo de formulario
+
+00:05:16.846 --> 00:05:21.326 align:middle
+no tiene una opción choice_label! En su lugar,
+
+00:05:22.006 --> 00:05:27.476 align:middle
+siempre confía en el método
+__toString() de la entidad para mostrar
+
+00:05:27.836 --> 00:05:30.536 align:middle
+las opciones, sea cual sea. No es un gran
+
+00:05:31.246 --> 00:05:31.886 align:middle
+problema. Elimina esa
+
+00:05:32.116 --> 00:05:33.356 align:middle
+opción: Probablemente puedas
+
+00:05:34.216 --> 00:05:36.756 align:middle
+adivinar lo que ocurrirá
+si refrescamos. ¡Sí! Ahora
+
+00:05:37.336 --> 00:05:39.986 align:middle
+dice ¡Eh, Ryan! ¡ Ve a añadir
+
+00:05:40.146 --> 00:05:42.996 align:middle
+ese método __toString()!
+De acuerdo, ¡está bien!
+
+00:05:43.646 --> 00:05:52.616 align:middle
+En Answer, en cualquier lugar de aquí, añade
+public function __toString(): string... y return
+
+00:05:53.316 --> 00:05:55.626 align:middle
+$this->getId(): Ahora ... ¡estamos
+
+00:05:56.646 --> 00:05:59.876 align:middle
+de vuelta! Y si
+
+00:06:00.576 --> 00:06:01.576 align:middle
+escribimos... bueno... la
+
+00:06:02.076 --> 00:06:06.606 align:middle
+búsqueda no es muy buena porque son sólo
+números, pero ya te haces una idea. Dale a guardar
+
+00:06:07.876 --> 00:06:09.276 align:middle
+y... ¡bien! A continuación, vamos a
+
+00:06:10.896 --> 00:06:16.326 align:middle
+adentrarnos en el potente sistema
+de Configuradores de Campos, donde
+
+00:06:16.606 --> 00:06:21.436 align:middle
+puedes modificar algo de cada campo del
+sistema desde un solo lugar. También es
+
+00:06:22.076 --> 00:06:26.516 align:middle
+clave para entender cómo
+funciona el núcleo de EasyAdmin
