@@ -7,6 +7,8 @@ in a non-EasyAdmin controller class with a route above it. Say
 `public function approve()`. When the user gets here, the `id` of the entity will
 be in the URL. To help read that, autowire `AdminContext $adminContext`.
 
+[[[ code('0805766b12') ]]]
+
 Why are we allowed to add that argument? Because first, `AdminContext` is a service...
 just like the entity manager or the router. And second, the `approve()` method is
 a completely normal Symfony controller... so we're autowiring this service just
@@ -19,8 +21,12 @@ digging. Let's add a sanity check... (mostly for my editor):
 `\LogicException('Entity is missing or not a Question')`.
 Now, we can very easily say `$question->setIsApproved(true)`.
 
+[[[ code('defbfa841b') ]]]
+
 The last step is to save this entity... which looks completely normal! Autowire
 `EntityManagerInterface $entityManager`... and then add `$entityManager->flush()`.
+
+[[[ code('657c8ad773') ]]]
 
 ## Rendering a Template
 
@@ -47,6 +53,8 @@ then *finally*, `->generateUrl()`.
 There are a number of other methods you can call on this builder... but these are
 the most important. At the bottom `return $this->redirect($targetUrl)`.
 
+[[[ code('3a8b58628c') ]]]
+
 Ok team, let's give this a try. Refresh and... got it! We're back on the detail
 page! And if we look for "Alice thought she might...", it's not on our
 "Pending Approval" page anymore!
@@ -65,6 +73,8 @@ Find your custom action... and add `->displayIf()`. Pass that a `static function
 which will receive the `Question $question` argument... and return a `bool`.
 I've been a little lazy on my return types, but you can put that if you want. Finally,
 `return !$question->getIsApproved()`.
+
+[[[ code('1ac115e950') ]]]
 
 Move over now... refresh and... beautiful! The "Approve" button is *gone*. But
 when we go back to a question that *does* need to be approved, it's *still* there.
