@@ -169,5 +169,10 @@ from the index page. And now... it *is*! It's gone for all of them, *except*...
 if I go down and find one with a higher ID... which is *not* approved... yes!
 It *does* have a "Delete" link.
 
+***TIP
+To prevent admin users from using the checkboxes next to each question to "batch
+delete" approved questions, in `configureActions()`, call `->disable(Action::BATCH_DELETE)`.
+***
+
 Next, let's add a custom action! We're going to start simple: a custom action link
 that takes us to the frontend of the site. Then we'll get *more* complicated.
