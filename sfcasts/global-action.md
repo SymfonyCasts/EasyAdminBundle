@@ -26,10 +26,14 @@ a new `$exportAction = Action::new()` and call it `export`. Below, we'll
 and an icon. Cool. We're ready to add this to the index page:
 `->add(Crud::PAGE_INDEX, $exportAction)` to get that button on the main list page.
 
+[[[ code('143c9a64e4') ]]]
+
 If we stopped now, this would be a *normal* action. When we refresh... yup! It
 shows up next to each item in the list. *Not* what we wanted. To make it a
 *global* action, back in the action config, call `->createAsGlobalAction()`. You
 can also see how you would create a batch action.
+
+[[[ code('7c32bf36d5') ]]]
 
 Now refresh and... awesome!
 
@@ -51,6 +55,8 @@ If you downloaded the course code, you *should* have a `tutorial/` directory wit
 `CsvExporter.php` file inside. Copy that... and then, in your `src/Service/`
 directory, paste. This will handle the heavy lifting of creating the CSV.
 
+[[[ code('6c250b9208') ]]]
+
 At the bottom, this returns a `StreamedResponse` (that's a Symfony response)... that
 contains the file download with the CSV data inside. I won't go into the specifics
 of how this works... it's all related to the package we installed.
@@ -60,6 +66,8 @@ be used to query for the results, the `FieldCollection` (this comes from EasyAdm
 and holds the fields to include), and also the filename that we want to use for the
 download. In `QuestionCrudController`, create that `export()` action:
 `public function export()`.
+
+[[[ code('ac9eba26e7') ]]]
 
 ## Reusing the List Query Builder
 
@@ -84,11 +92,15 @@ To get this to work, we need a `$context`. That's the `AdminContext` which, as
 you probably remember, is something we can autowire as a service into our methods.
 Say `AdminContext`... but this time, call it `$context`. Awesome!
 
+[[[ code('3b2395badb') ]]]
+
 At this point, we have both the `QueryBuilder` and the `FieldCollection` that we
 need to call `CsvExporter`. So... let's do it! Autowire `CsvExporter $csvExporter`...
 then, at the bottom, it's as simple as
 `return $csvExporter->createResponseFromQueryBuilder()` passing `$queryBuilder`,
 `$fields`, and then the filename. How about, `questions.csv`
+
+[[[ code('e3f6c5452c') ]]]
 
 Let's try it! Refresh... hit "Export" and... I think it worked! Let me open that
 up. Beautiful! We have a CSV of *all* of our data!
@@ -115,6 +127,8 @@ Up in `configureActions()`, instead of `->linkToCrudAction()`, let's `->linkToUr
 and *completely* take control. Pass this a callback function. Inside, let's
 create the URL manually.
 
+[[[ code('9e31193d1d') ]]]
+
 You might remember that, to generate URLs to EasyAdmin, we need the
 `AdminUrlGenerator` service. Unfortunately, `configureActions()` isn't a real
 action - it's just a random method in our controller - and so we can't
@@ -126,12 +140,16 @@ Add `public function __construct()`... and then autowire
 going to need that in a minute to get the `Request` object. Hit "alt" + "enter"
 and go to "Initialize properties" to create both of those properties and set them.
 
+[[[ code('a39e87187d') ]]]
+
 Back down in `configureActions()`... here we go... inside `->linkToUrl()`, get the
 request: `$request = $this->requestStack->getCurrentRequest()`. Then, for the URL,
 create it from scratch: `$this->adminUrlGenerator`, then
 `->setAll($request->query->all()`. This starts by generating a URL that has *all*
 of the same query parameters as the current request. Now, override the action -
 `->setAction('export')` and then `->generateUrl()`.
+
+[[[ code('2e3c9bd6d9') ]]]
 
 Basically, this says:
 
