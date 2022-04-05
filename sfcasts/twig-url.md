@@ -14,6 +14,8 @@ start with `approve`, `view`... and then the three built-in actions: `Action::ED
 `Action::INDEX`, and `Action::DELETE`. These are the five actions that correspond
 to these five buttons.
 
+[[[ code('ae34e09ff5') ]]]
+
 ## Adding Action Icons to the Entire Admin
 
 Now when we refresh... very nice! Though... I'm noticing that it looks a bit
@@ -27,8 +29,12 @@ the action - `Action::EDIT` - and then a `static function` with an `Action $acti
 argument. Inside, modify and return the `Action` at the same time:
 `return $action->setIcon('fa fa-edit')`.
 
+[[[ code('a2239b75a1') ]]]
+
 Let's do the same thing one more time for the index action button: use
 `Action::PAGE_INDEX`... and we'll give this `fa fa-list`.
+
+[[[ code('cbe93bfa5f') ]]]
 
 Refresh now and... I love it! We see the icons here... and if we go anywhere
 else - like to an Answer's detail page - the icons are here too.
@@ -47,10 +53,14 @@ Open the template for this page - `templates/question/show.html.twig` - and find
 the `<h1>`. Here it is. For organization, I'll wrap this in a `<div>` with
 `class="d-flex justify-content-between"`.
 
+[[[ code('15b2c88dbc') ]]]
+
 After the `h1`, add the link... but only for admin users. So
 `{% if is_granted('ROLE_ADMIN') %}`... and `{% endif %}`. Inside `<a href="">` -
 I'll leave the `href` empty for a moment - with `class="text-white"`. And
 inside of *that*, a `<span class="fa fa-edit">`.
+
+[[[ code('61a82c2b5f') ]]]
 
 Back in our browser, try that. And... hello edit link!
 
@@ -62,6 +72,8 @@ thing thanks to a shortcut function called `ea_url()`.
 normal methods, like `.setController()`... passing the *long* controller class
 name. We have to use double slashes so that they don't get escaped, since we're
 inside of a string. Now add `.setAction('edit')` and `.setEntityId(question.id)`.
+
+[[[ code('c0a56ba5a3') ]]]
 
 It's a little weird to write this kind of code in Twig, but that's how it's done!
 Back over here, refresh... and try the button. Got it!
