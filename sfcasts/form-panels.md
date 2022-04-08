@@ -24,6 +24,8 @@ Over in `QuestionCrudController`, up in `configureFields()`... here we go... rig
 before the `askedBy` field, add `yield FormField::`. So we're starting like normal,
 but instead of saying `new`, say `addPanel('Details')`.
 
+[[[ code('629421d293') ]]]
+
 Watch what this does! Refresh and... cool! "Asked By" and "Answers" appear under
 this "Details" header. That's because, as you can see, `askedBy` and `answers`
 are the two fields that appear *after* the `addPanel()` call. And because the rest
@@ -35,6 +37,8 @@ So, when I use `addPanel()`, I put *everything* under a panel. Right after
 `FormField::addPanel('Basic Data')`. Oh! And let me make sure I don't forget to
 `yield` that.
 
+[[[ code('dfa4ec825c') ]]]
+
 Thanks to this... awesome! We have a "Basic Data" panel, all of the fields below
 that, then the second panel down here.
 
@@ -43,6 +47,8 @@ that, then the second panel down here.
 These panels have a few methods on them. One of the most useful is `->collapsible()`.
 Make this panel collapsible... and the other as well.
 
+[[[ code('f5e45e8657') ]]]
+
 I bet you can guess what this does. Yep! We get a nice way to collapse each section.
 
 What else can we tweak? How about `->setIcon('fa fa-info')`... or
@@ -50,6 +56,8 @@ What else can we tweak? How about `->setIcon('fa fa-info')`... or
 
 Oh, I actually meant to put this down on the other panel, so let me grab this...
 find that other panel... here we go... and paste.
+
+[[[ code('a0f53bdb4a') ]]]
 
 Let's check it out! Nice! The second panel has an icon and some sub-text.
 
@@ -61,6 +69,8 @@ organization is happening here, which is nice.
 
 If you want to organize things even a bit *more*, instead of panels, you can use
 tabs. Change `addPanel()` to `addTab()`. And... repeat that below: `addTab()`.
+
+[[[ code('da4eb9e985') ]]]
 
 When we refresh now... yup! Each shows up as a separate tab. But the `->collapsible()`
 doesn't really make sense anymore. It *is* still being called, but it doesn't
@@ -77,6 +87,8 @@ Or, it's at least inconsistent. When we use tabs, EasyAdmin adds the `fa-` for u
 So all we need is `info`. Watch: when I refresh... there! `fa-info`... and *now*
 the icon shows up!
 
+[[[ code('8928d9924d') ]]]
+
 ## Form Columns
 
 The *last* thing we can do, instead of having this long list of fields, is to put
@@ -87,6 +99,8 @@ To show this off, move the `name` field above `slug`. Yup, got it. And now let's
 see if we can put these fields *next* to each other. We're using bootstrap,
 which means there are 12 invisible columns on each page. So, on `name`,
 say `->setColumns(5)`... and on `slug`, do the same thing: `->setColumns(5)`.
+
+[[[ code('55b5c8f804') ]]]
 
 We could use `6` to take up *all* of the space, but I'll stick with `5` and give
 it some room. Refresh now and... very nice! The fields float next to each other.
