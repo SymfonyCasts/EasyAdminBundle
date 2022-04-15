@@ -89,6 +89,32 @@ Refresh and... got it! Though... you can see the `btn` styling doesn't really wo
 well here. I won't do it, but you could clone the `Action` object and then
 customize each one.
 
+***TIP
+I was wrong! Cloning will *not* work, due to the fact that "clones" are shallow in
+PHP... and the data inside an "action" object is stored in the internal `ActionDto`.
+Anyways, try this solution instead:
+
+```php
+$viewAction = function() {
+    return Action::new('view')
+        ->linkToUrl(function(Question $question) {
+            return $this->generateUrl('app_question_show', [
+                'slug' => $question->getSlug(),
+            ]);
+        })
+        ->setIcon('fa fa-eye')
+        ->setLabel('View on site');
+}
+
+// ...
+
+return parent::configureActions($actions)
+    // ...
+    ->add(Crud::PAGE_DETAIL, $viewAction->addCssClass('btn btn-success'))
+    ->add(Crud::PAGE_INDEX, $viewAction);
+```
+***
+
 Okay, so creating an action that links somewhere is cool. But what about a *true*
 custom action that connects to a custom controller with custom logic... that does
 custom... stuff? Let's add a custom action that allows moderators to approve
