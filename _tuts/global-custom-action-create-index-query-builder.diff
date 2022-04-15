@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 28a602d5..c990db65 100644
+index 28a602d5..5c09cdc1 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -7,12 +7,14 @@ use App\Entity\Question;
@@ -22,7 +22,7 @@ index 28a602d5..c990db65 100644
      public function export(AdminContext $context)
      {
 +        $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));
-+        $filters = $this->get(FilterFactory::class)->create($context->getCrud()->getFiltersConfig(), $fields, $context->getEntity());
++        $filters = $this->container->get(FilterFactory::class)->create($context->getCrud()->getFiltersConfig(), $fields, $context->getEntity());
 +        $queryBuilder = $this->createIndexQueryBuilder($context->getSearch(), $context->getEntity(), $fields, $filters);
      }
  }

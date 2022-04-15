@@ -1,10 +1,10 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index cf0ba53b..993ea3fe 100644
+index 4b167c68..7083ad73 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -197,5 +197,7 @@ class QuestionCrudController extends AbstractCrudController
          $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));
-         $filters = $this->get(FilterFactory::class)->create($context->getCrud()->getFiltersConfig(), $fields, $context->getEntity());
+         $filters = $this->container->get(FilterFactory::class)->create($context->getCrud()->getFiltersConfig(), $fields, $context->getEntity());
          $queryBuilder = $this->createIndexQueryBuilder($context->getSearch(), $context->getEntity(), $fields, $filters);
 +
 +        return $csvExporter->createResponseFromQueryBuilder($queryBuilder, $fields, 'questions.csv');

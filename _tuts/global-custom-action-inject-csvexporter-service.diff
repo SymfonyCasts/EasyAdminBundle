@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index c990db65..cf0ba53b 100644
+index 5c09cdc1..4b167c68 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -5,6 +5,7 @@ namespace App\Controller\Admin;
@@ -18,4 +18,4 @@ index c990db65..cf0ba53b 100644
 +    public function export(AdminContext $context, CsvExporter $csvExporter)
      {
          $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));
-         $filters = $this->get(FilterFactory::class)->create($context->getCrud()->getFiltersConfig(), $fields, $context->getEntity());
+         $filters = $this->container->get(FilterFactory::class)->create($context->getCrud()->getFiltersConfig(), $fields, $context->getEntity());
