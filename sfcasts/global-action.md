@@ -92,7 +92,7 @@ To get this to work, we need a `$context`. That's the `AdminContext` which, as
 you probably remember, is something we can autowire as a service into our methods.
 Say `AdminContext`... but this time, call it `$context`. Awesome!
 
-[[[ code('3b2395badb') ]]]
+[[[ code('985d8aadd8') ]]]
 
 At this point, we have both the `QueryBuilder` and the `FieldCollection` that we
 need to call `CsvExporter`. So... let's do it! Autowire `CsvExporter $csvExporter`...
