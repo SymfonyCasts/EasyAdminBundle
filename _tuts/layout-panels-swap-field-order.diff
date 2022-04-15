@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 2862ed54..f192e542 100644
+index 8d439f42..5b578f9e 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -117,14 +117,14 @@ class QuestionCrudController extends AbstractCrudController
+@@ -119,14 +119,14 @@ class QuestionCrudController extends AbstractCrudController
          yield FormField::addTab('Basic Data')
              ->collapsible();
          yield AssociationField::new('topic');

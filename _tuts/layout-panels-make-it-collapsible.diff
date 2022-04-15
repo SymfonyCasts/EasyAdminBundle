@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 3c357c55..6232f862 100644
+index b0c2f693..6da2bea1 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -114,7 +114,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -116,7 +116,8 @@ class QuestionCrudController extends AbstractCrudController
      {
          yield IdField::new('id')
              ->onlyOnIndex();
@@ -12,7 +12,7 @@ index 3c357c55..6232f862 100644
          yield AssociationField::new('topic');
          yield Field::new('slug')
              ->hideOnIndex()
-@@ -139,7 +140,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -141,7 +142,8 @@ class QuestionCrudController extends AbstractCrudController
          yield VotesField::new('votes', 'Total Votes')
              ->setTextAlign('right')
              ->setPermission('ROLE_SUPER_ADMIN');

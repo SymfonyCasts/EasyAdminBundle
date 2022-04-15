@@ -791,6 +791,11 @@
             "description": null
         },
         {
+            "id": "hide-actions-return-action",
+            "name": "Hide Actions: return $action",
+            "description": null
+        },
+        {
             "id": "hide-actions-comment-out-change",
             "name": "Hide Actions: comment out change",
             "description": null
@@ -1046,5 +1051,5 @@
             "description": null
         }
     ],
-    "sha": "6bba3ed128c8528cf435c2d485980c783e591f7e"
+    "sha": "fd034ae51150ac504a93705224a9888d591d0ae5"
 }

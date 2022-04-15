@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 5ef4723b..2862ed54 100644
+index ebb06833..8d439f42 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -141,8 +141,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -143,8 +143,7 @@ class QuestionCrudController extends AbstractCrudController
              ->setTextAlign('right')
              ->setPermission('ROLE_SUPER_ADMIN');
          yield FormField::addTab('Details')

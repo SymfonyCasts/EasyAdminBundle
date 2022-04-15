@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 84bbfa13..e3b9fcd3 100644
+index 7761435c..85d56740 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -50,7 +50,8 @@ class QuestionCrudController extends AbstractCrudController
+@@ -52,7 +52,8 @@ class QuestionCrudController extends AbstractCrudController
              ->setPermission(Action::EDIT, 'ROLE_MODERATOR')
              ->setPermission(Action::NEW, 'ROLE_SUPER_ADMIN')
              ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN')

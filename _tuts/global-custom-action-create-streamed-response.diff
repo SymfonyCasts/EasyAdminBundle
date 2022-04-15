@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 966e310b..dcd13753 100644
+index cf0ba53b..993ea3fe 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -195,5 +195,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -197,5 +197,7 @@ class QuestionCrudController extends AbstractCrudController
          $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));
          $filters = $this->get(FilterFactory::class)->create($context->getCrud()->getFiltersConfig(), $fields, $context->getEntity());
          $queryBuilder = $this->createIndexQueryBuilder($context->getSearch(), $context->getEntity(), $fields, $filters);

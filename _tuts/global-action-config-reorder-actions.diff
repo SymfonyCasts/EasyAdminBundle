@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 8b41026a..642faa56 100644
+index b6abc2a0..ef5bd208 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -99,7 +99,14 @@ class QuestionCrudController extends AbstractCrudController
+@@ -101,7 +101,14 @@ class QuestionCrudController extends AbstractCrudController
              ->add(Crud::PAGE_DETAIL, $viewAction)
              ->add(Crud::PAGE_INDEX, $viewAction)
              ->add(Crud::PAGE_DETAIL, $approveAction)

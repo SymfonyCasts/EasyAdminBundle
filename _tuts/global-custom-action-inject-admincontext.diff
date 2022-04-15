@@ -1,8 +1,8 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index a0b9ff8c..f3ebdcbf 100644
+index cc5d72df..28a602d5 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
-@@ -187,7 +187,7 @@ class QuestionCrudController extends AbstractCrudController
+@@ -189,7 +189,7 @@ class QuestionCrudController extends AbstractCrudController
          return $this->redirect($targetUrl);
      }
  
