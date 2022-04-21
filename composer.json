@@ -3,6 +3,7 @@
     "license": "proprietary",
     "require": {
         "php": ">=8.0.2",
+        "ext-pgsql": "*",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "composer/package-versions-deprecated": "^1.11",
