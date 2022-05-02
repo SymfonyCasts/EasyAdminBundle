@@ -35,6 +35,12 @@ link disappears.
 
 ## The ?signature In the URL
 
+***TIP
+Starting in EasyAdmin 4.1.0, URLs will *no longer* contain these "signatures". You don't
+need to make any changes, but you can read more about the decision at:
+https://github.com/EasyCorp/EasyAdminBundle/issues/5018
+***
+
 But, of course, I still *technically* have access to this section! The link is gone,
 but if someone sent me this URL, then I *could* still access this. So that *is*
 still a problem. Though, at the very least, a user wouldn't be able to *guess* the
