@@ -36,7 +36,7 @@ link disappears.
 ## The ?signature In the URL
 
 ***TIP
-Starting in EasyAdmin 4.1.0, URLs will *no longer* contain these "signatures". You don't
+Starting in EasyAdmin v4.1.0, URLs will *no longer* contain these "signatures". You don't
 need to make any changes, but you can read more about the decision at:
 https://github.com/EasyCorp/EasyAdminBundle/issues/5018
 ***
