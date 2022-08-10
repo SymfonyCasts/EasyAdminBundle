@@ -37,7 +37,7 @@ We already have an example of that inside `DashboardController`. The `index()` m
 is *really* a regular action... where we render a template. So if you wanted to render
 a template in a custom action, it would look pretty much exactly like this.
 
-# Generating an Admin Url
+## Generating an Admin Url
 
 But in *our* situation, we want to redirect. And, we know how to do that from inside
 of a controller. But hmm, I want to redirect back to the "detail" page in the admin.
