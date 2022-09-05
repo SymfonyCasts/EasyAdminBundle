@@ -110,8 +110,8 @@ $viewAction = function() {
 
 return parent::configureActions($actions)
     // ...
-    ->add(Crud::PAGE_DETAIL, $viewAction->addCssClass('btn btn-success'))
-    ->add(Crud::PAGE_INDEX, $viewAction);
+    ->add(Crud::PAGE_DETAIL, $viewAction()->addCssClass('btn btn-success'))
+    ->add(Crud::PAGE_INDEX, $viewAction());
 ```
 ***
 
