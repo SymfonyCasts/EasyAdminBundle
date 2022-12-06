@@ -110,6 +110,11 @@ normal security rules that we would expect. Right now, this means that *no* secu
 is being applied. I mean, check it out: I'm not even logged in, but I *am*
 successfully on the admin dashboard!
 
+***TIP
+In Symfony 6.2, you can use the `#[IsGranted()]` attribute without installing
+SensioFrameworkExtraBundle. It's now part of the core!
+***
+
 So let's secure it! I'll also do this with an attribute. I already have
 SensioFrameworkExtraBundle installed, so I can say `#[IsGranted()]` and hit "tab" to
 auto-complete that. Let's require any user accessing this controller to have
