@@ -104,7 +104,7 @@ $viewAction = function() {
         })
         ->setIcon('fa fa-eye')
         ->setLabel('View on site');
-}
+};
 
 // ...
 
