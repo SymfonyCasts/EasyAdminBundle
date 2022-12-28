@@ -29,7 +29,7 @@ a message that includes the available roles:
 
 Now when we refresh... much better!
 
-## ->setFormType() and ->setFormTypeOptins()
+## ->setFormType() and ->setFormTypeOptions()
 
 But, hmm. Now that I see this, it might look *even* better if we had check boxes.
 So let's see if we can *change* the `ArrayField` to display check boxes. Hold
