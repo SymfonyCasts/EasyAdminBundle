@@ -16,7 +16,7 @@ index a1c6e90..fb0dbf0 100644
      "entrypoints": []
  }
 diff --git a/composer.json b/composer.json
-index 0838696..01983dc 100644
+index ef8b868..80b47ca 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -25,6 +25,7 @@
@@ -28,15 +28,15 @@ index 0838696..01983dc 100644
          "symfony/yaml": "6.0.*",
          "twig/extra-bundle": "^2.12|^3.0",
 diff --git a/composer.lock b/composer.lock
-index 23b87b9..f0e1dd9 100644
+index 3878d45..910bd65 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "e308637846480749a7c439d12268d614",
-+    "content-hash": "429e1f504d890b8d205b5f4bef4434ae",
+-    "content-hash": "50ddf74f20bb3f414f39fe7051049845",
++    "content-hash": "e6e47f0385d5d8b43043b51e117003c7",
      "packages": [
          {
              "name": "behat/transliterator",
