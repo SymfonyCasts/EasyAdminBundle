@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/AnswerCrudController.php b/src/Controller/Admin/AnswerCrudController.php
-index e8b1aac1..0f645d80 100644
+index e8b1aac..0f645d8 100644
 --- a/src/Controller/Admin/AnswerCrudController.php
 +++ b/src/Controller/Admin/AnswerCrudController.php
 @@ -4,6 +4,10 @@ namespace App\Controller\Admin;

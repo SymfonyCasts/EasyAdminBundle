@@ -1,5 +1,5 @@
 diff --git a/src/EasyAdmin/VotesField.php b/src/EasyAdmin/VotesField.php
-index e83c7fd2..5882ca7d 100644
+index e83c7fd..5882ca7 100644
 --- a/src/EasyAdmin/VotesField.php
 +++ b/src/EasyAdmin/VotesField.php
 @@ -15,7 +15,10 @@ class VotesField implements FieldInterface

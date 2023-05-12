@@ -1,5 +1,5 @@
 diff --git a/assets/controllers/snarkdown_controller.js b/assets/controllers/snarkdown_controller.js
-index f4741a01..d375f69d 100644
+index f4741a0..d375f69 100644
 --- a/assets/controllers/snarkdown_controller.js
 +++ b/assets/controllers/snarkdown_controller.js
 @@ -2,6 +2,7 @@ import { Controller } from '@hotwired/stimulus';

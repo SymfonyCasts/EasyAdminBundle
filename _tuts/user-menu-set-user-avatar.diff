@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 10b877b6..f12c58f4 100644
+index 10b877b..f12c58f 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -48,7 +48,8 @@ class DashboardController extends AbstractDashboardController

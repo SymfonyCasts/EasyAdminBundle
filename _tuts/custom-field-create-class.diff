@@ -1,6 +1,6 @@
 diff --git a/src/EasyAdmin/VotesField.php b/src/EasyAdmin/VotesField.php
 new file mode 100644
-index 00000000..a4804512
+index 0000000..a480451
 --- /dev/null
 +++ b/src/EasyAdmin/VotesField.php
 @@ -0,0 +1,7 @@

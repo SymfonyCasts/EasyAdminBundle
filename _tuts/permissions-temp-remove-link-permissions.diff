@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 6f0df131..a315dca9 100644
+index 6f0df13..a315dca 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -58,8 +58,8 @@ class DashboardController extends AbstractDashboardController
@@ -14,7 +14,7 @@ index 6f0df131..a315dca9 100644
          yield MenuItem::linkToCrud('Topics', 'fas fa-folder', Topic::class);
          yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
-index 4fbed13e..2884c46d 100644
+index 4fbed13..2884c46 100644
 --- a/src/Controller/Admin/QuestionCrudController.php
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -35,7 +35,7 @@ class QuestionCrudController extends AbstractCrudController

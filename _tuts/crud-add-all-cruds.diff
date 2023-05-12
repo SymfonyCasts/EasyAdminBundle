@@ -1,6 +1,6 @@
 diff --git a/src/Controller/Admin/AnswerCrudController.php b/src/Controller/Admin/AnswerCrudController.php
 new file mode 100644
-index 00000000..e8b1aac1
+index 0000000..e8b1aac
 --- /dev/null
 +++ b/src/Controller/Admin/AnswerCrudController.php
 @@ -0,0 +1,25 @@
@@ -30,7 +30,7 @@ index 00000000..e8b1aac1
 +    */
 +}
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 7b53c187..00e91647 100644
+index 7b53c18..00e9164 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -32,5 +32,8 @@ class DashboardController extends AbstractDashboardController
@@ -44,7 +44,7 @@ index 7b53c187..00e91647 100644
  }
 diff --git a/src/Controller/Admin/TopicCrudController.php b/src/Controller/Admin/TopicCrudController.php
 new file mode 100644
-index 00000000..897e28b9
+index 0000000..897e28b
 --- /dev/null
 +++ b/src/Controller/Admin/TopicCrudController.php
 @@ -0,0 +1,25 @@
@@ -75,7 +75,7 @@ index 00000000..897e28b9
 +}
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
 new file mode 100644
-index 00000000..1575931b
+index 0000000..1575931
 --- /dev/null
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -0,0 +1,25 @@
