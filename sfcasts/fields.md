@@ -36,7 +36,7 @@ Watch: when we refresh... that makes absolutely no difference! It was *already*
 guessing that this was an `IdField`.
 
 ***TIP
-If you're using EasyAdmin 4.4.2 or later, you won't find an EasyAdmin icon on the WebDebug toolbar.
+If you're using EasyAdmin 4.4.2 or later, you won't find an EasyAdmin icon on the Web Debug Toolbar.
 Instead, click on any link on the toolbar to get to the Profiler, then look for the "EasyAdmin"
 section near the bottom of the left sidebar.
 ***
