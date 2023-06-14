@@ -35,18 +35,18 @@ prefer being explicit: `IdField::new()`:
 Watch: when we refresh... that makes absolutely no difference! It was *already*
 guessing that this was an `IdField`.
 
+Cool! So how do we figure out what all of the field types are? Documentation is the
+most obvious way. If you look on the web debug toolbar, there's a little EasyAdmin icon.
+
 ***TIP
 If you're using EasyAdmin 4.4.2 or later, you won't find an EasyAdmin icon on the Web Debug Toolbar.
 Instead, click on any link on the toolbar to get to the Profiler, then look for the "EasyAdmin"
 section near the bottom of the left sidebar.
 ***
 
-Cool! So how do we figure out what all of the field types are? Documentation is the
-most obvious way. If you look on the web debug toolbar, there's a little EasyAdmin
-icon. Click into that... to see some basic info about the page... *with*
-a handy link to the documentation. Open that up. It has a "Field Types" section down
-a ways. Yup, there's your big list of all the different field types inside of
-EasyAdmin.
+Click into that... to see some basic info about the page... *with* a handy link to the
+documentation. Open that up. It has a "Field Types" section down a ways. Yup, there's
+your big list of all the different field types inside of EasyAdmin.
 
 *Or*, if you want to go rogue, you find this directly in the source code. Check out
 `vendor/easycorp/easyadmin-bundle/src/Field`. *Here* is the directory that holds
