@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index 661245d..e87b8cd 100644
+index 661245d5..e87b8cd1 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -6,6 +6,7 @@ use App\Entity\Answer;
@@ -40,7 +40,7 @@ index 661245d..e87b8cd 100644
      public function configureDashboard(): Dashboard
 diff --git a/templates/admin/index.html.twig b/templates/admin/index.html.twig
 new file mode 100644
-index 0000000..be1baef
+index 00000000..be1baef2
 --- /dev/null
 +++ b/templates/admin/index.html.twig
 @@ -0,0 +1,31 @@

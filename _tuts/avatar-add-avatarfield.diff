@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 7a3d788..03a2510 100644
+index ec2da64f..4aee908f 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -4,6 +4,7 @@ namespace App\Controller\Admin;
@@ -17,4 +17,4 @@ index 7a3d788..03a2510 100644
 +        yield AvatarField::new('avatar');
          yield ImageField::new('avatar')
              ->setBasePath('uploads/avatars')
-             ->setUploadDir('public/avatars/uploads')
+             ->setUploadDir('public/uploads/avatars')

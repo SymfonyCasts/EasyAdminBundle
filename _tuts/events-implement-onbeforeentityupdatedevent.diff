@@ -1,5 +1,5 @@
 diff --git a/src/EventSubscriber/BlameableSubscriber.php b/src/EventSubscriber/BlameableSubscriber.php
-index bae17c2..12c93d5 100644
+index bae17c21..12c93d55 100644
 --- a/src/EventSubscriber/BlameableSubscriber.php
 +++ b/src/EventSubscriber/BlameableSubscriber.php
 @@ -2,6 +2,8 @@

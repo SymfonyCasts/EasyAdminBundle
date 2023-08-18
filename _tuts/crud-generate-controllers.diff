@@ -1,6 +1,6 @@
 diff --git a/src/Controller/Admin/QuestionCrudController.php b/src/Controller/Admin/QuestionCrudController.php
 new file mode 100644
-index 0000000..89506a0
+index 00000000..89506a0e
 --- /dev/null
 +++ b/src/Controller/Admin/QuestionCrudController.php
 @@ -0,0 +1,25 @@

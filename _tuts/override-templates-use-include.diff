@@ -1,5 +1,5 @@
 diff --git a/templates/admin/field/id_with_icon.html.twig b/templates/admin/field/id_with_icon.html.twig
-index 90f9f8d..81b1acb 100644
+index 90f9f8d7..81b1acb4 100644
 --- a/templates/admin/field/id_with_icon.html.twig
 +++ b/templates/admin/field/id_with_icon.html.twig
 @@ -2,4 +2,5 @@

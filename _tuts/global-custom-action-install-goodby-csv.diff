@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index 80b47ca..5083dfc 100644
+index 80b47ca7..5083dfc9 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -10,6 +10,7 @@
@@ -11,7 +11,7 @@ index 80b47ca..5083dfc 100644
          "knplabs/knp-time-bundle": "^1.11",
          "sensio/framework-extra-bundle": "^6.0",
 diff --git a/composer.lock b/composer.lock
-index 910bd65..205486c 100644
+index 910bd65a..205486cb 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -100,7 +100,7 @@ index 910bd65..205486c 100644
              "name": "knplabs/knp-markdown-bundle",
              "version": "dev-symfony6",
 diff --git a/symfony.lock b/symfony.lock
-index 63776aa..071410f 100644
+index 63776aa4..071410f1 100644
 --- a/symfony.lock
 +++ b/symfony.lock
 @@ -118,6 +118,21 @@

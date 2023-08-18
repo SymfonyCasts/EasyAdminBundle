@@ -1,5 +1,5 @@
 diff --git a/src/EasyAdmin/VotesField.php b/src/EasyAdmin/VotesField.php
-index a480451..8f9a6f0 100644
+index a4804512..8f9a6f06 100644
 --- a/src/EasyAdmin/VotesField.php
 +++ b/src/EasyAdmin/VotesField.php
 @@ -2,6 +2,15 @@

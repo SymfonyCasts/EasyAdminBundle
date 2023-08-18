@@ -1,13 +1,13 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 25d0277..7a3d788 100644
+index aa023cd4..ec2da64f 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -26,7 +26,8 @@ class UserCrudController extends AbstractCrudController
              ->onlyOnIndex();
          yield ImageField::new('avatar')
              ->setBasePath('uploads/avatars')
--            ->setUploadDir('public/avatars/uploads');
-+            ->setUploadDir('public/avatars/uploads')
+-            ->setUploadDir('public/uploads/avatars');
++            ->setUploadDir('public/uploads/avatars')
 +            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');
          yield EmailField::new('email');
          yield TextField::new('fullName')

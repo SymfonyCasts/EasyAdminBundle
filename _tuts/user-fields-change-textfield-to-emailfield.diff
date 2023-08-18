@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 1fe0bb3..8777fcb 100644
+index 1fe0bb31..8777fcbc 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -6,6 +6,7 @@ use App\Entity\User;

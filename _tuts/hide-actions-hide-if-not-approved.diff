@@ -1,5 +1,5 @@
 diff --git a/src/EventSubscriber/HideActionSubscriber.php b/src/EventSubscriber/HideActionSubscriber.php
-index 605cea2..2bfd451 100644
+index 605cea2e..2bfd4513 100644
 --- a/src/EventSubscriber/HideActionSubscriber.php
 +++ b/src/EventSubscriber/HideActionSubscriber.php
 @@ -4,6 +4,7 @@ namespace App\EventSubscriber;

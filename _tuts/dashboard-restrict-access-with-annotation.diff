@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php
-index fc70b1e..4ab2811 100644
+index fc70b1e4..4ab28111 100644
 --- a/src/Controller/Admin/DashboardController.php
 +++ b/src/Controller/Admin/DashboardController.php
 @@ -5,11 +5,13 @@ namespace App\Controller\Admin;
