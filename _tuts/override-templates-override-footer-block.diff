@@ -1,5 +1,5 @@
 diff --git a/templates/bundles/EasyAdminBundle/layout.html.twig b/templates/bundles/EasyAdminBundle/layout.html.twig
-index 2f335937..950357da 100644
+index 2f33593..950357d 100644
 --- a/templates/bundles/EasyAdminBundle/layout.html.twig
 +++ b/templates/bundles/EasyAdminBundle/layout.html.twig
 @@ -1 +1,5 @@

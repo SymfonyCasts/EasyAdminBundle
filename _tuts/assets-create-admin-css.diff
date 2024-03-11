@@ -1,6 +1,6 @@
 diff --git a/assets/styles/admin.css b/assets/styles/admin.css
 new file mode 100644
-index 00000000..4f8289f6
+index 0000000..4f8289f
 --- /dev/null
 +++ b/assets/styles/admin.css
 @@ -0,0 +1,3 @@
@@ -8,7 +8,7 @@ index 00000000..4f8289f6
 +    background: lightcyan;
 +}
 diff --git a/webpack.config.js b/webpack.config.js
-index 056b04aa..19f27c35 100644
+index 056b04a..19f27c3 100644
 --- a/webpack.config.js
 +++ b/webpack.config.js
 @@ -21,6 +21,7 @@ Encore

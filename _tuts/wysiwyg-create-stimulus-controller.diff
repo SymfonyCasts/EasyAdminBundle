@@ -1,6 +1,6 @@
 diff --git a/assets/controllers/snarkdown_controller.js b/assets/controllers/snarkdown_controller.js
 new file mode 100644
-index 00000000..f4741a01
+index 0000000..f4741a0
 --- /dev/null
 +++ b/assets/controllers/snarkdown_controller.js
 @@ -0,0 +1,26 @@

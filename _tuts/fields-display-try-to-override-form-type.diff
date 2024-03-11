@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/UserCrudController.php b/src/Controller/Admin/UserCrudController.php
-index 2d44a2e2..240d0b49 100644
+index 2d44a2e..240d0b4 100644
 --- a/src/Controller/Admin/UserCrudController.php
 +++ b/src/Controller/Admin/UserCrudController.php
 @@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;

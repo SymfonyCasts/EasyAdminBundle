@@ -1,5 +1,5 @@
 diff --git a/src/Controller/Admin/TopicCrudController.php b/src/Controller/Admin/TopicCrudController.php
-index 897e28b9..f0502f2f 100644
+index 897e28b..f0502f2 100644
 --- a/src/Controller/Admin/TopicCrudController.php
 +++ b/src/Controller/Admin/TopicCrudController.php
 @@ -3,6 +3,8 @@

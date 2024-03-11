@@ -1,5 +1,5 @@
 diff --git a/src/EasyAdmin/TruncateLongTextConfigurator.php b/src/EasyAdmin/TruncateLongTextConfigurator.php
-index b0947331..2a4b836c 100644
+index b094733..2a4b836 100644
 --- a/src/EasyAdmin/TruncateLongTextConfigurator.php
 +++ b/src/EasyAdmin/TruncateLongTextConfigurator.php
 @@ -7,9 +7,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldConfiguratorInterface;

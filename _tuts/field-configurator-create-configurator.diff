@@ -1,6 +1,6 @@
 diff --git a/src/EasyAdmin/TruncateLongTextConfigurator.php b/src/EasyAdmin/TruncateLongTextConfigurator.php
 new file mode 100644
-index 00000000..b0947331
+index 0000000..b094733
 --- /dev/null
 +++ b/src/EasyAdmin/TruncateLongTextConfigurator.php
 @@ -0,0 +1,22 @@
