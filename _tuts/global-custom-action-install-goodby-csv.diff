@@ -11,7 +11,7 @@ index 80b47ca..5083dfc 100644
          "knplabs/knp-time-bundle": "^1.11",
          "sensio/framework-extra-bundle": "^6.0",
 diff --git a/composer.lock b/composer.lock
-index 892c076..816db89 100644
+index 2f35d2a..afd4f1b 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
