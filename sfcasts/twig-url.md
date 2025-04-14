@@ -73,6 +73,11 @@ normal methods, like `.setController()`... passing the *long* controller class
 name. We have to use double slashes so that they don't get escaped, since we're
 inside of a string. Now add `.setAction('edit')` and `.setEntityId(question.id)`.
 
+```note
+In a modern EasyAdmin version, you can generate URLs normally through the Router object
+`{% set path = path('admin_question_edit', {entityId: question.id}) %}`
+```
+
 [[[ code('c0a56ba5a3') ]]]
 
 It's a little weird to write this kind of code in Twig, but that's how it's done!
