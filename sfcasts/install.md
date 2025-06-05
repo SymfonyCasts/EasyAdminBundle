@@ -69,6 +69,16 @@ So let's get EasyAdmin installed! Find your terminal and run:
 composer require admin
 ```
 
+***TIP
+EasyAdmin now supports pretty admin URLs since v4.14.0.
+To get the URLs used in the tutorial, run:
+
+```terminal
+composer require "admin:4.13"
+```
+***
+
+
 This is a Flex alias for `easycorp/easyadmin-bundle`. Notice that it downloads the
 shiny new version *4* of EasyAdmin, which only works with Symfony 6. So if you're using
 Symfony 5, run:
