@@ -74,7 +74,7 @@ EasyAdmin now supports pretty admin URLs since v4.14.0.
 To get the URLs used in the tutorial, run:
 
 ```terminal
-composer require "admin:4.13"
+composer require "admin:4.13.*"
 ```
 ***
 
