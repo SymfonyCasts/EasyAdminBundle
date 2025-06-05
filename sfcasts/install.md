@@ -66,16 +66,12 @@ users to manage *all* of this data.
 So let's get EasyAdmin installed! Find your terminal and run:
 
 ```terminal
-composer require admin
+composer require "admin:4.13.*"
 ```
 
 ***TIP
-EasyAdmin now supports pretty admin URLs since v4.14.0.
-To get the URLs used in the tutorial, run:
-
-```terminal
-composer require "admin:4.13.*"
-```
+EasyAdmin supports pretty admin URLs since `v4.14.0`.
+To get the URLs used in the tutorial, use `v4.13.*`.
 ***
 
 
