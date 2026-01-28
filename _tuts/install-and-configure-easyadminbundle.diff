@@ -1,5 +1,5 @@
 diff --git a/composer.json b/composer.json
-index bbd5e99..abb7bab 100644
+index 1e06449..6e58583 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -9,6 +9,7 @@
@@ -11,15 +11,15 @@ index bbd5e99..abb7bab 100644
          "knplabs/knp-time-bundle": "^1.11",
          "sensio/framework-extra-bundle": "^6.0",
 diff --git a/composer.lock b/composer.lock
-index 4583799..c2ac01b 100644
+index 9b4532d..2565f76 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "1b69cd0815bac1298da8a2217ef330a9",
-+    "content-hash": "9ab4058bc13d848ea989673be0155d13",
+-    "content-hash": "57324b4be2679400e0a7924e5f448285",
++    "content-hash": "f4d28342b226c5b6cd56140440a8f0c9",
      "packages": [
          {
              "name": "behat/transliterator",
